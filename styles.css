@@ -614,3 +614,57 @@ footer{background:#04142b;color:#9eb5d0;padding:17px 0;font-size:10px}
     height:16px;
   }
 }
+
+
+/* =========================================================
+   BEQSON V5 — language switcher with flags
+   ========================================================= */
+.lang-switcher{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-left:2px;
+}
+.flag-btn{
+  width:34px;
+  height:34px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:18px;
+  line-height:1;
+  transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+}
+.flag-btn:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.11);
+}
+.flag-btn.active{
+  border-color:#53a9ff;
+  background:rgba(13,121,255,.22);
+  box-shadow:0 0 0 2px rgba(83,169,255,.16);
+}
+@media(max-width:1050px){
+  .lang-switcher{gap:5px}
+  .flag-btn{width:31px;height:31px;font-size:17px;border-radius:9px}
+}
+@media(max-width:720px){
+  .nav{gap:10px}
+  .logo small{display:none}
+  .lang-switcher{order:3;margin-left:auto}
+  .consult-box{order:4}
+  .burger{order:5;margin-left:0}
+  .flag-btn{width:29px;height:29px;font-size:16px;border-radius:8px}
+}
+@media(max-width:480px){
+  .logo b{font-size:15px}
+  .consult-icon{width:28px;height:28px}
+  .consult-icon svg{width:15px;height:15px}
+  .flag-btn{width:28px;height:28px;font-size:15px}
+}

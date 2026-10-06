@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>BEQSON — сайты, SEO и поток клиентов для сервисного бизнеса</title>
-  <meta name="description" content="BEQSON создаёт сайты, настраивает локальное SEO, Google/Яндекс, CRM и систему заявок для сервисного бизнеса.">
+  <title id="page-title">BEQSON — сайты, SEO и поток клиентов для сервисного бизнеса</title>
+  <meta id="meta-description" name="description" content="BEQSON создаёт сайты, настраивает локальное SEO, Google/Яндекс, CRM и систему заявок для сервисного бизнеса.">
   <meta name="theme-color" content="#071f49">
-  <meta property="og:title" content="BEQSON Digital Studio">
-  <meta property="og:description" content="Сайт + SEO + локальный поиск + CRM + заявки.">
+  <meta id="og-title" property="og:title" content="BEQSON Digital Studio">
+  <meta id="og-description" property="og:description" content="Сайт + SEO + локальный поиск + CRM + заявки.">
   <meta property="og:image" content="assets/images/hero-main.webp">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
@@ -19,23 +19,30 @@
       <img src="assets/logo.svg" alt="BEQSON">
       <span><b>BEQSON</b><small>Digital Studio</small></span>
     </a>
-    <button class="burger" id="burger" aria-label="Открыть меню">☰</button>
+    <button class="burger" id="burger" aria-label="Open menu">☰</button>
     <nav id="nav">
-      <a href="#services">Направления</a>
-      <a href="#pricing">Цены</a>
-      <a href="#growth">Рост клиентов</a>
-      <a href="#case">Кейс</a>
-      <a href="#contact">Контакты</a>
+      <a href="#services" data-i18n="navServices">Направления</a>
+      <a href="#pricing" data-i18n="navPricing">Цены</a>
+      <a href="#growth" data-i18n="navGrowth">Рост клиентов</a>
+      <a href="#case" data-i18n="navCase">Кейс</a>
+      <a href="#contact" data-i18n="navContacts">Контакты</a>
     </nav>
+
+    <div class="lang-switcher" aria-label="Language switcher">
+      <button class="flag-btn active" type="button" data-lang="ru" aria-label="Русский" title="Русский">🇷🇺</button>
+      <button class="flag-btn" type="button" data-lang="ka" aria-label="ქართული" title="ქართული">🇬🇪</button>
+      <button class="flag-btn" type="button" data-lang="en" aria-label="English" title="English">🇬🇧</button>
+    </div>
+
     <div class="consult-box" aria-label="Получить консультацию">
-      <span class="consult-label">Получить консультацию</span>
-      <a class="consult-icon whatsapp" href="https://wa.me/995551739333?text=Здравствуйте!%20Хочу%20получить%20консультацию%20BEQSON" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+      <span class="consult-label" data-i18n="consultLabel">Получить консультацию</span>
+      <a class="consult-icon whatsapp js-wa-link" href="https://wa.me/995551739333?text=Здравствуйте!%20Хочу%20получить%20консультацию%20BEQSON" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l5.3-1.3A9.5 9.5 0 1 0 12 2Zm0 17.2a7.7 7.7 0 0 1-3.9-1.1l-.3-.2-3.1.8.8-3-.2-.3A7.7 7.7 0 1 1 12 19.2Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.4-1.3-3.3-3-.2-.3.2-.3.6-1 .1-.2 0-.4 0-.5-.1-.1-.5-1.2-.7-1.7-.2-.5-.4-.4-.5-.4h-.4c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.5s1 2.9 1.2 3.1c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.4-.6 1.6-1.1.2-.5.2-1 .2-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
       </a>
       <a class="consult-icon telegram" href="https://t.me/digital_studio_beqson" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 3.4 18.7 20c-.2 1.2-.8 1.5-1.8.9l-4.4-3.2-2.1 2c-.2.2-.4.4-.9.4l.3-4.5 8.2-7.4c.4-.3-.1-.5-.5-.2L7.3 14.4l-4.3-1.3c-1-.3-1-1 .2-1.4L20 5.2c.8-.3 1.5.2 1.6 1.2Z"/></svg>
       </a>
-      <a class="consult-icon email" href="mailto:digitalstudiobeqson@gmail.com?subject=Консультация%20BEQSON" aria-label="Email" title="Email">
+      <a class="consult-icon email js-email-link" href="mailto:digitalstudiobeqson@gmail.com?subject=Консультация%20BEQSON" aria-label="Email" title="Email">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5h17A1.5 1.5 0 0 1 22 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 17.5v-11A1.5 1.5 0 0 1 3.5 5Zm.3 2 8.2 6 8.2-6H3.8Zm16.2 10V9.4l-7.4 5.4a1 1 0 0 1-1.2 0L4 9.4V17h16Z"/></svg>
       </a>
     </div>
@@ -46,17 +53,17 @@
   <section class="hero">
     <div class="shell hero-grid">
       <div class="hero-copy">
-        <span class="kicker">Сайты • SEO • CRM • реклама</span>
-        <h1>Цифровой офис<br>и привлечение клиентов<br><span class="hero-accent">для бизнеса</span></h1>
-        <p>Создаём сайты, подключаем CRM, автоматизируем заявки и помогаем привлекать клиентов из Google, Яндекса и рекламы.</p>
+        <span class="kicker" data-i18n="heroKicker">Сайты • SEO • CRM • реклама</span>
+        <h1 data-i18n-html="heroTitle">Цифровой офис<br>и привлечение клиентов<br><span class="hero-accent">для бизнеса</span></h1>
+        <p data-i18n="heroText">Создаём сайты, подключаем CRM, автоматизируем заявки и помогаем привлекать клиентов из Google, Яндекса и рекламы.</p>
         <div class="actions">
-          <a class="btn primary" href="https://wa.me/995551739333?text=Здравствуйте!%20Хочу%20обсудить%20проект%20с%20BEQSON" target="_blank" rel="noopener">Получить консультацию →</a>
-          <a class="btn ghost" href="#services">Посмотреть направления</a>
+          <a class="btn primary js-wa-link" href="https://wa.me/995551739333?text=Здравствуйте!%20Хочу%20обсудить%20проект%20с%20BEQSON" target="_blank" rel="noopener" data-i18n="heroBtnPrimary">Получить консультацию →</a>
+          <a class="btn ghost" href="#services" data-i18n="heroBtnSecondary">Посмотреть направления</a>
         </div>
         <div class="microproof">
-          <span>✓ Сайт под ключ</span>
-          <span>✓ Локальное SEO</span>
-          <span>✓ Заявки в WhatsApp / CRM</span>
+          <span data-i18n="micro1">✓ Сайт под ключ</span>
+          <span data-i18n="micro2">✓ Локальное SEO</span>
+          <span data-i18n="micro3">✓ Заявки в WhatsApp / CRM</span>
         </div>
       </div>
       <div class="hero-visual">
@@ -67,53 +74,53 @@
 
   <section class="valuebar">
     <div class="shell value-grid">
-      <div><i>🌐</i><span><b>Сайт + SEO основа</b><small>Современный сайт, готовый к продвижению</small></span></div>
-      <div><i>📍</i><span><b>Google / Yandex</b><small>Карты и локальный поиск</small></span></div>
-      <div><i>⚙️</i><span><b>CRM и автоматизация</b><small>Заявки, воронка и напоминания</small></span></div>
-      <div><i>📈</i><span><b>Запуск рекламы</b><small>Google / Яндекс / Meta</small></span></div>
+      <div><i>🌐</i><span><b data-i18n="value1Title">Сайт + SEO основа</b><small data-i18n="value1Text">Современный сайт, готовый к продвижению</small></span></div>
+      <div><i>📍</i><span><b data-i18n="value2Title">Google / Yandex</b><small data-i18n="value2Text">Карты и локальный поиск</small></span></div>
+      <div><i>⚙️</i><span><b data-i18n="value3Title">CRM и автоматизация</b><small data-i18n="value3Text">Заявки, воронка и напоминания</small></span></div>
+      <div><i>📈</i><span><b data-i18n="value4Title">Запуск рекламы</b><small data-i18n="value4Text">Google / Яндекс / Meta</small></span></div>
     </div>
   </section>
 
   <section class="section light" id="services">
     <div class="shell">
       <div class="section-head compact">
-        <span class="kicker blue">Наши направления</span>
-        <h2>Направления, с которыми мы работаем</h2>
-        <p>Для каждой ниши — свой сайт, оффер, SEO и воронка заявок.</p>
+        <span class="kicker blue" data-i18n="servicesKicker">Наши направления</span>
+        <h2 data-i18n="servicesTitle">Направления, с которыми мы работаем</h2>
+        <p data-i18n="servicesText">Для каждой ниши — свой сайт, оффер, SEO и воронка заявок.</p>
       </div>
 
       <div class="niche-grid">
         <article class="niche">
           <img src="assets/images/lawyers.webp" alt="Адвокаты" loading="lazy">
-          <div><h3>Адвокаты</h3><p>Сайт, заявки, доверие и репутация</p></div>
+          <div><h3 data-i18n="niche1Title">Адвокаты</h3><p data-i18n="niche1Text">Сайт, заявки, доверие и репутация</p></div>
         </article>
         <article class="niche">
           <img src="assets/images/dentists.webp" alt="Стоматологи" loading="lazy">
-          <div><h3>Стоматологи</h3><p>Больше записей и новых пациентов</p></div>
+          <div><h3 data-i18n="niche2Title">Стоматологи</h3><p data-i18n="niche2Text">Больше записей и новых пациентов</p></div>
         </article>
         <article class="niche">
           <img src="assets/images/doctors.webp" alt="Частные врачи и клиники" loading="lazy">
-          <div><h3>Частные врачи / клиники</h3><p>Онлайн-запись и поток пациентов</p></div>
+          <div><h3 data-i18n="niche3Title">Частные врачи / клиники</h3><p data-i18n="niche3Text">Онлайн-запись и поток пациентов</p></div>
         </article>
         <article class="niche">
           <img src="assets/images/realtors.webp" alt="Риелторы" loading="lazy">
-          <div><h3>Риелторы</h3><p>Больше обращений и качественных лидов</p></div>
+          <div><h3 data-i18n="niche4Title">Риелторы</h3><p data-i18n="niche4Text">Больше обращений и качественных лидов</p></div>
         </article>
         <article class="niche">
           <img src="assets/images/accountants.webp" alt="Бухгалтеры" loading="lazy">
-          <div><h3>Бухгалтеры / налоговые консультанты</h3><p>Заявки на консультации и B2B-клиенты</p></div>
+          <div><h3 data-i18n="niche5Title">Бухгалтеры / налоговые консультанты</h3><p data-i18n="niche5Text">Заявки на консультации и B2B-клиенты</p></div>
         </article>
         <article class="niche">
           <img src="assets/images/construction.webp" alt="Строительство и дизайн" loading="lazy">
-          <div><h3>Ремонт / строительство / дизайнеры</h3><p>Больше проектов и целевых обращений</p></div>
+          <div><h3 data-i18n="niche6Title">Ремонт / строительство / дизайнеры</h3><p data-i18n="niche6Text">Больше проектов и целевых обращений</p></div>
         </article>
         <article class="niche">
           <img src="assets/images/autoservice.webp" alt="Автосервис и детейлинг" loading="lazy">
-          <div><h3>Автосервисы / детейлинг</h3><p>Онлайн-запись и стабильный поток клиентов</p></div>
+          <div><h3 data-i18n="niche7Title">Автосервисы / детейлинг</h3><p data-i18n="niche7Text">Онлайн-запись и стабильный поток клиентов</p></div>
         </article>
         <article class="niche">
           <img src="assets/images/hotels.webp" alt="Отели и туризм" loading="lazy">
-          <div><h3>Отели / апартаменты / туризм</h3><p>Больше прямых заявок и бронирований</p></div>
+          <div><h3 data-i18n="niche8Title">Отели / апартаменты / туризм</h3><p data-i18n="niche8Text">Больше прямых заявок и бронирований</p></div>
         </article>
       </div>
     </div>
@@ -122,28 +129,28 @@
   <section class="section pricing" id="pricing">
     <div class="shell">
       <div class="section-head compact inverse">
-        <span class="kicker">Тарифы</span>
-        <h2>Пакеты и цены</h2>
-        <p>Прозрачные решения под разные задачи и бюджет.</p>
+        <span class="kicker" data-i18n="pricingKicker">Тарифы</span>
+        <h2 data-i18n="pricingTitle">Пакеты и цены</h2>
+        <p data-i18n="pricingText">Прозрачные решения под разные задачи и бюджет.</p>
       </div>
       <div class="price-grid">
         <article class="price">
           <div class="price-icon">✈</div>
           <h3>Start</h3>
-          <small>Для старта и базовых задач</small>
-          <strong>$250</strong><em>разово</em>
+          <small data-i18n="price1Sub">Для старта и базовых задач</small>
+          <strong>$250</strong><em data-i18n="oneTime">разово</em>
           <ul>
-            <li>Одностраничный сайт-визитка</li>
-            <li>Базовая структура</li>
-            <li>Форма заявки</li>
-            <li>WhatsApp / Telegram</li>
-            <li>Базовое SEO</li>
+            <li data-i18n="price1b1">Одностраничный сайт-визитка</li>
+            <li data-i18n="price1b2">Базовая структура</li>
+            <li data-i18n="price1b3">Форма заявки</li>
+            <li data-i18n="price1b4">WhatsApp / Telegram</li>
+            <li data-i18n="price1b5">Базовое SEO</li>
           </ul>
-          <a href="#contact">Выбрать пакет</a>
+          <a href="#contact" data-i18n="choosePlan">Выбрать пакет</a>
         </article>
 
         <article class="price popular">
-          <div class="badge">Рекомендуем</div>
+          <div class="badge" data-i18n="recommended">Рекомендуем</div>
           <div class="price-icon growth-chart" aria-hidden="true">
             <svg viewBox="0 0 56 40">
               <polyline points="4,33 17,24 27,28 40,15 52,7" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -155,57 +162,57 @@
             </svg>
           </div>
           <h3>Growth</h3>
-          <small>Для стабильного роста</small>
-          <strong>$490</strong><em>разово</em>
+          <small data-i18n="price2Sub">Для стабильного роста</small>
+          <strong>$490</strong><em data-i18n="oneTime">разово</em>
           <ul>
-            <li>Многостраничный сайт</li>
-            <li>SEO-структура</li>
-            <li>До 3 SEO-страниц</li>
-            <li>Google / Yandex setup</li>
-            <li>Аналитика и формы</li>
+            <li data-i18n="price2b1">Многостраничный сайт</li>
+            <li data-i18n="price2b2">SEO-структура</li>
+            <li data-i18n="price2b3">До 3 SEO-страниц</li>
+            <li data-i18n="price2b4">Google / Yandex setup</li>
+            <li data-i18n="price2b5">Аналитика и формы</li>
           </ul>
-          <a href="#contact">Выбрать пакет</a>
+          <a href="#contact" data-i18n="choosePlan">Выбрать пакет</a>
         </article>
 
         <article class="price">
           <div class="price-icon">♛</div>
           <h3>Pro</h3>
-          <small>Для полной системы</small>
-          <strong>$890</strong><em>разово</em>
+          <small data-i18n="price3Sub">Для полной системы</small>
+          <strong>$890</strong><em data-i18n="oneTime">разово</em>
           <ul>
-            <li>Сайт + CRM</li>
-            <li>До 8 SEO-страниц</li>
-            <li>Мультиязычность</li>
-            <li>Автоматизация заявок</li>
-            <li>Подготовка к рекламе</li>
+            <li data-i18n="price3b1">Сайт + CRM</li>
+            <li data-i18n="price3b2">До 8 SEO-страниц</li>
+            <li data-i18n="price3b3">Мультиязычность</li>
+            <li data-i18n="price3b4">Автоматизация заявок</li>
+            <li data-i18n="price3b5">Подготовка к рекламе</li>
           </ul>
-          <a href="#contact">Выбрать пакет</a>
+          <a href="#contact" data-i18n="choosePlan">Выбрать пакет</a>
         </article>
       </div>
-      <p class="monthly">Сопровождение и развитие — <b>от $60 / месяц</b></p>
+      <p class="monthly" data-i18n-html="monthly">Сопровождение и развитие — <b>от $60 / месяц</b></p>
     </div>
   </section>
 
   <section class="section light" id="growth">
     <div class="shell">
       <div class="section-head compact">
-        <span class="kicker blue">Как мы растим клиентов</span>
-        <h2>Не просто сайт — система привлечения заявок</h2>
-        <p>Мы делаем так, чтобы бизнес находили, ему доверяли и оставляли заявку.</p>
+        <span class="kicker blue" data-i18n="growthKicker">Как мы растим клиентов</span>
+        <h2 data-i18n="growthTitle">Не просто сайт — система привлечения заявок</h2>
+        <p data-i18n="growthText">Мы делаем так, чтобы бизнес находили, ему доверяли и оставляли заявку.</p>
       </div>
       <div class="flow">
-        <div><b>1</b><i>⌕</i><h3>SEO-страницы</h3><p>Под реальные поисковые запросы</p></div>
-        <div><b>2</b><i>G</i><h3>Google / Яндекс</h3><p>Профили и локальная видимость</p></div>
-        <div><b>3</b><i>📍</i><h3>Карты</h3><p>Попадаем в локальный поиск</p></div>
-        <div><b>4</b><i>📣</i><h3>Реклама</h3><p>Google / Meta / Яндекс</p></div>
-        <div><b>5</b><i>▽</i><h3>Автоворонка</h3><p>Формы, WhatsApp, CRM</p></div>
-        <div><b>6</b><i>▥</i><h3>Аналитика</h3><p>Смотрим что работает и улучшаем</p></div>
+        <div><b>1</b><i>⌕</i><h3 data-i18n="flow1Title">SEO-страницы</h3><p data-i18n="flow1Text">Под реальные поисковые запросы</p></div>
+        <div><b>2</b><i>G</i><h3 data-i18n="flow2Title">Google / Яндекс</h3><p data-i18n="flow2Text">Профили и локальная видимость</p></div>
+        <div><b>3</b><i>📍</i><h3 data-i18n="flow3Title">Карты</h3><p data-i18n="flow3Text">Попадаем в локальный поиск</p></div>
+        <div><b>4</b><i>📣</i><h3 data-i18n="flow4Title">Реклама</h3><p data-i18n="flow4Text">Google / Meta / Яндекс</p></div>
+        <div><b>5</b><i>▽</i><h3 data-i18n="flow5Title">Автоворонка</h3><p data-i18n="flow5Text">Формы, WhatsApp, CRM</p></div>
+        <div><b>6</b><i>▥</i><h3 data-i18n="flow6Title">Аналитика</h3><p data-i18n="flow6Text">Смотрим что работает и улучшаем</p></div>
       </div>
 
       <div class="results">
-        <div><i>👥</i><span><b>Больше лидов из поиска</b><small>Google, Яндекс и карты</small></span></div>
-        <div><i>◷</i><span><b>24/7 приём заявок</b><small>Сайт и формы работают постоянно</small></span></div>
-        <div><i>◫</i><span><b>Одна система вместо хаоса</b><small>Сайт, реклама, заявки и клиенты</small></span></div>
+        <div><i>👥</i><span><b data-i18n="result1Title">Больше лидов из поиска</b><small data-i18n="result1Text">Google, Яндекс и карты</small></span></div>
+        <div><i>◷</i><span><b data-i18n="result2Title">24/7 приём заявок</b><small data-i18n="result2Text">Сайт и формы работают постоянно</small></span></div>
+        <div><i>◫</i><span><b data-i18n="result3Title">Одна система вместо хаоса</b><small data-i18n="result3Text">Сайт, реклама, заявки и клиенты</small></span></div>
       </div>
     </div>
   </section>
@@ -213,10 +220,10 @@
   <section class="case" id="case">
     <div class="shell case-grid">
       <div>
-        <span class="kicker">Кейс</span>
-        <h2>LevaniLaw.ge — цифровой офис для адвоката</h2>
-        <p>С нуля собрали сайт, страницы услуг, русскую / грузинскую / английскую структуру, Google Business, Search Console, Яндекс Вебмастер, локальное SEO и WhatsApp.</p>
-        <a class="btn ghost lightbtn" href="https://levanilaw.ge/" target="_blank" rel="noopener">Посмотреть кейс →</a>
+        <span class="kicker" data-i18n="caseKicker">Кейс</span>
+        <h2 data-i18n="caseTitle">LevaniLaw.ge — цифровой офис для адвоката</h2>
+        <p data-i18n="caseText">С нуля собрали сайт, страницы услуг, русскую / грузинскую / английскую структуру, Google Business, Search Console, Яндекс Вебмастер, локальное SEO и WhatsApp.</p>
+        <a class="btn ghost lightbtn" href="https://levanilaw.ge/" target="_blank" rel="noopener" data-i18n="caseBtn">Посмотреть кейс →</a>
       </div>
       <img src="assets/images/cta-office.webp" alt="Цифровой офис BEQSON" loading="lazy">
     </div>
@@ -225,10 +232,10 @@
   <section class="cta" id="contact">
     <div class="shell cta-grid">
       <div>
-        <span class="kicker">Начнём?</span>
-        <h2>Соберём цифровую систему под вашу нишу</h2>
-        <p>Подберём сайт, упаковку и инструменты роста под ваш бизнес.</p>
-        <a class="btn primary" href="https://wa.me/995551739333?text=Здравствуйте!%20Хочу%20обсудить%20проект%20с%20BEQSON" target="_blank" rel="noopener">Обсудить проект →</a>
+        <span class="kicker" data-i18n="ctaKicker">Начнём?</span>
+        <h2 data-i18n="ctaTitle">Соберём цифровую систему под вашу нишу</h2>
+        <p data-i18n="ctaText">Подберём сайт, упаковку и инструменты роста под ваш бизнес.</p>
+        <a class="btn primary js-wa-link" href="https://wa.me/995551739333?text=Здравствуйте!%20Хочу%20обсудить%20проект%20с%20BEQSON" target="_blank" rel="noopener" data-i18n="ctaBtn">Обсудить проект →</a>
       </div>
       <div class="contacts">
         <a href="https://wa.me/995551739333" target="_blank" rel="noopener"><b>WhatsApp</b><span>+995 551 73 93 33</span></a>
@@ -242,7 +249,7 @@
 <footer>
   <div class="shell foot">
     <span><b>BEQSON</b> Digital Studio</span>
-    <span>Websites • SEO • Local Search • Client Acquisition</span>
+    <span data-i18n="footerText">Websites • SEO • Local Search • Client Acquisition</span>
   </div>
 </footer>
 
