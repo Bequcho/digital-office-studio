@@ -64,7 +64,7 @@ def contacts(lang,industry=None):
 def link_attrs(url):return ' target="_blank" rel="noopener noreferrer"' if url.startswith('https:') else ''
 def header(lang,base,slug=None,force_home=False):
  c=CONTENT[lang];home=f'{base}{lang}/';flags='';nav=''
- for l in LANGS:
+ for l in ('en','ka','ru'):
   href=f'{base}{l}/'+(slug+'/' if slug else '')
   flags+=f'<a class="flag-link {"active" if l==lang else ""}" href="{href}" lang="{l}" hreflang="{l}" aria-label="{CONTENT[l]["name"]}" title="{CONTENT[l]["name"]}"'+(' aria-current="page"' if l==lang else '')+f'>{flag(l)}</a>'
  for label,anchor in zip(c['nav'],('services','growth','pricing','case')):
