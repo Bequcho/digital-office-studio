@@ -85,3 +85,106 @@ details p{color:#cbd5e1;margin:14px 0 0}
 }
 
 .brand-sub{display:block;font-size:10px;line-height:1.1;color:#94a3b8;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+
+/* --- BEQSON visual upgrade: generated imagery + premium blue palette --- */
+:root{
+  --blue:#1677ff;
+  --blue2:#00a6ff;
+  --navy:#07152f;
+  --navy2:#0a2149;
+  --cyan:#57d6ff;
+}
+body{
+  background:
+    radial-gradient(circle at 20% 0%,rgba(22,119,255,.16),transparent 28%),
+    #07111f;
+}
+.site-header{
+  background:rgba(5,18,43,.88);
+  border-bottom:1px solid rgba(86,158,255,.18);
+}
+.hero{
+  background:
+    radial-gradient(circle at 80% 25%,rgba(0,166,255,.26),transparent 28%),
+    radial-gradient(circle at 10% 15%,rgba(22,119,255,.22),transparent 35%),
+    linear-gradient(135deg,#06152f 0%,#07275c 55%,#06152f 100%);
+}
+.btn{
+  background:linear-gradient(135deg,#0d6efd,#00a6ff);
+  box-shadow:0 10px 30px rgba(13,110,253,.22);
+}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.hero-card{
+  padding:7px;
+  overflow:hidden;
+  border-color:rgba(68,155,255,.35);
+  background:linear-gradient(145deg,rgba(16,76,161,.34),rgba(5,18,43,.75));
+  box-shadow:0 30px 90px rgba(0,73,183,.28);
+}
+.hero-card img{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  border-radius:19px;
+}
+.hero-proof{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:9px;
+  color:#dbeafe;
+  font-size:13px;
+  margin:18px 0 6px;
+}
+.hero-proof span{
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(147,197,253,.17);
+}
+.hero-proof b{color:#38bdf8}
+.metric-card,.niche-card,.step-card,.price-card,.contact-card,details,.growth-box,.support-box,.contact-panel{
+  background:linear-gradient(180deg,rgba(11,35,76,.78),rgba(5,20,45,.84));
+  border-color:rgba(72,145,239,.18);
+}
+.niche-card{
+  padding:0 0 20px;
+  overflow:hidden;
+}
+.niche-card img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  border-radius:0;
+  margin:0 0 18px;
+  background:#0a2149;
+}
+.niche-card h3,.niche-card p,.niche-card ul{margin-left:20px;margin-right:20px}
+.niche-card:hover{
+  border-color:rgba(52,153,255,.55);
+  box-shadow:0 20px 50px rgba(0,73,183,.18);
+}
+.eyebrow{color:#7dd3fc;border-color:rgba(96,165,250,.25)}
+.price-card.featured{
+  border-color:rgba(37,147,255,.65);
+  box-shadow:0 0 0 1px rgba(37,147,255,.16),0 24px 60px rgba(0,87,255,.13);
+}
+.timeline-dot{
+  background:linear-gradient(135deg,#0d6efd,#58d5ff);
+}
+.contact-panel{
+  overflow:hidden;
+}
+.contact-visual{
+  width:calc(100% + 48px);
+  max-width:none;
+  margin:-24px -24px 22px;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  border-bottom:1px solid rgba(99,170,255,.18);
+}
+@media(max-width:760px){
+  .hero{padding-top:46px}
+  .hero-proof{gap:6px}
+  .hero-card{margin-top:10px}
+}

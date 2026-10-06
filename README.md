@@ -39,3 +39,19 @@
 - WhatsApp / телефон: +995 551 73 93 33
 - Telegram: @digital_studio_beqson
 - Email: digitalstudiobeqson@gmail.com
+
+
+## Готовые изображения
+Все изображения уже подключены в `index.html` и оптимизированы в WebP:
+- `assets/images/hero-main.webp`
+- `assets/images/lawyers.webp`
+- `assets/images/dentists.webp`
+- `assets/images/doctors.webp`
+- `assets/images/realtors.webp`
+- `assets/images/accountants.webp`
+- `assets/images/construction.webp`
+- `assets/images/autoservice.webp`
+- `assets/images/hotels.webp`
+- `assets/images/cta-office.webp`
+
+Ничего вручную подключать не нужно.
