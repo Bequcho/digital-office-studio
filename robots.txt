@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://bequcho.github.io/digital-office-studio/sitemap.xml
+Sitemap: https://beqson.com/sitemap.xml

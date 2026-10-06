@@ -11,7 +11,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent.parent
-BASE = 'https://bequcho.github.io/digital-office-studio/'
+BASE = 'https://beqson.com/'
 LANGS = ('ru', 'ka', 'en')
 SLUGS = tuple(n['slug'] for n in json.loads((ROOT/'tools/industries.json').read_text()))
 
@@ -56,8 +56,8 @@ class SiteTests(unittest.TestCase):
                 refs+=[item.strip().split()[0] for item in attrs.get('srcset','').split(',') if item.strip()]
                 for ref in refs:
                     dest=urlsplit(urljoin(BASE+route,ref))
-                    if not (dest.netloc=='bequcho.github.io' and dest.path.startswith('/digital-office-studio/')):continue
-                    rel=unquote(dest.path.removeprefix('/digital-office-studio/'))
+                    if not (dest.netloc=='beqson.com' and dest.path.startswith('/')):continue
+                    rel=unquote(dest.path.removeprefix('/'))
                     if not rel or rel.endswith('/'):rel+='index.html'
                     target=ROOT/rel
                     with self.subTest(route=route,reference=ref):

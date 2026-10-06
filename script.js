@@ -126,7 +126,7 @@ if (lightbox && typeof lightbox.showModal === 'function') {
   };
 
   const c = content[lang] || content.ru;
-  const sprite = '/digital-office-studio/assets/icons.svg';
+  const sprite = '/assets/icons.svg';
   const featureIcon = icon => {
     if (icon === 'gear') {
       return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"></path><path d="m19 13.5 1.3 1-.9 2.1-1.6-.2a7.8 7.8 0 0 1-1.4 1.4l.2 1.6-2.1.9-1-1.3a7.6 7.6 0 0 1-2 0l-1 1.3-2.1-.9.2-1.6a7.8 7.8 0 0 1-1.4-1.4l-1.6.2-.9-2.1 1.3-1a7.6 7.6 0 0 1 0-2l-1.3-1 .9-2.1 1.6.2a7.8 7.8 0 0 1 1.4-1.4l-.2-1.6 2.1-.9 1 1.3a7.6 7.6 0 0 1 2 0l1-1.3 2.1.9-.2 1.6a7.8 7.8 0 0 1 1.4 1.4l1.6-.2.9 2.1-1.3 1a7.6 7.6 0 0 1 0 2Z"></path></svg>`;
@@ -147,7 +147,7 @@ if (lightbox && typeof lightbox.showModal === 'function') {
           </div>
         </div>
         <div class="classic-hero-visual">
-          <img src="/digital-office-studio/assets/images/hero-main.webp" alt="${c.imageAlt}" width="1600" height="900" fetchpriority="high" loading="eager">
+          <img src="/assets/images/hero-main.webp" alt="${c.imageAlt}" width="1600" height="900" fetchpriority="high" loading="eager">
         </div>
       </div>
     </section>`;

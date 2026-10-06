@@ -1,6 +1,6 @@
 # BEQSON — Premium · GE / RU / EN
 
-Готовый статический сайт для https://bequcho.github.io/digital-office-studio/.
+Готовый статический сайт для https://beqson.com/.
 Для публикации не нужно устанавливать Node.js, Python или запускать сборку: все HTML-страницы уже созданы.
 
 ## Обновить сайт в GitHub
@@ -9,7 +9,7 @@
 2. Откройте существующий репозиторий `bequcho/digital-office-studio` и его корневую папку.
 3. При ручной загрузке нажмите **Add file → Upload files**. Перетащите **файлы сайта**, включая папки `assets`, `ru`, `ka`, `en` и `tools`. Главный `index.html` должен оказаться непосредственно в корне репозитория. Также сохраните пустой файл `.nojekyll`.
 4. Сохраните изменения в ветке, из которой публикуется ваш сайт, с заменой файлов с такими же именами. Для прежней настройки это `main`.
-5. Дождитесь успешной публикации в **Actions** и откройте https://bequcho.github.io/digital-office-studio/ru/. При старом отображении обновите страницу сочетанием **Ctrl + F5**.
+5. Дождитесь успешной публикации в **Actions** и откройте https://beqson.com/ru/. При старом отображении обновите страницу сочетанием **Ctrl + F5**.
 
 Если GitHub Pages уже настроен, повторная настройка обычно не нужна. Для публикации из ветки: **Settings → Pages → Deploy from a branch → main → /(root) → Save**.
 
@@ -32,14 +32,14 @@
 
 | Направление | Русская страница |
 | --- | --- |
-| Адвокаты | https://bequcho.github.io/digital-office-studio/ru/lawyers/ |
-| Стоматологи | https://bequcho.github.io/digital-office-studio/ru/dentists/ |
-| Частные врачи / клиники | https://bequcho.github.io/digital-office-studio/ru/clinics/ |
-| Риелторы | https://bequcho.github.io/digital-office-studio/ru/realtors/ |
-| Бухгалтеры / налоговые консультанты | https://bequcho.github.io/digital-office-studio/ru/accountants/ |
-| Ремонт / строительство / дизайнеры | https://bequcho.github.io/digital-office-studio/ru/construction/ |
-| Автосервисы / детейлинг | https://bequcho.github.io/digital-office-studio/ru/autoservices/ |
-| Отели / апартаменты / туризм | https://bequcho.github.io/digital-office-studio/ru/hotels/ |
+| Адвокаты | https://beqson.com/ru/lawyers/ |
+| Стоматологи | https://beqson.com/ru/dentists/ |
+| Частные врачи / клиники | https://beqson.com/ru/clinics/ |
+| Риелторы | https://beqson.com/ru/realtors/ |
+| Бухгалтеры / налоговые консультанты | https://beqson.com/ru/accountants/ |
+| Ремонт / строительство / дизайнеры | https://beqson.com/ru/construction/ |
+| Автосервисы / детейлинг | https://beqson.com/ru/autoservices/ |
+| Отели / апартаменты / туризм | https://beqson.com/ru/hotels/ |
 
 Грузинская и английская версии имеют те же адреса направлений внутри `/ka/` и `/en/`. Переключение флагом сохраняет выбранное направление.
 
@@ -59,7 +59,7 @@
 
 ## Карта сайта
 
-https://bequcho.github.io/digital-office-studio/sitemap.xml
+https://beqson.com/sitemap.xml
 
 Карта содержит 27 основных страниц: три главные и 24 страницы направлений. После публикации можно отправить обновлённый sitemap в уже используемые панели поисковых систем. `robots.txt` включён в архив; при размещении GitHub Pages в подпапке правила обхода домена определяет его корневой robots.txt.
 

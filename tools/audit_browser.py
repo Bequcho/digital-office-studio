@@ -2,7 +2,7 @@
 """Browser regression audit; requires Playwright and Chromium, optional axe-core.
 
 python3 tools/audit_browser.py --output /tmp/beqson-audit --axe /path/to/axe.min.js
-Start `python3 -m http.server 8000 --directory /workspace` before running.
+Start `python3 -m http.server 8000 --directory /workspace/digital-office-studio` before running.
 """
 from pathlib import Path
 import argparse
@@ -18,7 +18,7 @@ SLUGS=[n['slug'] for n in json.loads((ROOT/'tools/industries.json').read_text())
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--base',default='http://127.0.0.1:8000/digital-office-studio/')
+    parser.add_argument('--base',default='http://127.0.0.1:8000/')
     parser.add_argument('--output',type=Path,default=Path('/tmp/beqson-audit'))
     parser.add_argument('--axe',type=Path)
     args=parser.parse_args();args.output.mkdir(parents=True,exist_ok=True)
