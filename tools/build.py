@@ -72,7 +72,7 @@ def header(lang,base,slug=None,force_home=False):
  socials=''.join(f'<a class="social {kind}" href="{esc(url)}" aria-label="{name}" title="{name}"{link_attrs(url)}>{icon(kind)}</a>' for kind,name,text,url in contacts(lang))
  return f'''<a class="skip" href="#main">{c['skip']}</a>
 <header class="site-header"><div class="shell header-inner">
-<a class="brand" href="{home}"><img src="{base}assets/logo.svg" width="42" height="42" alt=""><span><b>BEQSON</b><small>DIGITAL STUDIO</small></span></a>
+<a class="brand" href="{home}"><img src="{base}assets/beqson-mark-v2.png" width="42" height="42" alt=""><span><b>BEQSON</b><small>DIGITAL STUDIO</small></span></a>
 <nav class="main-nav" id="main-nav" aria-label="{c['menu']}">{nav}<div class="mobile-contacts">{socials}</div></nav>
 <div class="header-tools"><div class="languages" aria-label="Language">{flags}</div><div class="consult-group"><a class="consult-label" href="#contact">{c['consult']}</a><div class="socials">{socials}</div></div><button class="menu-toggle" type="button" aria-label="{c['menu']}" data-open-label="{c['menu']}" data-close-label="{c['close']}" aria-controls="main-nav" aria-expanded="false">{icon('menu')}</button></div>
 </div></header>'''
@@ -87,7 +87,7 @@ def contact_section(lang,industry=None):
 def head(lang,base,title,description,slug=None,noindex=False):
  c=CONTENT[lang];canonical=BASE_URL+('404.html' if noindex else lang+'/'+(slug+'/' if slug else ''));image=BASE_URL+'assets/'+(f'concepts/{lang}/{slug}-og.jpg' if slug else 'og-cover.png')
  alternates='' if noindex else ''.join(f'<link rel="alternate" hreflang="{l}" href="{BASE_URL}{l}/{slug+"/" if slug else ""}">' for l in LANGS)+f'<link rel="alternate" hreflang="x-default" href="{BASE_URL}ru/{slug+"/" if slug else ""}">'
- org={'@type':'Organization','@id':BASE_URL+'#organization','name':'BEQSON Digital Studio','url':BASE_URL,'logo':BASE_URL+'assets/logo.svg','email':EMAIL,'telephone':'+'+PHONE,'sameAs':['https://t.me/digital_studio_beqson']}
+ org={'@type':'Organization','@id':BASE_URL+'#organization','name':'BEQSON Digital Studio','url':BASE_URL,'logo':BASE_URL+'assets/beqson-mark-v2.png','email':EMAIL,'telephone':'+'+PHONE,'sameAs':['https://t.me/digital_studio_beqson']}
  graph=[org,{'@type':'WebPage','@id':canonical+'#webpage','url':canonical,'name':title,'description':description,'inLanguage':lang,'publisher':{'@id':BASE_URL+'#organization'}}]
  if slug:
   n=next(n for n in INDUSTRIES if n['slug']==slug)
@@ -97,7 +97,7 @@ def head(lang,base,title,description,slug=None,noindex=False):
  return f'''<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}"><meta name="theme-color" content="#081529">{('<meta name="robots" content="noindex,follow">' if noindex else '')}
-<link rel="canonical" href="{canonical}">{alternates}<link rel="icon" href="{base}assets/logo.svg" type="image/svg+xml"><link rel="icon" href="{base}assets/favicon.png" type="image/png"><link rel="apple-touch-icon" href="{base}assets/apple-touch-icon.png"><link rel="manifest" href="{base}site.webmanifest">
+<link rel="canonical" href="{canonical}">{alternates}<link rel="shortcut icon" href="{base}favicon.ico?v=2"><link rel="icon" href="{base}assets/favicon-v2.png" type="image/png"><link rel="apple-touch-icon" href="{base}assets/apple-touch-icon-v2.png"><link rel="manifest" href="{base}site.webmanifest?v=2">
 <meta property="og:type" content="website"><meta property="og:site_name" content="BEQSON Digital Studio"><meta property="og:locale" content="{c['locale']}"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(description)}"><meta property="og:url" content="{canonical}"><meta property="og:image" content="{image}"><meta property="og:image:type" content="{'image/jpeg' if slug else 'image/png'}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="{'800' if slug else '630'}"><meta property="og:image:alt" content="{esc(title)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{image}"><meta name="twitter:image:alt" content="{esc(title)}">
 <link rel="preload" href="{base}assets/fonts/{font}-800.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{base}styles.css?v=11-contact-solid"><script src="{base}script.js?v=9" defer></script>
 <script type="application/ld+json">{json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False)}</script></head>'''
@@ -186,7 +186,7 @@ def main():
    urls.append('<url><loc>'+BASE_URL+path+'</loc>'+alts+'</url>')
  write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'+'\n'.join(urls)+'\n</urlset>\n')
  write('robots.txt','User-agent: *\nAllow: /\nSitemap: '+BASE_URL+'sitemap.xml\n')
- write('site.webmanifest',json.dumps({'name':'BEQSON Digital Studio','short_name':'BEQSON','lang':'ru','start_url':'./','scope':'./','display':'browser','background_color':'#f6f7fa','theme_color':'#081529','icons':[{'src':'assets/app-icon-192.png','sizes':'192x192','type':'image/png'},{'src':'assets/app-icon-512.png','sizes':'512x512','type':'image/png'}]},indent=2))
+ write('site.webmanifest',json.dumps({'name':'BEQSON Digital Studio','short_name':'BEQSON','lang':'ru','start_url':'./','scope':'./','display':'browser','background_color':'#f6f7fa','theme_color':'#081529','icons':[{'src':'assets/app-icon-192-v2.png','sizes':'192x192','type':'image/png'},{'src':'assets/app-icon-512-v2.png','sizes':'512x512','type':'image/png'}]},indent=2))
  write('.nojekyll','')
  print('Generated 28 content pages, 404, sitemap, robots and manifest.')
 if __name__=='__main__':main()
