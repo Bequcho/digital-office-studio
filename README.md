@@ -1,17 +1,5 @@
-# BEQSON Digital Studio — Compact version
+# Digital Office Studio
 
-Компактная версия сайта в стиле предоставленного референса.
+Websites, local SEO and client-acquisition systems for local service businesses.
 
-## Структура
-- hero
-- 4 преимущества
-- 8 ниш в сетке 4×2
-- цены
-- 6 шагов роста клиентов
-- результаты
-- кейс LevaniLaw.ge
-- CTA + контакты
-
-## Публикация
-Загрузить все файлы и папки в корень GitHub-репозитория с заменой.
-GitHub Pages: main / (root).
+Live case: https://levanilaw.ge

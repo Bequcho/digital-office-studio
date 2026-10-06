@@ -1,231 +1,61 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>BEQSON — сайты, SEO и поток клиентов для сервисного бизнеса</title>
-  <meta name="description" content="BEQSON создаёт сайты, настраивает локальное SEO, Google/Яндекс, CRM и систему заявок для сервисного бизнеса.">
-  <meta name="theme-color" content="#071f49">
-  <meta property="og:title" content="BEQSON Digital Studio">
-  <meta property="og:description" content="Сайт + SEO + локальный поиск + CRM + заявки.">
-  <meta property="og:image" content="assets/images/hero-main.webp">
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#0b0d10" />
+<title>Digital Office Studio — Websites, Local SEO & Client Acquisition</title>
+<meta name="description" content="Digital Office Studio builds websites, Google visibility, local SEO and client-intake systems for service businesses. See our live lawyer case study." />
+<style>
+    :root{
+      --bg:#0b0d10;--bg2:#101318;--panel:#15191f;--panel2:#1a1f26;
+      --text:#f3f0e9;--muted:#a9a39b;--line:rgba(255,255,255,.08);
+      --gold:#d5aa67;--gold2:#f0c98b;--green:#72c993;
+      --serif:Georgia,'Times New Roman',serif;--sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+      --max:1240px;--shadow:0 26px 80px rgba(0,0,0,.34)
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.62}a{color:inherit;text-decoration:none}button{font:inherit}
+    .wrap{width:min(var(--max),calc(100% - 44px));margin:auto}.section{padding:96px 0}.eyebrow{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);font-weight:800}.title{font-family:var(--serif);font-weight:500;letter-spacing:-.035em;line-height:1.04;font-size:clamp(2.2rem,4.4vw,4rem);margin:.6rem 0 1rem}.lead{font-size:1.08rem;color:var(--muted);max-width:760px}
+    header{position:fixed;z-index:50;inset:0 0 auto;background:linear-gradient(180deg,rgba(8,10,13,.96),rgba(8,10,13,.76),transparent);backdrop-filter:blur(10px)}
+    .nav{height:82px;display:flex;align-items:center;gap:26px}.brand{margin-right:auto}.brand strong{display:block;font-family:var(--serif);color:var(--gold2);font-size:1.18rem;font-weight:500}.brand span{display:block;color:#817b73;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;margin-top:3px}.navlinks{display:flex;gap:24px;font-size:.87rem;color:#dcd5cc}.navlinks a:hover{color:var(--gold2)}.langs{display:flex;gap:5px}.lang{border:0;background:transparent;color:#8b867f;cursor:pointer;font-size:.75rem;padding:7px 8px;border-radius:999px;font-weight:800}.lang.active{background:rgba(213,170,103,.1);color:var(--gold2)}
+    .hero{min-height:820px;display:flex;align-items:flex-end;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+    .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 72% 30%,rgba(213,170,103,.13),transparent 28%),radial-gradient(circle at 12% 42%,rgba(213,170,103,.09),transparent 34%),linear-gradient(135deg,#0b0d10 15%,#11151a 68%,#0b0d10)}
+    .hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 92%)}
+    .hero-content{position:relative;z-index:3;padding:180px 0 90px;max-width:900px}.hero h1{font-family:var(--serif);font-size:clamp(3.2rem,7.1vw,7rem);line-height:.93;font-weight:500;letter-spacing:-.055em;margin:20px 0 26px}.hero h1 em{font-style:normal;color:var(--gold2)}.hero p{font-size:1.22rem;color:#d4cdc4;max-width:760px;margin:0 0 30px}.hero-pills{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 28px}.pill{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.025);color:#c8c0b7;font-size:.82rem}.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border-radius:9px;border:1px solid rgba(213,170,103,.5);font-weight:800;cursor:pointer}.btn-primary{background:linear-gradient(135deg,var(--gold2),#c78f49);color:#151009;border-color:transparent}.btn-ghost{background:rgba(255,255,255,.025)}
+    .proofbar{background:#0f1216;border-bottom:1px solid var(--line)}.proofgrid{display:grid;grid-template-columns:repeat(4,1fr)}.proof{padding:28px;border-right:1px solid var(--line)}.proof:last-child{border-right:0}.proof b{display:block;font-family:var(--serif);font-size:1.45rem;font-weight:500;color:var(--gold2)}.proof span{color:#8e8982;font-size:.86rem}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}.card{background:linear-gradient(180deg,#161a20,#111419);border:1px solid var(--line);border-radius:16px;padding:30px;box-shadow:var(--shadow);position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,var(--gold),transparent)}.card h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;margin:6px 0 12px}.card p{color:#a59f97;margin:0}.card .num{color:rgba(240,201,139,.7);font-size:.8rem;letter-spacing:.14em}.band{background:#101318;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}.case{border:1px solid var(--line);border-radius:18px;background:#14181e;padding:34px;box-shadow:var(--shadow)}.case-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:26px}.case-badge{font-size:.73rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green);border:1px solid rgba(114,201,147,.28);padding:7px 10px;border-radius:999px}.browser{border:1px solid rgba(255,255,255,.09);border-radius:14px;overflow:hidden;background:#0e1115}.browserbar{height:38px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:0 12px}.dot{width:8px;height:8px;border-radius:50%;background:#4f5358}.address{margin-left:10px;background:#171b21;border-radius:6px;padding:5px 9px;color:#777f88;font-size:.72rem}.browserbody{padding:30px;background:radial-gradient(circle at 85% 30%,rgba(213,170,103,.13),transparent 24%),linear-gradient(135deg,#0c0f13,#161b22)}.browserbody .mini{font-family:var(--serif);color:var(--gold2);font-size:1.1rem}.browserbody h4{font-family:var(--serif);font-size:2.1rem;line-height:1;margin:14px 0 12px;font-weight:500}.browserbody p{color:#9f9991;max-width:460px}.ticks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}.tick{padding:11px 12px;border:1px solid var(--line);border-radius:10px;color:#aaa49c;font-size:.84rem}.tick:before{content:"✓";color:var(--green);margin-right:8px}
+    .pricing{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:38px}.price{padding:34px;border:1px solid var(--line);border-radius:18px;background:#14181e}.price.featured{border-color:rgba(213,170,103,.45);background:linear-gradient(180deg,#1a1d22,#12151a)}.price h3{font-family:var(--serif);font-size:1.75rem;font-weight:500;margin:6px 0}.amount{font-family:var(--serif);font-size:3.1rem;color:var(--gold2);margin:16px 0 4px}.amount small{font-family:var(--sans);font-size:.9rem;color:#8e8982}.price ul{padding:0;list-style:none;margin:24px 0}.price li{padding:7px 0;color:#aaa49c}.price li:before{content:"✓";color:var(--green);margin-right:10px}
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:38px}.step{padding:24px;border:1px solid var(--line);border-radius:14px;background:#14181e}.step b{font-family:var(--serif);font-size:1.6rem;color:var(--gold2);font-weight:500}.step h3{font-family:var(--serif);font-weight:500;margin:14px 0 8px}.step p{color:#938d86;font-size:.9rem;margin:0}
+    .audit{background:linear-gradient(135deg,#171b21,#0d1014)}.auditbox{display:grid;grid-template-columns:1.2fr .8fr;gap:46px;padding:42px;border:1px solid rgba(213,170,103,.25);border-radius:18px;background:rgba(255,255,255,.02);box-shadow:var(--shadow)}.auditlist{display:grid;gap:10px;margin-top:22px}.auditlist div{color:#a8a199}.auditlist div:before{content:"→";color:var(--gold2);margin-right:9px}.audit-note{padding:24px;border:1px solid var(--line);border-radius:14px;background:#101318}.audit-note h3{font-family:var(--serif);font-weight:500;margin:0 0 10px}.audit-note p{color:#9e9890;margin:0 0 16px}
+    .faq{display:grid;gap:12px;margin-top:32px}.faq details{border:1px solid var(--line);border-radius:12px;padding:17px 19px;background:#13171c}.faq summary{font-weight:800;cursor:pointer}.faq p{color:#9f9991;margin:11px 0 0}
+    footer{padding:34px 0;background:#080a0c;border-top:1px solid var(--line);color:#78736d;font-size:.79rem}.footer{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}.footer strong{font-family:var(--serif);color:#b9a98e;font-weight:500}
+    @media(max-width:950px){.navlinks{display:none}.proofgrid,.grid3,.pricing,.process,.split,.auditbox{grid-template-columns:1fr 1fr}.hero{min-height:760px}.hero-content{padding-top:150px}}
+    @media(max-width:650px){.wrap{width:min(100% - 28px,var(--max))}.section{padding:72px 0}.brand span{display:none}.hero{min-height:auto}.hero-content{padding:145px 0 64px}.hero h1{font-size:clamp(3rem,15vw,4.8rem)}.hero p{font-size:1.03rem}.actions .btn{width:100%}.proofgrid,.grid3,.pricing,.process,.split,.auditbox{grid-template-columns:1fr}.proof{border-right:0;border-bottom:1px solid var(--line)}.proof:last-child{border-bottom:0}.ticks{grid-template-columns:1fr}.auditbox{padding:28px}.langs{margin-left:auto}}
+  
+.nichegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}.niche{padding:24px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02)}.niche b{display:block;font-family:var(--serif);font-size:1.28rem;font-weight:500;margin-bottom:6px}.niche span{color:#9f9991;font-size:.9rem}.micro{font-size:.82rem;color:#8e8982;margin-top:12px}@media(max-width:900px){.nichegrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.nichegrid{grid-template-columns:1fr}}
+</style>
 </head>
-<body>
-<header class="topbar">
-  <div class="shell nav">
-    <a class="logo" href="#home">
-      <img src="assets/logo.svg" alt="BEQSON">
-      <span><b>BEQSON</b><small>Digital Studio</small></span>
-    </a>
-    <button class="burger" id="burger" aria-label="Открыть меню">☰</button>
-    <nav id="nav">
-      <a href="#services">Направления</a>
-      <a href="#pricing">Цены</a>
-      <a href="#growth">Как растим клиентов</a>
-      <a href="#case">Кейс</a>
-      <a href="#contact">Контакты</a>
-    </nav>
-    <a class="top-cta" href="https://wa.me/995551739333?text=Здравствуйте!%20Хочу%20обсудить%20проект%20с%20BEQSON" target="_blank" rel="noopener">Получить консультацию</a>
-  </div>
-</header>
-
-<main id="home">
-  <section class="hero">
-    <div class="shell hero-grid">
-      <div class="hero-copy">
-        <span class="kicker">Сайты • SEO • CRM • реклама</span>
-        <h1>Цифровой офис и поток клиентов для сервисного бизнеса</h1>
-        <p>Создаём сайты, подключаем CRM, автоматизируем заявки и помогаем привлекать клиентов из Google, Яндекса и рекламы.</p>
-        <div class="actions">
-          <a class="btn primary" href="https://wa.me/995551739333?text=Здравствуйте!%20Хочу%20обсудить%20проект%20с%20BEQSON" target="_blank" rel="noopener">Получить консультацию →</a>
-          <a class="btn ghost" href="#services">Посмотреть направления</a>
-        </div>
-        <div class="microproof">
-          <span>✓ Сайт под ключ</span>
-          <span>✓ Локальное SEO</span>
-          <span>✓ Заявки в WhatsApp / CRM</span>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <img src="assets/images/hero-main.webp" alt="BEQSON — цифровой офис, CRM и аналитика" width="1600" height="900">
-      </div>
-    </div>
-  </section>
-
-  <section class="valuebar">
-    <div class="shell value-grid">
-      <div><i>🌐</i><span><b>Сайт + SEO основа</b><small>Современный сайт, готовый к продвижению</small></span></div>
-      <div><i>📍</i><span><b>Google / Yandex</b><small>Карты и локальный поиск</small></span></div>
-      <div><i>⚙️</i><span><b>CRM и автоматизация</b><small>Заявки, воронка и напоминания</small></span></div>
-      <div><i>📈</i><span><b>Запуск рекламы</b><small>Google / Яндекс / Meta</small></span></div>
-    </div>
-  </section>
-
-  <section class="section light" id="services">
-    <div class="shell">
-      <div class="section-head compact">
-        <span class="kicker blue">Наши направления</span>
-        <h2>Направления, с которыми мы работаем</h2>
-        <p>Для каждой ниши — свой сайт, оффер, SEO и воронка заявок.</p>
-      </div>
-
-      <div class="niche-grid">
-        <article class="niche">
-          <img src="assets/images/lawyers.webp" alt="Адвокаты" loading="lazy">
-          <div><h3>Адвокаты</h3><p>Сайт, заявки, доверие и репутация</p></div>
-        </article>
-        <article class="niche">
-          <img src="assets/images/dentists.webp" alt="Стоматологи" loading="lazy">
-          <div><h3>Стоматологи</h3><p>Больше записей и новых пациентов</p></div>
-        </article>
-        <article class="niche">
-          <img src="assets/images/doctors.webp" alt="Частные врачи и клиники" loading="lazy">
-          <div><h3>Частные врачи / клиники</h3><p>Онлайн-запись и поток пациентов</p></div>
-        </article>
-        <article class="niche">
-          <img src="assets/images/realtors.webp" alt="Риелторы" loading="lazy">
-          <div><h3>Риелторы</h3><p>Больше обращений и качественных лидов</p></div>
-        </article>
-        <article class="niche">
-          <img src="assets/images/accountants.webp" alt="Бухгалтеры" loading="lazy">
-          <div><h3>Бухгалтеры / налоговые консультанты</h3><p>Заявки на консультации и B2B-клиенты</p></div>
-        </article>
-        <article class="niche">
-          <img src="assets/images/construction.webp" alt="Строительство и дизайн" loading="lazy">
-          <div><h3>Ремонт / строительство / дизайнеры</h3><p>Больше проектов и целевых обращений</p></div>
-        </article>
-        <article class="niche">
-          <img src="assets/images/autoservice.webp" alt="Автосервис и детейлинг" loading="lazy">
-          <div><h3>Автосервисы / детейлинг</h3><p>Онлайн-запись и стабильный поток клиентов</p></div>
-        </article>
-        <article class="niche">
-          <img src="assets/images/hotels.webp" alt="Отели и туризм" loading="lazy">
-          <div><h3>Отели / апартаменты / туризм</h3><p>Больше прямых заявок и бронирований</p></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section pricing" id="pricing">
-    <div class="shell">
-      <div class="section-head compact inverse">
-        <span class="kicker">Тарифы</span>
-        <h2>Пакеты и цены</h2>
-        <p>Прозрачные решения под разные задачи и бюджет.</p>
-      </div>
-      <div class="price-grid">
-        <article class="price">
-          <div class="price-icon">✈</div>
-          <h3>Start</h3>
-          <small>Для старта и базовых задач</small>
-          <strong>$250</strong><em>разово</em>
-          <ul>
-            <li>Лендинг / визитка</li>
-            <li>Базовая структура</li>
-            <li>Форма заявки</li>
-            <li>WhatsApp / Telegram</li>
-            <li>Базовое SEO</li>
-          </ul>
-          <a href="#contact">Выбрать пакет</a>
-        </article>
-
-        <article class="price popular">
-          <div class="badge">Рекомендуем</div>
-          <div class="price-icon">▥</div>
-          <h3>Growth</h3>
-          <small>Для стабильного роста</small>
-          <strong>$490</strong><em>разово</em>
-          <ul>
-            <li>Многостраничный сайт</li>
-            <li>SEO-структура</li>
-            <li>До 3 SEO-страниц</li>
-            <li>Google / Yandex setup</li>
-            <li>Аналитика и формы</li>
-          </ul>
-          <a href="#contact">Выбрать пакет</a>
-        </article>
-
-        <article class="price">
-          <div class="price-icon">♛</div>
-          <h3>Pro</h3>
-          <small>Для полной системы</small>
-          <strong>$890</strong><em>разово</em>
-          <ul>
-            <li>Сайт + CRM</li>
-            <li>До 8 SEO-страниц</li>
-            <li>Мультиязычность</li>
-            <li>Автоматизация заявок</li>
-            <li>Подготовка к рекламе</li>
-          </ul>
-          <a href="#contact">Выбрать пакет</a>
-        </article>
-      </div>
-      <p class="monthly">Сопровождение и развитие — <b>от $60 / месяц</b></p>
-    </div>
-  </section>
-
-  <section class="section light" id="growth">
-    <div class="shell">
-      <div class="section-head compact">
-        <span class="kicker blue">Как мы растим клиентов</span>
-        <h2>Не просто сайт — система привлечения заявок</h2>
-        <p>Мы делаем так, чтобы бизнес находили, ему доверяли и оставляли заявку.</p>
-      </div>
-      <div class="flow">
-        <div><b>1</b><i>⌕</i><h3>SEO-страницы</h3><p>Под реальные поисковые запросы</p></div>
-        <div><b>2</b><i>G</i><h3>Google / Яндекс</h3><p>Профили и локальная видимость</p></div>
-        <div><b>3</b><i>📍</i><h3>Карты</h3><p>Попадаем в локальный поиск</p></div>
-        <div><b>4</b><i>📣</i><h3>Реклама</h3><p>Google / Meta / Яндекс</p></div>
-        <div><b>5</b><i>▽</i><h3>Автоворонка</h3><p>Формы, WhatsApp, CRM</p></div>
-        <div><b>6</b><i>▥</i><h3>Аналитика</h3><p>Смотрим что работает и улучшаем</p></div>
-      </div>
-
-      <div class="results">
-        <div><i>👥</i><span><b>Больше лидов из поиска</b><small>Google, Яндекс и карты</small></span></div>
-        <div><i>◷</i><span><b>24/7 приём заявок</b><small>Сайт и формы работают постоянно</small></span></div>
-        <div><i>◫</i><span><b>Одна система вместо хаоса</b><small>Сайт, реклама, заявки и клиенты</small></span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="case" id="case">
-    <div class="shell case-grid">
-      <div>
-        <span class="kicker">Кейс</span>
-        <h2>LevaniLaw.ge — цифровой офис для адвоката</h2>
-        <p>С нуля собрали сайт, страницы услуг, русскую / грузинскую / английскую структуру, Google Business, Search Console, Яндекс Вебмастер, локальное SEO и WhatsApp.</p>
-        <a class="btn ghost lightbtn" href="https://levanilaw.ge/" target="_blank" rel="noopener">Посмотреть кейс →</a>
-      </div>
-      <img src="assets/images/cta-office.webp" alt="Цифровой офис BEQSON" loading="lazy">
-    </div>
-  </section>
-
-  <section class="cta" id="contact">
-    <div class="shell cta-grid">
-      <div>
-        <span class="kicker">Начнём?</span>
-        <h2>Соберём цифровую систему под вашу нишу</h2>
-        <p>Подберём сайт, упаковку и инструменты роста под ваш бизнес.</p>
-        <a class="btn primary" href="https://wa.me/995551739333?text=Здравствуйте!%20Хочу%20обсудить%20проект%20с%20BEQSON" target="_blank" rel="noopener">Обсудить проект →</a>
-      </div>
-      <div class="contacts">
-        <a href="https://wa.me/995551739333" target="_blank" rel="noopener"><b>WhatsApp</b><span>+995 551 73 93 33</span></a>
-        <a href="https://t.me/digital_studio_beqson" target="_blank" rel="noopener"><b>Telegram</b><span>@digital_studio_beqson</span></a>
-        <a href="mailto:digitalstudiobeqson@gmail.com"><b>Email</b><span>digitalstudiobeqson@gmail.com</span></a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="shell foot">
-    <span><b>BEQSON</b> Digital Studio</span>
-    <span>Websites • SEO • Local Search • Client Acquisition</span>
-  </div>
-</footer>
-
-<script src="script.js"></script>
-</body>
-</html>
+<body id="top">
+<header><div class="wrap nav"><a class="brand" href="#top"><strong>Digital Office Studio</strong><span data-i18n="brandSub">Web · Local SEO · Client Acquisition</span></a><nav class="navlinks"><a href="#offer" data-i18n="navOffer">What we build</a><a href="#industries" data-i18n="navIndustries">Who it is for</a><a href="#case" data-i18n="navCase">Case study</a><a href="#pricing" data-i18n="navPricing">Pricing</a><a href="#audit" data-i18n="navAudit">Free audit</a></nav><div class="langs"><button class="lang active" data-lang="en">EN</button><button class="lang" data-lang="ru">RU</button><button class="lang" data-lang="ka">KA</button></div></div></header>
+<section class="hero"><div class="hero-grid-lines"></div><div class="wrap hero-content"><div class="eyebrow" data-i18n="heroEyebrow">For local service businesses</div><h1 data-i18n-html="heroTitle">Turn your business into a <em>digital office</em>.</h1><p data-i18n="heroLead">We build the complete online system that helps people find you, trust you and contact you — website, Google presence, local SEO, WhatsApp intake and analytics.</p><div class="hero-pills"><span class="pill">Website</span><span class="pill">Google Business</span><span class="pill">Local SEO</span><span class="pill">WhatsApp Intake</span><span class="pill">Analytics</span></div><div class="actions"><a class="btn btn-primary" href="#audit" data-i18n="ctaAudit">Get a free digital audit →</a><a class="btn btn-ghost" href="https://levanilaw.ge" target="_blank" rel="noopener" data-i18n="ctaCase">View live case →</a></div></div></section>
+<section class="proofbar"><div class="wrap proofgrid"><div class="proof"><b data-i18n="proof1">5–7 days</b><span data-i18n="proof1s">typical launch timeline</span></div><div class="proof"><b>3</b><span data-i18n="proof2s">languages in our first live case</span></div><div class="proof"><b>14+</b><span data-i18n="proof3s">SEO pages & search URLs built</span></div><div class="proof"><b data-i18n="proof4">1 system</b><span data-i18n="proof4s">website + maps + SEO + intake</span></div></div></section>
+<section class="section" id="offer"><div class="wrap"><div class="eyebrow" data-i18n="offerEyebrow">Not just a website</div><h2 class="title" data-i18n="offerTitle">A complete client-acquisition setup.</h2><p class="lead" data-i18n="offerLead">A beautiful site is useful only when people can discover it and contact you. We connect the pieces into one practical system.</p><div class="grid3"><div class="card"><div class="num">01</div><h3 data-i18n="c1t">Premium website</h3><p data-i18n="c1p">Fast mobile-first website with clear services, trust signals and direct calls to action.</p></div><div class="card"><div class="num">02</div><h3 data-i18n="c2t">Google & local visibility</h3><p data-i18n="c2p">Google Business Profile, Maps, Search Console, sitemap and local search setup around your city and services.</p></div><div class="card"><div class="num">03</div><h3 data-i18n="c3t">Lead intake</h3><p data-i18n="c3p">WhatsApp, phone and inquiry flow structured so a potential customer can contact you in seconds.</p></div><div class="card"><div class="num">04</div><h3 data-i18n="c4t">Service SEO pages</h3><p data-i18n="c4p">Dedicated searchable pages for your highest-value services instead of one generic homepage.</p></div><div class="card"><div class="num">05</div><h3 data-i18n="c5t">Multilingual presence</h3><p data-i18n="c5p">Separate language pages when your real audience searches in Georgian, Russian or English.</p></div><div class="card"><div class="num">06</div><h3 data-i18n="c6t">Growth layer</h3><p data-i18n="c6p">Reviews, directories, content, analytics and ongoing SEO after launch — based on real data.</p></div></div></div></section>
+<section class="section band" id="industries"><div class="wrap"><div class="eyebrow" data-i18n="indEyebrow">Focused on businesses where one client matters</div><h2 class="title" data-i18n="indTitle">One system. Different professional niches.</h2><p class="lead" data-i18n="indLead">We start with high-value local services, where better Google visibility and a stronger online presence can directly affect enquiries.</p><div class="nichegrid"><div class="niche"><b data-i18n="n1t">Lawyers</b><span data-i18n="n1p">Practice pages, local search, trust and fast consultation intake.</span></div><div class="niche"><b data-i18n="n2t">Dentists & clinics</b><span data-i18n="n2p">Treatment pages, Maps visibility, reviews and appointment enquiries.</span></div><div class="niche"><b data-i18n="n3t">Real estate</b><span data-i18n="n3p">Agent positioning, local search, property enquiries and multilingual reach.</span></div><div class="niche"><b data-i18n="n4t">Professional services</b><span data-i18n="n4p">Accountants, consultants, designers, auto services and other local experts.</span></div></div></div></section>
+<section class="section" id="case"><div class="wrap split"><div><div class="eyebrow" data-i18n="caseEyebrow">Live case study · Lawyers</div><h2 class="title">LevaniLaw.ge</h2><p class="lead" data-i18n="caseLead">Our first live vertical case: a Tbilisi lawyer moved from a basic social presence to a complete digital infrastructure built for search visibility and direct client contact.</p><div class="ticks"><div class="tick" data-i18n="tick1">Custom domain & HTTPS</div><div class="tick" data-i18n="tick2">GE / RU / EN website</div><div class="tick" data-i18n="tick3">Google Business & Maps</div><div class="tick" data-i18n="tick4">Google Search Console</div><div class="tick" data-i18n="tick5">Yandex Webmaster</div><div class="tick" data-i18n="tick6">Local SEO landing pages</div><div class="tick" data-i18n="tick7">WhatsApp intake</div><div class="tick" data-i18n="tick8">Sitemap & structured data</div></div><div class="actions" style="margin-top:24px"><a class="btn btn-primary" href="https://levanilaw.ge" target="_blank" rel="noopener" data-i18n="viewCase">Open live case →</a></div><p class="micro" data-i18n="caseNote">We show the work completed, not invented performance claims. Search results and lead data will be added only when enough real data exists.</p></div><div class="case"><div class="case-top"><div><div class="eyebrow">Tbilisi, Georgia</div><h3 style="font-family:var(--serif);font-size:1.9rem;font-weight:500;margin:8px 0 0">Levani Khelkhelauri</h3></div><span class="case-badge" data-i18n="caseBadge">Live</span></div><div class="browser"><div class="browserbar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="address">levanilaw.ge</span></div><div class="browserbody"><div class="mini">Levani Khelkhelauri</div><h4>Legal support<br>you can trust.</h4><p>Civil · Administrative · Criminal Law · Tbilisi</p></div></div></div></div></section>
+<section class="section band" id="pricing"><div class="wrap"><div class="eyebrow" data-i18n="priceEyebrow">Founding client offer</div><h2 class="title" data-i18n="priceTitle">Start lean. Build the system. Grow with data.</h2><p class="lead" data-i18n="priceLead">While we build our first portfolio across professional niches, a limited number of founding clients can launch at a reduced rate.</p><div class="pricing"><div class="price featured"><div class="eyebrow">Launch</div><h3>Digital Office Launch</h3><div class="amount">990 GEL</div><p class="lead" data-i18n="launchSub">One-time setup for selected founding clients.</p><ul><li data-i18n="l1">Premium website</li><li data-i18n="l2">Custom domain setup</li><li data-i18n="l3">Google Business & Maps</li><li data-i18n="l4">Search Console & sitemap</li><li data-i18n="l5">Core service SEO pages</li><li data-i18n="l6">WhatsApp / phone intake</li><li data-i18n="l7">30 days technical support</li></ul><a class="btn btn-primary" href="#audit" data-i18n="launchCta">Request a free audit →</a></div><div class="price"><div class="eyebrow">Growth</div><h3>SEO & Growth</h3><div class="amount">350 GEL <small>/ month</small></div><p class="lead" data-i18n="growthSub">Optional ongoing visibility and conversion work after launch.</p><ul><li data-i18n="g1">Search performance review</li><li data-i18n="g2">New SEO pages & content</li><li data-i18n="g3">Google profile improvements</li><li data-i18n="g4">Review system support</li><li data-i18n="g5">Directory & citation work</li><li data-i18n="g6">Monthly growth priorities</li></ul></div></div></div></section>
+<section class="section"><div class="wrap"><div class="eyebrow" data-i18n="processEyebrow">Simple process</div><h2 class="title" data-i18n="processTitle">From audit to launch in four steps.</h2><div class="process"><div class="step"><b>01</b><h3 data-i18n="s1t">Free audit</h3><p data-i18n="s1p">We review how your business currently appears in Google, Maps and on mobile.</p></div><div class="step"><b>02</b><h3 data-i18n="s2t">Positioning</h3><p data-i18n="s2p">We define your highest-value services, audience, languages and local search opportunities.</p></div><div class="step"><b>03</b><h3 data-i18n="s3t">Build</h3><p data-i18n="s3p">Website, profiles, SEO pages, contact flow and technical setup are built as one system.</p></div><div class="step"><b>04</b><h3 data-i18n="s4t">Launch & improve</h3><p data-i18n="s4p">We publish, submit to search engines and improve based on real searches and enquiries.</p></div></div></div></section>
+<section class="section audit band" id="audit"><div class="wrap"><div class="auditbox"><div><div class="eyebrow" data-i18n="auditEyebrow">Free digital audit</div><h2 class="title" data-i18n="auditTitle">Before you buy anything, see where your online presence is losing opportunities.</h2><p class="lead" data-i18n="auditLead">Send this page back to the person who shared it with you and ask for a free audit. You will receive a short, practical review — no obligation.</p><div class="auditlist"><div data-i18n="a1">Google search visibility</div><div data-i18n="a2">Google Maps / Business profile</div><div data-i18n="a3">Website & mobile experience</div><div data-i18n="a4">Service SEO gaps</div><div data-i18n="a5">Customer contact friction</div></div></div><div class="audit-note"><h3 data-i18n="auditBoxTitle">What to send</h3><p data-i18n="auditBoxText">Just your business name, city and current website or Google Maps profile if you have one. We will review the rest.</p><a class="btn btn-primary" href="#top" data-i18n="auditReply">Reply to the message that sent you this page →</a></div></div></div></section>
+<section class="section"><div class="wrap"><div class="eyebrow">FAQ</div><h2 class="title" data-i18n="faqTitle">Common questions.</h2><div class="faq"><details><summary data-i18n="q1">Do I need to understand websites or SEO?</summary><p data-i18n="qa1">No. This is a done-for-you setup. You provide accurate information about your business; the technical work is handled for you.</p></details><details><summary data-i18n="q2">Can I keep my existing domain or Google profile?</summary><p data-i18n="qa2">Yes. Existing assets can be improved and connected instead of rebuilt when that makes sense.</p></details><details><summary data-i18n="q3">Do you guarantee a certain number of customers?</summary><p data-i18n="qa3">No. Demand, competition, pricing and reputation vary. We build and improve the acquisition infrastructure, but we do not promise a fixed number of leads or sales.</p></details><details><summary data-i18n="q4">Can the site be multilingual?</summary><p data-i18n="qa4">Yes. Georgian, Russian and English versions can be built when they match your real audience.</p></details></div></div></section>
+<footer><div class="wrap footer"><div><strong>Digital Office Studio</strong><div data-i18n="footerSub">Web · Local SEO · Client Intake · Growth</div></div><div data-i18n="footerNote">Digital client-acquisition infrastructure for local service businesses.</div></div></footer>
+<script>
+const T={
+en:{brandSub:'Web · Local SEO · Client Acquisition',navOffer:'What we build',navIndustries:'Who it is for',navCase:'Case study',navPricing:'Pricing',navAudit:'Free audit',heroEyebrow:'For local service businesses',heroTitle:'Turn your business into a <em>digital office</em>.',heroLead:'We build the complete online system that helps people find you, trust you and contact you — website, Google presence, local SEO, WhatsApp intake and analytics.',ctaAudit:'Get a free digital audit →',ctaCase:'View live case →',proof1:'5–7 days',proof1s:'typical launch timeline',proof2s:'languages in our first live case',proof3s:'SEO pages & search URLs built',proof4:'1 system',proof4s:'website + maps + SEO + intake',offerEyebrow:'Not just a website',offerTitle:'A complete client-acquisition setup.',offerLead:'A beautiful site is useful only when people can discover it and contact you. We connect the pieces into one practical system.',c1t:'Premium website',c1p:'Fast mobile-first website with clear services, trust signals and direct calls to action.',c2t:'Google & local visibility',c2p:'Google Business Profile, Maps, Search Console, sitemap and local search setup around your city and services.',c3t:'Lead intake',c3p:'WhatsApp, phone and inquiry flow structured so a potential customer can contact you in seconds.',c4t:'Service SEO pages',c4p:'Dedicated searchable pages for your highest-value services instead of one generic homepage.',c5t:'Multilingual presence',c5p:'Separate language pages when your real audience searches in Georgian, Russian or English.',c6t:'Growth layer',c6p:'Reviews, directories, content, analytics and ongoing SEO after launch — based on real data.',indEyebrow:'Focused on businesses where one client matters',indTitle:'One system. Different professional niches.',indLead:'We start with high-value local services, where better Google visibility and a stronger online presence can directly affect enquiries.',n1t:'Lawyers',n1p:'Practice pages, local search, trust and fast consultation intake.',n2t:'Dentists & clinics',n2p:'Treatment pages, Maps visibility, reviews and appointment enquiries.',n3t:'Real estate',n3p:'Agent positioning, local search, property enquiries and multilingual reach.',n4t:'Professional services',n4p:'Accountants, consultants, designers, auto services and other local experts.',caseEyebrow:'Live case study · Lawyers',caseLead:'Our first live vertical case: a Tbilisi lawyer moved from a basic social presence to a complete digital infrastructure built for search visibility and direct client contact.',tick1:'Custom domain & HTTPS',tick2:'GE / RU / EN website',tick3:'Google Business & Maps',tick4:'Google Search Console',tick5:'Yandex Webmaster',tick6:'Local SEO landing pages',tick7:'WhatsApp intake',tick8:'Sitemap & structured data',viewCase:'Open live case →',caseNote:'We show the work completed, not invented performance claims. Search results and lead data will be added only when enough real data exists.',caseBadge:'Live',priceEyebrow:'Founding client offer',priceTitle:'Start lean. Build the system. Grow with data.',priceLead:'While we build our first portfolio across professional niches, a limited number of founding clients can launch at a reduced rate.',launchSub:'One-time setup for selected founding clients.',l1:'Premium website',l2:'Custom domain setup',l3:'Google Business & Maps',l4:'Search Console & sitemap',l5:'Core service SEO pages',l6:'WhatsApp / phone intake',l7:'30 days technical support',launchCta:'Request a free audit →',growthSub:'Optional ongoing visibility and conversion work after launch.',g1:'Search performance review',g2:'New SEO pages & content',g3:'Google profile improvements',g4:'Review system support',g5:'Directory & citation work',g6:'Monthly growth priorities',processEyebrow:'Simple process',processTitle:'From audit to launch in four steps.',s1t:'Free audit',s1p:'We review how your business currently appears in Google, Maps and on mobile.',s2t:'Positioning',s2p:'We define your highest-value services, audience, languages and local search opportunities.',s3t:'Build',s3p:'Website, profiles, SEO pages, contact flow and technical setup are built as one system.',s4t:'Launch & improve',s4p:'We publish, submit to search engines and improve based on real searches and enquiries.',auditEyebrow:'Free digital audit',auditTitle:'Before you buy anything, see where your online presence is losing opportunities.',auditLead:'Send this page back to the person who shared it with you and ask for a free audit. You will receive a short, practical review — no obligation.',a1:'Google search visibility',a2:'Google Maps / Business profile',a3:'Website & mobile experience',a4:'Service SEO gaps',a5:'Customer contact friction',auditBoxTitle:'What to send',auditBoxText:'Just your business name, city and current website or Google Maps profile if you have one. We will review the rest.',auditReply:'Reply to the message that sent you this page →',faqTitle:'Common questions.',q1:'Do I need to understand websites or SEO?',qa1:'No. This is a done-for-you setup. You provide accurate information about your business; the technical work is handled for you.',q2:'Can I keep my existing domain or Google profile?',qa2:'Yes. Existing assets can be improved and connected instead of rebuilt when that makes sense.',q3:'Do you guarantee a certain number of customers?',qa3:'No. Demand, competition, pricing and reputation vary. We build and improve the acquisition infrastructure, but we do not promise a fixed number of leads or sales.',q4:'Can the site be multilingual?',qa4:'Yes. Georgian, Russian and English versions can be built when they match your real audience.',footerSub:'Web · Local SEO · Client Intake · Growth',footerNote:'Digital client-acquisition infrastructure for local service businesses.'},
+ru:{brandSub:'Сайты · локальное SEO · привлечение клиентов',navOffer:'Что создаём',navIndustries:'Для кого',navCase:'Кейс',navPricing:'Цены',navAudit:'Бесплатный аудит',heroEyebrow:'Для локального бизнеса и специалистов',heroTitle:'Превращаем ваш бизнес в <em>цифровой офис</em>.',heroLead:'Создаём единую онлайн-систему, которая помогает клиентам найти вас, довериться вам и быстро связаться: сайт, Google, локальное SEO, WhatsApp и аналитика.',ctaAudit:'Получить бесплатный аудит →',ctaCase:'Посмотреть живой кейс →',proof1:'5–7 дней',proof1s:'типичный срок запуска',proof2s:'языка в первом живом кейсе',proof3s:'SEO-страниц и поисковых URL создано',proof4:'1 система',proof4s:'сайт + карты + SEO + заявки',offerEyebrow:'Не просто сайт',offerTitle:'Полная система привлечения клиентов.',offerLead:'Красивый сайт полезен только тогда, когда люди могут его найти и легко обратиться. Мы собираем все элементы в одну практичную систему.',c1t:'Современный сайт',c1p:'Быстрый адаптивный сайт с понятными услугами, элементами доверия и прямыми призывами к действию.',c2t:'Google и локальная видимость',c2p:'Google Business, Maps, Search Console, sitemap и локальная настройка поиска по городу и услугам.',c3t:'Приём заявок',c3p:'WhatsApp, телефон и путь обращения настроены так, чтобы потенциальный клиент мог связаться за секунды.',c4t:'SEO-страницы услуг',c4p:'Отдельные поисковые страницы под самые ценные услуги вместо одной общей главной.',c5t:'Несколько языков',c5p:'Отдельные индексируемые языковые версии, если ваша аудитория ищет на грузинском, русском или английском.',c6t:'Рост после запуска',c6p:'Отзывы, каталоги, контент, аналитика и дальнейшее SEO на основании реальных данных.',indEyebrow:'Для бизнеса, где один клиент имеет высокую ценность',indTitle:'Одна система. Разные профессиональные ниши.',indLead:'Начинаем с локальных услуг, где видимость в Google и сильная онлайн-репутация напрямую влияют на обращения.',n1t:'Адвокаты',n1p:'Страницы практик, локальный поиск, доверие и быстрая запись на консультацию.',n2t:'Стоматологи и клиники',n2p:'Страницы процедур, Google Maps, отзывы и запись пациентов.',n3t:'Недвижимость',n3p:'Позиционирование агента, локальный поиск, заявки и мультиязычная аудитория.',n4t:'Профессиональные услуги',n4p:'Бухгалтеры, консультанты, дизайнеры, автосервисы и другие локальные специалисты.',caseEyebrow:'Живой кейс · Адвокаты',caseLead:'Наш первый живой вертикальный кейс: адвокат в Тбилиси перешёл от базового присутствия в соцсетях к полной цифровой инфраструктуре для поиска и прямых обращений клиентов.',tick1:'Собственный домен и HTTPS',tick2:'Сайт GE / RU / EN',tick3:'Google Business и Maps',tick4:'Google Search Console',tick5:'Яндекс Вебмастер',tick6:'Локальные SEO-страницы',tick7:'Заявки через WhatsApp',tick8:'Sitemap и структурированные данные',viewCase:'Открыть живой кейс →',caseNote:'Мы показываем выполненную работу, а не выдуманные результаты. Позиции и данные по обращениям добавим только когда накопится достаточно реальной статистики.',caseBadge:'Работает',priceEyebrow:'Предложение для первых клиентов',priceTitle:'Начинаем компактно. Строим систему. Растём по данным.',priceLead:'Пока мы собираем первые кейсы в разных профессиональных нишах, ограниченное число клиентов может запуститься по сниженной стартовой цене.',launchSub:'Разовый запуск для выбранных первых клиентов.',l1:'Современный сайт',l2:'Подключение собственного домена',l3:'Google Business и Maps',l4:'Search Console и sitemap',l5:'Основные SEO-страницы услуг',l6:'WhatsApp / телефон для заявок',l7:'30 дней технической поддержки',launchCta:'Запросить бесплатный аудит →',growthSub:'Необязательное ежемесячное продвижение после запуска.',g1:'Анализ поисковых показателей',g2:'Новые SEO-страницы и контент',g3:'Улучшение Google-профиля',g4:'Система работы с отзывами',g5:'Каталоги и локальные упоминания',g6:'Ежемесячные приоритеты роста',processEyebrow:'Простой процесс',processTitle:'От аудита до запуска за четыре шага.',s1t:'Бесплатный аудит',s1p:'Смотрим, как бизнес сейчас выглядит в Google, Maps и на телефоне.',s2t:'Позиционирование',s2p:'Определяем самые ценные услуги, аудиторию, языки и локальные поисковые возможности.',s3t:'Создание',s3p:'Сайт, профили, SEO-страницы, путь заявки и технические настройки собираются в одну систему.',s4t:'Запуск и улучшение',s4p:'Публикуем, отправляем поисковикам и улучшаем по реальным запросам и обращениям.',auditEyebrow:'Бесплатный цифровой аудит',auditTitle:'До покупки чего-либо покажем, где ваше онлайн-присутствие теряет возможности.',auditLead:'Отправьте эту страницу человеку, который поделился ею с вами, и попросите бесплатный аудит. Вы получите короткий практический разбор без обязательств.',a1:'Видимость в Google',a2:'Google Maps / профиль компании',a3:'Сайт и мобильная версия',a4:'Пробелы в SEO по услугам',a5:'Лишние препятствия для обращения',auditBoxTitle:'Что прислать',auditBoxText:'Название бизнеса, город и текущий сайт или ссылку Google Maps, если они есть. Остальное мы проверим сами.',auditReply:'Ответить тому, кто прислал эту страницу →',faqTitle:'Частые вопросы.',q1:'Мне нужно разбираться в сайтах или SEO?',qa1:'Нет. Это услуга под ключ. Вы даёте точную информацию о бизнесе, техническую часть мы берём на себя.',q2:'Можно оставить мой нынешний домен или Google-профиль?',qa2:'Да. Если существующие активы можно улучшить, мы подключим их вместо создания заново.',q3:'Вы гарантируете определённое число клиентов?',qa3:'Нет. Спрос, конкуренция, цены и репутация отличаются. Мы строим и улучшаем инфраструктуру привлечения, но не обещаем фиксированное число заявок или продаж.',q4:'Можно сделать несколько языков?',qa4:'Да. Грузинская, русская и английская версии создаются, если они соответствуют вашей реальной аудитории.',footerSub:'Сайт · локальное SEO · заявки · рост',footerNote:'Цифровая инфраструктура привлечения клиентов для локального сервисного бизнеса.'},
+ka:{brandSub:'ვებსაიტი · ლოკალური SEO · კლიენტების მოზიდვა',navOffer:'რას ვქმნით',navIndustries:'ვისთვის',navCase:'ქეისი',navPricing:'ფასი',navAudit:'უფასო აუდიტი',heroEyebrow:'ლოკალური მომსახურების ბიზნესებისთვის',heroTitle:'გადააქციეთ თქვენი ბიზნესი <em>ციფრულ ოფისად</em>.',heroLead:'ვქმნით ერთიან ონლაინ სისტემას, რომელიც ეხმარება ადამიანებს გიპოვონ, დაგენდონ და სწრაფად დაგიკავშირდნენ — ვებსაიტი, Google, ლოკალური SEO, WhatsApp და ანალიტიკა.',ctaAudit:'მიიღეთ უფასო აუდიტი →',ctaCase:'ნახეთ რეალური ქეისი →',proof1:'5–7 დღე',proof1s:'ჩვეულებრივი გაშვების ვადა',proof2s:'ენა ჩვენს პირველ რეალურ ქეისში',proof3s:'შექმნილი SEO გვერდები და საძიებო URL-ები',proof4:'1 სისტემა',proof4s:'ვებსაიტი + რუკები + SEO + მოთხოვნები',offerEyebrow:'არა მხოლოდ ვებსაიტი',offerTitle:'კლიენტების მოზიდვის სრული სისტემა.',offerLead:'ლამაზი ვებსაიტი მხოლოდ მაშინ მუშაობს, როცა ადამიანებს შეუძლიათ მისი პოვნა და თქვენთან მარტივად დაკავშირება. ჩვენ ყველაფერს ერთ პრაქტიკულ სისტემად ვაერთიანებთ.',c1t:'თანამედროვე ვებსაიტი',c1p:'სწრაფი მობილური ვებსაიტი მკაფიო სერვისებით, ნდობის ელემენტებით და მოქმედების პირდაპირი მოწოდებებით.',c2t:'Google და ლოკალური ხილვადობა',c2p:'Google Business, Maps, Search Console, sitemap და ლოკალური ძიების გამართვა ქალაქისა და სერვისების მიხედვით.',c3t:'მოთხოვნების მიღება',c3p:'WhatsApp, ტელეფონი და საკონტაქტო გზა ისეა აწყობილი, რომ პოტენციურმა კლიენტმა წამებში დაგიკავშირდეთ.',c4t:'სერვისების SEO გვერდები',c4p:'ცალკე საძიებო გვერდები ყველაზე ღირებული სერვისებისთვის, ერთი ზოგადი მთავარი გვერდის ნაცვლად.',c5t:'მრავალენოვანი წარმოდგენა',c5p:'ცალკე ინდექსირებადი ენების გვერდები, როცა აუდიტორია ქართულად, რუსულად ან ინგლისურად ეძებს.',c6t:'ზრდის ფენა',c6p:'შეფასებები, დირექტორიები, კონტენტი, ანალიტიკა და შემდგომი SEO რეალურ მონაცემებზე დაყრდნობით.',indEyebrow:'ბიზნესებისთვის, სადაც ერთ კლიენტსაც დიდი ღირებულება აქვს',indTitle:'ერთი სისტემა. სხვადასხვა პროფესიული მიმართულება.',indLead:'ვიწყებთ მაღალი ღირებულების ლოკალური სერვისებით, სადაც Google-ში ხილვადობა და ძლიერი ონლაინ წარმოდგენა პირდაპირ მოქმედებს მოთხოვნებზე.',n1t:'ადვოკატები',n1p:'პრაქტიკის გვერდები, ლოკალური ძიება, ნდობა და სწრაფი კონსულტაციის მოთხოვნა.',n2t:'სტომატოლოგები და კლინიკები',n2p:'პროცედურების გვერდები, Maps, შეფასებები და პაციენტის ჩაწერა.',n3t:'უძრავი ქონება',n3p:'აგენტის პოზიციონირება, ლოკალური ძიება, მოთხოვნები და მრავალენოვანი აუდიტორია.',n4t:'პროფესიული მომსახურება',n4p:'ბუღალტრები, კონსულტანტები, დიზაინერები, ავტოსერვისები და სხვა ლოკალური სპეციალისტები.',caseEyebrow:'რეალური ქეისი · ადვოკატები',caseLead:'ჩვენი პირველი რეალური ვერტიკალური ქეისი: თბილისის ადვოკატის საბაზისო სოციალური წარმოდგენა გადავაქციეთ სრულ ციფრულ ინფრასტრუქტურად საძიებო ხილვადობისა და პირდაპირი მოთხოვნებისთვის.',tick1:'საკუთარი დომენი და HTTPS',tick2:'GE / RU / EN ვებსაიტი',tick3:'Google Business და Maps',tick4:'Google Search Console',tick5:'Yandex Webmaster',tick6:'ლოკალური SEO გვერდები',tick7:'WhatsApp მოთხოვნები',tick8:'Sitemap და სტრუქტურირებული მონაცემები',viewCase:'გახსენით რეალური ქეისი →',caseNote:'ვაჩვენებთ შესრულებულ სამუშაოს და არა გამოგონილ შედეგებს. პოზიციებსა და მოთხოვნების მონაცემებს დავამატებთ მხოლოდ საკმარისი რეალური სტატისტიკის შემდეგ.',caseBadge:'აქტიური',priceEyebrow:'შეთავაზება პირველი კლიენტებისთვის',priceTitle:'დაიწყეთ მსუბუქად. ააწყეთ სისტემა. გაიზარდეთ მონაცემებით.',priceLead:'სანამ სხვადასხვა პროფესიულ მიმართულებაში პირველ პორტფოლიოს ვაწყობთ, შეზღუდულ რაოდენობას შეუძლია დაწყება შემცირებული ფასით.',launchSub:'ერთჯერადი გაშვება შერჩეული პირველი კლიენტებისთვის.',l1:'თანამედროვე ვებსაიტი',l2:'საკუთარი დომენის გამართვა',l3:'Google Business და Maps',l4:'Search Console და sitemap',l5:'ძირითადი სერვისების SEO გვერდები',l6:'WhatsApp / ტელეფონი მოთხოვნებისთვის',l7:'30 დღე ტექნიკური მხარდაჭერა',launchCta:'მოითხოვეთ უფასო აუდიტი →',growthSub:'სურვილის შემთხვევაში მიმდინარე ხილვადობისა და კონვერსიის სამუშაო.',g1:'საძიებო შედეგების ანალიზი',g2:'ახალი SEO გვერდები და კონტენტი',g3:'Google პროფილის გაუმჯობესება',g4:'შეფასებების სისტემის მხარდაჭერა',g5:'დირექტორიები და ლოკალური ციტირებები',g6:'ყოველთვიური ზრდის პრიორიტეტები',processEyebrow:'მარტივი პროცესი',processTitle:'აუდიტიდან გაშვებამდე ოთხ ნაბიჯში.',s1t:'უფასო აუდიტი',s1p:'ვამოწმებთ, როგორ ჩანს ბიზნესი Google-ში, Maps-ში და მობილურზე.',s2t:'პოზიციონირება',s2p:'ვადგენთ ყველაზე ღირებულ სერვისებს, აუდიტორიას, ენებს და ლოკალური ძიების შესაძლებლობებს.',s3t:'შექმნა',s3p:'ვებსაიტი, პროფილები, SEO გვერდები, საკონტაქტო გზა და ტექნიკური ნაწილი ერთ სისტემად იგება.',s4t:'გაშვება და გაუმჯობესება',s4p:'ვაქვეყნებთ, ვუგზავნით საძიებო სისტემებს და ვაუმჯობესებთ რეალური ძიებებისა და მოთხოვნების მიხედვით.',auditEyebrow:'უფასო ციფრული აუდიტი',auditTitle:'რაიმეს ყიდვამდე ნახეთ, სად კარგავს თქვენი ონლაინ წარმოდგენა შესაძლებლობებს.',auditLead:'დაუბრუნეთ ეს გვერდი ადამიანს, რომელმაც გამოგიგზავნათ, და მოითხოვეთ უფასო აუდიტი. მიიღებთ მოკლე პრაქტიკულ შეფასებას ვალდებულების გარეშე.',a1:'Google-ში ხილვადობა',a2:'Google Maps / ბიზნეს პროფილი',a3:'ვებსაიტი და მობილური გამოცდილება',a4:'სერვისების SEO ხარვეზები',a5:'კლიენტთან დაკავშირების ბარიერები',auditBoxTitle:'რა გამოგზავნოთ',auditBoxText:'ბიზნესის სახელი, ქალაქი და არსებული ვებსაიტი ან Google Maps-ის ბმული, თუ გაქვთ. დანარჩენს ჩვენ შევამოწმებთ.',auditReply:'უპასუხეთ ადამიანს, ვინც ეს გვერდი გამოგიგზავნათ →',faqTitle:'ხშირი კითხვები.',q1:'უნდა მესმოდეს ვებსაიტები ან SEO?',qa1:'არა. ეს არის სრულად შესრულებადი სერვისი. თქვენ გვაწვდით ზუსტ ინფორმაციას ბიზნესზე, ტექნიკურ ნაწილს ჩვენ ვაკეთებთ.',q2:'შემიძლია არსებული დომენის ან Google პროფილის დატოვება?',qa2:'დიახ. თუ არსებული აქტივების გაუმჯობესება შესაძლებელია, მათ დავაკავშირებთ და თავიდან არ შევქმნით.',q3:'გარანტიას აძლევთ კლიენტების კონკრეტულ რაოდენობას?',qa3:'არა. მოთხოვნა, კონკურენცია, ფასი და რეპუტაცია განსხვავდება. ჩვენ ვქმნით და ვაუმჯობესებთ მოზიდვის ინფრასტრუქტურას, მაგრამ ფიქსირებულ ლიდებს ან გაყიდვებს არ ვპირდებით.',q4:'შეიძლება საიტი მრავალენოვანი იყოს?',qa4:'დიახ. ქართული, რუსული და ინგლისური ვერსიები იქმნება, როცა ეს რეალურ აუდიტორიას შეესაბამება.',footerSub:'ვებსაიტი · ლოკალური SEO · მოთხოვნები · ზრდა',footerNote:'კლიენტების მოზიდვის ციფრული ინფრასტრუქტურა ლოკალური მომსახურების ბიზნესებისთვის.'}
+};
+function applyLang(lang){document.documentElement.lang=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{let k=el.dataset.i18n;if(T[lang][k]) el.textContent=T[lang][k]});document.querySelectorAll('[data-i18n-html]').forEach(el=>{let k=el.dataset.i18nHtml;if(T[lang][k]) el.innerHTML=T[lang][k]});document.querySelectorAll('.lang').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));try{localStorage.setItem('dos-lang',lang)}catch(e){}}
+document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+let lang='en';try{lang=localStorage.getItem('dos-lang')||((navigator.language||'en').toLowerCase().startsWith('ru')?'ru':(navigator.language||'en').toLowerCase().startsWith('ka')?'ka':'en')}catch(e){}applyLang(T[lang]?lang:'en');
+</script>
+</body></html>
