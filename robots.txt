@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bequcho.github.io/digital-office-studio/sitemap.xml

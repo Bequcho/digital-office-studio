@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420">
+  <rect width="640" height="420" rx="28" fill="#0f172a"/>
+  <rect x="24" y="24" width="592" height="372" rx="24" fill="#111827" stroke="#334155"/>
+  <circle cx="128" cy="124" r="62" fill="#3b82f6" opacity=".18"/>
+  <circle cx="128" cy="124" r="40" fill="#3b82f6" opacity=".35"/>
+  <text x="128" y="138" font-size="42" text-anchor="middle" fill="#ffffff" font-family="Arial">⚖</text>
+  <text x="224" y="116" font-size="40" fill="#ffffff" font-family="Arial" font-weight="700">Адвокаты</text>
+  <rect x="224" y="138" width="240" height="16" rx="8" fill="#334155"/>
+  <rect x="64" y="226" width="512" height="22" rx="11" fill="#1f2937"/>
+  <rect x="64" y="270" width="418" height="18" rx="9" fill="#1f2937"/>
+  <rect x="64" y="306" width="470" height="18" rx="9" fill="#1f2937"/>
+  <rect x="64" y="346" width="160" height="32" rx="16" fill="#3b82f6" opacity=".35"/>
+</svg>
