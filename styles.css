@@ -19,6 +19,12 @@
 .social.mail{--social-color:#EA4335;--social-rgb:234,67,53}
 .social:is(:hover,:focus-visible){background-color:rgba(var(--social-rgb),.12);background-color:color-mix(in srgb,#0b1b31 88%,var(--social-color));border-color:rgba(var(--social-rgb),.42);box-shadow:inset 0 1px 0 #ffffff08,0 5px 18px rgba(var(--social-rgb),.2),0 0 10px rgba(var(--social-rgb),.1);transform:translateY(-3px)}
 .social .icon{width:26px;height:26px;transition:transform .25s ease,filter .25s ease}
+/* Explicit paint on the SVG/use host also reaches the external sprite paths. */
+.social :is(svg,use,path,rect){color:var(--social-color);stroke:var(--social-color);fill:none}
+.contact-link[href^="https://wa.me/"] .icon-tile{--contact-icon-color:#25D366}
+.contact-link[href^="https://t.me/"] .icon-tile{--contact-icon-color:#229ED9}
+.contact-link[href^="mailto:"] .icon-tile{--contact-icon-color:#EA4335}
+.contact-link .icon-tile :is(svg,use,path,rect){color:var(--contact-icon-color,currentColor);stroke:var(--contact-icon-color,currentColor);fill:none}
 .social:is(:hover,:focus-visible) .icon{transform:scale(1.08);filter:drop-shadow(0 0 5px rgba(var(--social-rgb),.2))}.menu-toggle{display:none;border:1px solid #ffffff25;background:#ffffff08;padding:10px;border-radius:9px;width:44px;height:44px}.menu-toggle .icon{width:20px;height:20px}.mobile-contacts{display:none}
 /* Sculpted, native vector icon system */
 .icon-tile{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:63px;height:63px;border-radius:18px;color:#2e69d0;border:1px solid #fff;background:linear-gradient(145deg,#fff 5%,#e8f0ff 50%,#cddcf6);box-shadow:inset 2px 2px 3px #fff,inset -2px -3px 5px #99b8e844,0 5px 0 #c5d5ec,0 12px 21px #1443831b;transform:rotate(-5deg)}.icon-tile::after{content:"";position:absolute;inset:5px;border:1px solid #ffffff95;border-radius:13px;pointer-events:none}.icon-tile .icon{width:32px;height:32px;filter:drop-shadow(0 1px 0 white) drop-shadow(0 3px 2px #16468430);transform:rotate(5deg)}.icon-tile.small{width:45px;height:45px;border-radius:13px;box-shadow:inset 2px 2px 3px white,inset -2px -3px 4px #99b8e833,0 3px 0 #c5d5ec,0 8px 13px #14438313}.icon-tile.small::after{inset:4px;border-radius:9px}.icon-tile.small .icon{width:24px;height:24px}.icon-tile.gold{color:#98713d;background:linear-gradient(145deg,#fffdf8,#eee1c9);box-shadow:inset 2px 2px 3px #fff,0 5px 0 #d7c3a1,0 12px 21px #78592517}
