@@ -1,0 +1,136 @@
+/* Homepage six-step process: clear language + self-explanatory icons. */
+.growth-section .section-heading .eyebrow,
+.growth-section .section-heading h2,
+.growth-section .section-heading.split > p,
+.growth-section .step-card h3,
+.growth-section .step-card > p,
+.growth-section .growth-note{
+  font-size:0;
+  line-height:0;
+}
+.growth-section .section-heading .eyebrow::after,
+.growth-section .section-heading h2::after,
+.growth-section .section-heading.split > p::after,
+.growth-section .step-card h3::after,
+.growth-section .step-card > p::after,
+.growth-section .growth-note::after{
+  display:block;
+  white-space:normal;
+}
+.growth-section .section-heading .eyebrow::after{
+  color:#2f67b7;
+  font-size:12px;
+  line-height:1.45;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.growth-section .section-heading h2::after{
+  color:#10213c;
+  font-size:clamp(38px,3.45vw,58px);
+  line-height:1.08;
+  letter-spacing:-.045em;
+  font-weight:800;
+  text-wrap:balance;
+}
+.growth-section .section-heading.split > p::after{
+  color:#6c7b93;
+  font-size:16px;
+  line-height:1.9;
+}
+.growth-section .step-card h3::after{
+  color:#10213c;
+  font-size:16px;
+  line-height:1.35;
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+.growth-section .step-card > p::after{
+  color:#71809a;
+  font-size:13px;
+  line-height:1.75;
+}
+.growth-section .growth-note::after{
+  color:#71809a;
+  font-size:12px;
+  line-height:1.6;
+}
+
+/* RU */
+html:lang(ru) .growth-section .section-heading .eyebrow::after{content:"02 / КАК МЫ РАБОТАЕМ"}
+html:lang(ru) .growth-section .section-heading h2::after{content:"От знакомства с бизнесом — до заявок и роста."}
+html:lang(ru) .growth-section .section-heading.split > p::after{content:"Сначала изучаем ваш бизнес, затем создаём сайт, помогаем клиентам найти вас в интернете и настраиваем путь от первого визита до заявки."}
+html:lang(ru) .growth-section .step-card:nth-child(1) h3::after{content:"Изучаем ваш бизнес"}
+html:lang(ru) .growth-section .step-card:nth-child(1) > p::after{content:"Разбираемся в услугах, клиентах, конкурентах и ваших сильных сторонах."}
+html:lang(ru) .growth-section .step-card:nth-child(2) h3::after{content:"Создаём сайт"}
+html:lang(ru) .growth-section .step-card:nth-child(2) > p::after{content:"Продумываем структуру, предложение и удобный путь клиента до обращения."}
+html:lang(ru) .growth-section .step-card:nth-child(3) h3::after{content:"Помогаем найти вас"}
+html:lang(ru) .growth-section .step-card:nth-child(3) > p::after{content:"Настраиваем SEO, Google, Яндекс и карты, чтобы клиентам было проще вас найти."}
+html:lang(ru) .growth-section .step-card:nth-child(4) h3::after{content:"Подключаем заявки"}
+html:lang(ru) .growth-section .step-card:nth-child(4) > p::after{content:"Подключаем формы, WhatsApp, Telegram, email и при необходимости CRM."}
+html:lang(ru) .growth-section .step-card:nth-child(5) h3::after{content:"Запускаем рекламу"}
+html:lang(ru) .growth-section .step-card:nth-child(5) > p::after{content:"Выбираем подходящие каналы и приводим заинтересованных клиентов на сайт."}
+html:lang(ru) .growth-section .step-card:nth-child(6) h3::after{content:"Анализируем и улучшаем"}
+html:lang(ru) .growth-section .step-card:nth-child(6) > p::after{content:"Смотрим, откуда приходят обращения, что работает лучше, и усиливаем результат."}
+html:lang(ru) .growth-section .growth-note::after{content:"Работаем поэтапно: каждый шаг можно проверить и улучшить. Рекламный бюджет согласуем отдельно."}
+
+/* EN */
+html:lang(en) .growth-section .section-heading .eyebrow::after{content:"02 / HOW WE WORK"}
+html:lang(en) .growth-section .section-heading h2::after{content:"From understanding your business to enquiries and growth."}
+html:lang(en) .growth-section .section-heading.split > p::after{content:"We first understand your business, then build the website, help customers find you online and set up the path from visit to enquiry."}
+html:lang(en) .growth-section .step-card:nth-child(1) h3::after{content:"Understand your business"}
+html:lang(en) .growth-section .step-card:nth-child(1) > p::after{content:"We study your services, customers, competitors and strongest advantages."}
+html:lang(en) .growth-section .step-card:nth-child(2) h3::after{content:"Build your website"}
+html:lang(en) .growth-section .step-card:nth-child(2) > p::after{content:"We create the structure, offer and a clear path from first visit to contact."}
+html:lang(en) .growth-section .step-card:nth-child(3) h3::after{content:"Help customers find you"}
+html:lang(en) .growth-section .step-card:nth-child(3) > p::after{content:"We set up SEO, Google, Yandex and maps so your business is easier to discover."}
+html:lang(en) .growth-section .step-card:nth-child(4) h3::after{content:"Connect enquiries"}
+html:lang(en) .growth-section .step-card:nth-child(4) > p::after{content:"We connect forms, WhatsApp, Telegram, email and CRM when needed."}
+html:lang(en) .growth-section .step-card:nth-child(5) h3::after{content:"Launch advertising"}
+html:lang(en) .growth-section .step-card:nth-child(5) > p::after{content:"We choose suitable channels and bring relevant visitors to your website."}
+html:lang(en) .growth-section .step-card:nth-child(6) h3::after{content:"Measure and improve"}
+html:lang(en) .growth-section .step-card:nth-child(6) > p::after{content:"We track where enquiries come from, what works best and improve the result."}
+html:lang(en) .growth-section .growth-note::after{content:"We work step by step: each stage can be measured and improved. Advertising budget is agreed separately."}
+
+/* KA */
+html:lang(ka) .growth-section .section-heading .eyebrow::after{content:"02 / როგორ ვმუშაობთ";letter-spacing:.04em}
+html:lang(ka) .growth-section .section-heading h2::after{content:"ბიზნესის გაცნობიდან — მომართვებამდე და ზრდამდე.";font-family:Georgian,Manrope,Arial,sans-serif;font-size:clamp(34px,3vw,50px);line-height:1.2;letter-spacing:-.025em}
+html:lang(ka) .growth-section .section-heading.split > p::after{content:"ჯერ ვეცნობით თქვენს ბიზნესს, შემდეგ ვქმნით ვებგვერდს, ვეხმარებით კლიენტებს ინტერნეტში მარტივად გიპოვონ და ვაწყობთ გზას პირველი ვიზიტიდან მომართვამდე.";font-family:Georgian,Manrope,Arial,sans-serif;font-size:15px;line-height:1.9}
+html:lang(ka) .growth-section .step-card:nth-child(1) h3::after{content:"ვსწავლობთ თქვენს ბიზნესს"}
+html:lang(ka) .growth-section .step-card:nth-child(1) > p::after{content:"ვარკვევთ თქვენს მომსახურებებს, კლიენტებს, კონკურენტებს და მთავარ უპირატესობებს."}
+html:lang(ka) .growth-section .step-card:nth-child(2) h3::after{content:"ვქმნით ვებგვერდს"}
+html:lang(ka) .growth-section .step-card:nth-child(2) > p::after{content:"ვაწყობთ სტრუქტურას, შეთავაზებას და მარტივ გზას ვიზიტორიდან დაკავშირებამდე."}
+html:lang(ka) .growth-section .step-card:nth-child(3) h3::after{content:"გეხმარებით, რომ გიპოვონ"}
+html:lang(ka) .growth-section .step-card:nth-child(3) > p::after{content:"ვამზადებთ SEO-ს, Google-ს, Yandex-სა და რუკებს, რათა კლიენტებმა მარტივად გიპოვონ."}
+html:lang(ka) .growth-section .step-card:nth-child(4) h3::after{content:"ვაწყობთ მომართვების მიღებას"}
+html:lang(ka) .growth-section .step-card:nth-child(4) > p::after{content:"ვაერთებთ ფორმებს, WhatsApp-ს, Telegram-ს, ელფოსტას და საჭიროების შემთხვევაში CRM-ს."}
+html:lang(ka) .growth-section .step-card:nth-child(5) h3::after{content:"ვუშვებთ რეკლამას"}
+html:lang(ka) .growth-section .step-card:nth-child(5) > p::after{content:"ვარჩევთ შესაბამის არხებს და რეკლამით ვებგვერდზე დაინტერესებულ მომხმარებლებს ვიზიდავთ."}
+html:lang(ka) .growth-section .step-card:nth-child(6) h3::after{content:"ვზომავთ და ვაუმჯობესებთ"}
+html:lang(ka) .growth-section .step-card:nth-child(6) > p::after{content:"ვხედავთ, საიდან მოდის მომართვები, რა მუშაობს უკეთ და შედეგს ეტაპობრივად ვაუმჯობესებთ."}
+html:lang(ka) .growth-section .growth-note::after{content:"ვმუშაობთ ეტაპობრივად: თითოეული ნაბიჯის შემოწმება და გაუმჯობესება შესაძლებელია. სარეკლამო ბიუჯეტს ცალკე ვათანხმებთ.";font-family:Georgian,Manrope,Arial,sans-serif}
+
+/* Clear step icons: business analysis, website, search, enquiries, ads, analytics. */
+.growth-section .step-card .icon-tile > svg{display:none}
+.growth-section .step-card .icon-tile::after{
+  content:"";
+  display:block;
+  width:31px;
+  height:31px;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+}
+.growth-section .step-card:nth-child(1) .icon-tile::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232a7ff0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='8' width='14' height='11' rx='2'/%3E%3Cpath d='M7.5 8V6.5A2.5 2.5 0 0 1 10 4h2a2.5 2.5 0 0 1 2.5 2.5V8M3.5 12h14'/%3E%3Ccircle cx='17.5' cy='16.5' r='2.5'/%3E%3Cpath d='m19.3 18.3 2 2'/%3E%3C/svg%3E")}
+.growth-section .step-card:nth-child(2) .icon-tile::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232a7ff0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='16' rx='2.5'/%3E%3Cpath d='M3 9h18M7 6.5h.01M10 6.5h.01M8 13h8M8 16h5'/%3E%3C/svg%3E")}
+.growth-section .step-card:nth-child(3) .icon-tile::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232a7ff0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9.5' cy='9.5' r='5.8'/%3E%3Cpath d='m14 14 5.5 5.5M9.5 3.7c2.7 2.8 2.7 8.8 0 11.6M3.7 9.5h11.6'/%3E%3C/svg%3E")}
+.growth-section .step-card:nth-child(4) .icon-tile::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232a7ff0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 14a4 4 0 0 1-4 4H9l-5 3V7a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v7Z'/%3E%3Cpath d='M8 9h8M8 13h5M16.5 11.5v4M14.5 13.5h4'/%3E%3C/svg%3E")}
+.growth-section .step-card:nth-child(5) .icon-tile::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232a7ff0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 9 7-2 9-4v17l-9-4-7-2V9Zm3 6 2 6h4l-2-5M11 7v9M21 8.5h2M21 14.5h2'/%3E%3C/svg%3E")}
+.growth-section .step-card:nth-child(6) .icon-tile::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232a7ff0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20V5M4 20h17M7 15l4-4 3 2 6-7M16 6h4v4'/%3E%3Ccircle cx='7' cy='15' r='1'/%3E%3Ccircle cx='11' cy='11' r='1'/%3E%3Ccircle cx='14' cy='13' r='1'/%3E%3C/svg%3E")}
+
+@media(max-width:760px){
+  .growth-section .section-heading h2::after{font-size:34px;line-height:1.12}
+  .growth-section .section-heading.split > p::after{font-size:14px;line-height:1.7}
+  html:lang(ka) .growth-section .section-heading h2::after{font-size:30px;line-height:1.22}
+  html:lang(ka) .growth-section .section-heading.split > p::after{font-size:13px}
+}
