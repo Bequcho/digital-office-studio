@@ -494,3 +494,123 @@ footer{background:#04142b;color:#9eb5d0;padding:17px 0;font-size:10px}
     padding-top:27px;
   }
 }
+
+
+/* =========================================================
+   BEQSON V4 — cosmetic refinements
+   ========================================================= */
+
+/* Header consultation selector */
+.consult-box{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.consult-label{
+  color:#eaf4ff;
+  font-size:11px;
+  font-weight:800;
+  white-space:nowrap;
+  margin-right:2px;
+}
+.consult-icon{
+  width:34px;
+  height:34px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:9px;
+  transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;
+  box-shadow:0 5px 16px rgba(0,0,0,.12);
+}
+.consult-icon:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
+}
+.consult-icon svg{
+  width:18px;
+  height:18px;
+  fill:#fff;
+}
+.consult-icon.whatsapp{background:#25D366}
+.consult-icon.telegram{background:#229ED9}
+.consult-icon.email{background:#1680ff}
+
+/* Keep old top CTA hidden if cached markup exists */
+.top-cta{display:none!important}
+
+/* Tariff title / icon polish */
+.price{
+  text-align:left;
+}
+.price-icon{
+  width:50px;
+  height:46px;
+  margin:0 auto 4px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  color:#1680ff;
+}
+.price-icon.growth-chart svg{
+  width:48px;
+  height:36px;
+  overflow:visible;
+}
+.price h3{
+  text-align:center;
+  font-size:24px;
+  line-height:1.1;
+  font-weight:850;
+  letter-spacing:-.02em;
+  margin:5px 0 5px;
+  color:#0b2347;
+}
+.price>small{
+  display:block;
+  text-align:center;
+  font-size:11px;
+}
+.price strong,
+.price em,
+.price ul,
+.price>a{
+  text-align:left;
+}
+.price>a{
+  text-align:center;
+}
+
+/* Price icon characters on Start / Pro look more intentional */
+.price:not(.popular) .price-icon{
+  font-size:27px;
+}
+
+/* Mobile header: keep only the three consultation icons */
+@media(max-width:1050px){
+  .consult-label{display:none}
+  .consult-box{
+    margin-left:5px;
+    gap:5px;
+  }
+  .consult-icon{
+    width:32px;
+    height:32px;
+  }
+}
+@media(max-width:720px){
+  .consult-box{
+    margin-left:0;
+  }
+  .consult-icon{
+    width:30px;
+    height:30px;
+    border-radius:8px;
+  }
+  .consult-icon svg{
+    width:16px;
+    height:16px;
+  }
+}
