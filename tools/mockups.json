@@ -1,0 +1,42 @@
+{
+  "lawyers": {
+    "ru": {"eyebrow":"Независимая юридическая практика","title":"Ваши права.\nНаша ответственность.","text":"Внимательно разбираемся в вашей ситуации и помогаем найти ясное правовое решение.","cta":"Обсудить вопрос","section":"Правовая поддержка","services":["Для бизнеса","Для частных лиц","Разрешение споров"]},
+    "ka": {"eyebrow":"დამოუკიდებელი იურიდიული პრაქტიკა","title":"თქვენი უფლებები.\nჩვენი პასუხისმგებლობა.","text":"ყურადღებით ვეცნობით თქვენს საქმეს და გეხმარებით სამართლებრივი გამოსავლის პოვნაში.","cta":"კონსულტაცია","section":"სამართლებრივი მხარდაჭერა","services":["ბიზნესისთვის","კერძო პირებისთვის","დავების გადაწყვეტა"]},
+    "en": {"eyebrow":"Independent legal practice","title":"Your rights.\nOur responsibility.","text":"We listen carefully to your situation and help you find a clear legal path forward.","cta":"Discuss your case","section":"Counsel with clarity","services":["For business","For individuals","Dispute resolution"]}
+  },
+  "dentists": {
+    "ru": {"eyebrow":"Современная стоматология","title":"Здоровая улыбка.\nБольше уверенности.","text":"Бережная забота о зубах, понятный план лечения и внимание к вашему комфорту.","cta":"Записаться на приём","section":"Забота о вашей улыбке","services":["Профилактика","Лечение зубов","Эстетика улыбки"]},
+    "ka": {"eyebrow":"თანამედროვე სტომატოლოგია","title":"ჯანსაღი ღიმილი.\nმეტი თავდაჯერება.","text":"ზრუნვა თქვენს კბილებზე, მკურნალობის გასაგები გეგმა და ყურადღება თქვენს კომფორტზე.","cta":"ვიზიტის დაჯავშნა","section":"ზრუნვა თქვენს ღიმილზე","services":["პრევენცია","კბილების მკურნალობა","ღიმილის ესთეტიკა"]},
+    "en": {"eyebrow":"Modern dental care","title":"A healthy smile.\nA confident you.","text":"Gentle dental care, a clear treatment plan and thoughtful attention to your comfort.","cta":"Book an appointment","section":"Care for your smile","services":["Prevention","Restorative care","Smile aesthetics"]}
+  },
+  "clinics": {
+    "ru": {"eyebrow":"Частная медицинская клиника","title":"Забота начинается\nс внимания.","text":"Время, чтобы выслушать. Понятные рекомендации. Индивидуальный подход к вашему здоровью.","cta":"Выбрать специалиста","section":"Ваш путь к здоровью","services":["Консультации","Диагностика","Наблюдение"]},
+    "ka": {"eyebrow":"კერძო სამედიცინო კლინიკა","title":"ზრუნვა იწყება\nმოსმენით.","text":"დრო თქვენი მოსმენისთვის. გასაგები რეკომენდაციები. ინდივიდუალური მიდგომა თქვენს ჯანმრთელობაზე.","cta":"ექიმის არჩევა","section":"თქვენი გზა ჯანმრთელობისკენ","services":["კონსულტაციები","დიაგნოსტიკა","მეთვალყურეობა"]},
+    "en": {"eyebrow":"Private medical clinic","title":"Care begins\nwith listening.","text":"Time to listen. Clear guidance. A personal approach to your health and wellbeing.","cta":"Find your specialist","section":"Your path to wellbeing","services":["Consultations","Diagnostics","Ongoing care"]}
+  },
+  "realtors": {
+    "ru": {"eyebrow":"Недвижимость с характером","title":"Место, которое\nстанет вашим домом.","text":"От первого просмотра до передачи ключей — помогаем сделать осознанный выбор.","cta":"Посмотреть объекты","section":"Пространство для новой жизни","services":["Купить недвижимость","Арендовать жильё","Продать объект"]},
+    "ka": {"eyebrow":"გამორჩეული უძრავი ქონება","title":"ადგილი, რომელსაც\nსახლს უწოდებთ.","text":"პირველი დათვალიერებიდან გასაღების მიღებამდე — გეხმარებით გააზრებული არჩევანის გაკეთებაში.","cta":"ობიექტების ნახვა","section":"სივრცე ახალი ცხოვრებისთვის","services":["უძრავი ქონების შეძენა","საცხოვრებლის ქირაობა","ობიექტის გაყიდვა"]},
+    "en": {"eyebrow":"Distinctive real estate","title":"Find a place\nto call your own.","text":"From the first viewing to the keys in your hand, we help you make a considered choice.","cta":"Explore properties","section":"Room for a new chapter","services":["Buy a property","Find a rental","Sell your property"]}
+  },
+  "accountants": {
+    "ru": {"eyebrow":"Бухгалтерия и налоговый консалтинг","title":"Порядок в финансах.\nСпокойствие в бизнесе.","text":"Прозрачный учёт и понятные рекомендации, чтобы вы могли сосредоточиться на своём деле.","cta":"Обсудить задачи","section":"Ясность в каждом решении","services":["Бухгалтерский учёт","Налоговые консультации","Поддержка бизнеса"]},
+    "ka": {"eyebrow":"ბუღალტერია და საგადასახადო კონსულტაცია","title":"წესრიგი ფინანსებში.\nსიმშვიდე ბიზნესში.","text":"გამჭვირვალე აღრიცხვა და გასაგები რეკომენდაციები, რათა თქვენს საქმეზე კონცენტრირდეთ.","cta":"კონსულტაცია","section":"სიცხადე ყოველ გადაწყვეტილებაში","services":["ბუღალტრული აღრიცხვა","საგადასახადო კონსულტაცია","ბიზნესის მხარდაჭერა"]},
+    "en": {"eyebrow":"Accounting & tax advisory","title":"Clear finances.\nConfident decisions.","text":"Transparent accounting and practical guidance, so you can focus on running your business.","cta":"Discuss your business","section":"Clarity at every step","services":["Accounting","Tax advisory","Business support"]}
+  },
+  "construction": {
+    "ru": {"eyebrow":"Архитектура · Интерьеры · Строительство","title":"Пространства,\nв которых хочется жить.","text":"От идеи до последней детали. Создаём продуманные пространства из естественных материалов.","cta":"Посмотреть проекты","section":"Форма следует за жизнью","services":["Архитектура","Дизайн интерьера","Ремонт и строительство"]},
+    "ka": {"eyebrow":"არქიტექტურა · ინტერიერი · მშენებლობა","title":"სივრცე, სადაც\nცხოვრება გსურთ.","text":"იდეიდან ბოლო დეტალამდე. ვქმნით გააზრებულ სივრცეებს ბუნებრივი მასალებით.","cta":"პროექტების ნახვა","section":"ფორმა ცხოვრების რიტმს მიჰყვება","services":["არქიტექტურა","ინტერიერის დიზაინი","რემონტი და მშენებლობა"]},
+    "en": {"eyebrow":"Architecture · Interiors · Build","title":"Spaces made\nfor living.","text":"From the first idea to the final detail. Considered spaces shaped by natural materials.","cta":"Explore our work","section":"Form follows life","services":["Architecture","Interior design","Renovation & build"]}
+  },
+  "autoservices": {
+    "ru": {"eyebrow":"Автосервис и детейлинг","title":"Точность.\nВ каждой детали.","text":"Внимание к вашему автомобилю: от диагностики до безупречного финиша.","cta":"Записаться в сервис","section":"Ваш автомобиль. Наше внимание.","services":["Диагностика","Детейлинг","Защита кузова"]},
+    "ka": {"eyebrow":"ავტოსერვისი და დეტეილინგი","title":"სიზუსტე.\nყოველ დეტალში.","text":"ყურადღება თქვენს ავტომობილზე: დიაგნოსტიკიდან უნაკლო შედეგამდე.","cta":"ვიზიტის დაჯავშნა","section":"თქვენი ავტომობილი. ჩვენი ზრუნვა.","services":["დიაგნოსტიკა","დეტეილინგი","ძარის დაცვა"]},
+    "en": {"eyebrow":"Auto service & detailing","title":"Precision.\nIn every detail.","text":"Thoughtful care for your vehicle, from a thorough diagnosis to an immaculate finish.","cta":"Book a service","section":"Your car. Our attention.","services":["Diagnostics","Detailing","Paint protection"]}
+  },
+  "hotels": {
+    "ru": {"eyebrow":"Бутик-отель на побережье","title":"Место, где можно\nзамедлиться.","text":"Морской воздух, мягкий свет и время для себя. Откройте свой ритм отдыха.","cta":"Выбрать отдых","section":"Ваше время у моря","services":["Номера и апартаменты","Впечатления","Побережье"]},
+    "ka": {"eyebrow":"ბუტიკ-სასტუმრო ზღვის სანაპიროზე","title":"ადგილი, სადაც\nდრო ნელდება.","text":"ზღვის ჰაერი, რბილი შუქი და დრო საკუთარი თავისთვის. იპოვეთ დასვენების თქვენი რიტმი.","cta":"დასვენების დაგეგმვა","section":"თქვენი დრო ზღვასთან","services":["ნომრები და აპარტამენტები","შთაბეჭდილებები","სანაპირო"]},
+    "en": {"eyebrow":"A boutique coastal escape","title":"Somewhere you\ncan slow down.","text":"Sea air, soft light and time for yourself. Discover your own rhythm of escape.","cta":"Discover your stay","section":"Your time by the sea","services":["Rooms & suites","Experiences","The coast"]}
+  }
+}

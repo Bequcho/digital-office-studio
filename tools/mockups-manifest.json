@@ -1,0 +1,410 @@
+{
+  "ru/lawyers": {
+    "title": "Ваши права.\nНаша ответственность.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ka/lawyers": {
+    "title": "თქვენი უფლებები.\nჩვენი პასუხისმგებლობა.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "en/lawyers": {
+    "title": "Your rights.\nOur responsibility.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ru/dentists": {
+    "title": "Здоровая улыбка.\nБольше уверенности.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ka/dentists": {
+    "title": "ჯანსაღი ღიმილი.\nმეტი თავდაჯერება.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "en/dentists": {
+    "title": "A healthy smile.\nA confident you.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ru/clinics": {
+    "title": "Забота начинается\nс внимания.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ka/clinics": {
+    "title": "ზრუნვა იწყება\nმოსმენით.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "en/clinics": {
+    "title": "Care begins\nwith listening.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ru/realtors": {
+    "title": "Место, которое\nстанет вашим домом.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ka/realtors": {
+    "title": "ადგილი, რომელსაც\nსახლს უწოდებთ.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "en/realtors": {
+    "title": "Find a place\nto call your own.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ru/accountants": {
+    "title": "Порядок в финансах.\nСпокойствие в бизнесе.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ka/accountants": {
+    "title": "წესრიგი ფინანსებში.\nსიმშვიდე ბიზნესში.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "en/accountants": {
+    "title": "Clear finances.\nConfident decisions.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ru/construction": {
+    "title": "Пространства,\nв которых хочется жить.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ka/construction": {
+    "title": "სივრცე, სადაც\nცხოვრება გსურთ.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "en/construction": {
+    "title": "Spaces made\nfor living.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ru/autoservices": {
+    "title": "Точность.\nВ каждой детали.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ka/autoservices": {
+    "title": "სიზუსტე.\nყოველ დეტალში.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "en/autoservices": {
+    "title": "Precision.\nIn every detail.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ru/hotels": {
+    "title": "Место, где можно\nзамедлиться.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "ka/hotels": {
+    "title": "ადგილი, სადაც\nდრო ნელდება.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  },
+  "en/hotels": {
+    "title": "Somewhere you\ncan slow down.",
+    "size": [
+      1536,
+      1024
+    ],
+    "formats": [
+      "avif",
+      "webp"
+    ],
+    "widths": [
+      320,
+      480,
+      768,
+      1536
+    ]
+  }
+}
