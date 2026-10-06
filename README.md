@@ -1,17 +1,27 @@
-# BEQSON Digital Studio — Compact version
+# BEQSON Digital Studio — SEO multilingual build
 
-Компактная версия сайта в стиле предоставленного референса.
+## Canonical language pages
+- `/ru/` — Russian
+- `/ka/` — Georgian
+- `/en/` — English
 
-## Структура
-- hero
-- 4 преимущества
-- 8 ниш в сетке 4×2
-- цены
-- 6 шагов роста клиентов
-- результаты
-- кейс LevaniLaw.ge
-- CTA + контакты
+The root `/` remains a Russian entry point for visitors, but its canonical URL points to `/ru/`.
 
-## Публикация
-Загрузить все файлы и папки в корень GitHub-репозитория с заменой.
-GitHub Pages: main / (root).
+Each language page has:
+- static translated HTML (no JS translation)
+- unique title and meta description
+- canonical URL
+- hreflang RU / KA / EN / x-default
+- crawlable flag links
+
+## Upload
+Upload all files and folders to the root of the `digital-office-studio` GitHub repository with replacement.
+
+## After deployment
+Check:
+- https://bequcho.github.io/digital-office-studio/ru/
+- https://bequcho.github.io/digital-office-studio/ka/
+- https://bequcho.github.io/digital-office-studio/en/
+- https://bequcho.github.io/digital-office-studio/sitemap.xml
+
+Then submit the updated sitemap in Google Search Console and Yandex Webmaster.

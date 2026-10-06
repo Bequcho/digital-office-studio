@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://bequcho.github.io/digital-office-studio/</loc>
+    <loc>https://bequcho.github.io/digital-office-studio/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bequcho.github.io/digital-office-studio/ru/" />
+    <xhtml:link rel="alternate" hreflang="ka" href="https://bequcho.github.io/digital-office-studio/ka/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bequcho.github.io/digital-office-studio/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bequcho.github.io/digital-office-studio/ru/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://bequcho.github.io/digital-office-studio/ka/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bequcho.github.io/digital-office-studio/ru/" />
+    <xhtml:link rel="alternate" hreflang="ka" href="https://bequcho.github.io/digital-office-studio/ka/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bequcho.github.io/digital-office-studio/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bequcho.github.io/digital-office-studio/ru/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://bequcho.github.io/digital-office-studio/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bequcho.github.io/digital-office-studio/ru/" />
+    <xhtml:link rel="alternate" hreflang="ka" href="https://bequcho.github.io/digital-office-studio/ka/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bequcho.github.io/digital-office-studio/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bequcho.github.io/digital-office-studio/ru/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
