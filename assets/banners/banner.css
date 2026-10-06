@@ -134,7 +134,6 @@
   :lang(ka) .legacy-niche p{font-size:11px}
 }
 
-
 /* Classic split hero restored from the approved visual reference. */
 .classic-hero{
   position:relative;
@@ -322,3 +321,30 @@ body:lang(ka) .classic-value-card small{font-size:11px}
   .classic-value-card{min-height:100px;border-right:0;border-bottom:1px solid #e5ebf3;padding:18px 20px}
   .classic-value-card:last-child{border-bottom:0}
 }
+
+/* Premium soft transition for project (04) and FAQ sections. */
+.case-section{
+  position:relative;
+  background:
+    radial-gradient(circle at 86% 18%,rgba(36,99,235,.10),transparent 34%),
+    radial-gradient(circle at 10% 88%,rgba(80,168,255,.08),transparent 32%),
+    linear-gradient(180deg,#f8fafc 0%,#f2f6fb 40%,#e9f1fb 100%);
+  border-top:1px solid rgba(132,159,196,.14);
+}
+.faq-section{
+  position:relative;
+  background:
+    radial-gradient(circle at 16% 18%,rgba(36,99,235,.07),transparent 34%),
+    radial-gradient(circle at 86% 78%,rgba(80,168,255,.06),transparent 36%),
+    linear-gradient(180deg,#e9f1fb 0%,#eef4fb 46%,#f5f8fc 100%);
+  border-top:1px solid rgba(132,159,196,.14);
+}
+.case-section::before,.faq-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.26) 48%,transparent 72%);
+  opacity:.55;
+}
+.case-section>.shell,.faq-section>.shell{position:relative;z-index:1}
