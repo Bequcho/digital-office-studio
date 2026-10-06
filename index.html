@@ -1,450 +1,231 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BEQSON — сайты, SEO и система привлечения клиентов</title>
-  <meta name="description" content="Создаём сайты и цифровой офис для адвокатов, стоматологов, клиник, риелторов, бухгалтеров, ремонта, автосервисов и туризма. Помогаем находить клиентов через Google, Яндекс, карты, SEO и мессенджеры." />
-  <meta name="theme-color" content="#0f172a" />
-  <meta property="og:title" content="BEQSON" />
-  <meta property="og:description" content="Сайты, Google/Yandex, SEO и система привлечения клиентов для сервисного бизнеса." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/images/hero-main.webp" />
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
-  <link rel="manifest" href="site.webmanifest" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BEQSON — сайты, SEO и поток клиентов для сервисного бизнеса</title>
+  <meta name="description" content="BEQSON создаёт сайты, настраивает локальное SEO, Google/Яндекс, CRM и систему заявок для сервисного бизнеса.">
+  <meta name="theme-color" content="#071f49">
+  <meta property="og:title" content="BEQSON Digital Studio">
+  <meta property="og:description" content="Сайт + SEO + локальный поиск + CRM + заявки.">
+  <meta property="og:image" content="assets/images/hero-main.webp">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#home">
-        <img src="assets/logo.svg" alt="BEQSON" />
-        <span>BEQSON <small class="brand-sub">Digital Studio</small></span>
-      </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Открыть меню">☰</button>
-      <nav id="mainNav">
-        <a href="#niches">Направления</a>
-        <a href="#growth">Как растим клиентов</a>
-        <a href="#pricing">Цены</a>
-        <a href="#process">Процесс</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact" class="btn btn-sm">Связаться</a>
-      </nav>
+<header class="topbar">
+  <div class="shell nav">
+    <a class="logo" href="#home">
+      <img src="assets/logo.svg" alt="BEQSON">
+      <span><b>BEQSON</b><small>Digital Studio</small></span>
+    </a>
+    <button class="burger" id="burger" aria-label="Открыть меню">☰</button>
+    <nav id="nav">
+      <a href="#services">Направления</a>
+      <a href="#pricing">Цены</a>
+      <a href="#growth">Как растим клиентов</a>
+      <a href="#case">Кейс</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <a class="top-cta" href="https://wa.me/995551739333?text=Здравствуйте!%20Хочу%20обсудить%20проект%20с%20BEQSON" target="_blank" rel="noopener">Получить консультацию</a>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <span class="kicker">Сайты • SEO • CRM • реклама</span>
+        <h1>Цифровой офис и поток клиентов для сервисного бизнеса</h1>
+        <p>Создаём сайты, подключаем CRM, автоматизируем заявки и помогаем привлекать клиентов из Google, Яндекса и рекламы.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://wa.me/995551739333?text=Здравствуйте!%20Хочу%20обсудить%20проект%20с%20BEQSON" target="_blank" rel="noopener">Получить консультацию →</a>
+          <a class="btn ghost" href="#services">Посмотреть направления</a>
+        </div>
+        <div class="microproof">
+          <span>✓ Сайт под ключ</span>
+          <span>✓ Локальное SEO</span>
+          <span>✓ Заявки в WhatsApp / CRM</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/images/hero-main.webp" alt="BEQSON — цифровой офис, CRM и аналитика" width="1600" height="900">
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main id="home">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Сайты + SEO + Google/Yandex + заявки</p>
-          <h1>Создаём цифровой офис, который не просто выглядит красиво, а приводит клиентов</h1>
-          <p class="lead">
-            Делаем сайты и систему привлечения клиентов для сервисного бизнеса:
-            адвокатов, стоматологов, частных врачей, риелторов, бухгалтеров,
-            ремонта и строительства, автосервисов, отелей и апартаментов.
-          </p>
-          <div class="hero-actions">
-            <a class="btn" href="#niches">Смотреть направления</a>
-            <a class="btn btn-secondary" href="#growth">Как мы поднимаем клиентов</a>
-          </div>
-          <div class="hero-proof">
-            <span>Сайт</span><b>→</b><span>Google / Яндекс</span><b>→</b><span>Заявка</span><b>→</b><span>CRM / WhatsApp</span>
-          </div>
-          <ul class="hero-points">
-            <li>Запуск от 3–10 дней</li>
-            <li>Цены в USD</li>
-            <li>Работаем удалённо</li>
-            <li>Google, Яндекс, карты, мессенджеры, SEO</li>
-          </ul>
-        </div>
-        <div class="hero-card">
-          <img src="assets/images/hero-main.webp" alt="BEQSON — цифровой офис, CRM, аналитика и привлечение клиентов" width="1600" height="900" fetchpriority="high" />
-        </div>
+  <section class="valuebar">
+    <div class="shell value-grid">
+      <div><i>🌐</i><span><b>Сайт + SEO основа</b><small>Современный сайт, готовый к продвижению</small></span></div>
+      <div><i>📍</i><span><b>Google / Yandex</b><small>Карты и локальный поиск</small></span></div>
+      <div><i>⚙️</i><span><b>CRM и автоматизация</b><small>Заявки, воронка и напоминания</small></span></div>
+      <div><i>📈</i><span><b>Запуск рекламы</b><small>Google / Яндекс / Meta</small></span></div>
+    </div>
+  </section>
+
+  <section class="section light" id="services">
+    <div class="shell">
+      <div class="section-head compact">
+        <span class="kicker blue">Наши направления</span>
+        <h2>Направления, с которыми мы работаем</h2>
+        <p>Для каждой ниши — свой сайт, оффер, SEO и воронка заявок.</p>
       </div>
-    </section>
 
-    <section class="section metrics">
-      <div class="container metric-grid">
-        <div class="metric-card">
-          <strong>8</strong>
-          <span>ниш уже заложено в структуру</span>
-        </div>
-        <div class="metric-card">
-          <strong>3</strong>
-          <span>основных канала: сайт, карты, мессенджеры</span>
-        </div>
-        <div class="metric-card">
-          <strong>from $250</strong>
-          <span>базовый старт для малого бизнеса</span>
-        </div>
-        <div class="metric-card">
-          <strong>24/7</strong>
-          <span>сайт принимает заявки даже когда вы спите</span>
-        </div>
+      <div class="niche-grid">
+        <article class="niche">
+          <img src="assets/images/lawyers.webp" alt="Адвокаты" loading="lazy">
+          <div><h3>Адвокаты</h3><p>Сайт, заявки, доверие и репутация</p></div>
+        </article>
+        <article class="niche">
+          <img src="assets/images/dentists.webp" alt="Стоматологи" loading="lazy">
+          <div><h3>Стоматологи</h3><p>Больше записей и новых пациентов</p></div>
+        </article>
+        <article class="niche">
+          <img src="assets/images/doctors.webp" alt="Частные врачи и клиники" loading="lazy">
+          <div><h3>Частные врачи / клиники</h3><p>Онлайн-запись и поток пациентов</p></div>
+        </article>
+        <article class="niche">
+          <img src="assets/images/realtors.webp" alt="Риелторы" loading="lazy">
+          <div><h3>Риелторы</h3><p>Больше обращений и качественных лидов</p></div>
+        </article>
+        <article class="niche">
+          <img src="assets/images/accountants.webp" alt="Бухгалтеры" loading="lazy">
+          <div><h3>Бухгалтеры / налоговые консультанты</h3><p>Заявки на консультации и B2B-клиенты</p></div>
+        </article>
+        <article class="niche">
+          <img src="assets/images/construction.webp" alt="Строительство и дизайн" loading="lazy">
+          <div><h3>Ремонт / строительство / дизайнеры</h3><p>Больше проектов и целевых обращений</p></div>
+        </article>
+        <article class="niche">
+          <img src="assets/images/autoservice.webp" alt="Автосервис и детейлинг" loading="lazy">
+          <div><h3>Автосервисы / детейлинг</h3><p>Онлайн-запись и стабильный поток клиентов</p></div>
+        </article>
+        <article class="niche">
+          <img src="assets/images/hotels.webp" alt="Отели и туризм" loading="lazy">
+          <div><h3>Отели / апартаменты / туризм</h3><p>Больше прямых заявок и бронирований</p></div>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="niches" class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Направления</p>
-          <h2>Отдельные решения под каждую профессию</h2>
-          <p>У каждой ниши свои триггеры доверия, запросы в поиске и логика заявки. Поэтому сайт и воронка делаются не “одни на всех”, а под конкретный тип бизнеса.</p>
-        </div>
-
-        <div class="card-grid">
-          <article class="niche-card">
-            <img src="assets/images/lawyers.webp" alt="Адвокаты" width="900" height="675" loading="lazy" decoding="async" />
-            <h3>Адвокаты</h3>
-            <p>Сайт, карточка услуг, доверие, SEO-страницы, формы записи и связь через WhatsApp / Telegram.</p>
-            <ul>
-              <li>Запросы: «адвокат Тбилиси», «русскоязычный адвокат Тбилиси»</li>
-              <li>Услуги: гражданское, административное, уголовное право</li>
-              <li>Конверсия: звонок, заявка, запись на консультацию</li>
-            </ul>
-          </article>
-
-          <article class="niche-card">
-            <img src="assets/images/dentists.webp" alt="Стоматологи" width="900" height="675" loading="lazy" decoding="async" />
-            <h3>Стоматологи</h3>
-            <p>Упор на доверие, услуги, цены, отзывы, фото клиники и удобную запись на приём.</p>
-            <ul>
-              <li>Имплантация, чистка, лечение, ортодонтия</li>
-              <li>Карты Google / Яндекс + рейтинг</li>
-              <li>Быстрая запись из поиска</li>
-            </ul>
-          </article>
-
-          <article class="niche-card">
-            <img src="assets/images/doctors.webp" alt="Частные врачи и клиники" width="900" height="675" loading="lazy" decoding="async" />
-            <h3>Частные врачи / клиники</h3>
-            <p>Страницы врача, направлений, записи, вопросов-ответов и простая подача преимуществ.</p>
-            <ul>
-              <li>Отдельные страницы под специализации</li>
-              <li>Телефон, WhatsApp, форма записи</li>
-              <li>Локальное SEO по району и городу</li>
-            </ul>
-          </article>
-
-          <article class="niche-card">
-            <img src="assets/images/realtors.webp" alt="Риелторы" width="900" height="675" loading="lazy" decoding="async" />
-            <h3>Риелторы</h3>
-            <p>Лендинг специалиста или агентства, каталог объектов, доверие и лид-формы на подбор недвижимости.</p>
-            <ul>
-              <li>Продажа, аренда, подбор инвестиций</li>
-              <li>Ловим запросы по районам и типам жилья</li>
-              <li>Интеграция мессенджеров и заявок</li>
-            </ul>
-          </article>
-
-          <article class="niche-card">
-            <img src="assets/images/accountants.webp" alt="Бухгалтеры и налоговые консультанты" width="900" height="675" loading="lazy" decoding="async" />
-            <h3>Бухгалтеры / налоговые консультанты</h3>
-            <p>Упаковываем сложную услугу в понятные пакеты, доверие и быстрый контакт для предпринимателей.</p>
-            <ul>
-              <li>УСН, отчётность, консультации, оптимизация</li>
-              <li>Страницы услуг и кейсы</li>
-              <li>Формы заявки для бизнеса</li>
-            </ul>
-          </article>
-
-          <article class="niche-card">
-            <img src="assets/images/construction.webp" alt="Ремонт, строительство, дизайнеры" width="900" height="675" loading="lazy" decoding="async" />
-            <h3>Ремонт / строительство / дизайнеры</h3>
-            <p>Портфолио, услуги, этапы работ, визуальная подача и заявка на расчёт стоимости.</p>
-            <ul>
-              <li>Показываем объекты и до/после</li>
-              <li>Упор на доверие и кейсы</li>
-              <li>Форма расчёта / консультации</li>
-            </ul>
-          </article>
-
-          <article class="niche-card">
-            <img src="assets/images/autoservice.webp" alt="Автосервисы и детейлинг" width="900" height="675" loading="lazy" decoding="async" />
-            <h3>Автосервисы / детейлинг</h3>
-            <p>Список услуг, фото работ, прайс, карта, звонок в один клик и заявки из поиска.</p>
-            <ul>
-              <li>Детейлинг, полировка, химчистка, сервис</li>
-              <li>Локальные запросы по району</li>
-              <li>Отзывы и быстрые обращения</li>
-            </ul>
-          </article>
-
-          <article class="niche-card">
-            <img src="assets/images/hotels.webp" alt="Отели, апартаменты, туризм" width="900" height="675" loading="lazy" decoding="async" />
-            <h3>Отели / апартаменты / туризм</h3>
-            <p>Презентация объекта, фото, преимущества, контакты, бронирование и доверие для гостей.</p>
-            <ul>
-              <li>Номера / апартаменты / экскурсии</li>
-              <li>SEO по локациям и типу отдыха</li>
-              <li>Быстрые заявки и прямые брони</li>
-            </ul>
-          </article>
-        </div>
+  <section class="section pricing" id="pricing">
+    <div class="shell">
+      <div class="section-head compact inverse">
+        <span class="kicker">Тарифы</span>
+        <h2>Пакеты и цены</h2>
+        <p>Прозрачные решения под разные задачи и бюджет.</p>
       </div>
-    </section>
-
-    <section id="growth" class="section alt-section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Рост клиентов</p>
-          <h2>Как именно мы будем поднимать клиентский поток</h2>
-          <p>Без магии и пустых обещаний. Рост идёт через связку из сайта, локального поиска, карт, SEO-страниц и правильной конверсии в заявку.</p>
-        </div>
-
-        <div class="steps-grid">
-          <article class="step-card">
-            <span>01</span>
-            <h3>Упаковываем предложение</h3>
-            <p>Показываем, чем бизнес отличается: услуги, выгоды, специализация, цены, кейсы, отзывы, фото, доверие.</p>
-          </article>
-          <article class="step-card">
-            <span>02</span>
-            <h3>Делаем сайт, который конвертирует</h3>
-            <p>Чёткие CTA, кнопки мессенджеров, формы заявки, “позвонить”, карты, FAQ, понятные блоки услуг.</p>
-          </article>
-          <article class="step-card">
-            <span>03</span>
-            <h3>Выводим в Google и Яндекс</h3>
-            <p>Настройка индексации, sitemap, robots, оптимизация заголовков, описаний и ключевых страниц под спрос.</p>
-          </article>
-          <article class="step-card">
-            <span>04</span>
-            <h3>Укрепляем локальное присутствие</h3>
-            <p>Google Business Profile и Яндекс Бизнес / Вебмастер помогают ловить клиентов из карт и локальной выдачи.</p>
-          </article>
-          <article class="step-card">
-            <span>05</span>
-            <h3>Создаём страницы под конкретные запросы</h3>
-            <p>Например: “civil lawyer Tbilisi”, “русскоязычный адвокат Тбилиси”, “стоматолог Сабуртало”, “детейлинг Батуми”.</p>
-          </article>
-          <article class="step-card">
-            <span>06</span>
-            <h3>Отслеживаем и усиливаем</h3>
-            <p>Смотрим, откуда идут заявки, какие страницы работают, где нужна новая посадочная страница, статья или реклама.</p>
-          </article>
-        </div>
-
-        <div class="growth-box">
-          <h3>Что реально влияет на клиентов</h3>
-          <div class="growth-columns">
-            <div>
-              <h4>Бесплатные / условно-бесплатные источники</h4>
-              <ul>
-                <li>Google Search Console + индексация</li>
-                <li>Яндекс Вебмастер</li>
-                <li>Google Business Profile</li>
-                <li>Яндекс Бизнес / Карты</li>
-                <li>SEO-страницы под услуги и локации</li>
-                <li>Отзывы и социальное доказательство</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Платное ускорение</h4>
-              <ul>
-                <li>Google Ads / Performance Max</li>
-                <li>Яндекс Директ</li>
-                <li>Ретаргетинг</li>
-                <li>Продвижение в соцсетях</li>
-                <li>Промо публикации и лид-магниты</li>
-                <li>Отдельные спецпосадки под кампании</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing" class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Цены</p>
-          <h2>Пакеты в долларах</h2>
-          <p>Ниже стартовые ориентиры. Для каждой ниши можно собрать свой пакет.</p>
-        </div>
-
-        <div class="pricing-grid">
-          <article class="price-card">
-            <p class="plan">START</p>
-            <h3>$250</h3>
-            <p class="price-note">разово</p>
-            <ul>
-              <li>Одностраничный сайт</li>
-              <li>До 5 смысловых блоков</li>
-              <li>Кнопки WhatsApp / Telegram / звонок</li>
-              <li>Базовое SEO</li>
-              <li>Помощь с Google / Яндекс</li>
-            </ul>
-          </article>
-
-          <article class="price-card featured">
-            <p class="plan">GROWTH</p>
-            <h3>$490</h3>
-            <p class="price-note">разово</p>
-            <ul>
-              <li>Многостраничный сайт</li>
-              <li>До 3 SEO-страниц под запросы</li>
-              <li>FAQ, отзывы, формы заявок</li>
-              <li>Настройка индексации и карт</li>
-              <li>Базовая аналитика</li>
-            </ul>
-          </article>
-
-          <article class="price-card">
-            <p class="plan">PRO</p>
-            <h3>$890</h3>
-            <p class="price-note">разово</p>
-            <ul>
-              <li>Сильная упаковка бизнеса</li>
-              <li>До 8 SEO-страниц / посадочных</li>
-              <li>Мультиязычность</li>
-              <li>Продвинутая структура и воронка</li>
-              <li>Подготовка к рекламе и масштабированию</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="support-box">
-          <h3>Сопровождение</h3>
-          <p><strong>от $60 / месяц</strong> — обновления, новые страницы, доработка SEO, улучшение конверсии, тексты, индексация, поддержка.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="process" class="section alt-section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Процесс</p>
-          <h2>Как проходит работа</h2>
-        </div>
-
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div>
-              <h3>1. Созвон и разбор бизнеса</h3>
-              <p>Определяем нишу, услуги, географию, язык, целевую аудиторию, сильные стороны и цель сайта.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div>
-              <h3>2. Структура и оффер</h3>
-              <p>Собираем структуру сайта, блоки, смыслы, список услуг и будущие SEO-страницы.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div>
-              <h3>3. Сборка сайта</h3>
-              <p>Верстаем, оформляем, добавляем CTA, формы, мессенджеры, фото, отзывы, тексты.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div>
-              <h3>4. Публикация и индексация</h3>
-              <p>GitHub Pages / домен / Search Console / Яндекс Вебмастер / sitemap / robots / проверка индексации.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div>
-              <h3>5. Усиление клиентского потока</h3>
-              <p>Добавляем новые страницы, точки входа, карту, отзывы, аналитику и при необходимости рекламу.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq" class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">FAQ</p>
-          <h2>Частые вопросы</h2>
-        </div>
-
-        <div class="faq-list">
-          <details>
-            <summary>Как вы будете поднимать клиентов?</summary>
-            <p>Через комбинацию из сайта, SEO-страниц, Google / Яндекс, карт, отзывов, сильного оффера, мессенджеров и при необходимости платной рекламы. Мы не обещаем “100 клиентов за неделю”, а строим систему, которая постепенно усиливается.</p>
-          </details>
-          <details>
-            <summary>Можно ли делать сайты не только юристам?</summary>
-            <p>Да. Как раз эта версия студии рассчитана на разные сервисные ниши: юристы, стоматологи, клиники, риелторы, бухгалтеры, ремонт, авто, отели и туризм.</p>
-          </details>
-          <details>
-            <summary>Можно ли потом добавлять новые страницы?</summary>
-            <p>Да. Сайт можно расширять: новые услуги, новые локации, блог, кейсы, формы и посадочные страницы.</p>
-          </details>
-          <details>
-            <summary>Это работает только в Google?</summary>
-            <p>Нет. Мы сразу закладываем основу под Google и Яндекс, а также под карты, мессенджеры и прямые заходы по ссылке.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact-section">
-      <div class="container contact-grid">
-        <div>
-          <p class="eyebrow">Связаться</p>
-          <h2>Готовы собрать цифровую систему для вашего бизнеса?</h2>
-          <p>Напишите, чем вы занимаетесь, в каком городе работаете и какие услуги хотите продвигать. Я соберу структуру, предложу формат сайта и скажу, через какие каналы проще всего поднимать клиентов.</p>
-
-          <div class="contact-cards">
-            <a class="contact-card" id="phoneCard" href="#">
-              <strong>Телефон</strong>
-              <span data-phone-display>+000 00 000 00 00</span>
-            </a>
-            <a class="contact-card" id="whatsappCard" href="#" target="_blank" rel="noopener">
-              <strong>WhatsApp</strong>
-              <span data-whatsapp-display>@whatsapp</span>
-            </a>
-            <a class="contact-card" id="telegramCard" href="#" target="_blank" rel="noopener">
-              <strong>Telegram</strong>
-              <span data-telegram-display>@telegram</span>
-            </a>
-            <a class="contact-card" id="emailCard" href="#">
-              <strong>Email</strong>
-              <span data-email-display>hello@example.com</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="contact-panel">
-          <img class="contact-visual" src="assets/images/cta-office.webp" alt="BEQSON — цифровая система для заявок, аналитики и роста" width="1600" height="900" loading="lazy" decoding="async" />
-          <h3>Мини-бриф для клиента</h3>
+      <div class="price-grid">
+        <article class="price">
+          <div class="price-icon">✈</div>
+          <h3>Start</h3>
+          <small>Для старта и базовых задач</small>
+          <strong>$250</strong><em>разово</em>
           <ul>
-            <li>Чем занимаетесь?</li>
-            <li>В каком городе / стране работаете?</li>
-            <li>Какие услуги самые маржинальные?</li>
-            <li>Какие языки нужны на сайте?</li>
-            <li>Хотите только сайт или ещё поток клиентов?</li>
+            <li>Лендинг / визитка</li>
+            <li>Базовая структура</li>
+            <li>Форма заявки</li>
+            <li>WhatsApp / Telegram</li>
+            <li>Базовое SEO</li>
           </ul>
-          <a class="btn" id="whatsappLeadBtn" href="#" target="_blank" rel="noopener">Написать в WhatsApp</a>
-        </div>
-      </div>
-    </section>
-  </main>
+          <a href="#contact">Выбрать пакет</a>
+        </article>
 
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <div>
-        <strong>BEQSON</strong>
-        <p>Сайты, SEO, локальное продвижение и система привлечения клиентов для сервисного бизнеса.</p>
+        <article class="price popular">
+          <div class="badge">Рекомендуем</div>
+          <div class="price-icon">▥</div>
+          <h3>Growth</h3>
+          <small>Для стабильного роста</small>
+          <strong>$490</strong><em>разово</em>
+          <ul>
+            <li>Многостраничный сайт</li>
+            <li>SEO-структура</li>
+            <li>До 3 SEO-страниц</li>
+            <li>Google / Yandex setup</li>
+            <li>Аналитика и формы</li>
+          </ul>
+          <a href="#contact">Выбрать пакет</a>
+        </article>
+
+        <article class="price">
+          <div class="price-icon">♛</div>
+          <h3>Pro</h3>
+          <small>Для полной системы</small>
+          <strong>$890</strong><em>разово</em>
+          <ul>
+            <li>Сайт + CRM</li>
+            <li>До 8 SEO-страниц</li>
+            <li>Мультиязычность</li>
+            <li>Автоматизация заявок</li>
+            <li>Подготовка к рекламе</li>
+          </ul>
+          <a href="#contact">Выбрать пакет</a>
+        </article>
       </div>
-      <div class="footer-links">
-        <a href="#niches">Направления</a>
-        <a href="#growth">Рост клиентов</a>
-        <a href="#pricing">Цены</a>
-        <a href="#contact">Контакты</a>
+      <p class="monthly">Сопровождение и развитие — <b>от $60 / месяц</b></p>
+    </div>
+  </section>
+
+  <section class="section light" id="growth">
+    <div class="shell">
+      <div class="section-head compact">
+        <span class="kicker blue">Как мы растим клиентов</span>
+        <h2>Не просто сайт — система привлечения заявок</h2>
+        <p>Мы делаем так, чтобы бизнес находили, ему доверяли и оставляли заявку.</p>
+      </div>
+      <div class="flow">
+        <div><b>1</b><i>⌕</i><h3>SEO-страницы</h3><p>Под реальные поисковые запросы</p></div>
+        <div><b>2</b><i>G</i><h3>Google / Яндекс</h3><p>Профили и локальная видимость</p></div>
+        <div><b>3</b><i>📍</i><h3>Карты</h3><p>Попадаем в локальный поиск</p></div>
+        <div><b>4</b><i>📣</i><h3>Реклама</h3><p>Google / Meta / Яндекс</p></div>
+        <div><b>5</b><i>▽</i><h3>Автоворонка</h3><p>Формы, WhatsApp, CRM</p></div>
+        <div><b>6</b><i>▥</i><h3>Аналитика</h3><p>Смотрим что работает и улучшаем</p></div>
+      </div>
+
+      <div class="results">
+        <div><i>👥</i><span><b>Больше лидов из поиска</b><small>Google, Яндекс и карты</small></span></div>
+        <div><i>◷</i><span><b>24/7 приём заявок</b><small>Сайт и формы работают постоянно</small></span></div>
+        <div><i>◫</i><span><b>Одна система вместо хаоса</b><small>Сайт, реклама, заявки и клиенты</small></span></div>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <script src="script.js"></script>
+  <section class="case" id="case">
+    <div class="shell case-grid">
+      <div>
+        <span class="kicker">Кейс</span>
+        <h2>LevaniLaw.ge — цифровой офис для адвоката</h2>
+        <p>С нуля собрали сайт, страницы услуг, русскую / грузинскую / английскую структуру, Google Business, Search Console, Яндекс Вебмастер, локальное SEO и WhatsApp.</p>
+        <a class="btn ghost lightbtn" href="https://levanilaw.ge/" target="_blank" rel="noopener">Посмотреть кейс →</a>
+      </div>
+      <img src="assets/images/cta-office.webp" alt="Цифровой офис BEQSON" loading="lazy">
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="shell cta-grid">
+      <div>
+        <span class="kicker">Начнём?</span>
+        <h2>Соберём цифровую систему под вашу нишу</h2>
+        <p>Подберём сайт, упаковку и инструменты роста под ваш бизнес.</p>
+        <a class="btn primary" href="https://wa.me/995551739333?text=Здравствуйте!%20Хочу%20обсудить%20проект%20с%20BEQSON" target="_blank" rel="noopener">Обсудить проект →</a>
+      </div>
+      <div class="contacts">
+        <a href="https://wa.me/995551739333" target="_blank" rel="noopener"><b>WhatsApp</b><span>+995 551 73 93 33</span></a>
+        <a href="https://t.me/digital_studio_beqson" target="_blank" rel="noopener"><b>Telegram</b><span>@digital_studio_beqson</span></a>
+        <a href="mailto:digitalstudiobeqson@gmail.com"><b>Email</b><span>digitalstudiobeqson@gmail.com</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell foot">
+    <span><b>BEQSON</b> Digital Studio</span>
+    <span>Websites • SEO • Local Search • Client Acquisition</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
