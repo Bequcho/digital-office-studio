@@ -1,11 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <defs>
-    <linearGradient id="g" x1="0" x2="1">
-      <stop offset="0%" stop-color="#22c55e"/>
-      <stop offset="100%" stop-color="#3b82f6"/>
-    </linearGradient>
-  </defs>
-  <rect width="128" height="128" rx="28" fill="#0f172a"/>
-  <circle cx="64" cy="64" r="44" fill="url(#g)" opacity=".18"/>
-  <path d="M30 36h40a10 10 0 0 1 10 10v8H40v38H30V36zm18 28h50v10H58v18H48V64z" fill="url(#g)"/>
+<defs><linearGradient id="tile" x2=".8" y2="1"><stop stop-color="#428cff"/><stop offset=".45" stop-color="#215ce0"/><stop offset="1" stop-color="#10387e"/></linearGradient><linearGradient id="metal" x2="0" y2="1"><stop stop-color="#fff"/><stop offset=".5" stop-color="#e0ecff"/><stop offset="1" stop-color="#91b7f1"/></linearGradient></defs>
+<rect x="3" y="7" width="122" height="118" rx="29" fill="#0c2b67"/><rect x="3" y="2" width="122" height="118" rx="29" fill="url(#tile)" stroke="#7caaff" stroke-width="2"/>
+<rect x="11" y="10" width="106" height="102" rx="22" fill="none" stroke="#ffffff26"/>
+<path d="M36 28h32c19 0 28 9 28 22 0 8-4 14-10 17 8 3 13 10 13 19 0 14-10 23-29 23H36V28zm18 17v15h13c7 0 10-3 10-8s-3-7-10-7H54zm0 30v17h15c8 0 12-3 12-8 0-6-4-9-12-9H54z" fill="#0a337b" transform="translate(0 -9)"/>
+<path d="M36 25h32c19 0 28 9 28 22 0 8-4 14-10 17 8 3 13 10 13 19 0 14-10 23-29 23H36V25zm18 17v15h13c7 0 10-3 10-8s-3-7-10-7H54zm0 30v17h15c8 0 12-3 12-8 0-6-4-9-12-9H54z" fill="url(#metal)" transform="translate(0 -8)"/>
 </svg>

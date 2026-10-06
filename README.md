@@ -1,27 +1,87 @@
-# BEQSON Digital Studio — SEO multilingual build
+# BEQSON v8 — Premium
 
-## Canonical language pages
-- `/ru/` — Russian
-- `/ka/` — Georgian
-- `/en/` — English
+Готовый статический сайт для https://bequcho.github.io/digital-office-studio/.
+Для публикации не нужно устанавливать Node.js, Python или запускать сборку: все HTML-страницы уже созданы.
 
-The root `/` remains a Russian entry point for visitors, but its canonical URL points to `/ru/`.
+## Обновить сайт в GitHub
 
-Each language page has:
-- static translated HTML (no JS translation)
-- unique title and meta description
-- canonical URL
-- hreflang RU / KA / EN / x-default
-- crawlable flag links
+1. Распакуйте `BEQSON-v8-premium-complete.zip`.
+2. Откройте существующий репозиторий `bequcho/digital-office-studio` и его корневую папку.
+3. Нажмите **Add file → Upload files**. Перетащите **содержимое распакованного архива**, включая папки `assets`, `ru`, `ka`, `en` и `tools`. Главный `index.html` должен оказаться непосредственно в корне репозитория. Сам ZIP загружать вместо содержимого не нужно.
+4. Сохраните изменения в ветке, из которой публикуется ваш сайт, с заменой файлов с такими же именами. Для прежней настройки это `main`.
+5. Дождитесь успешной публикации в **Actions** и откройте https://bequcho.github.io/digital-office-studio/ru/. При старом отображении обновите страницу сочетанием **Ctrl + F5**.
 
-## Upload
-Upload all files and folders to the root of the `digital-office-studio` GitHub repository with replacement.
+Если GitHub Pages уже настроен, повторная настройка обычно не нужна. Для публикации из ветки: **Settings → Pages → Deploy from a branch → main → /(root) → Save**.
 
-## After deployment
-Check:
-- https://bequcho.github.io/digital-office-studio/ru/
-- https://bequcho.github.io/digital-office-studio/ka/
-- https://bequcho.github.io/digital-office-studio/en/
-- https://bequcho.github.io/digital-office-studio/sitemap.xml
+Старые изображения, которые остались в репозитории от v7, работе новой версии не мешают. Все используемые v8 файлы входят в архив.
 
-Then submit the updated sitemap in Google Search Console and Yandex Webmaster.
+## Что внутри
+
+- 3 главные языковые страницы: `/ru/`, `/ka/`, `/en/`.
+- 8 страниц направлений на каждом языке — 24 новые отраслевые страницы.
+- Русская главная также доступна из корня, с canonical на `/ru/`.
+- Страница ошибки `404.html`.
+- 8 индивидуальных сгенерированных макетов сайтов, каждый в полном размере и облегчённой версии для карточек.
+- Локальные шрифты Manrope и Noto Sans Georgian с лицензиями.
+- SVG-иконки с объёмным оформлением, графические флаги, адаптивное меню.
+- Увеличение макетов, FAQ, прямые ссылки на WhatsApp, Telegram и email.
+- `canonical`, `hreflang`, Open Graph, JSON-LD и обновлённая карта сайта.
+- Файл `QA-REPORT.md` с результатами проверки.
+
+## Направления и адреса
+
+| Направление | Русская страница |
+| --- | --- |
+| Адвокаты | https://bequcho.github.io/digital-office-studio/ru/lawyers/ |
+| Стоматологи | https://bequcho.github.io/digital-office-studio/ru/dentists/ |
+| Частные врачи / клиники | https://bequcho.github.io/digital-office-studio/ru/clinics/ |
+| Риелторы | https://bequcho.github.io/digital-office-studio/ru/realtors/ |
+| Бухгалтеры / налоговые консультанты | https://bequcho.github.io/digital-office-studio/ru/accountants/ |
+| Ремонт / строительство / дизайнеры | https://bequcho.github.io/digital-office-studio/ru/construction/ |
+| Автосервисы / детейлинг | https://bequcho.github.io/digital-office-studio/ru/autoservices/ |
+| Отели / апартаменты / туризм | https://bequcho.github.io/digital-office-studio/ru/hotels/ |
+
+Грузинская и английская версии имеют те же адреса направлений внутри `/ka/` и `/en/`. Переключение флагом сохраняет выбранное направление.
+
+## Контакты и цены
+
+- WhatsApp: +995 551 73 93 33.
+- Telegram: @digital_studio_beqson.
+- Email: digitalstudiobeqson@gmail.com.
+- Start — $250, Growth — $490, Pro — $890.
+- Сопровождение — от $60 в месяц.
+
+Сайт студии связывает посетителя с вами через выбранный мессенджер или почтовую программу. Не имитирует отправку заявок и не сохраняет персональные данные в браузере. Услуги CRM, аналитики, форм и бронирования описаны как возможная комплектация клиентских проектов; их подключение согласуется отдельно.
+
+Макеты LEX, DENTA, VITA, ESTATE, BALANCE, FORMA, APEX и AURA — демонстрационные дизайн-концепции, созданные с помощью ИИ. Это изображения, а не отдельные работающие сайты этих условных компаний. Названия в макетах условные; английский текст показывает визуальное направление. Финальные тексты и язык клиентского сайта адаптируются под заказчика. Реальный проект LevaniLaw представлен отдельно, без выдуманных результатов и отзывов.
+
+## Карта сайта
+
+https://bequcho.github.io/digital-office-studio/sitemap.xml
+
+Карта содержит 27 основных страниц: три главные и 24 страницы направлений. После публикации можно отправить обновлённый sitemap в уже используемые панели поисковых систем. `robots.txt` включён в архив; при размещении GitHub Pages в подпапке правила обхода домена определяет его корневой robots.txt.
+
+## Редактирование исходников
+
+- `styles.css` — весь дизайн и адаптивность.
+- `script.js` — меню и увеличение макетов.
+- `tools/content.json` — основные тексты на трёх языках.
+- `tools/industries.json` — содержание восьми направлений.
+- `tools/build.py` — генератор статических страниц на стандартном Python 3.
+- `tools/IMAGE-PROMPTS.md` — полные запросы для восьми изображений.
+- `assets/concepts/` — все оптимизированные изображения WebP.
+
+После изменения JSON-текстов можно пересоздать HTML командой из папки сайта:
+
+```bash
+python3 tools/build.py
+```
+
+Для обычной загрузки в GitHub эта команда не требуется. Если будете подключать новый домен, в генераторе нужно обновить `BASE_URL`, пересобрать HTML и карту сайта, затем настроить домен в GitHub Pages.
+
+## Документация GitHub
+
+Инструкция сверена с официальными страницами 6 октября 2026 года:
+
+- https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository
+- https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
