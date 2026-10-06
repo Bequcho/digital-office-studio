@@ -18,14 +18,14 @@
 .social.telegram{--social-color:#229ED9;--social-rgb:34,158,217}
 .social.mail{--social-color:#EA4335;--social-rgb:234,67,53}
 .social:is(:hover,:focus-visible){background-color:rgba(var(--social-rgb),.12);background-color:color-mix(in srgb,#0b1b31 88%,var(--social-color));border-color:rgba(var(--social-rgb),.42);box-shadow:inset 0 1px 0 #ffffff08,0 5px 18px rgba(var(--social-rgb),.2),0 0 10px rgba(var(--social-rgb),.1);transform:translateY(-3px)}
-.social .icon{width:26px;height:26px;transition:transform .25s ease,filter .25s ease}
-/* Explicit paint on the SVG/use host also reaches the external sprite paths. */
-.social :is(svg,use,path,rect){color:var(--social-color);stroke:var(--social-color);fill:none}
+.social .icon{width:26px;height:26px;filter:drop-shadow(0 -1px 0 #ffffff24) drop-shadow(0 2px 1px #0006) drop-shadow(0 0 4px rgba(var(--social-rgb),.22));transition:transform .25s ease,filter .25s ease}
+/* Solid contact glyphs inherit brand paint through the external sprite. */
+.social :is(svg,use,path,rect){color:var(--social-color);stroke:none;fill:var(--social-color)}
 .contact-link[href^="https://wa.me/"] .icon-tile{--contact-icon-color:#25D366}
 .contact-link[href^="https://t.me/"] .icon-tile{--contact-icon-color:#229ED9}
 .contact-link[href^="mailto:"] .icon-tile{--contact-icon-color:#EA4335}
-.contact-link .icon-tile :is(svg,use,path,rect){color:var(--contact-icon-color,currentColor);stroke:var(--contact-icon-color,currentColor);fill:none}
-.social:is(:hover,:focus-visible) .icon{transform:scale(1.08);filter:drop-shadow(0 0 5px rgba(var(--social-rgb),.2))}.menu-toggle{display:none;border:1px solid #ffffff25;background:#ffffff08;padding:10px;border-radius:9px;width:44px;height:44px}.menu-toggle .icon{width:20px;height:20px}.mobile-contacts{display:none}
+.contact-link .icon-tile :is(svg,use,path,rect){color:var(--contact-icon-color,currentColor);stroke:none;fill:var(--contact-icon-color,currentColor)}
+.social:is(:hover,:focus-visible) .icon{transform:scale(1.08);filter:drop-shadow(0 -1px 0 #ffffff30) drop-shadow(0 2px 1px #0006) drop-shadow(0 0 6px rgba(var(--social-rgb),.4))}.menu-toggle{display:none;border:1px solid #ffffff25;background:#ffffff08;padding:10px;border-radius:9px;width:44px;height:44px}.menu-toggle .icon{width:20px;height:20px}.mobile-contacts{display:none}
 /* Sculpted, native vector icon system */
 .icon-tile{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:63px;height:63px;border-radius:18px;color:#2e69d0;border:1px solid #fff;background:linear-gradient(145deg,#fff 5%,#e8f0ff 50%,#cddcf6);box-shadow:inset 2px 2px 3px #fff,inset -2px -3px 5px #99b8e844,0 5px 0 #c5d5ec,0 12px 21px #1443831b;transform:rotate(-5deg)}.icon-tile::after{content:"";position:absolute;inset:5px;border:1px solid #ffffff95;border-radius:13px;pointer-events:none}.icon-tile .icon{width:32px;height:32px;filter:drop-shadow(0 1px 0 white) drop-shadow(0 3px 2px #16468430);transform:rotate(5deg)}.icon-tile.small{width:45px;height:45px;border-radius:13px;box-shadow:inset 2px 2px 3px white,inset -2px -3px 4px #99b8e833,0 3px 0 #c5d5ec,0 8px 13px #14438313}.icon-tile.small::after{inset:4px;border-radius:9px}.icon-tile.small .icon{width:24px;height:24px}.icon-tile.gold{color:#98713d;background:linear-gradient(145deg,#fffdf8,#eee1c9);box-shadow:inset 2px 2px 3px #fff,0 5px 0 #d7c3a1,0 12px 21px #78592517}
 /* Hero */
@@ -55,3 +55,11 @@ picture{display:block;max-width:100%}.card-image picture{height:100%}.card-image
 @media(max-width:359px){.brand img,.brand small{display:none}.shell{width:calc(100% - 28px)}.brand img{width:30px;height:30px}.brand b{font-size:16px}.brand small{font-size:5px}.header-tools{gap:6px}.flag-link{width:44px}.languages{gap:0}.menu-toggle{width:44px;height:44px}.hero h1{font-size:33px}.hero .actions{gap:21px;flex-direction:column;align-items:flex-start}.hero-notes{gap:9px;font-size:7px}.hero-floating{gap:7px;padding:8px}.hero-floating b{font-size:7px}.hero-floating small{font-size:6px}.hero-floating .icon-tile{width:26px;height:26px}.hero-floating .icon-tile .icon{width:17px;height:17px}.main-nav{left:-14px;right:-14px}.price-card,.price-card.featured{padding-inline:22px}.contact-link{gap:9px}.contact-link small{font-size:9px}:lang(ka) .hero h1{font-size:29px}:lang(ka) .industry-hero-grid h1{font-size:28px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 @media print{.site-header,.site-footer,.contact-section,.actions,.hero-showcase,.related-section,.lightbox,.skip{display:none!important}.section{padding:25px 0}.shell{width:100%}body{background:white;color:black}.hero,.pricing-section{background:white;color:black}.hero-grid{display:block}.metal-text{color:black;background:none;-webkit-text-fill-color:currentColor}.industry-card,.feature-card,.price-card{break-inside:avoid;box-shadow:none}.concept-note{color:#555}.hero-description,.pricing-section .section-heading.centered>p:last-child{color:#333}}
+
+/* Dark app-style tiles are limited to the three contact links. */
+.contact-link .icon-tile.small{background:linear-gradient(145deg,#172b45,#0b1b31);border-color:#ffffff24;box-shadow:inset 0 1px 0 #ffffff12,0 3px 7px #0003;transition:box-shadow .25s ease,transform .25s ease}
+.contact-link .icon-tile.small::after{border-color:#ffffff09}
+.contact-link .icon-tile .icon{filter:drop-shadow(0 -1px 0 #ffffff24) drop-shadow(0 2px 1px #0006) drop-shadow(0 0 4px color-mix(in srgb,var(--contact-icon-color) 24%,transparent));transition:transform .25s ease}
+.contact-link:is(:hover,:focus-visible) .icon-tile.small{transform:rotate(-5deg) translateY(-3px);box-shadow:inset 0 1px 0 #ffffff12,0 0 14px color-mix(in srgb,var(--contact-icon-color) 25%,transparent)}
+.contact-link:is(:hover,:focus-visible) .icon-tile .icon{transform:rotate(5deg) scale(1.08)}
+@media(prefers-reduced-motion:reduce){.contact-link .icon-tile.small,.contact-link .icon-tile .icon{transition:none}}

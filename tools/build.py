@@ -40,14 +40,15 @@ PATHS={
  'sun':'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/>',
  'rocket':'<path d="M9 15c-2-7 5-12 12-12 0 7-5 14-12 12Zm0 0-3 3M8 8H4l-2 5 6 1m2 2 1 6 5-2v-4M5 16l-3 6 6-3"/><circle cx="16" cy="8" r="2"/>',
  'crown':'<path d="m3 6 5 5 4-7 4 7 5-5-3 13H6L3 6Zm3 10h12"/>',
- 'mail':'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 6 9 7 9-7"/>',
- 'telegram':'<path d="M22 3 18 21l-7-6-4 4 1-7L2 9l20-6ZM8 12 18 6l-7 9"/>',
- 'whatsapp':'<path d="m3 21 1.5-5A9 9 0 1 1 8 20L3 21Z"/><path d="m8 7 2 3-1 1c1 2 2 3 4 4l1-1 3 1c-1 4-5 2-8-1-3-3-4-5-1-7Z"/>',
+ 'mail':'<path d="M5 4a3 3 0 0 0-3 3v.3l10 6.25L22 7.3V7a3 3 0 0 0-3-3H5Zm17 5.65-9.47 5.92a1 1 0 0 1-1.06 0L2 9.65V17a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V9.65Z"/>',
+ 'telegram':'<path d="M21.6 2.8 2.5 10.2c-.9.35-.9.95-.17 1.18l4.9 1.53 1.88 5.87c.23.64.12.89.79.89.51 0 .74-.23 1.03-.51l2.38-2.31 4.95 3.66c.91.5 1.57.24 1.8-.85l3.25-15.31c.33-1.34-.51-1.95-1.71-1.55ZM9.07 12.56l10.13-6.39c.5-.3.96-.14.58.2l-8.36 7.55-.33 3.53-2.02-4.89Z" fill-rule="evenodd"/>',
+ 'whatsapp':'<path fill-rule="evenodd" d="M12 2a10 10 0 0 0-8.66 15L2 22l5.15-1.35A10 10 0 1 0 12 2Zm-3.4 5c-.2-.45-.4-.46-.6-.47h-.51c-.2 0-.53.08-.8.38-.28.3-1.06 1.04-1.06 2.53s1.09 2.93 1.24 3.13c.15.2 2.14 3.26 5.18 4.57.72.31 1.28.49 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.79-.74 2.04-1.46.25-.72.25-1.34.17-1.46-.07-.13-.27-.2-.58-.35l-2.08-1c-.28-.1-.49-.15-.69.15-.2.3-.79 1-.96 1.2-.18.2-.35.22-.65.07-.3-.15-1.28-.47-2.44-1.51-.9-.8-1.51-1.8-1.69-2.1-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53L8.6 7Z"/>',
  'sparkle':'<path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z"/>',
  'zoom':'<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M7 10h6m-3-3v6"/>'}
 
 def icon(name,cls=''):
  sprite=urlsplit(BASE_URL).path+'assets/icons.svg'
+ if name in ('whatsapp','telegram','mail'): sprite+='?v=11-contact-solid'
  return f'<svg class="icon {cls}" viewBox="0 0 24 24" aria-hidden="true"><use href="{sprite}#{name}"></use></svg>'
 def tile(name,tone='',small=False):
  return f'<span class="icon-tile {tone} {"small" if small else ""}">{icon(name)}</span>'
@@ -98,7 +99,7 @@ def head(lang,base,title,description,slug=None,noindex=False):
 <meta name="description" content="{esc(description)}"><meta name="theme-color" content="#081529">{('<meta name="robots" content="noindex,follow">' if noindex else '')}
 <link rel="canonical" href="{canonical}">{alternates}<link rel="icon" href="{base}assets/logo.svg" type="image/svg+xml"><link rel="icon" href="{base}assets/favicon.png" type="image/png"><link rel="apple-touch-icon" href="{base}assets/apple-touch-icon.png"><link rel="manifest" href="{base}site.webmanifest">
 <meta property="og:type" content="website"><meta property="og:site_name" content="BEQSON Digital Studio"><meta property="og:locale" content="{c['locale']}"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(description)}"><meta property="og:url" content="{canonical}"><meta property="og:image" content="{image}"><meta property="og:image:type" content="{'image/jpeg' if slug else 'image/png'}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="{'800' if slug else '630'}"><meta property="og:image:alt" content="{esc(title)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{image}"><meta name="twitter:image:alt" content="{esc(title)}">
-<link rel="preload" href="{base}assets/fonts/{font}-800.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{base}styles.css?v=10-contact-colors"><script src="{base}script.js?v=9" defer></script>
+<link rel="preload" href="{base}assets/fonts/{font}-800.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{base}styles.css?v=11-contact-solid"><script src="{base}script.js?v=9" defer></script>
 <script type="application/ld+json">{json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False)}</script></head>'''
 HERO_SIZES='(max-width: 359px) calc((100vw - 28px) * .95), (max-width: 480px) calc((100vw - 36px) * .95), (max-width: 590px) calc((100vw - 48px) * .92), (max-width: 760px) 500px, (max-width: 1000px) calc((100vw - 73px) / 2), (max-width: 1180px) calc((100vw - 97px) / 2), (max-width: 1304px) calc((100vw - 106px) / 2.05), 600px'
 INDUSTRY_HERO_SIZES='(max-width: 359px) calc((100vw - 28px) * .95), (max-width: 480px) calc((100vw - 36px) * .95), (max-width: 760px) calc((100vw - 48px) * .95), (max-width: 1000px) calc((100vw - 73px) / 2), (max-width: 1180px) calc((100vw - 104px) / 2), (max-width: 1304px) calc((100vw - 119px) * .5122), 608px'
