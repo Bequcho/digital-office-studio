@@ -63,3 +63,8 @@ picture{display:block;max-width:100%}.card-image picture{height:100%}.card-image
 .contact-link:is(:hover,:focus-visible) .icon-tile.small{transform:rotate(-5deg) translateY(-3px);box-shadow:inset 0 1px 0 #ffffff12,0 0 14px color-mix(in srgb,var(--contact-icon-color) 25%,transparent)}
 .contact-link:is(:hover,:focus-visible) .icon-tile .icon{transform:rotate(5deg) scale(1.08)}
 @media(prefers-reduced-motion:reduce){.contact-link .icon-tile.small,.contact-link .icon-tile .icon{transition:none}}
+
+/* Restored profession artwork retains its original 4:3 proportions. */
+.profession-photo{overflow:hidden;border-radius:13px;border:1px solid #ffffff99;box-shadow:0 30px 70px #0004,0 3px 0 #c1cad880}
+.profession-photo img{display:block;width:100%;height:auto}
+.full-concept img[src*="assets/images/"]{aspect-ratio:4/3}
