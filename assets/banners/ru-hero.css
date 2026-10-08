@@ -40,7 +40,7 @@ html:lang(ru) .classic-hero-copy{padding-right:24px}
 @media(max-width:430px){
   html:lang(ru) .classic-hero::after{
     aspect-ratio:1.42 / 1;
-    background-size:160% auto;
-    background-position:115% 50%;
+    background-size:170% auto;
+    background-position:112% 50%;
   }
 }
