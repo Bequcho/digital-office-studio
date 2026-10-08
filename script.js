@@ -146,7 +146,7 @@ if (lightbox && typeof lightbox.showModal === 'function') {
             <a class="classic-btn secondary" href="#services">${c.secondary}</a>
           </div>
         </div>
-        ${lang === 'ka' ? '' : `<div class="classic-hero-visual">
+        ${lang === 'ka' || lang === 'en' ? '' : `<div class="classic-hero-visual">
           <img src="/assets/images/hero-main.webp" alt="${c.imageAlt}" width="1600" height="900" fetchpriority="high" loading="eager">
         </div>`}
       </div>

@@ -1,0 +1,26 @@
+/* English homepage: one full-width image, with readable foreground content. */
+html:lang(en) .classic-hero{
+  background-color:#061831;
+  background-image:linear-gradient(90deg,rgba(3,17,40,.88) 0%,rgba(3,17,40,.7) 34%,rgba(3,17,40,.12) 59%,transparent 78%),url("../неоновый_crm_дашборд_в_синем_свете.png");
+  background-size:cover;
+  background-position:center right;
+  background-repeat:no-repeat;
+}
+html:lang(en) .classic-hero-grid{grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);align-items:center;min-height:clamp(600px,50vw,900px)}
+html:lang(en) .classic-hero-copy{padding-right:24px}
+@media(min-width:1051px){
+  html:lang(en) .classic-hero-grid{width:min(1640px,calc(100% - 64px))}
+}
+@media(max-width:1050px) and (min-width:761px){
+  html:lang(en) .classic-hero{background-image:linear-gradient(90deg,rgba(3,17,40,.92),rgba(3,17,40,.8) 48%,rgba(3,17,40,.12) 70%,transparent),url("../неоновый_crm_дашборд_в_синем_свете.png")}
+  html:lang(en) .classic-hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:620px}
+}
+@media(max-width:760px){
+  html:lang(en) .classic-hero{
+    background-image:linear-gradient(180deg,#061831 0%,rgba(6,24,49,.6) 12%,transparent 35%),url("../неоновый_crm_дашборд_в_синем_свете.png");
+    background-size:100% auto;
+    background-position:center bottom;
+  }
+  html:lang(en) .classic-hero-grid{grid-template-columns:minmax(0,1fr);min-height:0;padding-bottom:56.28vw}
+  html:lang(en) .classic-hero-copy{padding:35px 0 24px}
+}
