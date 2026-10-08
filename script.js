@@ -147,7 +147,7 @@ if (lightbox && typeof lightbox.showModal === 'function') {
           </div>
         </div>
         <div class="classic-hero-visual">
-          <img src="/assets/images/hero-main.webp" alt="${c.imageAlt}" width="1600" height="900" fetchpriority="high" loading="eager">
+          <img src="${lang === 'ka' ? '/assets/images/hero-ka-neon.png' : '/assets/images/hero-main.webp'}" alt="${c.imageAlt}" width="1600" height="900" fetchpriority="high" loading="eager">
         </div>
       </div>
     </section>`;
