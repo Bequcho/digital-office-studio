@@ -33,13 +33,14 @@ html:lang(ka) .classic-hero-copy{padding-right:24px}
     aspect-ratio:1.5 / 1;
     background-image:url("../неоновый_crm_дашборд_будущего.png");
     background-repeat:no-repeat;
-    background-size:cover;
-    background-position:74% 50%;
+    background-size:132% auto;
+    background-position:79% 52%;
   }
 }
 @media(max-width:430px){
   html:lang(ka) .classic-hero::after{
     aspect-ratio:1.42 / 1;
-    background-position:76% 50%;
+    background-size:140% auto;
+    background-position:82% 52%;
   }
 }
