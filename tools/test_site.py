@@ -43,7 +43,7 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(set(self.pages),expected)
         for route,page in self.pages.items():
             with self.subTest(route=route):
-                self.assertEqual(page.select('html')[0]['lang'],route.split('/')[0] if '/' in route else 'ru')
+                self.assertEqual(page.select('html')[0]['lang'],route.split('/')[0] if '/' in route else ('ka' if route=='index.html' else 'ru'))
                 self.assertEqual(len(page.select('h1')),1)
                 self.assertEqual(len(page.select('main')),1)
                 self.assertEqual(len(page.ids),len(set(page.ids)))
@@ -86,11 +86,14 @@ class SiteTests(unittest.TestCase):
         for route,page in self.pages.items():
             canonical=page.select('link',rel='canonical')
             self.assertEqual(len(canonical),1)
-            expected=BASE+('ru/' if route=='index.html' else route.removesuffix('index.html'))
+            expected=BASE+('ka/' if route=='index.html' else route.removesuffix('index.html'))
             self.assertEqual(canonical[0]['href'],expected)
             alternates=page.select('link',rel='alternate')
             self.assertEqual(len(alternates),0 if route=='404.html' else 4)
             if route!='404.html':self.assertEqual({a['hreflang'] for a in alternates},{*LANGS,'x-default'})
+            if route!='404.html':
+                suffix=route.split('/')[1]+'/' if route.count('/')==2 else ''
+                self.assertEqual(next(a['href'] for a in alternates if a['hreflang']=='x-default'),BASE+'ka/'+suffix)
             self.assertEqual(len(page.select('meta',name='description')),1)
             self.assertEqual(len(page.select('title')),1)
             for attribute in ['og:image','og:image:width','og:image:height','og:image:alt']:

@@ -86,7 +86,7 @@ def contact_section(lang,industry=None):
  return f'''<section class="contact-section section" id="contact"><div class="shell contact-grid"><div><p class="eyebrow">{c['contactKicker']}</p><h2>{lines(c['contactTitle'])}</h2><p class="lead">{c['contactText']}</p></div><div class="contact-options"><p>{c['contactPrompt']}</p>{links}</div></div></section>'''
 def head(lang,base,title,description,slug=None,noindex=False):
  c=CONTENT[lang];canonical=BASE_URL+('404.html' if noindex else lang+'/'+(slug+'/' if slug else ''));image=BASE_URL+'assets/'+(f'concepts/{lang}/{slug}-og.jpg' if slug else 'og-cover.png')
- alternates='' if noindex else ''.join(f'<link rel="alternate" hreflang="{l}" href="{BASE_URL}{l}/{slug+"/" if slug else ""}">' for l in LANGS)+f'<link rel="alternate" hreflang="x-default" href="{BASE_URL}ru/{slug+"/" if slug else ""}">'
+ alternates='' if noindex else ''.join(f'<link rel="alternate" hreflang="{l}" href="{BASE_URL}{l}/{slug+"/" if slug else ""}">' for l in LANGS)+f'<link rel="alternate" hreflang="x-default" href="{BASE_URL}ka/{slug+"/" if slug else ""}">'
  org={'@type':'Organization','@id':BASE_URL+'#organization','name':'BEQSON Digital Studio','url':BASE_URL,'logo':BASE_URL+'assets/beqson-mark-v3.png','email':EMAIL,'telephone':'+'+PHONE,'sameAs':['https://t.me/digital_studio_beqson']}
  graph=[org,{'@type':'WebPage','@id':canonical+'#webpage','url':canonical,'name':title,'description':description,'inLanguage':lang,'publisher':{'@id':BASE_URL+'#organization'}}]
  if slug:
@@ -99,7 +99,7 @@ def head(lang,base,title,description,slug=None,noindex=False):
 <meta name="description" content="{esc(description)}"><meta name="theme-color" content="#081529">{('<meta name="robots" content="noindex,follow">' if noindex else '')}
 <link rel="canonical" href="{canonical}">{alternates}<link rel="shortcut icon" href="{base}favicon-v3.ico?v=3"><link rel="icon" href="{base}assets/favicon-v3.png?v=3" type="image/png"><link rel="apple-touch-icon" href="{base}assets/apple-touch-icon-v3.png?v=3"><link rel="manifest" href="{base}site.webmanifest?v=3">
 <meta property="og:type" content="website"><meta property="og:site_name" content="BEQSON Digital Studio"><meta property="og:locale" content="{c['locale']}"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(description)}"><meta property="og:url" content="{canonical}"><meta property="og:image" content="{image}"><meta property="og:image:type" content="{'image/jpeg' if slug else 'image/png'}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="{'800' if slug else '630'}"><meta property="og:image:alt" content="{esc(title)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{image}"><meta name="twitter:image:alt" content="{esc(title)}">
-<link rel="preload" href="{base}assets/fonts/{font}-800.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{base}styles.css?v=11-contact-solid"><script src="{base}script.js?v=10-domain" defer></script>
+<link rel="preload" href="{base}assets/fonts/{font}-800.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{base}styles.css?v=11-contact-solid"><script src="{base}script.js?v=11-ka-default" defer></script>
 <script type="application/ld+json">{json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False)}</script></head>'''
 HERO_SIZES='(max-width: 359px) calc((100vw - 28px) * .95), (max-width: 480px) calc((100vw - 36px) * .95), (max-width: 590px) calc((100vw - 48px) * .92), (max-width: 760px) 500px, (max-width: 1000px) calc((100vw - 73px) / 2), (max-width: 1180px) calc((100vw - 97px) / 2), (max-width: 1304px) calc((100vw - 106px) / 2.05), 600px'
 INDUSTRY_HERO_SIZES='(max-width: 359px) calc((100vw - 28px) * .95), (max-width: 480px) calc((100vw - 36px) * .95), (max-width: 760px) calc((100vw - 48px) * .95), (max-width: 1000px) calc((100vw - 73px) / 2), (max-width: 1180px) calc((100vw - 104px) / 2), (max-width: 1304px) calc((100vw - 119px) * .5122), 608px'
@@ -171,7 +171,7 @@ def write(path,content):
  p=ROOT/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(content,encoding='utf-8')
 def main():
  write('assets/icons.svg','<svg xmlns="http://www.w3.org/2000/svg">'+''.join(f'<symbol id="{name}" viewBox="0 0 24 24">{paths}</symbol>' for name,paths in PATHS.items())+'</svg>\n')
- write('index.html',homepage('ru',''))
+ write('index.html',homepage('ka','').replace('<head>', '<head>'+'<script>location.replace("/ka/" + location.search + location.hash);</script><meta http-equiv="refresh" content="0;url=/ka/">', 1))
  for lang in LANGS:
   write(f'{lang}/index.html',homepage(lang,'../'))
   for n in INDUSTRIES:write(f'{lang}/{n["slug"]}/index.html',industry_page(lang,n))
@@ -182,11 +182,11 @@ def main():
   for lang in LANGS:
    path=lang+'/'+(slug+'/' if slug else '')
    alts=''.join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE_URL}{l}/{slug+"/" if slug else ""}" />' for l in LANGS)
-   alts+=f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE_URL}ru/{slug+"/" if slug else ""}" />'
+   alts+=f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE_URL}ka/{slug+"/" if slug else ""}" />'
    urls.append('<url><loc>'+BASE_URL+path+'</loc>'+alts+'</url>')
  write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'+'\n'.join(urls)+'\n</urlset>\n')
  write('robots.txt','User-agent: *\nAllow: /\nSitemap: '+BASE_URL+'sitemap.xml\n')
- write('site.webmanifest',json.dumps({'name':'BEQSON Digital Studio','short_name':'BEQSON','lang':'ru','start_url':'./','scope':'./','display':'browser','background_color':'#f6f7fa','theme_color':'#081529','icons':[{'src':'assets/app-icon-192-v3.png','sizes':'192x192','type':'image/png'},{'src':'assets/app-icon-512-v3.png','sizes':'512x512','type':'image/png'}]},indent=2))
+ write('site.webmanifest',json.dumps({'name':'BEQSON Digital Studio','short_name':'BEQSON','lang':'ka','start_url':'./','scope':'./','display':'browser','background_color':'#f6f7fa','theme_color':'#081529','icons':[{'src':'assets/app-icon-192-v3.png','sizes':'192x192','type':'image/png'},{'src':'assets/app-icon-512-v3.png','sizes':'512x512','type':'image/png'}]},indent=2))
  write('.nojekyll','')
  print('Generated 28 content pages, 404, sitemap, robots and manifest.')
 if __name__=='__main__':main()

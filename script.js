@@ -70,7 +70,7 @@ if (lightbox && typeof lightbox.showModal === 'function') {
   const oldValue = document.querySelector('.value-section');
   if (!oldHero || !oldValue) return;
 
-  const lang = (document.documentElement.lang || 'ru').toLowerCase();
+  const lang = (document.documentElement.lang || 'ka').toLowerCase();
   const content = {
     ru: {
       label: 'САЙТЫ • SEO • CRM • РЕКЛАМА',
@@ -125,7 +125,7 @@ if (lightbox && typeof lightbox.showModal === 'function') {
     }
   };
 
-  const c = content[lang] || content.ru;
+  const c = content[lang] || content.ka;
   const sprite = '/assets/icons.svg';
   const featureIcon = icon => {
     if (icon === 'gear') {
