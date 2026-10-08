@@ -1,4 +1,11 @@
-/* Georgian homepage only: retain the entire illustration at its natural ratio. */
+/* Georgian homepage only: complete artwork with a larger desktop column. */
 html:lang(ka) .classic-hero-visual{display:flex;align-items:center;min-height:0;overflow:visible}
 html:lang(ka) .classic-hero-visual::before{display:none}
-html:lang(ka) .classic-hero-visual img{position:static;display:block;width:100%;height:auto;object-fit:contain;aspect-ratio:1672/941}
+html:lang(ka) .classic-hero-visual img{position:static;display:block;width:100%;max-width:none;height:auto;object-fit:contain;aspect-ratio:16/9}
+@media(min-width:761px){
+  html:lang(ka) .classic-hero-grid{grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);align-items:center}
+  html:lang(ka) .classic-hero-copy{padding-right:24px}
+}
+@media(min-width:1051px){
+  html:lang(ka) .classic-hero-grid{width:min(1640px,calc(100% - 64px))}
+}

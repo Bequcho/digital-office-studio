@@ -141,7 +141,7 @@ def homepage(lang,base):
  values=''.join(f'<div class="value-item">{tile(ico,small=True)}<div><p class="value-title">{title}</p><p>{desc}</p></div></div>' for ico,(title,desc) in zip(('globe','pin','layers','trend'),c['values']))
  steps=''.join(f'<article class="step-card"><span class="step-number">0{i+1}</span>{tile(ico)}<h3>{title}</h3><p>{desc}</p></article>' for i,(ico,(title,desc)) in enumerate(zip(('search','plan','pin','message','megaphone','chart'),c['steps'])))
  faqs=''.join(f'<details><summary>{esc(q)}{icon("plus")}</summary><p>{esc(a)}</p></details>' for q,a in c['faqs'])
- return head(lang,base,c['title'],c['description']).replace('</head>',f'<link rel="stylesheet" href="{base}assets/banners/banner.css?v=1"></head>').replace('</head>',(f'<link rel="stylesheet" href="{base}assets/banners/ka-hero.css?v=1">' if lang=='ka' else '')+'</head>')+f'''<body id="top">{header(lang,base)}<main id="main">
+ return head(lang,base,c['title'],c['description']).replace('</head>',f'<link rel="stylesheet" href="{base}assets/banners/banner.css?v=1"></head>').replace('</head>',(f'<link rel="stylesheet" href="{base}assets/banners/ka-hero.css?v=2">' if lang=='ka' else '')+'</head>')+f'''<body id="top">{header(lang,base)}<main id="main">
 {home_banner(lang,base)}
 <section class="value-section"><div class="shell value-grid">{values}</div></section>
 <section class="section industries-section" id="services"><div class="shell"><div class="section-heading split"><div><p class="eyebrow">{c['nicheKicker']}</p><h2>{lines(c['nicheTitle'])}</h2></div><p>{c['nicheText']}</p></div><div class="industry-grid">{industry_cards(lang,base)}</div><p class="concept-note">{icon('sparkle')}{c['conceptNote']}</p></div></section>
