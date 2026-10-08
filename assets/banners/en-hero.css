@@ -33,14 +33,14 @@ html:lang(en) .classic-hero-copy{padding-right:24px}
     aspect-ratio:1.5 / 1;
     background-image:url("../неоновый_crm_дашборд_в_синем_свете.png");
     background-repeat:no-repeat;
-    background-size:132% auto;
-    background-position:79% 52%;
+    background-size:150% auto;
+    background-position:123% 50%;
   }
 }
 @media(max-width:430px){
   html:lang(en) .classic-hero::after{
     aspect-ratio:1.42 / 1;
-    background-size:140% auto;
-    background-position:82% 52%;
+    background-size:170% auto;
+    background-position:112% 50%;
   }
 }
