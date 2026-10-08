@@ -146,9 +146,9 @@ if (lightbox && typeof lightbox.showModal === 'function') {
             <a class="classic-btn secondary" href="#services">${c.secondary}</a>
           </div>
         </div>
-        <div class="classic-hero-visual">
-          <img src="${lang === 'ka' ? '/assets/images/hero-ka-office.webp' : '/assets/images/hero-main.webp'}" alt="${c.imageAlt}" width="1600" height="900" fetchpriority="high" loading="eager">
-        </div>
+        ${lang === 'ka' ? '' : `<div class="classic-hero-visual">
+          <img src="/assets/images/hero-main.webp" alt="${c.imageAlt}" width="1600" height="900" fetchpriority="high" loading="eager">
+        </div>`}
       </div>
     </section>`;
 
