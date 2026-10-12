@@ -35,13 +35,7 @@
 <body>
 <header><div class="wrap top"><a href="/ru/" class="brand">BEQSON<small>DIGITAL STUDIO</small></a><a class="back" href="/ru/">← На сайт</a></div></header>
 <main class="wrap">
-  <section class="hero">
-    <div class="eyebrow">BEQSON WEBSITE AUDIT</div>
-    <h1>Бесплатный SEO-аудит сайта</h1>
-    <p>Введите адрес сайта. Мы проверим ключевые технические SEO-факторы и покажем BEQSON Score от 0 до 100 — без регистрации.</p>
-    <div class="auditbox"><form id="auditForm"><input id="url" class="url" type="text" inputmode="url" autocomplete="url" placeholder="example.com" required><button id="submit" type="submit">Проверить сайт →</button></form><div class="hint">Экспресс-аудит проверяет текущую HTML-страницу и базовые SEO-настройки. Он не заменяет полный технический аудит.</div></div>
-    <div id="error" class="error"></div>
-  </section>
+  <section class="hero"><div class="eyebrow">BEQSON WEBSITE AUDIT</div><h1>Бесплатный SEO-аудит сайта</h1><p>Введите адрес сайта. Мы проверим ключевые технические SEO-факторы и покажем BEQSON Score от 0 до 100 — без регистрации.</p><div class="auditbox"><form id="auditForm"><input id="url" class="url" type="text" inputmode="url" autocomplete="url" placeholder="example.com" required><button id="submit" type="submit">Проверить сайт →</button></form><div class="hint">Экспресс-аудит проверяет текущую HTML-страницу и базовые SEO-настройки. Он не заменяет полный технический аудит.</div></div><div id="error" class="error"></div></section>
   <section id="result" class="state">
     <div class="summary"><div class="scoreCard"><div id="ring" class="ring" style="--score:0"><div id="score" class="scoreNum">0</div></div><div class="grade">Оценка: <b id="grade">—</b></div></div><div class="infoCard"><h2 id="host">Результат аудита</h2><div id="tested" class="tested"></div><div class="metrics"><div class="metric"><span>HTTP</span><b id="http">—</b></div><div class="metric"><span>Ответ сервера</span><b id="speed">—</b></div><div class="metric"><span>Язык</span><b id="lang">—</b></div></div></div></div>
     <div class="checks"><h3 id="previewTitle">Ключевые результаты</h3><p id="previewSub" class="sectionSub">Показываем до трёх наиболее важных пунктов экспресс-аудита.</p><div id="previewChecks" class="grid"></div></div>
@@ -57,7 +51,7 @@
 <script>
 const AUDIT_API='https://htzfhxhpnxduxjcfhhdx.supabase.co/functions/v1/audit-site';
 const LEAD_API='https://htzfhxhpnxduxjcfhhdx.supabase.co/functions/v1/audit-lead';
-const ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXAiLCJyZWYiOiJodHpmaHhocG54ZHV4amNmaGhk eCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzkxODE0NDAxLCJleHAiOjIxMDczOTA0MDF9.t9CAGKuI8--1PkZIyjnbmjFaz9BooiYlm-FE3RVRP9I'.replace(' ','');
+const ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0emZoeGhwbnhkdXhqY2ZoaGR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MTQ0MDEsImV4cCI6MjEwNzM5MDQwMX0.t9CAGKuI8--1PkZIyjnbmjFaz9BooiYlm-FE3RVRP9I';
 const $=id=>document.getElementById(id);const form=$('auditForm'),btn=$('submit'),err=$('error'),result=$('result');let currentAudit=null,currentLead=null;
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function errorText(code){const map={url_required:'Введите адрес сайта.',unsupported_protocol:'Поддерживаются только HTTP/HTTPS.',credentials_not_allowed:'URL с логином и паролем не поддерживается.',unsafe_host:'Этот адрес нельзя проверить.',invalid_host:'Проверьте адрес сайта.',unsafe_redirect:'Сайт перенаправил запрос на недоступный адрес.',page_too_large:'Страница слишком большая для экспресс-аудита.',not_html:'По этому адресу не найдена HTML-страница.'};return map[code]||'Не удалось проверить сайт. Попробуйте ещё раз или проверьте адрес.'}
