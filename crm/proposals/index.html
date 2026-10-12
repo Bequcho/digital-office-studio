@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>BEQSON — коммерческие предложения</title>
+  <link rel="icon" href="/assets/favicon-v3.png?v=3" type="image/png">
+  <link rel="stylesheet" href="/assets/proposals.css?v=1">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/crm/"><img src="/assets/beqson-mark-v3.png" alt="" width="40" height="40"><span><b>BEQSON</b><small>PROPOSALS</small></span></a>
+    <div class="nav"><a href="/crm/">← CRM</a><button id="logout">Выйти</button></div>
+  </header>
+
+  <main class="shell">
+    <section class="intro"><p class="eyebrow">BEQSON SALES SYSTEM</p><h1>Коммерческие предложения</h1><p>Собираем предложение из карточки лида за пару минут.</p></section>
+
+    <section class="workspace">
+      <aside class="panel leads-panel">
+        <h2>Клиент</h2>
+        <input id="lead-search" type="search" placeholder="Поиск заявки…">
+        <div id="lead-list" class="lead-list"></div>
+      </aside>
+
+      <section class="panel editor-panel">
+        <h2>Настройки предложения</h2>
+        <div class="grid">
+          <label>Пакет<select id="package"><option>Start</option><option>Growth</option><option>Pro</option></select></label>
+          <label>Стоимость<input id="amount" type="number" min="0" step="10"></label>
+          <label>Валюта<select id="currency"><option>USD</option><option>GEL</option><option>EUR</option></select></label>
+          <label>Срок<input id="timeline" value="7–14 рабочих дней"></label>
+        </div>
+        <label>Что входит<textarea id="scope" rows="8"></textarea></label>
+        <label>Условия оплаты<textarea id="payment" rows="3">50% предоплата, 50% после завершения и согласования проекта.</textarea></label>
+        <label>Комментарий<textarea id="notes" rows="3" placeholder="Необязательно"></textarea></label>
+        <div class="actions"><button class="primary" id="save">Сохранить предложение</button><button id="print">Печать / PDF</button></div>
+        <p id="status"></p>
+      </section>
+
+      <section class="preview-wrap">
+        <article id="proposal" class="proposal">
+          <div class="proposal-head"><div><div class="logo-word">BEQSON</div><div class="logo-sub">DIGITAL STUDIO</div></div><div class="proposal-label">КОММЕРЧЕСКОЕ<br>ПРЕДЛОЖЕНИЕ</div></div>
+          <div class="rule"></div>
+          <p class="proposal-for">ПРЕДЛОЖЕНИЕ ДЛЯ</p>
+          <h2 id="p-name">Выберите клиента</h2>
+          <p id="p-meta" class="muted">—</p>
+          <div class="offer-card"><div><small>РЕКОМЕНДУЕМЫЙ ПАКЕТ</small><strong id="p-package">Growth</strong></div><div class="price" id="p-price">$490</div></div>
+          <h3>Что входит</h3><ul id="p-scope"></ul>
+          <div class="terms"><div><small>Срок</small><b id="p-timeline">7–14 рабочих дней</b></div><div><small>Оплата</small><b id="p-payment">50% / 50%</b></div></div>
+          <div id="p-notes" class="proposal-notes"></div>
+          <footer><div>beqson.com</div><div>digitalstudiobeqson@gmail.com</div><div>+995 551 73 93 33</div></footer>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/proposals.js?v=1" defer></script>
+</body>
+</html>
