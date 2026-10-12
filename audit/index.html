@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Бесплатный SEO-аудит сайта — BEQSON</title>
+  <meta name="description" content="Бесплатная экспресс-проверка сайта: Title, Description, H1, Canonical, HTTPS, мобильная адаптация, Open Graph, structured data и индексируемость.">
+  <link rel="canonical" href="https://beqson.com/audit/">
+  <meta property="og:title" content="Бесплатный SEO-аудит сайта — BEQSON">
+  <meta property="og:description" content="Получите BEQSON Score и список технических SEO-проблем за несколько секунд.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://beqson.com/audit/">
+  <style>
+    :root{--bg:#06172f;--panel:#0a2345;--panel2:#0d2d56;--line:#1d4675;--text:#edf6ff;--muted:#8fa9c5;--blue:#2fa7ff;--cyan:#42d5ff;--green:#33d69f;--orange:#ff9e2f;--red:#ff6262;--white:#fff}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,Manrope,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 75% 0,#0b3155 0,transparent 36%),linear-gradient(180deg,#071a33,#041226 72%);color:var(--text);min-height:100vh}
+    a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:0 24px}.top{height:84px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(90,145,210,.18)}
+    .brand{font-weight:900;font-size:24px;letter-spacing:.5px}.brand small{display:block;font-size:10px;letter-spacing:3px;color:#6f8cab;margin-top:3px}.back{padding:12px 16px;border:1px solid #244a74;border-radius:14px;background:rgba(13,45,86,.55);font-weight:700;color:#cfe5fb}
+    .hero{padding:76px 0 46px;text-align:center}.eyebrow{color:#4cc6ff;font-size:12px;font-weight:900;letter-spacing:2.6px;text-transform:uppercase}.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.03;margin:14px auto 16px;max-width:900px}.hero p{color:#a9bfd5;font-size:19px;line-height:1.55;max-width:760px;margin:0 auto 30px}
+    .auditbox{max-width:880px;margin:0 auto;background:linear-gradient(180deg,rgba(10,35,69,.96),rgba(7,27,54,.98));border:1px solid #1c4778;border-radius:24px;padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.28)}
+    form{display:flex;gap:12px}.url{flex:1;border:1px solid #265382;border-radius:15px;background:#071b36;color:white;font-size:17px;padding:17px 18px;outline:none}.url:focus{border-color:#38b8ff;box-shadow:0 0 0 3px rgba(47,167,255,.12)}
+    button{border:0;border-radius:15px;padding:0 25px;background:linear-gradient(135deg,#258dff,#33c7ff);font-weight:900;color:white;font-size:16px;cursor:pointer;min-height:56px}button:disabled{opacity:.6;cursor:wait}.hint{font-size:12px;color:#6f8dad;text-align:left;margin:10px 3px 0}
+    .state{display:none;max-width:1080px;margin:36px auto 80px}.state.show{display:block}.summary{display:grid;grid-template-columns:240px 1fr;gap:22px}.scoreCard,.infoCard,.checks{background:rgba(8,31,61,.96);border:1px solid #1b4776;border-radius:22px}.scoreCard{padding:28px;text-align:center}.ring{width:150px;height:150px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:conic-gradient(var(--blue) calc(var(--score)*1%),#12345a 0);position:relative}.ring:after{content:"";position:absolute;width:116px;height:116px;border-radius:50%;background:#08213f}.scoreNum{position:relative;z-index:1;font-size:44px;font-weight:950}.grade{font-size:15px;color:#9ab5cf}.grade b{font-size:28px;color:white}.infoCard{padding:28px}.infoCard h2{font-size:28px;margin:0 0 8px}.tested{color:#61c9ff;word-break:break-all}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.metric{background:#071b35;border:1px solid #173c67;border-radius:15px;padding:15px}.metric span{display:block;color:#7f9dbb;font-size:12px;margin-bottom:6px}.metric b{font-size:18px}
+    .checks{margin-top:22px;padding:26px}.checks h3{margin:0 0 18px;font-size:23px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.check{padding:17px;border:1px solid #183d68;background:#071b35;border-radius:16px;display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:start}.ico{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;font-weight:900}.ok .ico{background:rgba(51,214,159,.14);color:var(--green)}.bad .ico{background:rgba(255,98,98,.12);color:var(--red)}.partial .ico{background:rgba(255,158,47,.12);color:var(--orange)}.check strong{display:block;margin:2px 0 5px}.detail{font-size:12px;color:#809ebd;line-height:1.4}.pts{font-weight:900;color:#6fbfff;font-size:13px}.cta{margin-top:22px;border-radius:22px;padding:28px;background:linear-gradient(120deg,#0e4380,#0963a8);display:flex;align-items:center;justify-content:space-between;gap:20px}.cta h3{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#b9d8f4}.cta a{background:white;color:#0b4a83;padding:14px 18px;border-radius:13px;font-weight:900;white-space:nowrap}
+    .error{max-width:880px;margin:20px auto 0;padding:16px 18px;border:1px solid rgba(255,98,98,.42);background:rgba(255,98,98,.08);color:#ffc5c5;border-radius:14px;display:none}.error.show{display:block}.footer{text-align:center;color:#587697;padding:20px 0 38px;font-size:12px}
+    @media(max-width:760px){.top{height:70px}.hero{padding:48px 0 32px}.hero p{font-size:16px}form{flex-direction:column}.summary{grid-template-columns:1fr}.metrics{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.cta{align-items:flex-start;flex-direction:column}.cta a{width:100%;text-align:center}}
+  </style>
+</head>
+<body>
+<header><div class="wrap top"><a href="/ru/" class="brand">BEQSON<small>DIGITAL STUDIO</small></a><a class="back" href="/ru/">← На сайт</a></div></header>
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">BEQSON WEBSITE AUDIT</div>
+    <h1>Бесплатный SEO-аудит сайта</h1>
+    <p>Введите адрес сайта. Мы проверим ключевые технические SEO-факторы и покажем BEQSON Score от 0 до 100 — без регистрации.</p>
+    <div class="auditbox">
+      <form id="auditForm">
+        <input id="url" class="url" type="text" inputmode="url" autocomplete="url" placeholder="example.com" required>
+        <button id="submit" type="submit">Проверить сайт →</button>
+      </form>
+      <div class="hint">Экспресс-аудит проверяет текущую HTML-страницу и базовые SEO-настройки. Он не заменяет полный технический аудит.</div>
+    </div>
+    <div id="error" class="error"></div>
+  </section>
+
+  <section id="result" class="state">
+    <div class="summary">
+      <div class="scoreCard">
+        <div id="ring" class="ring" style="--score:0"><div id="score" class="scoreNum">0</div></div>
+        <div class="grade">Оценка: <b id="grade">—</b></div>
+      </div>
+      <div class="infoCard">
+        <h2 id="host">Результат аудита</h2>
+        <div id="tested" class="tested"></div>
+        <div class="metrics">
+          <div class="metric"><span>HTTP</span><b id="http">—</b></div>
+          <div class="metric"><span>Ответ сервера</span><b id="speed">—</b></div>
+          <div class="metric"><span>Язык</span><b id="lang">—</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="checks"><h3>Что мы проверили</h3><div id="checks" class="grid"></div></div>
+    <div class="cta"><div><h3>Нашли проблемы?</h3><p>BEQSON может исправить техническое SEO, структуру сайта и систему привлечения клиентов.</p></div><a href="/ru/">Обсудить исправления →</a></div>
+  </section>
+</main>
+<footer class="footer">© BEQSON Digital Studio · Экспресс-аудит носит диагностический характер</footer>
+<script>
+const API='https://htzfhxhpnxduxjcfhhdx.supabase.co/functions/v1/audit-site';
+const ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0emZoeGhwbnhkdXhqY2ZoaGR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MTQ0MDEsImV4cCI6MjEwNzM5MDQwMX0.t9CAGKuI8--1PkZIyjnbmjFaz9BooiYlm-FE3RVRP9I';
+const $=id=>document.getElementById(id);
+const form=$('auditForm'), btn=$('submit'), err=$('error'), result=$('result');
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function errorText(code){const map={url_required:'Введите адрес сайта.',unsupported_protocol:'Поддерживаются только HTTP/HTTPS.',credentials_not_allowed:'URL с логином и паролем не поддерживается.',unsafe_host:'Этот адрес нельзя проверить.',invalid_host:'Проверьте адрес сайта.',unsafe_redirect:'Сайт перенаправил запрос на недоступный адрес.',page_too_large:'Страница слишком большая для экспресс-аудита.',not_html:'По этому адресу не найдена HTML-страница.'};return map[code]||'Не удалось проверить сайт. Попробуйте ещё раз или проверьте адрес.'}
+form.addEventListener('submit',async e=>{e.preventDefault();err.classList.remove('show');result.classList.remove('show');btn.disabled=true;btn.textContent='Анализируем…';try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','apikey':ANON,'Authorization':'Bearer '+ANON},body:JSON.stringify({url:$('url').value})});const data=await r.json();if(!r.ok||!data.ok)throw new Error(data.error||'audit_failed');render(data)}catch(e){err.textContent=errorText(e.message);err.classList.add('show')}finally{btn.disabled=false;btn.textContent='Проверить сайт →'}});
+function render(d){$('score').textContent=d.score;$('grade').textContent=d.grade;$('ring').style.setProperty('--score',d.score);$('host').textContent=d.host||'Результат аудита';$('tested').textContent=d.final_url||d.url;$('http').textContent=d.status_code||'—';$('speed').textContent=(d.response_ms??'—')+' мс';$('lang').textContent=(d.lang||'не задан').toUpperCase();$('checks').innerHTML=(d.checks||[]).map(c=>{const cls=c.points===c.max?'ok':(c.points>0?'partial':'bad');const ico=cls==='ok'?'✓':(cls==='partial'?'!':'×');return `<div class="check ${cls}"><div class="ico">${ico}</div><div><strong>${esc(c.label)}</strong><div class="detail">${esc(c.detail)}</div></div><div class="pts">${c.points}/${c.max}</div></div>`}).join('');result.classList.add('show');result.scrollIntoView({behavior:'smooth',block:'start'})}
+</script>
+</body>
+</html>
