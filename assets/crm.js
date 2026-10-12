@@ -94,7 +94,7 @@
 
   function render() {
     const q = search.value.trim().toLowerCase();
-    const visible = leads.filter(l => !q || [l.name,l.contact,l.niche,l.company,l.message,l.website].some(v => String(v || '').toLowerCase().includes(q)));
+    const visible = leads.filter(l => !q || [l.name,l.contact,l.niche,l.company,l.message,l.website,l.recommended_package,l.ai_summary].some(v => String(v || '').toLowerCase().includes(q)));
     renderStats(visible);
     board.innerHTML = '';
     for (const [key, label] of STATUS) {
@@ -116,8 +116,9 @@
     const won = rows.filter(x => ['won','in_progress','completed'].includes(x.status)).length;
     const fresh = rows.filter(x => x.status === 'new').length;
     const active = rows.filter(x => ['contacted','proposal','won','in_progress'].includes(x.status)).length;
+    const hot = rows.filter(x => Number(x.lead_score || 0) >= 75).length;
     stats.innerHTML = [
-      ['Всего заявок', rows.length], ['Новые', fresh], ['Активные', active], ['Клиенты', won]
+      ['Всего заявок', rows.length], ['Новые', fresh], ['Активные', active], ['Клиенты', won], ['Горячие', hot]
     ].map(([label,val]) => `<article class="stat-card"><small>${label}</small><strong>${val}</strong></article>`).join('');
   }
 
@@ -125,7 +126,15 @@
     const el = document.createElement('article');
     el.className = 'lead-card';
     const date = new Intl.DateTimeFormat('ru-RU', {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(lead.created_at));
-    el.innerHTML = `<h3>${esc(lead.name)}</h3><p>${esc(lead.contact)}</p><p>${esc(lead.niche || 'Без ниши')}</p><div class="lead-meta"><span>${esc(lead.budget || 'Бюджет не указан')}</span><span>${date}</span></div>`;
+    const score = Number.isFinite(Number(lead.lead_score)) ? Number(lead.lead_score) : null;
+    const scoreHtml = score === null ? '' : `<span class="score-badge ${scoreClass(score)}">${score}</span>`;
+    const packageHtml = lead.recommended_package ? `<span class="package-badge package-${String(lead.recommended_package).toLowerCase()}">${esc(lead.recommended_package)}</span>` : '';
+    el.innerHTML = `
+      <div class="lead-card-head"><h3>${esc(lead.name)}</h3>${scoreHtml}</div>
+      <p>${esc(lead.contact)}</p>
+      <p>${esc(lead.niche || 'Без ниши')}</p>
+      <div class="lead-tags">${packageHtml}${score !== null ? `<span class="temperature">${scoreLabel(score)}</span>` : ''}</div>
+      <div class="lead-meta"><span>${esc(lead.budget || 'Бюджет не указан')}</span><span>${date}</span></div>`;
     el.addEventListener('click', () => openLead(lead.id));
     return el;
   }
@@ -134,9 +143,17 @@
     const lead = leads.find(x => x.id === id);
     if (!lead) return;
     selectedId = id;
+    const score = Number.isFinite(Number(lead.lead_score)) ? Number(lead.lead_score) : null;
     const statusButtons = STATUS.map(([key,label]) => `<button type="button" class="status-btn ${lead.status === key ? 'active' : ''}" data-status="${key}">${label}</button>`).join('');
+    const insight = score === null ? '' : `
+      <section class="qualification-box">
+        <div class="qualification-score ${scoreClass(score)}"><small>BEQSON SCORE</small><strong>${score}<span>/100</span></strong><em>${scoreLabel(score)}</em></div>
+        <div class="qualification-package"><small>РЕКОМЕНДУЕМЫЙ ПАКЕТ</small><strong>${esc(lead.recommended_package || '—')}</strong><p>${esc(lead.ai_summary || 'Автоквалификация выполнена.')}</p></div>
+      </section>`;
+
     leadDetail.innerHTML = `
       <div class="detail-title"><p class="eyebrow">LEAD DETAILS</p><h2>${esc(lead.name)}</h2><p class="muted">${esc(lead.niche || 'Без категории')}</p></div>
+      ${insight}
       <div class="detail-grid">
         ${detail('Контакт', lead.contact)}
         ${detail('Бюджет', lead.budget)}
@@ -175,6 +192,18 @@
     if (lead) lead.internal_notes = notes || null;
     await db.from('lead_events').insert({ lead_id:id, event_type:'note_updated', details:{} });
     toast('Заметка сохранена');
+  }
+
+  function scoreClass(score) {
+    if (score >= 75) return 'score-hot';
+    if (score >= 50) return 'score-warm';
+    return 'score-new';
+  }
+
+  function scoreLabel(score) {
+    if (score >= 75) return 'Горячий';
+    if (score >= 50) return 'Тёплый';
+    return 'Новый';
   }
 
   function detail(label, value, link=false) {
