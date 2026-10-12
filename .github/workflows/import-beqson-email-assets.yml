@@ -1,0 +1,43 @@
+name: Import BEQSON email assets
+
+on:
+  push:
+    paths:
+      - '.github/workflows/import-beqson-email-assets.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download original Gmail inline images
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/email
+          curl -L --fail --silent --show-error 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-2f3c-8246-88af-bda1ed2e8d33/raw?se=2026-10-12T10%3A42%3A07Z&sp=r&sv=2026-02-06&sr=b&scid=5685b808-e7e5-5fd7-86af-66700a5cf1fa&skoid=5bfb38a5-43fb-4c63-80a1-6ae1e97e2e16&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-12T05%3A23%3A16Z&ske=2026-10-13T05%3A23%3A16Z&sks=b&skv=2026-02-06&sig=QdXSUn2Fktwy0/63%2BJissH/zDxjUEKHvy4JNRoT%2BGc0%3D' -o assets/email/law-concept-1.jpg
+          curl -L --fail --silent --show-error 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-7490-8210-93fd-2b6326ff69bc/raw?se=2026-10-12T10%3A43%3A44Z&sp=r&sv=2026-02-06&sr=b&scid=08ab7709-0088-5592-a2cc-748357c9feaf&skoid=5bfb38a5-43fb-4c63-80a1-6ae1e97e2e16&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-12T07%3A37%3A49Z&ske=2026-10-13T07%3A37%3A49Z&sks=b&skv=2026-02-06&sig=d5pqJWcccQq5ebvW7RPUuZ1hNCZfatPZMDqS/ZdqLWQ%3D' -o assets/email/law-concept-2.jpg
+          test "$(wc -c < assets/email/law-concept-1.jpg)" -gt 300000
+          test "$(wc -c < assets/email/law-concept-2.jpg)" -gt 300000
+
+      - name: Commit assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/email/law-concept-1.jpg assets/email/law-concept-2.jpg
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Add original BEQSON email legal concepts'
+          git push
