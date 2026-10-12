@@ -1,0 +1,58 @@
+name: Install BEQSON Lead System
+
+on:
+  push:
+    paths:
+      - '.github/workflows/install-lead-system.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inject:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Inject lead system into HTML pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          css = '<link rel="stylesheet" href="/assets/lead-system.css?v=1">'
+          js = '<script src="/assets/lead-system.js?v=1" defer></script>'
+          changed = []
+
+          for path in Path('.').rglob('*.html'):
+              if path.name == '404.html' or '.git' in path.parts:
+                  continue
+              text = path.read_text(encoding='utf-8')
+              original = text
+
+              if '/assets/lead-system.css' not in text and '</head>' in text:
+                  text = text.replace('</head>', css + '</head>', 1)
+              if '/assets/lead-system.js' not in text and '</body>' in text:
+                  text = text.replace('</body>', js + '</body>', 1)
+
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
+
+          print('Updated pages:')
+          for item in changed:
+              print(' -', item)
+          PY
+
+      - name: Commit injected references
+        run: |
+          if git diff --quiet; then
+            echo "Nothing to update"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*.html' '**/*.html'
+          git commit -m "feat: enable BEQSON lead system on site pages"
+          git push
