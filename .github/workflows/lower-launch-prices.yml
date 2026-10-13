@@ -1,0 +1,69 @@
+name: Apply launch pricing
+
+on:
+  push:
+    paths:
+      - '.github/workflows/lower-launch-prices.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  lower-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Lower public launch prices
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+
+          # 1) Website calculator: deliberately low launch pricing while BEQSON builds portfolio/reviews.
+          calc = root / 'assets' / 'website-calculator.js'
+          text = calc.read_text(encoding='utf-8')
+          old = "const price={type:{landing:250,business:390,redesign:490,store:890},size:{one:0,small:100,medium:300,large:600},extra:{seo:120,local:90,crm:160,languages:150,copy:120,analytics:70,payments:180,booking:120}};"
+          new = "const price={type:{landing:149,business:249,redesign:299,store:499},size:{one:0,small:50,medium:120,large:220},extra:{seo:50,local:40,crm:80,languages:60,copy:60,analytics:30,payments:80,booking:60}};"
+          if old in text:
+              text = text.replace(old, new)
+          else:
+              text = re.sub(r"const price=\{type:\{landing:\d+,business:\d+,redesign:\d+,store:\d+\},size:\{one:\d+,small:\d+,medium:\d+,large:\d+\},extra:\{seo:\d+,local:\d+,crm:\d+,languages:\d+,copy:\d+,analytics:\d+,payments:\d+,booking:\d+\}\};", new, text)
+          text = text.replace("if(state.timeline==='urgent')low*=1.2;", "if(state.timeline==='urgent')low*=1.15;")
+          text = text.replace("let pkg=low>=890?'Pro':low>=490?'Growth':'Start';", "let pkg=low>=499?'Pro':low>=299?'Growth':'Start';")
+          calc.write_text(text, encoding='utf-8')
+
+          # 2) Public package cards everywhere they appear on the site.
+          replacements = {
+              '<span>$</span>250<small>': '<span>$</span>149<small>',
+              '<span>$</span>490<small>': '<span>$</span>299<small>',
+              '<span>$</span>890<small>': '<span>$</span>499<small>',
+          }
+          for path in root.rglob('*.html'):
+              if '.git' in path.parts:
+                  continue
+              s = path.read_text(encoding='utf-8')
+              orig = s
+              for a,b in replacements.items():
+                  s = s.replace(a,b)
+              # Lower maintenance/support where the pricing block uses $60.
+              s = re.sub(r'(<p class="maintenance">.*?<b>[^<]*?)\$60(\s*/\s*[^<]*</b>)', r'\1$39\2', s, flags=re.S)
+              if s != orig:
+                  path.write_text(s, encoding='utf-8')
+
+          print('Launch pricing applied: Start $149, Growth $299, Pro $499, support from $39/mo.')
+          PY
+      - name: Commit launch pricing
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/website-calculator.js '*.html' ru ka en 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No pricing changes needed"
+          else
+            git commit -m "Lower BEQSON launch pricing"
+            git push
+          fi
