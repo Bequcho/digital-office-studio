@@ -1,0 +1,31 @@
+name: Align Georgian calculator budget brackets
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-georgia-calculator-budget.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch Georgian budget labels
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('assets/website-calculator.js')
+          s=p.read_text(encoding='utf-8')
+          old="function budgetBracket(mid){if(isGeorgia){if(mid<=399)return '299 ₾-მდე';if(mid<=699)return '300–699 ₾';if(mid<=1099)return '700–1099 ₾';return '1100 ₾+'}if(mid<=300)return lang==='ru'?'до $300':'up to $300';if(mid<=500)return '$300-500';if(mid<=900)return '$500-900';return '$900+'}"
+          new="function budgetBracket(mid){if(isGeorgia){if(mid<=300)return '300-მდე ₾';if(mid<=500)return '300–500 ₾';if(mid<=900)return '500–900 ₾';return '900+ ₾'}if(mid<=300)return lang==='ru'?'до $300':'up to $300';if(mid<=500)return '$300-500';if(mid<=900)return '$500-900';return '$900+'}"
+          if old not in s:
+            raise SystemExit('target budgetBracket not found')
+          p.write_text(s.replace(old,new),encoding='utf-8')
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "BEQSON Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/website-calculator.js
+          git commit -m "fix: align Georgian calculator CRM budget labels"
+          git push
