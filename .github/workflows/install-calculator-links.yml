@@ -1,0 +1,30 @@
+name: Install website calculator links
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-calculator-links.yml'
+      - 'scripts/install_calculator_links.py'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add calculator entry points
+        run: python scripts/install_calculator_links.py
+      - name: Commit homepage and sitemap updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ru/index.html ka/index.html en/index.html sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git commit -m "Add website calculator to localized homepages"
+          git push
