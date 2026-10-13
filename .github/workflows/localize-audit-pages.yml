@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/localize-audit-pages.yml'
+      - 'audit/index.html'
       - 'scripts/localize_audit.py'
       - 'scripts/fix_audit_i18n.py'
 
