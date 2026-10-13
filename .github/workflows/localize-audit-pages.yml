@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/localize-audit-pages.yml'
       - 'scripts/localize_audit.py'
+      - 'scripts/fix_audit_i18n.py'
 
 permissions:
   contents: write
@@ -29,7 +30,9 @@ jobs:
           p.write_text(s, encoding='utf-8')
           PY
       - name: Build localized audit pages
-        run: python scripts/localize_audit.py
+        run: |
+          python scripts/localize_audit.py
+          python scripts/fix_audit_i18n.py
       - name: Commit localized pages
         run: |
           git config user.name "github-actions[bot]"
@@ -39,5 +42,5 @@ jobs:
             echo "No changes needed"
             exit 0
           fi
-          git commit -m "Add localized SEO audit pages for RU EN KA"
+          git commit -m "Polish localized SEO audit pages"
           git push
