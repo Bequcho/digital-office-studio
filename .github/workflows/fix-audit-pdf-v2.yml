@@ -1,0 +1,69 @@
+name: Fix audit PDF export v2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-audit-pdf-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace blank HTML capture with direct canvas PDF rendering
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('audit/index.html')
+          s = p.read_text(encoding='utf-8')
+
+          marker = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"'
+          if 'jspdf.umd.min.js' not in s and marker in s:
+              s = s.replace(marker, '<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>\n' + marker, 1)
+
+          start = s.find("$('downloadPdf').addEventListener")
+          end = s.find('</script>', start)
+          if start < 0 or end < 0:
+              raise SystemExit('download PDF handler not found')
+
+          new_js = r'''function pdfStrings(){const lang=(document.documentElement.lang||'ru').toLowerCase();const map={ru:{report:'SEO-аудит сайта',issues:'Ключевые проблемы',noIssues:'Критичных проблем в базовых технических проверках не найдено.',plan:'Приоритетный план работ',checks:'Результаты базовых проверок',generated:'Отчёт сформирован',score:'SEO SCORE',page:'Страница',generating:'Формируем PDF…'},en:{report:'Website SEO audit',issues:'Key issues',noIssues:'No critical issues were found in the core technical checks.',plan:'Priority action plan',checks:'Core check results',generated:'Report generated',score:'SEO SCORE',page:'Page',generating:'Generating PDF…'},ka:{report:'საიტის SEO აუდიტი',issues:'ძირითადი პრობლემები',noIssues:'ძირითად ტექნიკურ შემოწმებებში კრიტიკული პრობლემა არ აღმოჩნდა.',plan:'პრიორიტეტული სამოქმედო გეგმა',checks:'ძირითადი შემოწმებების შედეგები',generated:'ანგარიში შექმნილია',score:'SEO SCORE',page:'გვერდი',generating:'PDF მზადდება…'}};return map[lang]||map.ru}
+function canvasLines(ctx,text,maxWidth){const out=[];for(const paragraph of String(text??'').split(/\n/)){const words=paragraph.split(/\s+/).filter(Boolean);if(!words.length){out.push('');continue}let line='';for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width<=maxWidth){line=test;continue}if(line)out.push(line);if(ctx.measureText(word).width<=maxWidth){line=word;continue}let chunk='';for(const ch of word){const t=chunk+ch;if(ctx.measureText(t).width>maxWidth&&chunk){out.push(chunk);chunk=ch}else chunk=t}line=chunk}if(line)out.push(line)}return out}
+function drawCanvasText(ctx,text,x,y,maxWidth,lineHeight){const lines=canvasLines(ctx,text,maxWidth);for(const line of lines){ctx.fillText(line,x,y);y+=lineHeight}return y}
+async function exportAuditPdf(){if(!currentAudit)return;const JSPDF=window.jspdf?.jsPDF;if(!JSPDF){printPdfFallback();return}const T=pdfStrings(),W=1240,H=1754,M=82,usable=W-M*2,pages=[];let canvas,ctx,y;
+function newPage(){canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);ctx.textBaseline='top';ctx.fillStyle='#0b2b50';ctx.fillRect(0,0,W,18);ctx.fillStyle='#126dcc';ctx.fillRect(M,58,54,54);ctx.fillStyle='#fff';ctx.font='900 34px sans-serif';ctx.textAlign='center';ctx.fillText('B',M+27,66);ctx.textAlign='left';ctx.fillStyle='#073a75';ctx.font='900 31px sans-serif';ctx.fillText('BEQSON',M+72,58);ctx.fillStyle='#7b91a9';ctx.font='700 13px sans-serif';ctx.fillText('DIGITAL STUDIO',M+72,98);ctx.fillStyle='#b8c9da';ctx.fillRect(M,132,usable,2);y=170}
+function finishPage(){pages.push(canvas)}
+function ensure(h){if(y+h>H-120){finishPage();newPage()}}
+function heading(text){ensure(72);ctx.fillStyle='#163653';ctx.font='900 30px sans-serif';y=drawCanvasText(ctx,text,M,y,usable,38);y+=16}
+function card(title,detail,right,status){ctx.font='800 20px sans-serif';const titleLines=canvasLines(ctx,title,760);ctx.font='500 17px sans-serif';const detailLines=canvasLines(ctx,detail,820);const h=Math.max(100,28+titleLines.length*28+detailLines.length*24);ensure(h+18);ctx.fillStyle=status==='ok'?'#f0fbf6':'#fff7ec';ctx.fillRect(M,y,usable,h);ctx.fillStyle=status==='ok'?'#17815c':'#cc7100';ctx.fillRect(M,y,9,h);ctx.fillStyle='#193653';ctx.font='800 20px sans-serif';let yy=y+20;yy=drawCanvasText(ctx,title,M+28,yy,760,28);ctx.fillStyle='#6c8298';ctx.font='500 17px sans-serif';yy=drawCanvasText(ctx,detail,M+28,yy+4,820,24);if(right){ctx.fillStyle='#126dcc';ctx.font='900 18px sans-serif';ctx.textAlign='right';ctx.fillText(right,W-M-22,y+22);ctx.textAlign='left'}y+=h+14}
+newPage();const bad=issues(currentAudit),plans=planItems(currentAudit),site=currentAudit.final_url||currentAudit.url||'',host=currentAudit.host||site,date=new Date().toLocaleDateString(document.documentElement.lang==='ka'?'ka-GE':document.documentElement.lang==='en'?'en-GB':'ru-RU',{day:'2-digit',month:'long',year:'numeric'});
+ctx.fillStyle='#10233c';ctx.font='900 44px sans-serif';y=drawCanvasText(ctx,T.report,M,y,760,52);ctx.fillStyle='#1477dc';ctx.font='900 30px sans-serif';y=drawCanvasText(ctx,host,M,y+8,760,38);ctx.fillStyle='#7b91a9';ctx.font='500 16px sans-serif';y=drawCanvasText(ctx,site,M,y+4,760,22);
+ctx.strokeStyle='#35aaff';ctx.lineWidth=18;ctx.beginPath();ctx.arc(W-205,260,92,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#102b4d';ctx.textAlign='center';ctx.font='900 56px sans-serif';ctx.fillText(String(currentAudit.score??'—'),W-205,218);ctx.fillStyle='#6d849c';ctx.font='800 16px sans-serif';ctx.fillText(`${T.score} · ${currentAudit.grade||'—'}`,W-205,286);ctx.textAlign='left';y=Math.max(y,390);
+ctx.fillStyle='#6c8298';ctx.font='600 16px sans-serif';ctx.fillText(`${T.generated}: ${date}`,M,y);y+=48;
+heading(T.issues);if(bad.length){for(const c of bad)card(labelFor(c),detailFor(c),`${c.points}/${c.max}`,'warn')}else card('✓',T.noIssues,'','ok');
+heading(T.plan);for(let i=0;i<plans.length;i++)card(`${i+1}. ${plans[i].title}`,plans[i].text,'','ok');
+heading(T.checks);for(const c of (currentAudit.checks||[])){const ok=Number(c.points)===Number(c.max);card(labelFor(c),detailFor(c),`${c.points}/${c.max}`,ok?'ok':'warn')}
+finishPage();
+for(let i=0;i<pages.length;i++){const c=pages[i],x=c.getContext('2d');x.fillStyle='#d8e5f1';x.fillRect(M,H-88,usable,2);x.fillStyle='#7289a0';x.font='600 14px sans-serif';x.textAlign='left';x.fillText('BEQSON · beqson.com · digitalstudiobeqson@gmail.com · +995 551 73 93 33',M,H-62);x.textAlign='right';x.fillText(`${T.page} ${i+1}/${pages.length}`,W-M,H-62)}
+const pdf=new JSPDF({orientation:'portrait',unit:'pt',format:'a4',compress:true});for(let i=0;i<pages.length;i++){if(i)pdf.addPage();pdf.addImage(pages[i].toDataURL('image/jpeg',0.92),'JPEG',0,0,595.28,841.89,undefined,'FAST')}const safe=(host||'site').replace(/[^a-z0-9а-яё.-]+/gi,'-');pdf.save(`BEQSON-SEO-Audit-${safe}.pdf`)}
+$('downloadPdf').addEventListener('click',async()=>{if(!currentAudit)return;const b=$('downloadPdf'),old=b.innerHTML;b.disabled=true;b.innerHTML='<span class="pdfIcon">◌</span> '+pdfStrings().generating;try{await exportAuditPdf()}catch(e){console.error('PDF export failed',e);printPdfFallback()}finally{b.disabled=false;b.innerHTML=old}});
+'''
+
+          s = s[:start] + new_js + '\n' + s[end:]
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit PDF fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audit/index.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git commit -m "Fix blank audit PDFs with canvas renderer"
+          git push
