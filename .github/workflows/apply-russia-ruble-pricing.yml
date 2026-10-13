@@ -1,0 +1,76 @@
+name: Apply Russia ruble pricing
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-russia-ruble-pricing.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch Russian pricing and calculator
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          # Russian homepage pricing
+          p = Path('ru/index.html')
+          s = p.read_text(encoding='utf-8')
+          repl = {
+            '<p class="price-amount"><span>$</span>149<small>разово</small></p>':'<p class="price-amount"><span>₽</span>9 900<small>разово</small></p>',
+            '<p class="price-amount"><span>$</span>299<small>разово</small></p>':'<p class="price-amount"><span>₽</span>19 900<small>разово</small></p>',
+            '<p class="price-amount"><span>$</span>499<small>разово</small></p>':'<p class="price-amount"><span>₽</span>34 900<small>разово</small></p>',
+            'Стоимость в USD. Финальный объём фиксируем до начала работы. Домен, платные сервисы и рекламный бюджет оплачиваются отдельно при необходимости.':'Стартовые цены для первых клиентов в России и русскоязычного рынка. Стоимость указана в RUB. Финальный объём фиксируем до начала работы. Домен, платные сервисы и рекламный бюджет оплачиваются отдельно при необходимости.',
+            'от $39 / месяц':'от 2 900 ₽ / месяц',
+          }
+          for a,b in repl.items():
+            if a not in s:
+              raise SystemExit(f'ru/index.html pattern not found: {a[:80]}')
+            s=s.replace(a,b,1)
+          p.write_text(s, encoding='utf-8')
+
+          # Shared calculator: Russian local price grid while preserving GEL and USD versions
+          p = Path('assets/website-calculator.js')
+          s = p.read_text(encoding='utf-8')
+          pairs = [
+            ("notOffer:'Не оферта. Точная цена зависит от контента, интеграций и финального объёма.'", "notOffer:'Стартовые цены для первых клиентов. Не оферта: точная цена зависит от контента, интеграций и финального объёма.'"),
+            ("footer:'Ориентировочный расчёт BEQSON · точная стоимость подтверждается после короткого разбора проекта.'", "footer:'BEQSON Russia launch pricing · стартовые цены для первых клиентов · точная стоимость подтверждается после короткого разбора проекта.'"),
+            ("const isGeorgia=lang==='ka';", "const isGeorgia=lang==='ka';\nconst isRussia=lang==='ru';"),
+            ("const priceUsd={type:{landing:149,business:249,redesign:299,store:499},size:{one:0,small:50,medium:120,large:220},extra:{seo:50,local:40,crm:80,languages:60,copy:60,analytics:30,payments:80,booking:60}};", "const priceUsd={type:{landing:149,business:249,redesign:299,store:499},size:{one:0,small:50,medium:120,large:220},extra:{seo:50,local:40,crm:80,languages:60,copy:60,analytics:30,payments:80,booking:60}};\nconst priceRu={type:{landing:9900,business:14900,redesign:19900,store:34900},size:{one:0,small:5000,medium:10000,large:18000},extra:{seo:4000,local:3000,crm:6000,languages:5000,copy:4000,analytics:2500,payments:6000,booking:4500}};"),
+            ("const price=isGeorgia?priceKa:priceUsd;", "const price=isGeorgia?priceKa:(isRussia?priceRu:priceUsd);"),
+            ("const round10=n=>Math.round(n/10)*10;", "const roundPrice=n=>isRussia?Math.round(n/100)*100:Math.round(n/10)*10;"),
+            ("function estimate(){let low=price.type[state.type]+price.size[state.size];for(const x of state.extras)low+=price.extra[x]||0;if(state.timeline==='urgent')low*=1.15;low=Math.max(isGeorgia?299:149,round10(low));const high=round10(low*(isGeorgia?1.18:1.22));const pkg=isGeorgia?(low>=999?'Pro':low>=599?'Growth':'Start'):(low>=499?'Pro':low>=299?'Growth':'Start');return{low,high,pkg}}", "function estimate(){let low=price.type[state.type]+price.size[state.size];for(const x of state.extras)low+=price.extra[x]||0;if(state.timeline==='urgent')low*=1.15;const minPrice=isGeorgia?299:(isRussia?9900:149);low=Math.max(minPrice,roundPrice(low));const high=roundPrice(low*((isGeorgia||isRussia)?1.18:1.22));const pkg=isGeorgia?(low>=999?'Pro':low>=599?'Growth':'Start'):(isRussia?(low>=34900?'Pro':low>=19900?'Growth':'Start'):(low>=499?'Pro':low>=299?'Growth':'Start'));return{low,high,pkg}}"),
+            ("function budgetBracket(mid){if(isGeorgia){if(mid<=300)return '300-მდე ₾';if(mid<=500)return '300–500 ₾';if(mid<=900)return '500–900 ₾';return '900+ ₾'}if(mid<=300)return lang==='ru'?'до $300':'up to $300';if(mid<=500)return '$300-500';if(mid<=900)return '$500-900';return '$900+'}", "function budgetBracket(mid){if(isGeorgia){if(mid<=300)return '300-მდე ₾';if(mid<=500)return '300–500 ₾';if(mid<=900)return '500–900 ₾';return '900+ ₾'}if(isRussia){if(mid<=15000)return 'до 15 000 ₽';if(mid<=30000)return '15 000–30 000 ₽';if(mid<=50000)return '30 000–50 000 ₽';return '50 000+ ₽'}if(mid<=300)return 'up to $300';if(mid<=500)return '$300-500';if(mid<=900)return '$500-900';return '$900+'}"),
+            ("$('price').textContent=(isGeorgia?e.low+'–'+e.high+' ₾':'$'+e.low+'–$'+e.high);", "$('price').textContent=isGeorgia?(e.low+'–'+e.high+' ₾'):(isRussia?(e.low.toLocaleString('ru-RU')+'–'+e.high.toLocaleString('ru-RU')+' ₽'):('$'+e.low+'–$'+e.high));"),
+            ("const estimateText=(lang==='ru'?'Расчёт':lang==='ka'?'შეფასება':'Estimate')+': $'+est.low+'–$'+est.high;", "const estimateText=(lang==='ru'?'Расчёт':lang==='ka'?'შეფასება':'Estimate')+': '+(isGeorgia?(est.low+'–'+est.high+' ₾'):(isRussia?(est.low.toLocaleString('ru-RU')+'–'+est.high.toLocaleString('ru-RU')+' ₽'):('$'+est.low+'–$'+est.high)));"),
+          ]
+          for a,b in pairs:
+            if a not in s:
+              raise SystemExit(f'calculator pattern not found: {a[:100]}')
+            s=s.replace(a,b,1)
+          p.write_text(s, encoding='utf-8')
+
+          # Russian calculator page metadata, initial fallback and cache busting
+          p = Path('ru/calculator/index.html')
+          s = p.read_text(encoding='utf-8')
+          pairs = [
+            ('"priceCurrency":"USD"','"priceCurrency":"RUB"'),
+            ('<div class="price" id="price">$490–$600</div>','<div class="price" id="price">19 900–23 500 ₽</div>'),
+            ('/assets/website-calculator.js?v=1','/assets/website-calculator.js?v=2-rub'),
+          ]
+          for a,b in pairs:
+            if a not in s:
+              raise SystemExit(f'ru calculator page pattern not found: {a}')
+            s=s.replace(a,b,1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ru/index.html ru/calculator/index.html assets/website-calculator.js
+          git diff --cached --quiet && exit 0
+          git commit -m "feat: add ruble launch pricing for Russian market"
+          git push
