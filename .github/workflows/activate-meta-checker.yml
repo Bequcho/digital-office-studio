@@ -1,0 +1,55 @@
+name: Activate Meta Checker
+on:
+  push:
+    paths:
+      - '.github/workflows/activate-meta-checker.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update hubs and sitemap
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          patches = {
+            'ru/tools/index.html': [
+              ('Начните с двух инструментов.', 'Начните с трёх инструментов.'),
+              ('Они решают две главные задачи: понять, что не так с существующим сайтом, и оценить бюджет нового проекта.', 'SEO-аудит, расчёт стоимости и быстрая проверка Meta Title & Description — три практических точки входа для владельца сайта.'),
+              ('<article class="tool"><span class="tag soon">Скоро</span><div class="icon">T</div><h3>Meta Title & Description Checker</h3><p>Покажет длину Title и Description, предупредит о типичных ошибках и даст превью сниппета в поиске.</p><span class="soonbox">Готовим инструмент</span></article>', '<article class="tool active"><span class="tag">● LIVE TOOL</span><div class="icon">T</div><h3>Meta Title & Description Checker</h3><p>Проверьте Title и Description по URL или вручную, получите подсказки по длине и живое превью поискового сниппета.</p><a class="go" href="/ru/tools/meta-checker/">Проверить метаданные →</a></article>'),
+            ],
+            'en/tools/index.html': [
+              ('Start with two useful tools.', 'Start with three useful tools.'),
+              ('They cover two common needs: understanding what is wrong with an existing website and estimating the cost of a new one.', 'Audit an existing site, estimate a new project and check Meta Title & Description with a live search preview.'),
+              ('<article class="tool"><span class="tag soon">Coming soon</span><div class="icon">T</div><h3>Meta Title & Description Checker</h3><p>Check title and description length, catch common issues and preview how your page may appear in search.</p><span class="soonbox">In development</span></article>', '<article class="tool active"><span class="tag">● LIVE TOOL</span><div class="icon">T</div><h3>Meta Title & Description Checker</h3><p>Check metadata from a URL or edit it manually, get practical length guidance and a live search snippet preview.</p><a class="go" href="/en/tools/meta-checker/">Check metadata →</a></article>'),
+            ],
+            'ka/tools/index.html': [
+              ('დაიწყეთ ორი ინსტრუმენტით.', 'დაიწყეთ სამი ინსტრუმენტით.'),
+              ('ერთი დაგეხმარებათ არსებული საიტის პრობლემების აღმოჩენაში, მეორე კი ახალი პროექტის ბიუჯეტის შეფასებაში.', 'SEO აუდიტი, პროექტის ღირებულების შეფასება და Meta Title & Description-ის სწრაფი შემოწმება — სამი პრაქტიკული ინსტრუმენტი ბიზნესისთვის.'),
+              ('<article class="tool"><span class="tag soon">მალე</span><div class="icon">T</div><h3>Meta Title & Description Checker</h3><p>შეამოწმებს Title-ისა და Description-ის სიგრძეს, აჩვენებს გავრცელებულ შეცდომებს და მოგცემთ ძიების preview-ს.</p><span class="soonbox">მზადდება</span></article>', '<article class="tool active"><span class="tag">● LIVE TOOL</span><div class="icon">T</div><h3>Meta Title & Description Checker</h3><p>შეამოწმეთ მეტამონაცემები URL-ით ან ხელით, მიიღეთ სიგრძის რეკომენდაციები და ძიების live preview.</p><a class="go" href="/ka/tools/meta-checker/">მეტამონაცემების შემოწმება →</a></article>'),
+            ],
+          }
+
+          for fn, reps in patches.items():
+            p=Path(fn); s=p.read_text(encoding='utf-8')
+            for old,new in reps:
+              if old in s: s=s.replace(old,new,1)
+              else: print('WARN missing patch', fn, old[:80])
+            p.write_text(s,encoding='utf-8')
+
+          sm=Path('sitemap.xml'); s=sm.read_text(encoding='utf-8')
+          if 'https://beqson.com/ru/tools/meta-checker/' not in s:
+            block='''\n  <url><loc>https://beqson.com/ru/tools/meta-checker/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/tools/meta-checker/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/tools/meta-checker/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/tools/meta-checker/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/tools/meta-checker/" /></url>\n  <url><loc>https://beqson.com/ka/tools/meta-checker/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/tools/meta-checker/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/tools/meta-checker/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/tools/meta-checker/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/tools/meta-checker/" /></url>\n  <url><loc>https://beqson.com/en/tools/meta-checker/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/tools/meta-checker/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/tools/meta-checker/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/tools/meta-checker/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/tools/meta-checker/" /></url>\n'''
+            s=s.replace('</urlset>',block+'</urlset>')
+            sm.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ru/tools/index.html en/tools/index.html ka/tools/index.html sitemap.xml
+          git diff --cached --quiet || git commit -m "feat: activate Meta Checker in Free Tools"
+          git push
