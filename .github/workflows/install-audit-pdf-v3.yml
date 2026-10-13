@@ -1,0 +1,31 @@
+name: Install SEO audit PDF v3
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-audit-pdf-v3.yml'
+      - 'assets/audit-pdf-v3.js'
+      - 'scripts/install_audit_pdf_v3.py'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PDF v3 on all audit pages
+        run: python scripts/install_audit_pdf_v3.py
+      - name: Commit audit page updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audit/index.html ru/audit/index.html en/audit/index.html ka/audit/index.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git commit -m "Use robust PDF v3 on all audit languages"
+          git push
