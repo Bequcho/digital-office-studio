@@ -1,0 +1,76 @@
+name: Apply Georgia launch pricing
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-georgia-launch-pricing.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch Georgian pricing
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          # Georgian homepage pricing
+          p = Path('ka/index.html')
+          s = p.read_text(encoding='utf-8')
+          repl = {
+            '<p class="price-amount"><span>$</span>149<small>ერთჯერადად</small></p>':'<p class="price-amount"><span>₾</span>299<small>ერთჯერადად</small></p>',
+            '<p class="price-amount"><span>$</span>299<small>ერთჯერადად</small></p>':'<p class="price-amount"><span>₾</span>599<small>ერთჯერადად</small></p>',
+            '<p class="price-amount"><span>$</span>499<small>ერთჯერადად</small></p>':'<p class="price-amount"><span>₾</span>999<small>ერთჯერადად</small></p>',
+            'ფასები მოცემულია USD-ში. სამუშაოს მოცულობას დაწყებამდე ვათანხმებთ. დომენი, ფასიანი სერვისები და სარეკლამო ბიუჯეტი საჭიროებისამებრ ცალკე იფარება.':'გაშვების სპეციალური ფასები პირველი 5 კლიენტისთვის. ფასები მოცემულია GEL-ში. სამუშაოს მოცულობას დაწყებამდე ვათანხმებთ. დომენი, ფასიანი სერვისები და სარეკლამო ბიუჯეტი საჭიროებისამებრ ცალკე იფარება.',
+            'მხარდაჭერა და განვითარება<b>$39-დან / თვე</b>':'მხარდაჭერა და განვითარება<b>49 ₾-დან / თვე</b>',
+            'მხარდაჭერა და განვითარება<b>$60-დან / თვე</b>':'მხარდაჭერა და განვითარება<b>49 ₾-დან / თვე</b>'
+          }
+          for a,b in repl.items():
+            s=s.replace(a,b)
+          p.write_text(s,encoding='utf-8')
+
+          # Calculator: use GEL launch prices only on /ka/
+          p = Path('assets/website-calculator.js')
+          s = p.read_text(encoding='utf-8')
+          s=s.replace(
+            "const state={type:'business',size:'small',niche:'law',extras:new Set(),timeline:'standard'};\nconst price={type:{landing:149,business:249,redesign:299,store:499},size:{one:0,small:50,medium:120,large:220},extra:{seo:50,local:40,crm:80,languages:60,copy:60,analytics:30,payments:80,booking:60}};",
+            "const state={type:'business',size:'small',niche:'law',extras:new Set(),timeline:'standard'};\nconst isGeorgia=lang==='ka';\nconst priceUsd={type:{landing:149,business:249,redesign:299,store:499},size:{one:0,small:50,medium:120,large:220},extra:{seo:50,local:40,crm:80,languages:60,copy:60,analytics:30,payments:80,booking:60}};\nconst priceKa={type:{landing:299,business:499,redesign:599,store:999},size:{one:0,small:100,medium:250,large:450},extra:{seo:100,local:80,crm:150,languages:120,copy:100,analytics:60,payments:150,booking:100}};\nconst price=isGeorgia?priceKa:priceUsd;"
+          )
+          s=s.replace(
+            "function estimate(){let low=price.type[state.type]+price.size[state.size];for(const x of state.extras)low+=price.extra[x]||0;if(state.timeline==='urgent')low*=1.15;low=Math.max(250,round10(low));const high=round10(low*1.22);const pkg=low>=890?'Pro':low>=490?'Growth':'Start';return{low,high,pkg}}",
+            "function estimate(){let low=price.type[state.type]+price.size[state.size];for(const x of state.extras)low+=price.extra[x]||0;if(state.timeline==='urgent')low*=1.15;low=Math.max(isGeorgia?299:149,round10(low));const high=round10(low*(isGeorgia?1.18:1.22));const pkg=isGeorgia?(low>=999?'Pro':low>=599?'Growth':'Start'):(low>=499?'Pro':low>=299?'Growth':'Start');return{low,high,pkg}}"
+          )
+          s=s.replace(
+            "function budgetBracket(mid){if(mid<=300)return lang==='ka'?'300-მდე':lang==='ru'?'до $300':'up to $300';if(mid<=500)return '$300-500';if(mid<=900)return '$500-900';return '$900+'}",
+            "function budgetBracket(mid){if(isGeorgia){if(mid<=399)return '299 ₾-მდე';if(mid<=699)return '300–699 ₾';if(mid<=1099)return '700–1099 ₾';return '1100 ₾+'}if(mid<=300)return lang==='ru'?'до $300':'up to $300';if(mid<=500)return '$300-500';if(mid<=900)return '$500-900';return '$900+'}"
+          )
+          s=s.replace(
+            "$('price').textContent='$'+e.low+'–$'+e.high;",
+            "$('price').textContent=(isGeorgia?e.low+'–'+e.high+' ₾':'$'+e.low+'–$'+e.high);"
+          )
+          s=s.replace(
+            "(lang==='ru'?'Расчёт: ':lang==='ka'?'შეფასება: ':'Estimate: ')+'$'+est.low+'–$'+est.high",
+            "(lang==='ru'?'Расчёт: ':lang==='ka'?'შეფასება: ':'Estimate: ')+(isGeorgia?est.low+'–'+est.high+' ₾':'$'+est.low+'–$'+est.high)"
+          )
+          s=s.replace(
+            "estimate:'სავარაუდო ღირებულება',notOffer:'ეს არის სავარაუდო დიაპაზონი და არა ფიქსირებული შეთავაზება. საბოლოო ფასი დამოკიდებულია კონტენტზე, ინტეგრაციებსა და მოცულობაზე.'",
+            "estimate:'სავარაუდო ღირებულება',notOffer:'გაშვების სპეციალური ფასი პირველი 5 კლიენტისთვის. ეს არის სავარაუდო დიაპაზონი და არა ფიქსირებული შეთავაზება.'"
+          )
+          s=s.replace(
+            "footer:'BEQSON-ის სავარაუდო შეფასება · საბოლოო ფასი დასტურდება პროექტის მოკლე განხილვის შემდეგ.'",
+            "footer:'BEQSON Georgia launch pricing · სპეციალური ფასი პირველი 5 კლიენტისთვის · საბოლოო ფასი დასტურდება მოკლე განხილვის შემდეგ.'"
+          )
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "BEQSON Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add ka/index.html assets/website-calculator.js
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "feat: add Georgia launch pricing in GEL"
+            git push
+          fi
