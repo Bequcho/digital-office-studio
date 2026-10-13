@@ -30,4 +30,7 @@
   <url><loc>https://beqson.com/ru/audit/</loc></url>
   <url><loc>https://beqson.com/ka/audit/</loc></url>
   <url><loc>https://beqson.com/en/audit/</loc></url>
+  <url><loc>https://beqson.com/ru/calculator/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/calculator/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/calculator/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/calculator/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/calculator/" /></url>
+  <url><loc>https://beqson.com/ka/calculator/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/calculator/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/calculator/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/calculator/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/calculator/" /></url>
+  <url><loc>https://beqson.com/en/calculator/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/calculator/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/calculator/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/calculator/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/calculator/" /></url>
 </urlset>
