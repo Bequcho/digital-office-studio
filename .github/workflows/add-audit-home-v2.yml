@@ -1,0 +1,60 @@
+name: Add audit CTA to homepages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-audit-home-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch homepages
+        shell: bash
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          pages = {
+              'ru/index.html': ('Бесплатный SEO-аудит','Бесплатно проверьте свой сайт','За минуту покажем SEO Score, ключевые технические проблемы и план действий. Полный отчёт можно сохранить в PDF.','Проверить сайт бесплатно →'),
+              'ka/index.html': ('უფასო SEO აუდიტი','შეამოწმეთ თქვენი საიტი უფასოდ','ერთ წუთში მიიღეთ SEO Score, ძირითადი ტექნიკური პრობლემები და სამოქმედო გეგმა. სრული ანგარიში შეგიძლიათ შეინახოთ PDF-ად.','საიტის უფასო შემოწმება →'),
+              'en/index.html': ('Free SEO audit','Check your website for free','Get an SEO Score, key technical issues and an action plan in about a minute. The full report can be saved as a PDF.','Run free website audit →'),
+          }
+
+          style = '''<style id="audit-home-style">
+          .audit-home-nav{color:#4ed0ff!important;font-weight:800!important}.audit-home-strip{padding:22px 0 12px}.audit-home-card{display:grid;grid-template-columns:1fr auto;gap:26px;align-items:center;padding:28px 32px;border:1px solid rgba(60,183,255,.45);border-radius:24px;background:radial-gradient(circle at 88% 15%,rgba(48,190,255,.22),transparent 34%),linear-gradient(120deg,#081c37,#0a3767);box-shadow:0 22px 70px rgba(0,0,0,.18)}.audit-home-kicker{display:block;color:#54cbff;font-size:11px;font-weight:900;letter-spacing:2px;margin-bottom:8px}.audit-home-card h2{margin:0 0 8px;color:#fff;font-size:clamp(24px,3vw,34px)}.audit-home-card p{margin:0;color:#a9c6e2;line-height:1.55;max-width:760px}.audit-home-btn{display:inline-flex;align-items:center;justify-content:center;min-height:58px;padding:0 24px;border:1px solid #4acbff;border-radius:16px;background:linear-gradient(135deg,#187fff,#29c7ff);color:#fff!important;font-weight:900;white-space:nowrap;box-shadow:0 0 30px rgba(39,200,255,.25)}@media(max-width:900px){.audit-home-card{grid-template-columns:1fr}.audit-home-btn{width:100%}}
+          </style>'''
+
+          for file, (nav, title, text, button) in pages.items():
+              p = Path(file)
+              s = p.read_text(encoding='utf-8')
+              if 'id="audit-home-style"' not in s:
+                  s = s.replace('</head>', style + '</head>', 1)
+              if 'audit-home-nav' not in s:
+                  marker = '<div class="mobile-contacts">'
+                  s = s.replace(marker, f'<a class="audit-home-nav" href="/audit/">{nav}</a>' + marker, 1)
+              if 'class="audit-home-strip"' not in s:
+                  block = f'<section class="audit-home-strip"><div class="shell"><div class="audit-home-card"><div><span class="audit-home-kicker">BEQSON WEBSITE AUDIT</span><h2>{title}</h2><p>{text}</p></div><a class="audit-home-btn" href="/audit/">{button}</a></div></div></section>'
+                  if '<section class="legacy-industries"' in s:
+                      s = s.replace('<section class="legacy-industries"', block + '<section class="legacy-industries"', 1)
+                  else:
+                      s = s.replace('</main>', block + '</main>', 1)
+              p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ru/index.html ka/index.html en/index.html
+          if git diff --cached --quiet; then
+            echo "No homepage changes needed"
+            exit 0
+          fi
+          git commit -m "Add free SEO audit CTA to homepages"
+          git push
