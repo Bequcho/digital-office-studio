@@ -27,13 +27,14 @@ jobs:
           s = s.replace("s = re.sub(r'function checkHtml\\(c\\)\\{.*?\\}\\nfunction issues', helper + '\\nfunction issues', s, count=1, flags=re.S)", "s = re.sub(r'function checkHtml\\(c\\)\\{.*?\\}\\nfunction issues', lambda _m: helper + '\\nfunction issues', s, count=1, flags=re.S)")
           s = s.replace("s = re.sub(r'function actionFor\\(c\\)\\{.*?\\}\\nfunction planItems', action_fn + '\\nfunction planItems', s, count=1, flags=re.S)", "s = re.sub(r'function actionFor\\(c\\)\\{.*?\\}\\nfunction planItems', lambda _m: action_fn + '\\nfunction planItems', s, count=1, flags=re.S)")
           s = s.replace("s = re.sub(r'function planItems\\(d\\)\\{.*?\\}\\nfunction updateContactLinks', plan_fn + '\\nfunction updateContactLinks', s, count=1, flags=re.S)", "s = re.sub(r'function planItems\\(d\\)\\{.*?\\}\\nfunction updateContactLinks', lambda _m: plan_fn + '\\nfunction updateContactLinks', s, count=1, flags=re.S)")
-          s = s.replace("s = re.sub(r'function updateContactLinks\\(d\\)\\{.*?\\}\\nform.addEventListener', contact_fn + '\\nform.addEventListener', s, count=1, flags=re.S)", "s = re.sub(r'function updateContactLinks\\(d\\)\\{.*?\\}\\nform.addEventListener', lambda _m: contact_fn + '\\nform.addEventListener', s, count=1, flags=re.S)")
+          s = s.replace("s = re.sub(r'function updateContactLinks\\(d\\)\\{.*?\\}\\nform.addEventListener', contact_fn + '\\nfunction updateContactLinks', s, count=1, flags=re.S)", "s = re.sub(r'function updateContactLinks\\(d\\)\\{.*?\\}\\nform.addEventListener', lambda _m: contact_fn + '\\nform.addEventListener', s, count=1, flags=re.S)")
           p.write_text(s, encoding='utf-8')
           PY
       - name: Build localized audit pages
         run: |
           python scripts/localize_audit.py
           python scripts/fix_audit_i18n.py
+          python scripts/install_audit_pdf_v3.py
       - name: Commit localized pages
         run: |
           git config user.name "github-actions[bot]"
@@ -45,4 +46,3 @@ jobs:
           fi
           git commit -m "Polish localized SEO audit pages"
           git push
-      # Re-run whenever the base audit renderer changes.
