@@ -1,0 +1,32 @@
+name: Add Search Preview to sitemap
+on:
+  push:
+    paths:
+      - '.github/workflows/add-search-preview-sitemap.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add localized Search Preview URLs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('sitemap.xml')
+          s=p.read_text(encoding='utf-8')
+          marker='https://beqson.com/ru/tools/search-preview/'
+          if marker not in s:
+              block='''\n  <url><loc>https://beqson.com/ru/tools/search-preview/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/tools/search-preview/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/tools/search-preview/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/tools/search-preview/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/tools/search-preview/" /></url>\n  <url><loc>https://beqson.com/ka/tools/search-preview/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/tools/search-preview/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/tools/search-preview/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/tools/search-preview/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/tools/search-preview/" /></url>\n  <url><loc>https://beqson.com/en/tools/search-preview/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/tools/search-preview/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/tools/search-preview/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/tools/search-preview/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/tools/search-preview/" /></url>\n'''
+              s=s.replace('</urlset>',block+'</urlset>')
+              p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit sitemap
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sitemap.xml
+          git commit -m 'seo: add Search Preview to sitemap'
+          git push
