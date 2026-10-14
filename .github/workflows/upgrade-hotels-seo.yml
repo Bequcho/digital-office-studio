@@ -1,0 +1,32 @@
+name: Upgrade hotels SEO pages
+
+on:
+  push:
+    paths:
+      - '.github/workflows/upgrade-hotels-seo.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Upgrade multilingual hotel SEO pages
+        run: python scripts/upgrade_hotels_seo.py
+      - name: Commit generated pages
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add en/hotels/index.html ru/hotels/index.html ka/hotels/index.html
+          git commit -m "seo: strengthen hotel landing pages in EN RU KA"
+          git push
