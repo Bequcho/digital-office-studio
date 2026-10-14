@@ -1,0 +1,31 @@
+name: Upgrade accountants SEO pages v1
+
+on:
+  push:
+    paths:
+      - '.github/workflows/upgrade-accountants-seo-v1.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Upgrade multilingual accountant SEO pages
+        run: python scripts/upgrade_accountants_seo_v1.py
+      - name: Commit generated pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add en/accountants/index.html ru/accountants/index.html ka/accountants/index.html
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "seo: strengthen accountant landing pages in EN RU KA"
+            git push
+          fi
