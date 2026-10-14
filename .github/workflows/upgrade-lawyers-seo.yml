@@ -1,0 +1,33 @@
+name: Upgrade lawyers SEO pages
+
+on:
+  push:
+    paths:
+      - 'scripts/upgrade_lawyers_seo.py'
+      - '.github/workflows/upgrade-lawyers-seo.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Upgrade lawyers pages
+        run: python scripts/upgrade_lawyers_seo.py
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add en/lawyers/index.html ru/lawyers/index.html ka/lawyers/index.html
+          git commit -m "seo: strengthen lawyers landing pages in EN RU KA"
+          git push
