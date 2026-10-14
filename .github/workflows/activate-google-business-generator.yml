@@ -1,0 +1,82 @@
+name: Activate Google Business Generator
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/activate-google-business-generator.yml'
+permissions:
+  contents: write
+jobs:
+  activate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Activate tool cards and sitemap
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          cfg = {
+            'ru': {
+              'count_old':'Начните с четырёх инструментов.',
+              'count_new':'Начните с пяти инструментов.',
+              'lead_old':'Проверьте SEO, оцените стоимость проекта, улучшите метаданные и соберите отслеживаемую UTM-ссылку для рекламы.',
+              'lead_new':'Проверьте SEO, оцените стоимость проекта, улучшите метаданные, создайте UTM-ссылку и описание для Google Business Profile.',
+              'old':'<article class="tool"><span class="tag soon">Скоро</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>Поможет подготовить понятное описание компании для Google Business Profile с учётом вашей сферы и услуг.</p><span class="soonbox">Готовим инструмент</span></article>',
+              'new':'<article class="tool active"><span class="tag">● LIVE TOOL</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>Создайте аккуратное описание компании по сфере, городу, услугам и сильным сторонам бизнеса.</p><a class="go" href="/ru/tools/google-business-description/">Создать описание →</a></article>',
+              'json_old':'{"@type":"ListItem","position":4,"url":"https://beqson.com/ru/tools/utm-builder/","name":"UTM Builder"}]',
+              'json_new':'{"@type":"ListItem","position":4,"url":"https://beqson.com/ru/tools/utm-builder/","name":"UTM Builder"},{"@type":"ListItem","position":5,"url":"https://beqson.com/ru/tools/google-business-description/","name":"Google Business Description Generator"}]'
+            },
+            'en': {
+              'count_old':'Start with four useful tools.',
+              'count_new':'Start with five useful tools.',
+              'lead_old':'Audit your SEO, estimate a project, improve metadata and build trackable campaign URLs for marketing.',
+              'lead_new':'Audit your SEO, estimate a project, improve metadata, build UTM URLs and generate a Google Business Profile description.',
+              'old':'<article class="tool"><span class="tag soon">Coming soon</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>Generate a clear business description for your Google Business Profile based on your services and industry.</p><span class="soonbox">In development</span></article>',
+              'new':'<article class="tool active"><span class="tag">● LIVE TOOL</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>Create a clear business description from your industry, location, services and differentiators.</p><a class="go" href="/en/tools/google-business-description/">Generate description →</a></article>',
+              'json_old':'{"@type":"ListItem","position":4,"url":"https://beqson.com/en/tools/utm-builder/","name":"UTM Builder"}]',
+              'json_new':'{"@type":"ListItem","position":4,"url":"https://beqson.com/en/tools/utm-builder/","name":"UTM Builder"},{"@type":"ListItem","position":5,"url":"https://beqson.com/en/tools/google-business-description/","name":"Google Business Description Generator"}]'
+            },
+            'ka': {
+              'count_old':'დაიწყეთ ოთხი ინსტრუმენტით.',
+              'count_new':'დაიწყეთ ხუთი ინსტრუმენტით.',
+              'lead_old':'შეამოწმეთ SEO, შეაფასეთ პროექტის ღირებულება, გააუმჯობესეთ მეტამონაცემები და შექმენით UTM ბმულები რეკლამისთვის.',
+              'lead_new':'შეამოწმეთ SEO, შეაფასეთ პროექტი, გააუმჯობესეთ მეტამონაცემები, შექმენით UTM ბმული და Google Business Profile-ის აღწერა.',
+              'old':'<article class="tool"><span class="tag soon">მალე</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>დაგეხმარებათ Google Business Profile-ისთვის მკაფიო ბიზნეს-აღწერის მომზადებაში თქვენი სფეროსა და სერვისების მიხედვით.</p><span class="soonbox">მზადდება</span></article>',
+              'new':'<article class="tool active"><span class="tag">● LIVE TOOL</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>შექმენით ბიზნესის აღწერა სფეროს, ქალაქის, სერვისებისა და მთავარი უპირატესობების მიხედვით.</p><a class="go" href="/ka/tools/google-business-description/">აღწერის შექმნა →</a></article>',
+              'json_old':'{"@type":"ListItem","position":4,"url":"https://beqson.com/ka/tools/utm-builder/","name":"UTM Builder"}]',
+              'json_new':'{"@type":"ListItem","position":4,"url":"https://beqson.com/ka/tools/utm-builder/","name":"UTM Builder"},{"@type":"ListItem","position":5,"url":"https://beqson.com/ka/tools/google-business-description/","name":"Google Business Description Generator"}]'
+            }
+          }
+
+          for lang,c in cfg.items():
+              p=Path(lang)/'tools/index.html'
+              s=p.read_text()
+              for a,b in [(c['count_old'],c['count_new']),(c['lead_old'],c['lead_new']),(c['old'],c['new']),(c['json_old'],c['json_new'])]:
+                  if a in s: s=s.replace(a,b,1)
+              p.write_text(s)
+
+          kp=Path('ka/tools/google-business-description/index.html')
+          if kp.exists():
+              s=kp.read_text().replace('განიხილეთ продвижение BEQSON-თან →','განიხილეთ ლოკალური SEO BEQSON-თან →')
+              kp.write_text(s)
+
+          sitemap=Path('sitemap.xml')
+          s=sitemap.read_text()
+          if '/tools/google-business-description/' not in s:
+              block='''\n  <url><loc>https://beqson.com/ru/tools/google-business-description/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/tools/google-business-description/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/tools/google-business-description/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/tools/google-business-description/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/tools/google-business-description/" /></url>\n  <url><loc>https://beqson.com/ka/tools/google-business-description/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/tools/google-business-description/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/tools/google-business-description/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/tools/google-business-description/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/tools/google-business-description/" /></url>\n  <url><loc>https://beqson.com/en/tools/google-business-description/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/tools/google-business-description/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/tools/google-business-description/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/tools/google-business-description/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/tools/google-business-description/" /></url>\n'''
+              s=s.replace('</urlset>',block+'</urlset>')
+              sitemap.write_text(s)
+          PY
+      - name: Commit generated updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ru/tools/index.html en/tools/index.html ka/tools/index.html ka/tools/google-business-description/index.html sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "feat: activate Google Business description generator"
+            git push
+          fi
