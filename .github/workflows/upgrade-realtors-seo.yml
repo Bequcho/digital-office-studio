@@ -1,0 +1,35 @@
+name: Upgrade realtors SEO pages
+
+on:
+  push:
+    paths:
+      - 'scripts/upgrade_realtors_seo.py'
+      - '.github/workflows/upgrade-realtors-seo.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Upgrade realtor landing pages
+        run: python scripts/upgrade_realtors_seo.py
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add en/realtors/index.html ru/realtors/index.html ka/realtors/index.html
+          git commit -m "seo: strengthen realtor landing pages in EN RU KA"
+          git push
