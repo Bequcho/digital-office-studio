@@ -1,0 +1,1 @@
+Align sitemap x-default hreflang with the site's international EN default.
