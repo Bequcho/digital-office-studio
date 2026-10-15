@@ -1,0 +1,31 @@
+name: Upgrade autoservices SEO pages v1
+
+on:
+  push:
+    paths:
+      - '.github/workflows/upgrade-autoservices-seo-v1.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Upgrade multilingual auto service SEO pages
+        run: python scripts/upgrade_autoservices_seo_v1.py
+      - name: Commit generated pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add en/autoservices/index.html ru/autoservices/index.html ka/autoservices/index.html
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "seo: strengthen auto service landing pages in EN RU KA"
+            git push
+          fi
