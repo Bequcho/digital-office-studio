@@ -1,0 +1,288 @@
+name: Upgrade core structured data v1
+
+on:
+  push:
+    paths:
+      - 'schema-upgrade-trigger-v1.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Strengthen structured data across BEQSON
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re
+
+          ORG_ID = 'https://beqson.com/#organization'
+          WEBSITE_ID = 'https://beqson.com/#website'
+          LOGO_ID = 'https://beqson.com/#logo'
+          BASE = 'https://beqson.com/'
+          LANGS = ('ru','ka','en')
+          INDUSTRIES = ('lawyers','dentists','clinics','realtors','accountants','construction','autoservices','hotels')
+          TOOL_SUFFIXES = (
+              'audit/',
+              'calculator/',
+              'tools/',
+              'tools/meta-checker/',
+              'tools/utm-builder/',
+              'tools/google-business-description/',
+              'tools/search-preview/',
+          )
+          PRICE = {
+              'ru': ('9900','RUB'),
+              'ka': ('299','GEL'),
+              'en': ('149','USD'),
+          }
+          INDUSTRY_NAMES = {
+              'ru': {
+                  'lawyers':'Адвокаты и юристы', 'dentists':'Стоматологи', 'clinics':'Частные врачи и клиники',
+                  'realtors':'Риелторы и агентства недвижимости', 'accountants':'Бухгалтеры и налоговые консультанты',
+                  'construction':'Ремонт, строительство и дизайн', 'autoservices':'Автосервисы и детейлинг',
+                  'hotels':'Отели, апартаменты и туризм'
+              },
+              'ka': {
+                  'lawyers':'ადვოკატები და იურისტები', 'dentists':'სტომატოლოგები', 'clinics':'კერძო ექიმები და კლინიკები',
+                  'realtors':'უძრავი ქონების აგენტები და სააგენტოები', 'accountants':'ბუღალტრები და საგადასახადო კონსულტანტები',
+                  'construction':'რემონტი, მშენებლობა და დიზაინი', 'autoservices':'ავტოსერვისი და დეტეილინგი',
+                  'hotels':'სასტუმროები, აპარტამენტები და ტურიზმი'
+              },
+              'en': {
+                  'lawyers':'Lawyers and law firms', 'dentists':'Dentists and dental clinics', 'clinics':'Doctors and private clinics',
+                  'realtors':'Realtors and real estate agencies', 'accountants':'Accountants and tax advisers',
+                  'construction':'Construction, renovation and interior design', 'autoservices':'Auto repair and detailing',
+                  'hotels':'Hotels, apartments and tourism'
+              }
+          }
+
+          script_re = re.compile(r'<script\s+type=["\']application/ld\+json["\']>(.*?)</script>', re.S | re.I)
+          title_re = re.compile(r'<title>(.*?)</title>', re.S | re.I)
+          desc_re = re.compile(r'<meta\s+name=["\']description["\']\s+content=["\'](.*?)["\']', re.S | re.I)
+          canonical_re = re.compile(r'<link\s+rel=["\']canonical["\']\s+href=["\'](.*?)["\']', re.S | re.I)
+          xdefault_re = re.compile(r'<link\s+rel=["\']alternate["\']\s+hreflang=["\']x-default["\']\s+href=["\'].*?["\']>', re.S | re.I)
+
+          def org_entity():
+              return {
+                  '@type':'Organization', '@id':ORG_ID,
+                  'name':'BEQSON Digital Studio', 'alternateName':'BEQSON', 'url':BASE,
+                  'logo':{'@type':'ImageObject','@id':LOGO_ID,'url':BASE+'assets/beqson-mark-v3.png','contentUrl':BASE+'assets/beqson-mark-v3.png'},
+                  'image':{'@id':LOGO_ID},
+                  'email':'digitalstudiobeqson@gmail.com', 'telephone':'+995551739333',
+                  'areaServed':'Worldwide',
+                  'contactPoint':{
+                      '@type':'ContactPoint','contactType':'sales','telephone':'+995551739333',
+                      'email':'digitalstudiobeqson@gmail.com','availableLanguage':['English','Russian','Georgian']
+                  },
+                  'sameAs':['https://t.me/digital_studio_beqson'],
+                  'hasOfferCatalog':{
+                      '@type':'OfferCatalog','name':'BEQSON digital services',
+                      'itemListElement':[
+                          {'@type':'Offer','itemOffered':{'@type':'Service','name':'Website design and development'}},
+                          {'@type':'Offer','itemOffered':{'@type':'Service','name':'SEO and local search setup'}},
+                          {'@type':'Offer','itemOffered':{'@type':'Service','name':'CRM and lead capture systems'}},
+                          {'@type':'Offer','itemOffered':{'@type':'Service','name':'Website automation and analytics'}}
+                      ]
+                  }
+              }
+
+          def website_entity():
+              return {
+                  '@type':'WebSite','@id':WEBSITE_ID,'url':BASE,'name':'BEQSON Digital Studio',
+                  'publisher':{'@id':ORG_ID},'inLanguage':['en','ru','ka']
+              }
+
+          def extract_meta(html):
+              title = re.sub(r'\s+',' ', title_re.search(html).group(1)).strip()
+              desc = desc_re.search(html).group(1).strip()
+              canonical = canonical_re.search(html).group(1).strip()
+              return title, desc, canonical
+
+          def replace_xdefault(html, canonical):
+              suffix = canonical.split('beqson.com/',1)[1]
+              parts = suffix.split('/',1)
+              en_suffix = ('en/' + parts[1]) if len(parts) > 1 else 'en/'
+              tag = f'<link rel="alternate" hreflang="x-default" href="{BASE}{en_suffix}">'
+              if xdefault_re.search(html):
+                  return xdefault_re.sub(tag, html, count=1)
+              return html
+
+          def replace_schema(html, payload):
+              tag = '<script type="application/ld+json">' + json.dumps(payload, ensure_ascii=False, separators=(',',':')) + '</script>'
+              if script_re.search(html):
+                  return script_re.sub(tag, html, count=1)
+              return html.replace('</head>', tag + '</head>', 1)
+
+          def old_payload(html):
+              m = script_re.search(html)
+              if not m:
+                  return None
+              try:
+                  return json.loads(m.group(1))
+              except Exception as e:
+                  raise RuntimeError(f'Invalid existing JSON-LD: {e}')
+
+          def graph_items(payload):
+              if not payload:
+                  return []
+              if isinstance(payload, dict) and isinstance(payload.get('@graph'), list):
+                  return payload['@graph']
+              if isinstance(payload, dict):
+                  obj = dict(payload); obj.pop('@context', None)
+                  return [obj]
+              return []
+
+          def first_type(items, t):
+              for obj in items:
+                  typ = obj.get('@type') if isinstance(obj, dict) else None
+                  if typ == t or (isinstance(typ, list) and t in typ):
+                      return dict(obj)
+              return None
+
+          def webpage_entity(canonical, title, desc, lang, main_ref=None, breadcrumb_ref=None):
+              obj = {
+                  '@type':'WebPage','@id':canonical+'#webpage','url':canonical,'name':title,'description':desc,
+                  'inLanguage':lang,'isPartOf':{'@id':WEBSITE_ID},'about':{'@id':ORG_ID},'publisher':{'@id':ORG_ID}
+              }
+              if main_ref: obj['mainEntity'] = {'@id':main_ref}
+              if breadcrumb_ref: obj['breadcrumb'] = {'@id':breadcrumb_ref}
+              return obj
+
+          changed = []
+
+          # Home pages: Organization + WebSite + localized WebPage + industries ItemList.
+          for lang in LANGS:
+              p = Path(lang) / 'index.html'
+              html = p.read_text(encoding='utf-8')
+              title, desc, canonical = extract_meta(html)
+              list_id = canonical + '#industry-solutions'
+              industry_list = {
+                  '@type':'ItemList','@id':list_id,'name':'BEQSON industry solutions',
+                  'itemListElement':[
+                      {'@type':'ListItem','position':i+1,'name':INDUSTRY_NAMES[lang][slug],
+                       'url':f'{BASE}{lang}/{slug}/'}
+                      for i, slug in enumerate(INDUSTRIES)
+                  ]
+              }
+              payload = {'@context':'https://schema.org','@graph':[
+                  org_entity(), website_entity(), webpage_entity(canonical,title,desc,lang,list_id), industry_list
+              ]}
+              new = replace_schema(replace_xdefault(html, canonical), payload)
+              if new != html:
+                  p.write_text(new, encoding='utf-8'); changed.append(str(p))
+
+          # Industry landing pages: connect WebPage -> Breadcrumb -> Service -> Organization and add localized starting offer.
+          for lang in LANGS:
+              low_price, currency = PRICE[lang]
+              for slug in INDUSTRIES:
+                  p = Path(lang) / slug / 'index.html'
+                  html = p.read_text(encoding='utf-8')
+                  title, desc, canonical = extract_meta(html)
+                  items = graph_items(old_payload(html))
+                  old_bc = first_type(items,'BreadcrumbList') or {'@type':'BreadcrumbList','itemListElement':[]}
+                  old_service = first_type(items,'Service') or {'@type':'Service','name':title,'description':desc,'serviceType':'Website design and development'}
+                  old_faq = first_type(items,'FAQPage')
+
+                  bc_id = canonical + '#breadcrumb'
+                  service_id = canonical + '#service'
+                  old_bc['@id'] = bc_id
+                  service = dict(old_service)
+                  service.update({
+                      '@id':service_id,'url':canonical,'provider':{'@id':ORG_ID},'areaServed':'Worldwide',
+                      'offers':{'@type':'AggregateOffer','lowPrice':low_price,'priceCurrency':currency,'offerCount':'3','url':f'{BASE}{lang}/#pricing'}
+                  })
+                  graph = [org_entity(), website_entity(), webpage_entity(canonical,title,desc,lang,service_id,bc_id), old_bc, service]
+                  if old_faq:
+                      faq = dict(old_faq); faq['@id'] = canonical + '#faq'; faq['isPartOf'] = {'@id':WEBSITE_ID}; graph.append(faq)
+                  payload = {'@context':'https://schema.org','@graph':graph}
+                  new = replace_schema(replace_xdefault(html, canonical), payload)
+                  if new != html:
+                      p.write_text(new, encoding='utf-8'); changed.append(str(p))
+
+          # Free tools: preserve each app / CollectionPage, then connect it to the same Organization and WebSite entities.
+          for lang in LANGS:
+              currency = PRICE[lang][1]
+              for suffix in TOOL_SUFFIXES:
+                  p = Path(lang) / suffix / 'index.html'
+                  if not p.exists():
+                      raise FileNotFoundError(p)
+                  html = p.read_text(encoding='utf-8')
+                  title, desc, canonical = extract_meta(html)
+                  items = graph_items(old_payload(html))
+                  collection = first_type(items,'CollectionPage')
+                  app = first_type(items,'WebApplication') or first_type(items,'SoftwareApplication')
+                  graph = [org_entity(), website_entity()]
+                  if collection:
+                      collection['@id'] = canonical + '#webpage'
+                      collection['url'] = canonical
+                      collection['name'] = collection.get('name') or title
+                      collection['description'] = collection.get('description') or desc
+                      collection['inLanguage'] = lang
+                      collection['isPartOf'] = {'@id':WEBSITE_ID}
+                      collection['about'] = {'@id':ORG_ID}
+                      collection['publisher'] = {'@id':ORG_ID}
+                      graph.append(collection)
+                  else:
+                      if not app:
+                          app = {
+                              '@type':'WebApplication','name':title,'url':canonical,
+                              'applicationCategory':'BusinessApplication','operatingSystem':'Any','inLanguage':lang,
+                              'offers':{'@type':'Offer','price':'0','priceCurrency':currency}
+                          }
+                      app = dict(app)
+                      app['@id'] = canonical + '#app'
+                      app['url'] = canonical
+                      app['inLanguage'] = lang
+                      app['publisher'] = {'@id':ORG_ID}
+                      app['isPartOf'] = {'@id':WEBSITE_ID}
+                      graph.append(webpage_entity(canonical,title,desc,lang,canonical+'#app'))
+                      graph.append(app)
+                  payload = {'@context':'https://schema.org','@graph':graph}
+                  new = replace_schema(replace_xdefault(html, canonical), payload)
+                  if new != html:
+                      p.write_text(new, encoding='utf-8'); changed.append(str(p))
+
+          # Validate all targeted JSON-LD before committing.
+          targets = [Path(lang)/'index.html' for lang in LANGS]
+          targets += [Path(lang)/slug/'index.html' for lang in LANGS for slug in INDUSTRIES]
+          targets += [Path(lang)/suffix/'index.html' for lang in LANGS for suffix in TOOL_SUFFIXES]
+          for p in targets:
+              html = p.read_text(encoding='utf-8')
+              m = script_re.search(html)
+              assert m, f'Missing JSON-LD in {p}'
+              data = json.loads(m.group(1))
+              graph = data.get('@graph', [])
+              types = set()
+              for obj in graph:
+                  t = obj.get('@type') if isinstance(obj,dict) else None
+                  if isinstance(t,list): types.update(t)
+                  elif t: types.add(t)
+              assert 'Organization' in types, f'Organization missing in {p}'
+              assert 'WebSite' in types, f'WebSite missing in {p}'
+              if any(seg in str(p) for seg in INDUSTRIES):
+                  assert 'Service' in types and 'WebPage' in types and 'BreadcrumbList' in types, f'Commercial schema incomplete in {p}'
+              if '/tools/' in ('/'+str(p).replace('\\','/')) or '/audit/' in ('/'+str(p).replace('\\','/')) or '/calculator/' in ('/'+str(p).replace('\\','/')):
+                  assert ('WebApplication' in types or 'SoftwareApplication' in types or 'CollectionPage' in types), f'Tool schema incomplete in {p}'
+
+          print(f'Updated {len(changed)} pages')
+          for f in changed: print(' -', f)
+          PY
+
+      - name: Commit structured data upgrade
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ru ka en
+          git commit -m "seo: strengthen sitewide Organization WebSite Service schema"
+          git push
