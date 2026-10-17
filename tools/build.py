@@ -8,10 +8,12 @@ try:
  from .seo_hreflang import render_hreflang
  from .seo_schema import render_schema, SCHEMA_RE
  from .build_sitemap import build_sitemap
+ from .seo_social import update_social
 except ImportError:
  from seo_hreflang import render_hreflang
  from seo_schema import render_schema, SCHEMA_RE
  from build_sitemap import build_sitemap
+ from seo_social import update_social
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = json.loads((ROOT/'tools/content.json').read_text())
 SEO_METADATA = json.loads((ROOT/'tools/seo_metadata.json').read_text())
@@ -108,13 +110,14 @@ def head(lang,base,title,description,slug=None,noindex=False):
  seo_description = seo.get('description', description)
  schema_markup = ('<script type="application/ld+json">'+json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False)+'</script>') if noindex else render_schema(lang, slug, canonical, seo_title, seo_description)
  font='noto-sans-georgian' if lang=='ka' else 'manrope'
- return f'''<!doctype html>
+ markup = f'''<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(seo_title)}</title>
 <meta name="description" content="{esc(seo_description)}"><meta name="theme-color" content="#081529">{('<meta name="robots" content="noindex,follow">' if noindex else '')}
 <link rel="canonical" href="{canonical}">{alternates}<link rel="shortcut icon" href="{base}favicon-v3.ico?v=3"><link rel="icon" href="{base}assets/favicon-v3.png?v=3" type="image/png"><link rel="apple-touch-icon" href="{base}assets/apple-touch-icon-v3.png?v=3"><link rel="manifest" href="{base}site.webmanifest?v=3">
 <meta property="og:type" content="website"><meta property="og:site_name" content="BEQSON Digital Studio"><meta property="og:locale" content="{c['locale']}"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(description)}"><meta property="og:url" content="{canonical}"><meta property="og:image" content="{image}"><meta property="og:image:type" content="{'image/jpeg' if slug else 'image/png'}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="{'800' if slug else '630'}"><meta property="og:image:alt" content="{esc(title)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{image}"><meta name="twitter:image:alt" content="{esc(title)}">
-<link rel="preload" href="{base}assets/fonts/{font}-800.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{base}styles.css?v=11-contact-solid"><script src="{base}script.js?v={"19-static-schema" if lang=="ka" else "17-visible-h1"}" defer></script>
+<link rel="preload" href="{base}assets/fonts/{font}-800.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{base}styles.css?v=11-contact-solid"><script src="{base}script.js?v={"20-static-social" if lang=="ka" else "17-visible-h1"}" defer></script>
 {schema_markup}</head>'''
+ return markup if noindex else update_social(markup)
 HERO_SIZES='(max-width: 359px) calc((100vw - 28px) * .95), (max-width: 480px) calc((100vw - 36px) * .95), (max-width: 590px) calc((100vw - 48px) * .92), (max-width: 760px) 500px, (max-width: 1000px) calc((100vw - 73px) / 2), (max-width: 1180px) calc((100vw - 97px) / 2), (max-width: 1304px) calc((100vw - 106px) / 2.05), 600px'
 INDUSTRY_HERO_SIZES='(max-width: 359px) calc((100vw - 28px) * .95), (max-width: 480px) calc((100vw - 36px) * .95), (max-width: 760px) calc((100vw - 48px) * .95), (max-width: 1000px) calc((100vw - 73px) / 2), (max-width: 1180px) calc((100vw - 104px) / 2), (max-width: 1304px) calc((100vw - 119px) * .5122), 608px'
 MINI_SIZES='(max-width: 359px) calc((100vw - 28px) * .418), (max-width: 480px) calc((100vw - 36px) * .418), (max-width: 590px) calc((100vw - 48px) * .3956), (max-width: 760px) 215px, (max-width: 1000px) calc((100vw - 73px) * .255), (max-width: 1180px) calc((100vw - 97px) * .235), 285px'

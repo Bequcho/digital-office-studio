@@ -255,15 +255,6 @@ if (lightbox && typeof lightbox.showModal === 'function') {
     node.nodeValue = raw.replace(trimmed, replacements.get(trimmed));
   }
 
-  const pageTitle = 'BEQSON — ვებგვერდები, SEO და კლიენტების მოზიდვა';
-  const pageDescription = 'BEQSON-ის ციფრული სტუდია ქმნის ინდივიდუალურ ვებგვერდებს, აწყობს ადგილობრივ SEO-ს და კლიენტების მომართვების მართვის სისტემებს რვა ბიზნესმიმართულებისთვის ქართულ, რუსულ და ინგლისურ ენებზე.';
-  [
-    ['meta[property="og:title"]', pageTitle],
-    ['meta[property="og:description"]', pageDescription],
-    ['meta[property="og:image:alt"]', pageTitle],
-    ['meta[name="twitter:image:alt"]', pageTitle]
-  ].forEach(([selector, value]) => document.querySelector(selector)?.setAttribute('content', value));
-
   document.querySelector('.languages')?.setAttribute('aria-label', 'ენა');
   document.querySelectorAll('[aria-label="Email"]').forEach(el => {
     el.setAttribute('aria-label', 'ელფოსტა');
