@@ -7,9 +7,11 @@ import xml.etree.ElementTree as ET
 try:
  from .seo_hreflang import render_hreflang
  from .seo_schema import render_schema, SCHEMA_RE
+ from .build_sitemap import build_sitemap
 except ImportError:
  from seo_hreflang import render_hreflang
  from seo_schema import render_schema, SCHEMA_RE
+ from build_sitemap import build_sitemap
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = json.loads((ROOT/'tools/content.json').read_text())
 SEO_METADATA = json.loads((ROOT/'tools/seo_metadata.json').read_text())
@@ -188,15 +190,10 @@ def main():
   for n in INDUSTRIES:write(f'{lang}/{n["slug"]}/index.html',industry_page(lang,n))
  c=CONTENT['ru'];base=urlsplit(BASE_URL).path
  write('404.html',head('ru',base,'404 — BEQSON',c['notFoundText'],noindex=True)+f'<body id="top">{header("ru",base,force_home=True)}<main id="main"><div class="not-found"><p class="eyebrow">404 / BEQSON</p><h1>{c["notFound"]}</h1><p>{c["notFoundText"]}</p><a class="button primary" href="{BASE_URL}ru/">{c["returnHome"]}{icon("arrow")}</a></div>{contact_section("ru")}</main>{footer("ru",base)}</body></html>')
- urls=[]
- for slug in [None]+[n['slug'] for n in INDUSTRIES]:
-  for lang in LANGS:
-   path=lang+'/'+(slug+'/' if slug else '')
-   alts=''.join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE_URL}{l}/{slug+"/" if slug else ""}" />' for l in LANGS)
-   alts+=f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE_URL}ka/{slug+"/" if slug else ""}" />'
-   urls.append('<url><loc>'+BASE_URL+path+'</loc>'+alts+'</url>')
- write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'+'\n'.join(urls)+'\n</urlset>\n')
- write('robots.txt','User-agent: *\nAllow: /\nSitemap: '+BASE_URL+'sitemap.xml\n')
+ # Preserve existing crawl rules, especially the private CRM exclusion.
+ if not (ROOT/'robots.txt').exists():
+  write('robots.txt','User-agent: *\nAllow: /\nDisallow: /crm/\nSitemap: '+BASE_URL+'sitemap.xml\n')
+ build_sitemap(ROOT)
  write('site.webmanifest',json.dumps({'name':'BEQSON Digital Studio','short_name':'BEQSON','lang':'ka','start_url':'./','scope':'./','display':'browser','background_color':'#f6f7fa','theme_color':'#081529','icons':[{'src':'assets/app-icon-192-v3.png','sizes':'192x192','type':'image/png'},{'src':'assets/app-icon-512-v3.png','sizes':'512x512','type':'image/png'}]},indent=2))
  write('.nojekyll','')
  print('Generated 28 content pages, 404, sitemap, robots and manifest.')

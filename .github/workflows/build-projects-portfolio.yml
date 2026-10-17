@@ -190,10 +190,8 @@ jobs:
                           j+=len('</section>'); s=s[:j]+'\n'+teaser(lang)+s[j:]
               p.write_text(s,encoding='utf-8')
 
-          sp=Path('sitemap.xml'); ss=sp.read_text(encoding='utf-8')
-          if 'https://beqson.com/en/projects/' not in ss:
-              block='''\n  <url><loc>https://beqson.com/en/projects/</loc><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/projects/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/projects/" /><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/projects/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/projects/" /></url>\n  <url><loc>https://beqson.com/ka/projects/</loc><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/projects/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/projects/" /><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/projects/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/projects/" /></url>\n  <url><loc>https://beqson.com/ru/projects/</loc><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/projects/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/projects/" /><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/projects/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/projects/" /></url>\n'''
-              ss=ss.replace('</urlset>',block+'</urlset>'); sp.write_text(ss,encoding='utf-8')
+          from tools.build_sitemap import build_sitemap
+          build_sitemap()
           PY
       - name: Commit portfolio
         run: |
