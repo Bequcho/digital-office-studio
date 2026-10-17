@@ -68,15 +68,15 @@ if (lightbox && typeof lightbox.showModal === 'function') {
 (() => {
   const oldHero = document.querySelector('.home-banner');
   const oldValue = document.querySelector('.value-section');
-  if (!oldHero || !oldValue) return;
+  if ((!oldHero && !document.querySelector('.classic-hero')) || !oldValue) return;
 
   const lang = (document.documentElement.lang || 'ka').toLowerCase();
   const content = {
     ru: {
       label: 'САЙТЫ • SEO • CRM • РЕКЛАМА',
-      title1: 'Цифровой офис',
-      title2: 'и привлечение клиентов',
-      title3: 'для бизнеса',
+      title1: 'Создание сайтов',
+      title2: 'и SEO для бизнеса',
+      title3: 'в Грузии',
       description: 'Создаём сайты, подключаем CRM, автоматизируем заявки и помогаем привлекать клиентов из Google, Яндекса и рекламы.',
       primary: 'Получить консультацию →',
       secondary: 'Посмотреть направления',
@@ -91,9 +91,9 @@ if (lightbox && typeof lightbox.showModal === 'function') {
     },
     en: {
       label: 'WEBSITES • SEO • CRM • ADS',
-      title1: 'Digital office',
-      title2: 'and client acquisition',
-      title3: 'for business',
+      title1: 'Website Design,',
+      title2: 'Development & SEO',
+      title3: 'in Georgia',
       description: 'We build websites, connect CRM, automate leads and help businesses attract clients from Google, Yandex and ads.',
       primary: 'Get a consultation →',
       secondary: 'View industries',
@@ -108,9 +108,9 @@ if (lightbox && typeof lightbox.showModal === 'function') {
     },
     ka: {
       label: 'ვებგვერდები • SEO • CRM • რეკლამა',
-      title1: 'ციფრული ოფისი',
-      title2: 'და კლიენტების მოზიდვა',
-      title3: 'ბიზნესისთვის',
+      title1: 'ვებსაიტების შექმნა',
+      title2: 'და SEO ბიზნესისთვის',
+      title3: 'საქართველოში',
       description: 'ვქმნით ვებგვერდებს, ვაერთებთ CRM-ს, ვაავტომატიზებთ მომართვების დამუშავებას და ვეხმარებით ბიზნესს კლიენტების მოზიდვაში Google-იდან, Yandex-იდან და რეკლამიდან.',
       primary: 'კონსულტაციის მიღება →',
       secondary: 'მიმართულებების ნახვა',
@@ -139,7 +139,7 @@ if (lightbox && typeof lightbox.showModal === 'function') {
       <div class="shell classic-hero-grid">
         <div class="classic-hero-copy">
           <span class="classic-hero-kicker">${c.label}</span>
-          <h1 id="classic-hero-title"><span>${c.title1}</span><span>${c.title2}</span><span class="classic-hero-accent">${c.title3}</span></h1>
+          <h1 id="classic-hero-title"><span>${c.title1}</span> <span>${c.title2}</span> <span class="classic-hero-accent">${c.title3}</span></h1>
           <p>${c.description}</p>
           <div class="classic-hero-actions">
             <a class="classic-btn primary" href="#contact">${c.primary}</a>
@@ -163,7 +163,7 @@ if (lightbox && typeof lightbox.showModal === 'function') {
       </div>
     </section>`;
 
-  oldHero.outerHTML = hero;
+  if (oldHero) oldHero.outerHTML = hero;
   oldValue.outerHTML = values;
 })();
 
