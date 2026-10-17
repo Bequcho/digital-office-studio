@@ -1,3 +1,4 @@
+# trigger: dedicated industry cover
 name: Fix industry homepage cover
 on:
   push:
