@@ -55,3 +55,20 @@
 /* Keep new 16:10 illustrations intact at every card width. Legacy concept frames stay unchanged. */
 .project-visual:has(>img[src^="/assets/project-covers/"]){height:auto;aspect-ratio:16/10}
 .project-visual:has(>img[src^="/assets/project-covers/"]):after{background:linear-gradient(180deg,transparent 72%,rgba(6,23,47,.48))}
+
+/* Home portfolio visual upgrade v5 */
+.home-project-card{overflow:hidden;padding-top:0;display:flex;flex-direction:column;min-height:365px;position:relative}
+.home-project-card:before{content:"";display:block;flex:0 0 154px;height:154px;margin:0 -22px 20px;background-color:#081d37;background-repeat:no-repeat;background-position:center;background-size:cover;border-bottom:1px solid rgba(89,203,255,.14);box-shadow:inset 0 -48px 54px rgba(5,20,39,.24);transition:filter .28s ease,transform .38s cubic-bezier(.2,.7,.2,1)}
+.home-project-card:hover:before{filter:saturate(1.08) brightness(1.035);transform:scale(1.012)}
+.home-project-card:nth-child(1):before{background-image:url('/assets/project-covers/beqson.svg')}
+.home-project-card:nth-child(2):before{background-image:url('/assets/project-covers/geo.svg')}
+.home-project-card:nth-child(4):before{background-image:url('/assets/project-covers/brandkit.svg')}
+.home-project-card:nth-child(5):before{background-image:url('/assets/project-covers/report.svg')}
+.home-project-card:nth-child(6):before{background-image:url('/assets/project-covers/ai-visual.svg')}
+html[lang="en"] .home-project-card:nth-child(3):before{background-image:url('/assets/concepts/en/lawyers.webp'),url('/assets/concepts/en/dentists.webp'),url('/assets/concepts/en/construction.webp'),url('/assets/concepts/en/hotels.webp');background-size:50% 50%;background-position:left top,right top,left bottom,right bottom}
+html[lang="ru"] .home-project-card:nth-child(3):before{background-image:url('/assets/concepts/ru/lawyers.webp'),url('/assets/concepts/ru/dentists.webp'),url('/assets/concepts/ru/construction.webp'),url('/assets/concepts/ru/hotels.webp');background-size:50% 50%;background-position:left top,right top,left bottom,right bottom}
+html[lang="ka"] .home-project-card:nth-child(3):before{background-image:url('/assets/concepts/ka/lawyers.webp'),url('/assets/concepts/ka/dentists.webp'),url('/assets/concepts/ka/construction.webp'),url('/assets/concepts/ka/hotels.webp');background-size:50% 50%;background-position:left top,right top,left bottom,right bottom}
+.home-project-card span{margin-top:0}.home-project-card strong{font-size:19px}.home-project-card small{display:block;margin-top:auto;padding-top:8px}
+@media(max-width:900px){.home-project-card{min-height:350px}.home-project-card:before{flex-basis:170px;height:170px}}
+@media(max-width:620px){.home-project-card{min-height:0}.home-project-card:before{flex-basis:190px;height:190px}.home-project-card strong{font-size:20px}}
+@media(prefers-reduced-motion:reduce){.home-project-card:before{transition:none!important}.home-project-card:hover:before{transform:none!important}}
