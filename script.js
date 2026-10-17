@@ -264,21 +264,6 @@ if (lightbox && typeof lightbox.showModal === 'function') {
     ['meta[name="twitter:image:alt"]', pageTitle]
   ].forEach(([selector, value]) => document.querySelector(selector)?.setAttribute('content', value));
 
-  document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
-    try {
-      const data = JSON.parse(script.textContent);
-      const graph = data['@graph'];
-      if (!Array.isArray(graph)) return;
-      graph.forEach(item => {
-        if (item['@type'] === 'WebPage' && item.inLanguage === 'ka') {
-          item.name = pageTitle;
-          item.description = pageDescription;
-        }
-      });
-      script.textContent = JSON.stringify(data);
-    } catch (_) {}
-  });
-
   document.querySelector('.languages')?.setAttribute('aria-label', 'ენა');
   document.querySelectorAll('[aria-label="Email"]').forEach(el => {
     el.setAttribute('aria-label', 'ელფოსტა');
