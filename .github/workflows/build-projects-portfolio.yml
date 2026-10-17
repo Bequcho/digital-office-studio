@@ -1,0 +1,200 @@
+name: Build multilingual Projects portfolio
+on:
+  push:
+    paths:
+      - '.github/workflows/build-projects-portfolio.yml'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build projects pages and homepage showcase
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, html
+
+          CLUTCH='https://clutch.co/profile/beqson-digital-studio'
+          projects=[
+            ('levani','web','client','lawyer', 'https://levanilaw.ge/'),
+            ('beqson','web','studio','studio', '/{lang}/'),
+            ('gsc','seo','studio','seo', None),
+            ('geo','ai','framework','geo', None),
+            ('redesign','design','concept','mobile', None),
+            ('industry','web','concept','industry', None),
+            ('booth','design','concept','booth', None),
+            ('brandkit','brand','concept','brandkit', None),
+            ('report','design','concept','report', None),
+            ('aivisual','ai','concept','ai-visual', None),
+            ('packaging','brand','concept','packaging', None),
+          ]
+
+          L={
+          'en':{
+            'title':'Projects & Selected Work | BEQSON Digital Studio',
+            'meta':'BEQSON projects across web design, SEO, AI/GEO, branding and visual design. Client work, studio projects, frameworks and clearly labeled concepts.',
+            'eyebrow':'SELECTED WORK / BEQSON', 'h1':'A broader view of what we can build.',
+            'lead':'Websites are only one part of our work. This collection brings together client work, BEQSON studio projects, SEO and AI frameworks, branding systems and visual concepts.',
+            'truth':'Client work is labeled separately. Self-initiated explorations are marked as Concept Project or Framework so the portfolio stays clear and credible.',
+            'home':'Home','projects':'Projects','tools':'Free Tools','pricing':'Pricing','contact':'Discuss a project',
+            'filters':{'all':'All work','web':'Web','seo':'SEO','ai':'AI / GEO','brand':'Branding','design':'Design'},
+            'badges':{'client':'Client Project','studio':'Studio Project','framework':'Framework','concept':'Concept Project'},
+            'view':'View project','live':'Open live website','allprojects':'View all projects','selected':'More selected work','selectedlead':'Explore web, SEO, AI, branding and design projects beyond our first client case.',
+            'cta':'Have something similar in mind?','ctabody':'Tell us what you need. We can shape the scope, choose the right stack and turn the idea into a practical deliverable.','ctabtn':'Discuss your project',
+            'cards':{
+              'levani':('Levani Law — Multilingual Lawyer Website & Local SEO','A live three-language legal website for a Tbilisi lawyer, with practice-area structure, enquiry paths, technical SEO foundations, sitemap and local-search setup.',['Web Design','Development','Local SEO','RU / KA / EN']),
+              'beqson':('BEQSON Digital Studio — Multilingual Business Website','Our own multilingual studio platform with industry pages, free SEO tools, lead capture, CRM workflows, pricing and conversion-focused navigation.',['Web Design','Automation','SEO','CRM']),
+              'gsc':('Google Search Console & SEO Setup','A practical search-readiness setup covering metadata, sitemap submission, indexing checks, structured data and search-console configuration.',['Technical SEO','Indexing','Schema','Search Console']),
+              'geo':('AI Search Visibility (GEO) Audit Framework — ChatGPT & Gemini','A self-initiated framework for reviewing how clearly a business is understood by AI answer engines, with entity, content and citation-readiness checks.',['GEO','AI Search','Entity Signals','Audit']),
+              'redesign':('Modern Homepage Redesign & Mobile Optimization','A concept focused on making a business homepage cleaner, more persuasive and easier to use on mobile without unnecessary visual noise.',['UX/UI','Responsive','Landing Page','Mobile']),
+              'industry':('Industry Website Collection — Multilingual Concepts','A collection of niche website directions for lawyers, dentists, clinics, realtors, accountants, construction, auto services and hospitality.',['8 Industries','Multilingual','Web Concepts','Conversion']),
+              'booth':('SaaS Event Booth & Print Design','A concept system for an event booth and supporting print materials, built around strong hierarchy, product messaging and consistent SaaS branding.',['Event Design','Print','SaaS','Brand System']),
+              'brandkit':('B2B SaaS Marketing & Brand Asset Kit','A modular set of B2B SaaS marketing assets designed to keep campaign visuals, social graphics and sales materials consistent.',['B2B SaaS','Marketing','Brand Assets','Campaigns']),
+              'report':('B2B SaaS Case Study & Report Design','A report and case-study concept that turns dense B2B information into a polished narrative with clear data hierarchy and reusable layouts.',['Report Design','Case Study','B2B','Editorial']),
+              'aivisual':('AI-Assisted Marketing Visual Exploration','A controlled exploration of AI-assisted visual directions for marketing campaigns, refined into usable compositions rather than raw generations.',['AI-Assisted','Art Direction','Marketing','Visual System']),
+              'packaging':('Hair Wellness Packaging Design Concept — Scalp Stimulating Brush','A self-initiated packaging concept for a hair-wellness product, exploring premium retail presentation, hierarchy and product storytelling.',['Packaging','Wellness','Branding','Concept'])
+            }
+          },
+          'ru':{
+            'title':'Проекты и портфолио | BEQSON Digital Studio',
+            'meta':'Проекты BEQSON: сайты, SEO, AI/GEO, брендинг и визуальный дизайн. Реальные клиентские работы, проекты студии и честно отмеченные концепты.',
+            'eyebrow':'ПРОЕКТЫ / BEQSON', 'h1':'Показываем больше, чем один сайт.',
+            'lead':'Сайты — только часть нашей работы. Здесь собраны клиентские проекты, собственные разработки BEQSON, SEO и AI-фреймворки, брендинг и визуальные концепты.',
+            'truth':'Клиентские работы отмечены отдельно. Самостоятельные эксперименты обозначены как «Концепт» или «Фреймворк», чтобы портфолио оставалось понятным и достоверным.',
+            'home':'Главная','projects':'Проекты','tools':'Инструменты','pricing':'Стоимость','contact':'Обсудить проект',
+            'filters':{'all':'Все работы','web':'Сайты','seo':'SEO','ai':'AI / GEO','brand':'Брендинг','design':'Дизайн'},
+            'badges':{'client':'Клиентский проект','studio':'Проект студии','framework':'Фреймворк','concept':'Концепт'},
+            'view':'Смотреть проект','live':'Открыть сайт','allprojects':'Все проекты','selected':'Ещё наши работы','selectedlead':'Сайты, SEO, AI, брендинг и дизайн — не ограничиваем портфолио одним кейсом.',
+            'cta':'Есть похожая задача?','ctabody':'Расскажите, что нужно сделать. Подберём формат, стек и превратим идею в практичный результат.','ctabtn':'Обсудить проект',
+            'cards':{
+              'levani':('Levani Law — мультиязычный сайт адвоката и Local SEO','Рабочий сайт адвоката в Тбилиси на трёх языках: структура услуг, пути обращения, техническая SEO-база, sitemap и настройка локального поиска.',['Веб-дизайн','Разработка','Local SEO','RU / KA / EN']),
+              'beqson':('BEQSON Digital Studio — мультиязычный бизнес-сайт','Собственная платформа студии: отраслевые страницы, бесплатные SEO-инструменты, сбор лидов, CRM-процессы, тарифы и конверсионная навигация.',['Веб-дизайн','Автоматизация','SEO','CRM']),
+              'gsc':('Google Search Console и SEO-настройка','Практическая подготовка сайта к поиску: метаданные, sitemap, проверка индексации, структурированные данные и Search Console.',['Technical SEO','Индексация','Schema','Search Console']),
+              'geo':('AI Search Visibility (GEO) Audit Framework — ChatGPT & Gemini','Собственный фреймворк для оценки того, насколько понятно бизнес представлен для AI-поиска: сущности, контент, цитируемость и технические сигналы.',['GEO','AI Search','Entity Signals','Audit']),
+              'redesign':('Современный редизайн главной и мобильная оптимизация','Концепт более чистой и убедительной главной страницы с акцентом на мобильный UX и понятный путь к действию.',['UX/UI','Responsive','Landing Page','Mobile']),
+              'industry':('Коллекция отраслевых сайтов — мультиязычные концепты','Набор направлений для юристов, стоматологов, клиник, риелторов, бухгалтеров, строительства, автосервисов и hospitality.',['8 ниш','Мультиязычность','Web Concepts','Конверсия']),
+              'booth':('SaaS Event Booth & Print Design','Концепт выставочного стенда и печатных материалов для SaaS-бренда с сильной иерархией и единым визуальным языком.',['Event Design','Print','SaaS','Brand System']),
+              'brandkit':('B2B SaaS Marketing & Brand Asset Kit','Модульный набор маркетинговых материалов для B2B SaaS: кампании, social graphics и sales-материалы в одном стиле.',['B2B SaaS','Marketing','Brand Assets','Campaigns']),
+              'report':('B2B SaaS Case Study & Report Design','Концепт отчёта и case study, который превращает сложную B2B-информацию в аккуратную историю с понятной иерархией данных.',['Report Design','Case Study','B2B','Editorial']),
+              'aivisual':('AI-Assisted Marketing Visual Exploration','Исследование AI-визуалов для маркетинга с ручной арт-дирекцией и доводкой до пригодных для кампании композиций.',['AI-Assisted','Art Direction','Marketing','Visual System']),
+              'packaging':('Hair Wellness Packaging Design Concept — Scalp Stimulating Brush','Самостоятельный концепт упаковки wellness-продукта с премиальной подачей, ясной иерархией и продуктовым storytelling.',['Packaging','Wellness','Branding','Concept'])
+            }
+          },
+          'ka':{
+            'title':'პროექტები და პორტფოლიო | BEQSON Digital Studio',
+            'meta':'BEQSON-ის პროექტები: ვებდიზაინი, SEO, AI/GEO, ბრენდინგი და ვიზუალური დიზაინი. კლიენტის ნამუშევრები, სტუდიის პროექტები და მკაფიოდ მონიშნული კონცეფციები.',
+            'eyebrow':'პროექტები / BEQSON', 'h1':'ჩვენი შესაძლებლობები ერთ საიტზე მეტია.',
+            'lead':'ვებსაიტები ჩვენი საქმიანობის მხოლოდ ერთი ნაწილია. აქ გაერთიანებულია კლიენტის პროექტები, BEQSON-ის საკუთარი ნამუშევრები, SEO და AI ფრეიმვორკები, ბრენდინგი და ვიზუალური კონცეფციები.',
+            'truth':'კლიენტის რეალური პროექტები ცალკეა მონიშნული. დამოუკიდებელი ნამუშევრები მითითებულია როგორც „კონცეფცია“ ან „ფრეიმვორკი“, რათა პორტფოლიო იყოს გამჭვირვალე და სანდო.',
+            'home':'მთავარი','projects':'პროექტები','tools':'უფასო ხელსაწყოები','pricing':'ფასები','contact':'პროექტის განხილვა',
+            'filters':{'all':'ყველა','web':'ვებ','seo':'SEO','ai':'AI / GEO','brand':'ბრენდინგი','design':'დიზაინი'},
+            'badges':{'client':'კლიენტის პროექტი','studio':'სტუდიის პროექტი','framework':'ფრეიმვორკი','concept':'კონცეფცია'},
+            'view':'პროექტის ნახვა','live':'ცოცხალი საიტი','allprojects':'ყველა პროექტი','selected':'სხვა ნამუშევრები','selectedlead':'ვებ, SEO, AI, ბრენდინგი და დიზაინი — ჩვენი პორტფოლიო ერთ ქეისზე არ მთავრდება.',
+            'cta':'მსგავსი პროექტი გაქვთ?','ctabody':'მოგვწერეთ ამოცანა. შევარჩევთ ფორმატს, ტექნოლოგიებს და იდეას პრაქტიკულ შედეგად ვაქცევთ.','ctabtn':'პროექტის განხილვა',
+            'cards':{
+              'levani':('Levani Law — მრავალენოვანი იურიდიული საიტი და Local SEO','თბილისელი ადვოკატის მოქმედი სამენოვანი საიტი: მომსახურების სტრუქტურა, საკონტაქტო გზები, ტექნიკური SEO, sitemap და ლოკალური ძიების საფუძველი.',['ვებდიზაინი','დეველოპმენტი','Local SEO','RU / KA / EN']),
+              'beqson':('BEQSON Digital Studio — მრავალენოვანი ბიზნეს-საიტი','სტუდიის საკუთარი პლატფორმა: ინდუსტრიული გვერდები, უფასო SEO ხელსაწყოები, ლიდების შეგროვება, CRM პროცესები, ფასები და კონვერსიული ნავიგაცია.',['ვებდიზაინი','ავტომატიზაცია','SEO','CRM']),
+              'gsc':('Google Search Console და SEO Setup','საძიებო სისტემებისთვის მზადყოფნის პრაქტიკული კომპლექტი: მეტამონაცემები, sitemap, ინდექსაციის შემოწმება, structured data და Search Console.',['Technical SEO','Indexing','Schema','Search Console']),
+              'geo':('AI Search Visibility (GEO) Audit Framework — ChatGPT & Gemini','საკუთარი ფრეიმვორკი AI ძიებაში ბიზნესის აღქმის შესაფასებლად: entity signals, კონტენტი, ციტირებადობა და ტექნიკური საფუძველი.',['GEO','AI Search','Entity Signals','Audit']),
+              'redesign':('თანამედროვე Homepage Redesign & Mobile Optimization','კონცეფცია უფრო სუფთა, დამაჯერებელი და მობილურზე მოსახერხებელი მთავარი გვერდისთვის.',['UX/UI','Responsive','Landing Page','Mobile']),
+              'industry':('ინდუსტრიული საიტების კოლექცია — მრავალენოვანი კონცეფციები','კონცეფციები იურისტებისთვის, სტომატოლოგებისთვის, კლინიკებისთვის, უძრავი ქონებისთვის, ბუღალტრებისთვის, მშენებლობისთვის, ავტოსერვისებისა და hospitality-სთვის.',['8 ინდუსტრია','მრავალენოვანი','Web Concepts','Conversion']),
+              'booth':('SaaS Event Booth & Print Design','SaaS ბრენდის საგამოფენო სტენდისა და ბეჭდური მასალების კონცეფცია მკაფიო იერარქიით და ერთიანი ვიზუალური ენით.',['Event Design','Print','SaaS','Brand System']),
+              'brandkit':('B2B SaaS Marketing & Brand Asset Kit','მოდულური B2B SaaS მარკეტინგული მასალები კამპანიებისთვის, social graphics-ისა და sales მასალებისთვის.',['B2B SaaS','Marketing','Brand Assets','Campaigns']),
+              'report':('B2B SaaS Case Study & Report Design','რეპორტისა და case study-ის კონცეფცია, რომელიც რთულ B2B ინფორმაციას მკაფიო და პროფესიონალურ ისტორიად აწყობს.',['Report Design','Case Study','B2B','Editorial']),
+              'aivisual':('AI-Assisted Marketing Visual Exploration','AI-დახმარებით შექმნილი მარკეტინგული ვიზუალური მიმართულებების კვლევა, ხელით არტ-დირექციით და საბოლოო კომპოზიციების დამუშავებით.',['AI-Assisted','Art Direction','Marketing','Visual System']),
+              'packaging':('Hair Wellness Packaging Design Concept — Scalp Stimulating Brush','თმის მოვლის პროდუქტის დამოუკიდებელი შეფუთვის კონცეფცია პრემიუმ პრეზენტაციით, იერარქიით და პროდუქტის storytelling-ით.',['Packaging','Wellness','Branding','Concept'])
+            }
+          }}
+
+          css=r'''
+          .projects-page{background:#06172f;color:#eaf6ff;min-height:100vh}.projects-page .site-header{background:rgba(6,23,47,.94);backdrop-filter:blur(18px)}
+          .projects-hero{padding:112px 0 58px;background:radial-gradient(circle at 75% 15%,rgba(53,200,255,.20),transparent 28%),linear-gradient(180deg,#071a35,#06172f)}
+          .projects-hero .eyebrow{color:#4bd0ff}.projects-hero h1{max-width:900px;margin:10px 0 18px;font-size:clamp(42px,6vw,78px);line-height:.98;color:#fff}.projects-hero .lead{max-width:860px;color:#afcbe3;font-size:clamp(18px,2vw,23px);line-height:1.6}.portfolio-note{max-width:900px;margin-top:24px;padding:15px 18px;border:1px solid rgba(75,208,255,.24);border-radius:16px;background:rgba(10,39,73,.64);color:#9fbdd6;font-size:14px;line-height:1.5}
+          .projects-shell{width:min(1220px,calc(100% - 40px));margin:auto}.project-filters{display:flex;gap:10px;flex-wrap:wrap;padding:30px 0 18px}.project-filter{border:1px solid #24587f;background:#0a2749;color:#bcd5e9;border-radius:999px;padding:10px 16px;font:800 13px/1 Arial,sans-serif;cursor:pointer}.project-filter.active,.project-filter:hover{background:#35c8ff;color:#041426;border-color:#35c8ff}.projects-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding:10px 0 70px}.project-card{overflow:hidden;border:1px solid #24587f;border-radius:24px;background:linear-gradient(160deg,#0a2749,#081f3b);box-shadow:0 24px 65px rgba(0,0,0,.18);transition:.25s transform,.25s border-color}.project-card:hover{transform:translateY(-4px);border-color:#43cfff}.project-card[hidden]{display:none}.project-visual{height:300px;position:relative;overflow:hidden;background:#091f3a}.project-visual img{width:100%;height:100%;object-fit:cover;display:block}.project-visual:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(6,23,47,.9))}.project-visual.synthetic{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 70% 15%,rgba(75,208,255,.28),transparent 28%),linear-gradient(135deg,#0b3159,#081c36)}.visual-word{position:relative;z-index:2;font:900 clamp(30px,5vw,58px)/.9 Arial,sans-serif;letter-spacing:-2px;color:#fff;text-align:center}.visual-word small{display:block;margin-top:12px;color:#54cbff;font:800 11px/1.2 Arial,sans-serif;letter-spacing:2.5px}.visual-ui{position:absolute;border:1px solid rgba(90,211,255,.36);background:rgba(7,26,52,.78);border-radius:16px}.visual-ui.a{width:42%;height:44%;left:8%;top:15%}.visual-ui.b{width:34%;height:25%;right:8%;bottom:15%}.visual-ui.c{width:22%;height:14%;right:15%;top:14%;background:linear-gradient(135deg,#1c75ff,#36d4ff)}.project-mosaic{display:grid;grid-template-columns:1fr 1fr;gap:3px;width:100%;height:100%}.project-mosaic img{height:150px;object-fit:cover}.project-body{padding:24px}.project-topline{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px}.project-badge{display:inline-flex;border:1px solid rgba(75,208,255,.34);background:rgba(35,117,178,.15);color:#69d8ff;border-radius:999px;padding:7px 10px;font:900 10px/1 Arial,sans-serif;letter-spacing:1px;text-transform:uppercase}.project-cat{color:#6f93b0;font:800 11px/1 Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}.project-card h2{margin:0 0 12px;color:#fff;font-size:25px;line-height:1.14}.project-card p{margin:0;color:#a9c7df;line-height:1.6}.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;padding:0;list-style:none}.project-tags li{padding:7px 9px;border-radius:9px;background:#071d37;color:#91b6d2;font-size:12px}.project-link{display:inline-flex;margin-top:20px;color:#56d4ff!important;font-weight:900}.projects-cta{padding:0 0 90px}.projects-cta-card{padding:36px;border:1px solid #2f719d;border-radius:26px;background:radial-gradient(circle at 90% 10%,rgba(53,200,255,.20),transparent 32%),#092748}.projects-cta-card h2{margin:0 0 8px;color:white;font-size:34px}.projects-cta-card p{max-width:760px;color:#aec9df;line-height:1.6}.projects-cta-card .button{margin-top:18px}
+          .home-projects-strip{padding:66px 0;background:linear-gradient(180deg,#06172f,#071c36)}.home-projects-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:24px}.home-projects-head h2{margin:5px 0;color:#fff;font-size:clamp(30px,4vw,46px)}.home-projects-head p{max-width:650px;color:#a8c5dc;line-height:1.55}.home-projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.home-project-card{display:block;padding:22px;min-height:170px;border:1px solid #24587f;border-radius:20px;background:linear-gradient(145deg,#0a2749,#081f3b);color:#fff!important}.home-project-card:hover{border-color:#4bd0ff;transform:translateY(-2px)}.home-project-card span{display:block;color:#52d0ff;font:900 10px/1 Arial,sans-serif;letter-spacing:1.2px;text-transform:uppercase}.home-project-card strong{display:block;margin:13px 0 8px;font-size:20px;line-height:1.18}.home-project-card small{color:#96b6cf;line-height:1.4}.home-projects-more{display:inline-flex;margin-top:22px;color:#55d2ff!important;font-weight:900}
+          @media(max-width:900px){.projects-grid{grid-template-columns:1fr}.home-projects-grid{grid-template-columns:1fr 1fr}.project-visual{height:250px}.home-projects-head{display:block}.projects-hero{padding-top:88px}}
+          @media(max-width:620px){.projects-shell{width:min(100% - 24px,1220px)}.home-projects-grid{grid-template-columns:1fr}.projects-hero h1{font-size:42px}.project-visual{height:220px}.project-body{padding:20px}.projects-cta-card{padding:24px}.home-projects-strip{padding:48px 0}}
+          '''
+          Path('assets/projects.css').write_text(css,encoding='utf-8')
+          js="""document.addEventListener('DOMContentLoaded',()=>{const buttons=[...document.querySelectorAll('[data-project-filter]')],cards=[...document.querySelectorAll('[data-project-cat]')];buttons.forEach(b=>b.addEventListener('click',()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.projectFilter;cards.forEach(c=>c.hidden=!(f==='all'||c.dataset.projectCat===f));}));});"""
+          Path('assets/projects.js').write_text(js,encoding='utf-8')
+
+          def visual(kind,lang):
+              if kind=='lawyer': return f'<div class="project-visual"><img src="/assets/concepts/{lang}/lawyers.webp" alt="" loading="lazy"></div>'
+              if kind=='mobile': return f'<div class="project-visual"><img src="/assets/concepts/{lang}/dentists.webp" alt="" loading="lazy"></div>'
+              if kind=='industry': return f'<div class="project-visual"><div class="project-mosaic"><img src="/assets/concepts/{lang}/lawyers.webp" alt="" loading="lazy"><img src="/assets/concepts/{lang}/dentists.webp" alt="" loading="lazy"><img src="/assets/concepts/{lang}/construction.webp" alt="" loading="lazy"><img src="/assets/concepts/{lang}/hotels.webp" alt="" loading="lazy"></div></div>'
+              words={'studio':('BEQSON','DIGITAL STUDIO'),'seo':('SEARCH','SEO / INDEXING'),'geo':('AI × GEO','CHATGPT / GEMINI'),'booth':('SAAS','EVENT / PRINT'),'brandkit':('B2B','MARKETING KIT'),'report':('REPORT','CASE STUDY'),'ai-visual':('AI VISUAL','ART DIRECTION'),'packaging':('HAIR','WELLNESS')}
+              w,s=words.get(kind,('PROJECT','BEQSON'))
+              return f'<div class="project-visual synthetic"><div class="visual-ui a"></div><div class="visual-ui b"></div><div class="visual-ui c"></div><div class="visual-word">{w}<small>{s}</small></div></div>'
+
+          cat_label={'web':'WEB','seo':'SEO','ai':'AI / GEO','brand':'BRANDING','design':'DESIGN'}
+          def render_card(lang,key,cat,typ,kind,link):
+              loc=L[lang]; title,desc,tags=loc['cards'][key]
+              tagshtml=''.join(f'<li>{html.escape(t)}</li>' for t in tags)
+              linkhtml=''
+              if link:
+                  href=link.format(lang=lang)
+                  txt=loc['live'] if key=='levani' else loc['view']
+                  linkhtml=f'<a class="project-link" href="{href}" target="_blank" rel="noopener noreferrer">{txt} ↗</a>' if href.startswith('http') else f'<a class="project-link" href="{href}">{txt} →</a>'
+              return f'''<article class="project-card" id="{key}" data-project-cat="{cat}">{visual(kind,lang)}<div class="project-body"><div class="project-topline"><span class="project-badge">{loc['badges'][typ]}</span><span class="project-cat">{cat_label[cat]}</span></div><h2>{html.escape(title)}</h2><p>{html.escape(desc)}</p><ul class="project-tags">{tagshtml}</ul>{linkhtml}</div></article>'''
+
+          def page(lang):
+              loc=L[lang]; cards=''.join(render_card(lang,*p) for p in projects)
+              filters=''.join(f'<button type="button" class="project-filter{" active" if k=="all" else ""}" data-project-filter="{k}">{v}</button>' for k,v in loc['filters'].items())
+              items=[]
+              for i,(key,cat,typ,kind,link) in enumerate(projects,1):
+                  title,desc,_=loc['cards'][key]
+                  items.append({'@type':'ListItem','position':i,'url':f'https://beqson.com/{lang}/projects/#{key}','name':title,'description':desc})
+              schema={'@context':'https://schema.org','@graph':[{'@type':'Organization','@id':'https://beqson.com/#organization','name':'BEQSON Digital Studio','url':'https://beqson.com/','logo':'https://beqson.com/assets/beqson-mark-v3.png','sameAs':['https://t.me/digital_studio_beqson',CLUTCH]},{'@type':'CollectionPage','@id':f'https://beqson.com/{lang}/projects/#webpage','url':f'https://beqson.com/{lang}/projects/','name':loc['title'],'description':loc['meta'],'inLanguage':lang,'publisher':{'@id':'https://beqson.com/#organization'},'mainEntity':{'@id':f'https://beqson.com/{lang}/projects/#list'}},{'@type':'ItemList','@id':f'https://beqson.com/{lang}/projects/#list','itemListElement':items}]}
+              flaglinks=f'''<a href="/en/projects/" hreflang="en">EN</a><a href="/ka/projects/" hreflang="ka">KA</a><a href="/ru/projects/" hreflang="ru">RU</a>'''
+              return f'''<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(loc['title'])}</title><meta name="description" content="{html.escape(loc['meta'],quote=True)}"><meta name="theme-color" content="#06172f"><link rel="canonical" href="https://beqson.com/{lang}/projects/"><link rel="alternate" hreflang="en" href="https://beqson.com/en/projects/"><link rel="alternate" hreflang="ka" href="https://beqson.com/ka/projects/"><link rel="alternate" hreflang="ru" href="https://beqson.com/ru/projects/"><link rel="alternate" hreflang="x-default" href="https://beqson.com/en/projects/"><meta property="og:type" content="website"><meta property="og:site_name" content="BEQSON Digital Studio"><meta property="og:title" content="{html.escape(loc['title'],quote=True)}"><meta property="og:description" content="{html.escape(loc['meta'],quote=True)}"><meta property="og:url" content="https://beqson.com/{lang}/projects/"><meta property="og:image" content="https://beqson.com/assets/og-cover.png"><link rel="icon" href="/assets/favicon-v3.png?v=3" type="image/png"><link rel="stylesheet" href="/styles.css?v=12-clutch-trust"><link rel="stylesheet" href="/assets/projects.css?v=1"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False,separators=(',',':'))}</script><script src="/assets/projects.js?v=1" defer></script></head><body class="projects-page" id="top"><header class="site-header"><div class="shell header-inner"><a class="brand" href="/{lang}/"><img src="/assets/beqson-mark-v3.png" width="42" height="42" alt=""><span><b>BEQSON</b><small>DIGITAL STUDIO</small></span></a><nav class="main-nav" aria-label="Navigation"><a href="/{lang}/">{loc['home']}</a><a href="/{lang}/projects/" aria-current="page">{loc['projects']}</a><a href="/{lang}/tools/">{loc['tools']}</a><a href="/{lang}/#pricing">{loc['pricing']}</a></nav><div class="header-tools"><div class="languages">{flaglinks}</div><a class="button primary" href="/{lang}/#contact">{loc['contact']}</a></div></div></header><main><section class="projects-hero"><div class="projects-shell"><p class="eyebrow">{loc['eyebrow']}</p><h1>{loc['h1']}</h1><p class="lead">{loc['lead']}</p><div class="portfolio-note">{loc['truth']}</div></div></section><section><div class="projects-shell"><div class="project-filters" aria-label="Project filters">{filters}</div><div class="projects-grid">{cards}</div></div></section><section class="projects-cta"><div class="projects-shell"><div class="projects-cta-card"><h2>{loc['cta']}</h2><p>{loc['ctabody']}</p><a class="button primary" href="/{lang}/#contact">{loc['ctabtn']}</a></div></div></section></main><footer class="site-footer"><div class="shell footer-inner"><a class="footer-brand" href="/{lang}/">BEQSON<span>© 2026 Digital Studio</span></a><p>Web · SEO · AI · Branding · Design</p><a class="text-link" href="#top">↑</a></div></footer></body></html>'''
+
+          for lang in ('en','ru','ka'):
+              d=Path(lang)/'projects'; d.mkdir(parents=True,exist_ok=True); (d/'index.html').write_text(page(lang),encoding='utf-8')
+          Path('projects').mkdir(exist_ok=True)
+          Path('projects/index.html').write_text('''<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>BEQSON Projects</title><script>const l=(navigator.language||'en').toLowerCase();location.replace(l.startsWith('ka')?'/ka/projects/':l.startsWith('ru')?'/ru/projects/':'/en/projects/');</script></head><body><a href="/en/projects/">BEQSON Projects</a></body></html>''',encoding='utf-8')
+
+          def teaser(lang):
+              loc=L[lang]
+              pick=['beqson','geo','industry','brandkit','report','aivisual']
+              labels={'beqson':loc['badges']['studio'],'geo':loc['badges']['framework'],'industry':loc['badges']['concept'],'brandkit':loc['badges']['concept'],'report':loc['badges']['concept'],'aivisual':loc['badges']['concept']}
+              cards=[]
+              for key in pick:
+                  title,desc,_=loc['cards'][key]
+                  cards.append(f'<a class="home-project-card" href="/{lang}/projects/#{key}"><span>{labels[key]}</span><strong>{html.escape(title)}</strong><small>{html.escape(desc[:135])}…</small></a>')
+              return f'''<section class="home-projects-strip"><div class="shell"><div class="home-projects-head"><div><p class="eyebrow">PORTFOLIO</p><h2>{loc['selected']}</h2></div><p>{loc['selectedlead']}</p></div><div class="home-projects-grid">{''.join(cards)}</div><a class="home-projects-more" href="/{lang}/projects/">{loc['allprojects']} →</a></div></section>'''
+
+          for lang in ('en','ru','ka'):
+              p=Path(lang)/'index.html'; s=p.read_text(encoding='utf-8')
+              if '/assets/projects.css?v=1' not in s:
+                  s=s.replace('</head>','<link rel="stylesheet" href="/assets/projects.css?v=1"></head>')
+              # Make the main Projects navigation lead to the full portfolio.
+              if lang=='en': s=s.replace('<a href="#case">Our Projects</a>','<a href="/en/projects/">Our Projects</a>')
+              elif lang=='ru': s=s.replace('<a href="#case">Наши проекты</a>','<a href="/ru/projects/">Наши проекты</a>')
+              else:
+                  s=s.replace('<a href="#case">ჩვენი პროექტები</a>','<a href="/ka/projects/">ჩვენი პროექტები</a>')
+                  s=s.replace('<a href="#case">პროექტები</a>','<a href="/ka/projects/">პროექტები</a>')
+              if 'class="home-projects-strip"' not in s:
+                  marker='<section class="section case-section" id="case">'
+                  i=s.find(marker)
+                  if i!=-1:
+                      j=s.find('</section>',i)
+                      if j!=-1:
+                          j+=len('</section>'); s=s[:j]+'\n'+teaser(lang)+s[j:]
+              p.write_text(s,encoding='utf-8')
+
+          sp=Path('sitemap.xml'); ss=sp.read_text(encoding='utf-8')
+          if 'https://beqson.com/en/projects/' not in ss:
+              block='''\n  <url><loc>https://beqson.com/en/projects/</loc><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/projects/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/projects/" /><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/projects/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/projects/" /></url>\n  <url><loc>https://beqson.com/ka/projects/</loc><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/projects/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/projects/" /><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/projects/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/projects/" /></url>\n  <url><loc>https://beqson.com/ru/projects/</loc><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/projects/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/projects/" /><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/projects/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/projects/" /></url>\n'''
+              ss=ss.replace('</urlset>',block+'</urlset>'); sp.write_text(ss,encoding='utf-8')
+          PY
+      - name: Commit portfolio
+        run: |
+          if git diff --quiet && [ -z "$(git status --porcelain)" ]; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/projects.css assets/projects.js en/projects ru/projects ka/projects projects en/index.html ru/index.html ka/index.html sitemap.xml
+          git commit -m 'portfolio: add multilingual projects showcase'
+          git push
