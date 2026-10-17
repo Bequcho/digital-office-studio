@@ -6,3 +6,21 @@
 .home-projects-strip{padding:66px 0;background:linear-gradient(180deg,#06172f,#071c36)}.home-projects-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:24px}.home-projects-head h2{margin:5px 0;color:#fff;font-size:clamp(30px,4vw,46px)}.home-projects-head p{max-width:650px;color:#a8c5dc;line-height:1.55}.home-projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.home-project-card{display:block;padding:22px;min-height:170px;border:1px solid #24587f;border-radius:20px;background:linear-gradient(145deg,#0a2749,#081f3b);color:#fff!important}.home-project-card:hover{border-color:#4bd0ff;transform:translateY(-2px)}.home-project-card span{display:block;color:#52d0ff;font:900 10px/1 Arial,sans-serif;letter-spacing:1.2px;text-transform:uppercase}.home-project-card strong{display:block;margin:13px 0 8px;font-size:20px;line-height:1.18}.home-project-card small{color:#96b6cf;line-height:1.4}.home-projects-more{display:inline-flex;margin-top:22px;color:#55d2ff!important;font-weight:900}
 @media(max-width:900px){.projects-grid{grid-template-columns:1fr}.home-projects-grid{grid-template-columns:1fr 1fr}.project-visual{height:250px}.home-projects-head{display:block}.projects-hero{padding-top:88px}}
 @media(max-width:620px){.projects-shell{width:min(100% - 24px,1220px)}.home-projects-grid{grid-template-columns:1fr}.projects-hero h1{font-size:42px}.project-visual{height:220px}.project-body{padding:20px}.projects-cta-card{padding:24px}.home-projects-strip{padding:48px 0}}
+
+
+/* generated portfolio covers v2 */
+.project-visual.cover-sprite{
+  background-image:url('/assets/project-covers-sprite.webp?v=2');
+  background-size:400% 200%;
+  background-repeat:no-repeat;
+  background-color:#091f3a;
+}
+.project-visual.cover-sprite:after{background:linear-gradient(180deg,transparent 72%,rgba(6,23,47,.48))}
+.cover-beqson{background-position:0% 0%}
+.cover-seo{background-position:33.333333% 0%}
+.cover-geo{background-position:66.666667% 0%}
+.cover-booth{background-position:100% 0%}
+.cover-brandkit{background-position:0% 100%}
+.cover-report{background-position:33.333333% 100%}
+.cover-ai{background-position:66.666667% 100%}
+.cover-hair{background-position:100% 100%}
