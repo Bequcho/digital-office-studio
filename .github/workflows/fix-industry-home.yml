@@ -1,4 +1,3 @@
-# trigger: dedicated industry cover
 name: Fix industry homepage cover
 on:
   push:
@@ -15,26 +14,31 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
 
           css_path = Path('assets/projects.css')
           css = css_path.read_text(encoding='utf-8')
-          old = '''html[lang="en"] .home-project-card:nth-child(3):before{background-image:url('/assets/concepts/en/lawyers.webp'),url('/assets/concepts/en/dentists.webp'),url('/assets/concepts/en/construction.webp'),url('/assets/concepts/en/hotels.webp');background-size:50% 50%;background-position:left top,right top,left bottom,right bottom}
-html[lang="ru"] .home-project-card:nth-child(3):before{background-image:url('/assets/concepts/ru/lawyers.webp'),url('/assets/concepts/ru/dentists.webp'),url('/assets/concepts/ru/construction.webp'),url('/assets/concepts/ru/hotels.webp');background-size:50% 50%;background-position:left top,right top,left bottom,right bottom}
-html[lang="ka"] .home-project-card:nth-child(3):before{background-image:url('/assets/concepts/ka/lawyers.webp'),url('/assets/concepts/ka/dentists.webp'),url('/assets/concepts/ka/construction.webp'),url('/assets/concepts/ka/hotels.webp');background-size:50% 50%;background-position:left top,right top,left bottom,right bottom}'''
-          new = ".home-project-card:nth-child(3):before{background-image:url('/assets/project-covers/industry.svg');background-size:cover;background-position:center}"
-          if old not in css:
-              raise SystemExit('Expected industry mosaic CSS block not found')
-          css_path.write_text(css.replace(old, new), encoding='utf-8')
+          new_rule = ".home-project-card:nth-child(3):before{background-image:url('/assets/project-covers/industry.svg');background-size:cover;background-position:center}"
+
+          patterns = [
+              r'html\[lang="en"\]\s+\.home-project-card:nth-child\(3\):before\{[^}]*\}',
+              r'html\[lang="ru"\]\s+\.home-project-card:nth-child\(3\):before\{[^}]*\}',
+              r'html\[lang="ka"\]\s+\.home-project-card:nth-child\(3\):before\{[^}]*\}',
+          ]
+
+          css, count = re.subn(patterns[0], new_rule, css, count=1)
+          if count != 1:
+              raise SystemExit('English industry mosaic rule not found')
+          for pattern in patterns[1:]:
+              css, count = re.subn(pattern, '', css, count=1)
+              if count != 1:
+                  raise SystemExit('Industry mosaic rule not found')
+          css_path.write_text(css, encoding='utf-8')
 
           for rel in ['en/index.html', 'ru/index.html', 'ka/index.html']:
               p = Path(rel)
               html = p.read_text(encoding='utf-8')
-              if '/assets/projects.css?v=1' in html:
-                  html = html.replace('/assets/projects.css?v=1', '/assets/projects.css?v=6-industry-cover')
-              elif '../assets/projects.css?v=1' in html:
-                  html = html.replace('../assets/projects.css?v=1', '../assets/projects.css?v=6-industry-cover')
-              else:
-                  html = html.replace('assets/projects.css?v=1', 'assets/projects.css?v=6-industry-cover')
+              html = html.replace('projects.css?v=1', 'projects.css?v=6-industry-cover')
               p.write_text(html, encoding='utf-8')
           PY
       - name: Commit patch
