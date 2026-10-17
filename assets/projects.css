@@ -8,23 +8,6 @@
 @media(max-width:620px){.projects-shell{width:min(100% - 24px,1220px)}.home-projects-grid{grid-template-columns:1fr}.projects-hero h1{font-size:42px}.project-visual{height:220px}.project-body{padding:20px}.projects-cta-card{padding:24px}.home-projects-strip{padding:48px 0}}
 
 
-/* generated portfolio covers v2 */
-.project-visual.cover-sprite{
-  background-image:url('/assets/project-covers-sprite.webp?v=2');
-  background-size:400% 200%;
-  background-repeat:no-repeat;
-  background-color:#091f3a;
-}
-.project-visual.cover-sprite:after{background:linear-gradient(180deg,transparent 72%,rgba(6,23,47,.48))}
-.cover-beqson{background-position:0% 0%}
-.cover-seo{background-position:33.333333% 0%}
-.cover-geo{background-position:66.666667% 0%}
-.cover-booth{background-position:100% 0%}
-.cover-brandkit{background-position:0% 100%}
-.cover-report{background-position:33.333333% 100%}
-.cover-ai{background-position:66.666667% 100%}
-.cover-hair{background-position:100% 100%}
-
 /* premium portfolio polish v3 */
 .projects-page{background:
   radial-gradient(circle at 8% 26%,rgba(39,145,255,.08),transparent 24%),
@@ -50,8 +33,6 @@
 .project-visual:before{content:counter(project,decimal-leading-zero);position:absolute;right:18px;top:16px;z-index:3;display:grid;place-items:center;min-width:34px;height:28px;padding:0 8px;border:1px solid rgba(134,222,255,.18);border-radius:999px;background:rgba(5,22,43,.56);backdrop-filter:blur(10px);color:rgba(222,247,255,.78);font:800 10px/1 Arial,sans-serif;letter-spacing:.12em;box-shadow:0 8px 18px rgba(0,0,0,.12)}
 .project-visual img{transition:transform .55s cubic-bezier(.2,.7,.2,1),filter .35s ease}
 .project-card:hover .project-visual img{transform:scale(1.035);filter:saturate(1.05) contrast(1.02)}
-.project-card .cover-sprite{transition:filter .35s ease}
-.project-card:hover .cover-sprite{filter:saturate(1.06) contrast(1.02) brightness(1.03)}
 .project-body{display:flex;flex:1;flex-direction:column;position:relative;z-index:3}
 .project-topline{min-height:30px}
 .project-badge{box-shadow:inset 0 1px 0 rgba(255,255,255,.03);backdrop-filter:blur(8px)}
@@ -70,3 +51,7 @@
 @media(max-width:900px){.project-filters{top:64px}.project-card:hover{transform:translateY(-4px)}}
 @media(max-width:620px){.project-filters{top:58px;display:flex;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;margin:0 -12px 4px;padding:14px 12px 18px}.project-filters::-webkit-scrollbar{display:none}.project-filter{flex:0 0 auto}.projects-grid{gap:16px}.project-card{border-radius:20px}.project-card:before{border-radius:20px}.project-visual:before{right:12px;top:12px}.project-card h2{font-size:23px}}
 @media(prefers-reduced-motion:reduce){.project-card,.project-visual img,.project-filter,.home-project-card,.project-link{transition:none!important}.project-card:hover,.home-project-card:hover,.project-filter:hover{transform:none!important}.project-card:hover .project-visual img{transform:none!important}}
+
+/* Keep new 16:10 illustrations intact at every card width. Legacy concept frames stay unchanged. */
+.project-visual:has(>img[src^="/assets/project-covers/"]){height:auto;aspect-ratio:16/10}
+.project-visual:has(>img[src^="/assets/project-covers/"]):after{background:linear-gradient(180deg,transparent 72%,rgba(6,23,47,.48))}
