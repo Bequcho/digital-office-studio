@@ -21,11 +21,15 @@ class MetadataParser(HTMLParser):
         self.titles = []
         self.descriptions = []
         self.canonicals = []
+        self.alternates = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if tag == 'head':
             self.in_head = True
+        if tag == 'link' and 'alternate' in attrs.get('rel', '').lower().split() and 'hreflang' in attrs:
+            assert self.in_head, 'Hreflang outside head'
+            self.alternates.append((attrs['hreflang'], attrs.get('href', '')))
         if tag == 'link' and 'canonical' in attrs.get('rel', '').lower().split():
             assert self.in_head, 'Canonical outside head'
             self.canonicals.append(attrs.get('href', ''))
@@ -48,7 +52,7 @@ class MetadataParser(HTMLParser):
             self.titles[-1] += data
 
 
-def check(source, expected=None, canonical=None):
+def check(source, expected=None, canonical=None, hreflang=False):
     parser = MetadataParser()
     parser.feed(source)
     assert len(parser.titles) == len(parser.descriptions) == 1
@@ -58,17 +62,40 @@ def check(source, expected=None, canonical=None):
         url = urlsplit(parser.canonicals[0])
         assert url.scheme == 'https' and url.netloc == 'beqson.com'
         assert url.path.endswith('/') and not url.query and not url.fragment
+    if hreflang:
+        assert canonical is not None
+        suffix = urlsplit(canonical).path.split('/', 2)[2]
+        expected_links = {lang: f'https://beqson.com/{lang}/{suffix}' for lang in ('ka', 'ru', 'en')}
+        expected_links['x-default'] = expected_links['en']
+        assert len(parser.alternates) == 4, parser.alternates
+        assert dict(parser.alternates) == expected_links, parser.alternates
+        for _, href in parser.alternates:
+            url = urlsplit(href)
+            assert url.scheme == 'https' and url.netloc == 'beqson.com'
+            assert url.path.endswith('/') and not url.query and not url.fragment
     if expected:
         assert parser.titles == [expected['title']]
         assert parser.descriptions == [expected['description']]
+    return parser
 
 
 def main():
     for field in ['title', 'description']:
         assert len({value[field] for value in METADATA.values()}) == 30, field
     for route, expected in METADATA.items():
-        check((ROOT / route / 'index.html').read_text(), expected, 'https://beqson.com/' + route)
-    check((ROOT / 'index.html').read_text(), METADATA['ka/'], 'https://beqson.com/ka/')
+        check((ROOT / route / 'index.html').read_text(), expected, 'https://beqson.com/' + route, hreflang=True)
+    check((ROOT / 'index.html').read_text(), METADATA['ka/'], 'https://beqson.com/ka/', hreflang=True)
+    # Verify actual reciprocal links, self-reference and target files in every group.
+    for route in METADATA:
+        source = check((ROOT / route / 'index.html').read_text())
+        language = route.split('/')[0]
+        for target_language, href in source.alternates:
+            if target_language == 'x-default':
+                continue
+            target_route = urlsplit(href).path.lstrip('/')
+            assert target_route in METADATA
+            target = check((ROOT / target_route / 'index.html').read_text())
+            assert dict(target.alternates)[language] == 'https://beqson.com/' + route
     count = 0
     for path in ROOT.rglob('*.html'):
         parts = path.relative_to(ROOT).parts
@@ -89,7 +116,7 @@ def main():
             continue  # The dedicated portfolio workflow has its own generator.
         lang = parts[0]
         slug = parts[1] if len(parts) == 2 else None
-        check(build.head(lang, '../', 'Existing social title', 'Existing schema description', slug), expected, 'https://beqson.com/' + route)
+        check(build.head(lang, '../', 'Existing social title', 'Existing schema description', slug), expected, 'https://beqson.com/' + route, hreflang=True)
     # Evaluate only declarations from the portfolio generator, never its write loop.
     workflow = (ROOT / '.github/workflows/build-projects-portfolio.yml').read_text()
     code = textwrap.dedent(workflow.split("python - <<'PY'\n", 1)[1].split('\n          PY', 1)[0])
@@ -100,13 +127,16 @@ def main():
     previous = Path.cwd()
     try:
         os.chdir(ROOT)
+        import sys
+        sys.path.insert(0, str(ROOT))
         exec(compile(tree, 'portfolio-generator', 'exec'), namespace)
         for lang in ('ka', 'ru', 'en'):
             route = lang + '/projects/'
-            check(namespace['page'](lang), METADATA[route], 'https://beqson.com/' + route)
+            check(namespace['page'](lang), METADATA[route], 'https://beqson.com/' + route, hreflang=True)
     finally:
+        sys.path.pop(0)
         os.chdir(previous)
-    print(f'PASS: 30 target pages, root fallback, {count} indexable documents, unique values, self-canonicals and both generators')
+    print(f'PASS: 30 target pages, root fallback, {count} indexable documents, unique values, self-canonicals, reciprocal hreflang and both generators')
 
 
 if __name__ == '__main__':

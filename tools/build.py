@@ -4,6 +4,10 @@ from pathlib import Path
 import json, html, itertools
 from urllib.parse import quote, urlsplit
 import xml.etree.ElementTree as ET
+try:
+ from .seo_hreflang import render_hreflang
+except ImportError:
+ from seo_hreflang import render_hreflang
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = json.loads((ROOT/'tools/content.json').read_text())
 SEO_METADATA = json.loads((ROOT/'tools/seo_metadata.json').read_text())
@@ -87,7 +91,7 @@ def contact_section(lang,industry=None):
  return f'''<section class="contact-section section" id="contact"><div class="shell contact-grid"><div><p class="eyebrow">{c['contactKicker']}</p><h2>{lines(c['contactTitle'])}</h2><p class="lead">{c['contactText']}</p></div><div class="contact-options"><p>{c['contactPrompt']}</p>{links}</div></div></section>'''
 def head(lang,base,title,description,slug=None,noindex=False):
  c=CONTENT[lang];canonical=BASE_URL+('404.html' if noindex else lang+'/'+(slug+'/' if slug else ''));image=BASE_URL+'assets/'+(f'concepts/{lang}/{slug}-og.jpg' if slug else 'og-cover.png')
- alternates='' if noindex else ''.join(f'<link rel="alternate" hreflang="{l}" href="{BASE_URL}{l}/{slug+"/" if slug else ""}">' for l in LANGS)+f'<link rel="alternate" hreflang="x-default" href="{BASE_URL}ka/{slug+"/" if slug else ""}">'
+ alternates='' if noindex else render_hreflang(slug)
  org={'@type':'Organization','@id':BASE_URL+'#organization','name':'BEQSON Digital Studio','url':BASE_URL,'logo':BASE_URL+'assets/beqson-mark-v3.png','email':EMAIL,'telephone':'+'+PHONE,'sameAs':['https://t.me/digital_studio_beqson']}
  graph=[org,{'@type':'WebPage','@id':canonical+'#webpage','url':canonical,'name':title,'description':description,'inLanguage':lang,'publisher':{'@id':BASE_URL+'#organization'}}]
  if slug:
