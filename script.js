@@ -257,9 +257,7 @@ if (lightbox && typeof lightbox.showModal === 'function') {
 
   const pageTitle = 'BEQSON — ვებგვერდები, SEO და კლიენტების მოზიდვა';
   const pageDescription = 'BEQSON-ის ციფრული სტუდია ქმნის ინდივიდუალურ ვებგვერდებს, აწყობს ადგილობრივ SEO-ს და კლიენტების მომართვების მართვის სისტემებს რვა ბიზნესმიმართულებისთვის ქართულ, რუსულ და ინგლისურ ენებზე.';
-  document.title = pageTitle;
   [
-    ['meta[name="description"]', pageDescription],
     ['meta[property="og:title"]', pageTitle],
     ['meta[property="og:description"]', pageDescription],
     ['meta[property="og:image:alt"]', pageTitle],

@@ -6,6 +6,7 @@ from urllib.parse import quote, urlsplit
 import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = json.loads((ROOT/'tools/content.json').read_text())
+SEO_METADATA = json.loads((ROOT/'tools/seo_metadata.json').read_text())
 INDUSTRIES = json.loads((ROOT/'tools/industries.json').read_text())
 BASE_URL = 'https://beqson.com/'
 EMAIL='digitalstudiobeqson@gmail.com'
@@ -93,13 +94,17 @@ def head(lang,base,title,description,slug=None,noindex=False):
   n=next(n for n in INDUSTRIES if n['slug']==slug)
   graph.append({'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':c['home'],'item':BASE_URL+lang+'/'},{'@type':'ListItem','position':2,'name':n[lang]['name'],'item':canonical}]})
   graph.append({'@type':'Service','name':title,'description':description,'provider':{'@id':BASE_URL+'#organization'},'url':canonical,'serviceType':'Website design and development'})
+ # Title/description are independent of existing social metadata and JSON-LD.
+ seo = {} if noindex else SEO_METADATA.get(lang+'/' + (slug+'/' if slug else ''), {})
+ seo_title = seo.get('title', title)
+ seo_description = seo.get('description', description)
  font='noto-sans-georgian' if lang=='ka' else 'manrope'
  return f'''<!doctype html>
-<html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)}</title>
-<meta name="description" content="{esc(description)}"><meta name="theme-color" content="#081529">{('<meta name="robots" content="noindex,follow">' if noindex else '')}
+<html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(seo_title)}</title>
+<meta name="description" content="{esc(seo_description)}"><meta name="theme-color" content="#081529">{('<meta name="robots" content="noindex,follow">' if noindex else '')}
 <link rel="canonical" href="{canonical}">{alternates}<link rel="shortcut icon" href="{base}favicon-v3.ico?v=3"><link rel="icon" href="{base}assets/favicon-v3.png?v=3" type="image/png"><link rel="apple-touch-icon" href="{base}assets/apple-touch-icon-v3.png?v=3"><link rel="manifest" href="{base}site.webmanifest?v=3">
 <meta property="og:type" content="website"><meta property="og:site_name" content="BEQSON Digital Studio"><meta property="og:locale" content="{c['locale']}"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(description)}"><meta property="og:url" content="{canonical}"><meta property="og:image" content="{image}"><meta property="og:image:type" content="{'image/jpeg' if slug else 'image/png'}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="{'800' if slug else '630'}"><meta property="og:image:alt" content="{esc(title)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{image}"><meta name="twitter:image:alt" content="{esc(title)}">
-<link rel="preload" href="{base}assets/fonts/{font}-800.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{base}styles.css?v=11-contact-solid"><script src="{base}script.js?v=17-visible-h1" defer></script>
+<link rel="preload" href="{base}assets/fonts/{font}-800.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{base}styles.css?v=11-contact-solid"><script src="{base}script.js?v={"18-static-metadata" if lang=="ka" else "17-visible-h1"}" defer></script>
 <script type="application/ld+json">{json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False)}</script></head>'''
 HERO_SIZES='(max-width: 359px) calc((100vw - 28px) * .95), (max-width: 480px) calc((100vw - 36px) * .95), (max-width: 590px) calc((100vw - 48px) * .92), (max-width: 760px) 500px, (max-width: 1000px) calc((100vw - 73px) / 2), (max-width: 1180px) calc((100vw - 97px) / 2), (max-width: 1304px) calc((100vw - 106px) / 2.05), 600px'
 INDUSTRY_HERO_SIZES='(max-width: 359px) calc((100vw - 28px) * .95), (max-width: 480px) calc((100vw - 36px) * .95), (max-width: 760px) calc((100vw - 48px) * .95), (max-width: 1000px) calc((100vw - 73px) / 2), (max-width: 1180px) calc((100vw - 104px) / 2), (max-width: 1304px) calc((100vw - 119px) * .5122), 608px'
