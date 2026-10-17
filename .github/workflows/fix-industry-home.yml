@@ -1,0 +1,46 @@
+name: Fix industry homepage cover
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-industry-home.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace industry mosaic with dedicated SVG
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          css_path = Path('assets/projects.css')
+          css = css_path.read_text(encoding='utf-8')
+          old = '''html[lang="en"] .home-project-card:nth-child(3):before{background-image:url('/assets/concepts/en/lawyers.webp'),url('/assets/concepts/en/dentists.webp'),url('/assets/concepts/en/construction.webp'),url('/assets/concepts/en/hotels.webp');background-size:50% 50%;background-position:left top,right top,left bottom,right bottom}
+html[lang="ru"] .home-project-card:nth-child(3):before{background-image:url('/assets/concepts/ru/lawyers.webp'),url('/assets/concepts/ru/dentists.webp'),url('/assets/concepts/ru/construction.webp'),url('/assets/concepts/ru/hotels.webp');background-size:50% 50%;background-position:left top,right top,left bottom,right bottom}
+html[lang="ka"] .home-project-card:nth-child(3):before{background-image:url('/assets/concepts/ka/lawyers.webp'),url('/assets/concepts/ka/dentists.webp'),url('/assets/concepts/ka/construction.webp'),url('/assets/concepts/ka/hotels.webp');background-size:50% 50%;background-position:left top,right top,left bottom,right bottom}'''
+          new = ".home-project-card:nth-child(3):before{background-image:url('/assets/project-covers/industry.svg');background-size:cover;background-position:center}"
+          if old not in css:
+              raise SystemExit('Expected industry mosaic CSS block not found')
+          css_path.write_text(css.replace(old, new), encoding='utf-8')
+
+          for rel in ['en/index.html', 'ru/index.html', 'ka/index.html']:
+              p = Path(rel)
+              html = p.read_text(encoding='utf-8')
+              if '/assets/projects.css?v=1' in html:
+                  html = html.replace('/assets/projects.css?v=1', '/assets/projects.css?v=6-industry-cover')
+              elif '../assets/projects.css?v=1' in html:
+                  html = html.replace('../assets/projects.css?v=1', '../assets/projects.css?v=6-industry-cover')
+              else:
+                  html = html.replace('assets/projects.css?v=1', 'assets/projects.css?v=6-industry-cover')
+              p.write_text(html, encoding='utf-8')
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/projects.css en/index.html ru/index.html ka/index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'portfolio: replace industry mosaic with dedicated cover'
+          git push
