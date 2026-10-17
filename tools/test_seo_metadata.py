@@ -22,8 +22,11 @@ class MetadataParser(HTMLParser):
         self.descriptions = []
         self.canonicals = []
         self.alternates = []
+        self.html_roots = []
 
     def handle_starttag(self, tag, attrs):
+        if tag == 'html':
+            self.html_roots.append(list(attrs))
         attrs = dict(attrs)
         if tag == 'head':
             self.in_head = True
@@ -52,6 +55,16 @@ class MetadataParser(HTMLParser):
             self.titles[-1] += data
 
 
+def check_html_language(source, language):
+    parser = MetadataParser()
+    parser.feed(source)
+    assert len(parser.html_roots) == 1, 'Expected exactly one root html element'
+    attrs = parser.html_roots[0]
+    assert [value for name, value in attrs if name == 'lang'] == [language], attrs
+    assert language in ('ka', 'ru', 'en')
+    return attrs
+
+
 def check(source, expected=None, canonical=None, hreflang=False):
     parser = MetadataParser()
     parser.feed(source)
@@ -62,6 +75,7 @@ def check(source, expected=None, canonical=None, hreflang=False):
         url = urlsplit(parser.canonicals[0])
         assert url.scheme == 'https' and url.netloc == 'beqson.com'
         assert url.path.endswith('/') and not url.query and not url.fragment
+        check_html_language(source, url.path.split('/')[1])
     if hreflang:
         assert canonical is not None
         suffix = urlsplit(canonical).path.split('/', 2)[2]
@@ -96,6 +110,14 @@ def main():
             assert target_route in METADATA
             target = check((ROOT / target_route / 'index.html').read_text())
             assert dict(target.alternates)[language] == 'https://beqson.com/' + route
+    # Include noindex localized utility pages; exclude private CRM and template fragments.
+    language_counts = {lang: 0 for lang in ('ka', 'ru', 'en')}
+    for language in language_counts:
+        for path in (ROOT / language).rglob('*.html'):
+            check_html_language(path.read_text(), language)
+            language_counts[language] += 1
+    check_html_language((ROOT / 'index.html').read_text(), 'ka')
+    print(f'HTML lang: {language_counts}; root fallback: ka')
     count = 0
     for path in ROOT.rglob('*.html'):
         parts = path.relative_to(ROOT).parts
