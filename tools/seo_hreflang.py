@@ -12,6 +12,9 @@ def hreflang_urls(slug=''):
     return urls
 
 
-def render_hreflang(slug=''):
-    return ''.join(f'<link rel="alternate" hreflang="{lang}" href="{url}">'
-                   for lang, url in hreflang_urls(slug).items())
+def render_hreflang(slug='', order=('ka', 'ru', 'en', 'x-default')):
+    urls = hreflang_urls(slug)
+    if len(order) != 4 or set(order) != set(urls):
+        raise ValueError('Expected each hreflang exactly once')
+    return ''.join(f'<link rel="alternate" hreflang="{lang}" href="{urls[lang]}">'
+                   for lang in order)

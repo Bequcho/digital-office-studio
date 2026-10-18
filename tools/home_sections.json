@@ -1,0 +1,461 @@
+{
+  "ru": {
+    "toolsLabel": "Инструменты",
+    "promos": [
+      {
+        "calculator": false,
+        "kicker": "BEQSON WEBSITE AUDIT",
+        "heading": "Бесплатно проверьте свой сайт",
+        "text": "За минуту покажем SEO Score, ключевые технические проблемы и план действий. Полный отчёт можно сохранить в PDF.",
+        "href": "/ru/audit/",
+        "label": "Проверить сайт бесплатно →"
+      },
+      {
+        "calculator": true,
+        "kicker": "BEQSON WEBSITE COST CALCULATOR",
+        "heading": "Рассчитайте стоимость сайта",
+        "text": "Ответьте на 5 быстрых вопросов — сразу получите ориентировочный бюджет проекта и подходящий пакет BEQSON.",
+        "href": "/ru/calculator/",
+        "label": "Рассчитать стоимость →"
+      }
+    ],
+    "industries": {
+      "kicker": "РЕШЕНИЯ ДЛЯ БИЗНЕСА",
+      "heading": "Решения для разных сфер бизнеса",
+      "text": "Для каждой ниши — свой сайт, оффер, SEO и воронка заявок.",
+      "cards": [
+        {
+          "slug": "lawyers",
+          "image": "lawyers.webp",
+          "alt": "Адвокаты",
+          "heading": "Адвокаты",
+          "text": "Сайт, заявки, доверие и репутация"
+        },
+        {
+          "slug": "dentists",
+          "image": "dentists.webp",
+          "alt": "Стоматологи",
+          "heading": "Стоматологи",
+          "text": "Больше записей и новых пациентов"
+        },
+        {
+          "slug": "clinics",
+          "image": "doctors.webp",
+          "alt": "Частные врачи и клиники",
+          "heading": "Частные врачи / клиники",
+          "text": "Онлайн-запись и поток пациентов"
+        },
+        {
+          "slug": "realtors",
+          "image": "realtors.webp",
+          "alt": "Риелторы",
+          "heading": "Риелторы",
+          "text": "Больше обращений и качественных лидов"
+        },
+        {
+          "slug": "accountants",
+          "image": "accountants.webp",
+          "alt": "Бухгалтеры",
+          "heading": "Бухгалтеры / налоговые консультанты",
+          "text": "Заявки на консультации и B2B-клиенты"
+        },
+        {
+          "slug": "construction",
+          "image": "construction.webp",
+          "alt": "Строительство и дизайн",
+          "heading": "Ремонт / строительство / дизайнеры",
+          "text": "Больше проектов и целевых обращений"
+        },
+        {
+          "slug": "autoservices",
+          "image": "autoservice.webp",
+          "alt": "Автосервис и детейлинг",
+          "heading": "Автосервисы / детейлинг",
+          "text": "Онлайн-запись и стабильный поток клиентов"
+        },
+        {
+          "slug": "hotels",
+          "image": "hotels.webp",
+          "alt": "Отели и туризм",
+          "heading": "Отели / апартаменты / туризм",
+          "text": "Больше прямых заявок и бронирований"
+        }
+      ]
+    },
+    "projects": {
+      "heading": "Ещё наши работы",
+      "text": "Сайты, SEO, AI, брендинг и дизайн — не ограничиваем портфолио одним кейсом.",
+      "cards": [
+        {
+          "href": "/ru/projects/#beqson",
+          "tag": "Проект студии",
+          "heading": "BEQSON Digital Studio — мультиязычный бизнес-сайт",
+          "text": "Собственная платформа студии: отраслевые страницы, бесплатные SEO-инструменты, сбор лидов, CRM-процессы, тарифы и конверсионная навигац…"
+        },
+        {
+          "href": "/ru/projects/#geo",
+          "tag": "Фреймворк",
+          "heading": "AI Search Visibility (GEO) Audit Framework — ChatGPT &amp; Gemini",
+          "text": "Собственный фреймворк для оценки того, насколько понятно бизнес представлен для AI-поиска: сущности, контент, цитируемость и технически…"
+        },
+        {
+          "href": "/ru/projects/#industry",
+          "tag": "Концепт",
+          "heading": "Коллекция отраслевых сайтов — мультиязычные концепты",
+          "text": "Набор направлений для юристов, стоматологов, клиник, риелторов, бухгалтеров, строительства, автосервисов и hospitality.…"
+        },
+        {
+          "href": "/ru/projects/#brandkit",
+          "tag": "Концепт",
+          "heading": "B2B SaaS Marketing &amp; Brand Asset Kit",
+          "text": "Модульный набор маркетинговых материалов для B2B SaaS: кампании, social graphics и sales-материалы в одном стиле.…"
+        },
+        {
+          "href": "/ru/projects/#report",
+          "tag": "Концепт",
+          "heading": "B2B SaaS Case Study &amp; Report Design",
+          "text": "Концепт отчёта и case study, который превращает сложную B2B-информацию в аккуратную историю с понятной иерархией данных.…"
+        },
+        {
+          "href": "/ru/projects/#aivisual",
+          "tag": "Концепт",
+          "heading": "AI-Assisted Marketing Visual Exploration",
+          "text": "Исследование AI-визуалов для маркетинга с ручной арт-дирекцией и доводкой до пригодных для кампании композиций.…"
+        }
+      ],
+      "cta": {
+        "href": "/ru/projects/",
+        "class": "home-projects-more",
+        "label": "Все проекты →"
+      }
+    },
+    "clutch": {
+      "label": "Профиль компании на независимой платформе",
+      "linkLabel": "Открыть профиль BEQSON Digital Studio на Clutch",
+      "kicker": "ПРОФИЛЬ НА НЕЗАВИСИМОЙ ПЛАТФОРМЕ",
+      "heading": "BEQSON на Clutch",
+      "text": "Посмотрите наши услуги, портфолио и профиль студии на Clutch.",
+      "cta": "↗"
+    },
+    "pricing": {
+      "currency": "₽",
+      "amounts": [
+        "9 900",
+        "19 900",
+        "34 900"
+      ],
+      "perMonth": "от 2 900 ₽ / месяц",
+      "note": "Стартовые цены для первых клиентов в России и русскоязычного рынка. Стоимость указана в RUB. Финальный объём фиксируем до начала работы. Домен, платные сервисы и рекламный бюджет оплачиваются отдельно при необходимости."
+    }
+  },
+  "ka": {
+    "toolsLabel": "უფასო ინსტრუმენტები",
+    "promos": [
+      {
+        "calculator": false,
+        "kicker": "BEQSON WEBSITE AUDIT",
+        "heading": "შეამოწმეთ თქვენი საიტი უფასოდ",
+        "text": "ერთ წუთში მიიღეთ SEO Score, ძირითადი ტექნიკური პრობლემები და სამოქმედო გეგმა. სრული ანგარიში შეგიძლიათ შეინახოთ PDF-ად.",
+        "href": "/ka/audit/",
+        "label": "საიტის უფასო შემოწმება →"
+      },
+      {
+        "calculator": true,
+        "kicker": "BEQSON WEBSITE COST CALCULATOR",
+        "heading": "გაიგეთ ვებსაიტის სავარაუდო ღირებულება",
+        "text": "უპასუხეთ 5 მოკლე კითხვას და მყისიერად მიიღეთ პროექტის სავარაუდო ბიუჯეტი და შესაბამისი BEQSON პაკეტი.",
+        "href": "/ka/calculator/",
+        "label": "ღირებულების გამოთვლა →"
+      }
+    ],
+    "industries": {
+      "kicker": "ბიზნეს გადაწყვეტილებები",
+      "heading": "გადაწყვეტილებები სხვადასხვა ბიზნესსფეროსთვის",
+      "text": "ყოველი ნიშისთვის — საკუთარი ვებსაიტი, შეთავაზება, SEO და განაცხადების სისტემა.",
+      "cards": [
+        {
+          "slug": "lawyers",
+          "image": "lawyers.webp",
+          "alt": "ადვოკატები",
+          "heading": "ადვოკატები",
+          "text": "ვებსაიტი, განაცხადები, ნდობა და რეპუტაცია"
+        },
+        {
+          "slug": "dentists",
+          "image": "dentists.webp",
+          "alt": "სტომატოლოგები",
+          "heading": "სტომატოლოგები",
+          "text": "მეტი ჩაწერა და ახალი პაციენტები"
+        },
+        {
+          "slug": "clinics",
+          "image": "doctors.webp",
+          "alt": "კერძო ექიმები და კლინიკები",
+          "heading": "კერძო ექიმები / კლინიკები",
+          "text": "ონლაინ ჩაწერა და პაციენტების ნაკადი"
+        },
+        {
+          "slug": "realtors",
+          "image": "realtors.webp",
+          "alt": "რიელტორები",
+          "heading": "რიელტორები",
+          "text": "მეტი მიმართვა და ხარისხიანი ლიდები"
+        },
+        {
+          "slug": "accountants",
+          "image": "accountants.webp",
+          "alt": "ბუღალტრები",
+          "heading": "ბუღალტრები / საგადასახადო კონსულტანტები",
+          "text": "საკონსულტაციო განაცხადები და B2B კლიენტები"
+        },
+        {
+          "slug": "construction",
+          "image": "construction.webp",
+          "alt": "მშენებლობა და დიზაინი",
+          "heading": "რემონტი / მშენებლობა / დიზაინერები",
+          "text": "მეტი პროექტი და მიზნობრივი მიმართვები"
+        },
+        {
+          "slug": "autoservices",
+          "image": "autoservice.webp",
+          "alt": "ავტოსერვისი და დეტეილინგი",
+          "heading": "ავტოსერვისები / დეტეილინგი",
+          "text": "ონლაინ ჩაწერა და კლიენტების სტაბილური ნაკადი"
+        },
+        {
+          "slug": "hotels",
+          "image": "hotels.webp",
+          "alt": "სასტუმროები და ტურიზმი",
+          "heading": "სასტუმროები / აპარტამენტები / ტურიზმი",
+          "text": "მეტი პირდაპირი მოთხოვნა და ჯავშანი"
+        }
+      ]
+    },
+    "projects": {
+      "heading": "სხვა ნამუშევრები",
+      "text": "ვებ, SEO, AI, ბრენდინგი და დიზაინი — ჩვენი პორტფოლიო ერთ ქეისზე არ მთავრდება.",
+      "cards": [
+        {
+          "href": "/ka/projects/#beqson",
+          "tag": "სტუდიის პროექტი",
+          "heading": "BEQSON Digital Studio — მრავალენოვანი ბიზნეს-საიტი",
+          "text": "სტუდიის საკუთარი პლატფორმა: ინდუსტრიული გვერდები, უფასო SEO ხელსაწყოები, ლიდების შეგროვება, CRM პროცესები, ფასები და კონვერსიული ნავიგა…"
+        },
+        {
+          "href": "/ka/projects/#geo",
+          "tag": "ფრეიმვორკი",
+          "heading": "AI Search Visibility (GEO) Audit Framework — ChatGPT &amp; Gemini",
+          "text": "საკუთარი ფრეიმვორკი AI ძიებაში ბიზნესის აღქმის შესაფასებლად: entity signals, კონტენტი, ციტირებადობა და ტექნიკური საფუძველი.…"
+        },
+        {
+          "href": "/ka/projects/#industry",
+          "tag": "კონცეფცია",
+          "heading": "ინდუსტრიული საიტების კოლექცია — მრავალენოვანი კონცეფციები",
+          "text": "კონცეფციები იურისტებისთვის, სტომატოლოგებისთვის, კლინიკებისთვის, უძრავი ქონებისთვის, ბუღალტრებისთვის, მშენებლობისთვის, ავტოსერვისებისა დ…"
+        },
+        {
+          "href": "/ka/projects/#brandkit",
+          "tag": "კონცეფცია",
+          "heading": "B2B SaaS Marketing &amp; Brand Asset Kit",
+          "text": "მოდულური B2B SaaS მარკეტინგული მასალები კამპანიებისთვის, social graphics-ისა და sales მასალებისთვის.…"
+        },
+        {
+          "href": "/ka/projects/#report",
+          "tag": "კონცეფცია",
+          "heading": "B2B SaaS Case Study &amp; Report Design",
+          "text": "რეპორტისა და case study-ის კონცეფცია, რომელიც რთულ B2B ინფორმაციას მკაფიო და პროფესიონალურ ისტორიად აწყობს.…"
+        },
+        {
+          "href": "/ka/projects/#aivisual",
+          "tag": "კონცეფცია",
+          "heading": "AI-Assisted Marketing Visual Exploration",
+          "text": "AI-დახმარებით შექმნილი მარკეტინგული ვიზუალური მიმართულებების კვლევა, ხელით არტ-დირექციით და საბოლოო კომპოზიციების დამუშავებით.…"
+        }
+      ],
+      "cta": {
+        "href": "/ka/projects/",
+        "class": "home-projects-more",
+        "label": "ყველა პროექტი →"
+      }
+    },
+    "clutch": {
+      "label": "კომპანიის პროფილი დამოუკიდებელ პლატფორმაზე",
+      "linkLabel": "BEQSON Digital Studio-ს პროფილის გახსნა Clutch-ზე",
+      "kicker": "დამოუკიდებელი კომპანიის პროფილი",
+      "heading": "გვიპოვეთ Clutch-ზე",
+      "text": "იხილეთ ჩვენი სერვისები, პორტფოლიო და სტუდიის პროფილი Clutch-ზე.",
+      "cta": "↗"
+    },
+    "pricing": {
+      "currency": "₾",
+      "amounts": [
+        "299",
+        "599",
+        "999"
+      ],
+      "perMonth": "49 ₾-დან / თვე",
+      "note": "გაშვების სპეციალური ფასები პირველი 5 კლიენტისთვის. ფასები მოცემულია GEL-ში. სამუშაოს მოცულობას დაწყებამდე ვათანხმებთ. დომენი, ფასიანი სერვისები და სარეკლამო ბიუჯეტი საჭიროებისამებრ ცალკე იფარება."
+    }
+  },
+  "en": {
+    "toolsLabel": "Free Tools",
+    "promos": [
+      {
+        "calculator": false,
+        "kicker": "BEQSON WEBSITE AUDIT",
+        "heading": "Check your website for free",
+        "text": "Get an SEO Score, key technical issues and an action plan in about a minute. The full report can be saved as a PDF.",
+        "href": "/en/audit/",
+        "label": "Run free website audit →"
+      },
+      {
+        "calculator": true,
+        "kicker": "BEQSON WEBSITE COST CALCULATOR",
+        "heading": "Estimate your website cost",
+        "text": "Answer 5 quick questions and get an instant project range plus the recommended BEQSON package.",
+        "href": "/en/calculator/",
+        "label": "Calculate website cost →"
+      }
+    ],
+    "industries": {
+      "kicker": "BUSINESS SOLUTIONS",
+      "heading": "Solutions for different types of business",
+      "text": "Each niche gets its own website, offer, SEO and lead funnel.",
+      "cards": [
+        {
+          "slug": "lawyers",
+          "image": "lawyers.webp",
+          "alt": "Lawyers",
+          "heading": "Lawyers",
+          "text": "Website, leads, trust and reputation"
+        },
+        {
+          "slug": "dentists",
+          "image": "dentists.webp",
+          "alt": "Dentists",
+          "heading": "Dentists",
+          "text": "More bookings and new patients"
+        },
+        {
+          "slug": "clinics",
+          "image": "doctors.webp",
+          "alt": "Private doctors and clinics",
+          "heading": "Private doctors / clinics",
+          "text": "Online booking and patient flow"
+        },
+        {
+          "slug": "realtors",
+          "image": "realtors.webp",
+          "alt": "Realtors",
+          "heading": "Realtors",
+          "text": "More inquiries and better leads"
+        },
+        {
+          "slug": "accountants",
+          "image": "accountants.webp",
+          "alt": "Accountants and tax consultants",
+          "heading": "Accountants / tax consultants",
+          "text": "Consultation leads and B2B clients"
+        },
+        {
+          "slug": "construction",
+          "image": "construction.webp",
+          "alt": "Renovation, construction and designers",
+          "heading": "Renovation / construction / designers",
+          "text": "More projects and targeted inquiries"
+        },
+        {
+          "slug": "autoservices",
+          "image": "autoservice.webp",
+          "alt": "Auto services and detailing",
+          "heading": "Auto services / detailing",
+          "text": "Online bookings and a stable client flow"
+        },
+        {
+          "slug": "hotels",
+          "image": "hotels.webp",
+          "alt": "Hotels, apartments and tourism",
+          "heading": "Hotels / apartments / tourism",
+          "text": "More direct requests and bookings"
+        }
+      ]
+    },
+    "projects": {
+      "heading": "More selected work",
+      "text": "Explore web, SEO, AI, branding and design projects beyond our first client case.",
+      "cards": [
+        {
+          "href": "/en/projects/#beqson",
+          "tag": "Studio Project",
+          "heading": "BEQSON Digital Studio — Multilingual Business Website",
+          "text": "Our own multilingual studio platform with industry pages, free SEO tools, lead capture, CRM workflows, pricing and conversion-focused n…"
+        },
+        {
+          "href": "/en/projects/#geo",
+          "tag": "Framework",
+          "heading": "AI Search Visibility (GEO) Audit Framework — ChatGPT &amp; Gemini",
+          "text": "A self-initiated framework for reviewing how clearly a business is understood by AI answer engines, with entity, content and citation-r…"
+        },
+        {
+          "href": "/en/projects/#industry",
+          "tag": "Concept Project",
+          "heading": "Industry Website Collection — Multilingual Concepts",
+          "text": "A collection of niche website directions for lawyers, dentists, clinics, realtors, accountants, construction, auto services and hospita…"
+        },
+        {
+          "href": "/en/projects/#brandkit",
+          "tag": "Concept Project",
+          "heading": "B2B SaaS Marketing &amp; Brand Asset Kit",
+          "text": "A modular set of B2B SaaS marketing assets designed to keep campaign visuals, social graphics and sales materials consistent.…"
+        },
+        {
+          "href": "/en/projects/#report",
+          "tag": "Concept Project",
+          "heading": "B2B SaaS Case Study &amp; Report Design",
+          "text": "A report and case-study concept that turns dense B2B information into a polished narrative with clear data hierarchy and reusable layou…"
+        },
+        {
+          "href": "/en/projects/#aivisual",
+          "tag": "Concept Project",
+          "heading": "AI-Assisted Marketing Visual Exploration",
+          "text": "A controlled exploration of AI-assisted visual directions for marketing campaigns, refined into usable compositions rather than raw gen…"
+        }
+      ],
+      "cta": {
+        "href": "/en/projects/",
+        "class": "home-projects-more",
+        "label": "View all projects →"
+      }
+    },
+    "clutch": {
+      "label": "Independent company profile",
+      "linkLabel": "Find BEQSON Digital Studio on Clutch",
+      "kicker": "INDEPENDENT COMPANY PROFILE",
+      "heading": "Find us on Clutch",
+      "text": "View our services, portfolio and company profile on Clutch.",
+      "cta": "↗"
+    },
+    "pricing": {
+      "currency": "$",
+      "amounts": [
+        "149",
+        "299",
+        "499"
+      ],
+      "perMonth": "from $39 / month",
+      "note": "Prices in USD. We agree the final scope before work begins. Domain fees, paid services and advertising budgets are separate where needed."
+    }
+  },
+  "root": {
+    "pricing": {
+      "currency": "$",
+      "amounts": [
+        "149",
+        "299",
+        "499"
+      ],
+      "perMonth": "$60-დან / თვე",
+      "note": "ფასები მოცემულია USD-ში. სამუშაოს მოცულობას დაწყებამდე ვათანხმებთ. დომენი, ფასიანი სერვისები და სარეკლამო ბიუჯეტი საჭიროებისამებრ ცალკე იფარება."
+    }
+  }
+}

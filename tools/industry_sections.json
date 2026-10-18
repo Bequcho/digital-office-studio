@@ -1,0 +1,2661 @@
+{
+  "lawyers": {
+    "ru": [
+      {
+        "kind": "features",
+        "kicker": "САЙТ ДЛЯ АДВОКАТА",
+        "heading": "Сделан под то,<br>как клиент выбирает юриста.",
+        "intro": "Юридическому сайту недостаточно выглядеть дорого. Он должен быстро объяснить специализацию, вызвать доверие и привести человека к понятному следующему шагу.",
+        "cards": [
+          {
+            "heading": "SEO-страницы услуг",
+            "text": "Отдельные страницы под гражданские, уголовные, административные, семейные и другие направления помогают и клиентам, и поисковикам понять специализацию.",
+            "number": "01"
+          },
+          {
+            "heading": "Доверие без громких обещаний",
+            "text": "Опыт, образование, языки, офис и настоящие фотографии — аккуратно и без обещаний результата дела.",
+            "number": "02"
+          },
+          {
+            "heading": "Несколько языков",
+            "text": "Русская, грузинская, английская и другие версии можно правильно организовать для пользователей и международного поиска.",
+            "number": "03"
+          },
+          {
+            "heading": "Заявки и CRM",
+            "text": "WhatsApp, Telegram, email, формы, аналитика и CRM превращают сайт в рабочую систему привлечения клиентов.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "РЕАЛЬНЫЙ ПРОЕКТ",
+        "heading": "Levani Law — действующий сайт адвоката.",
+        "intro": "Мы создали сайт адвоката Levani Khelkhelauri на грузинском, русском и английском языках, структурировали юридические услуги и подготовили основу для локального поиска.",
+        "channels": [
+          "Три языковые версии сайта",
+          "Гражданское, административное и уголовное право",
+          "SEO, Google и удобные точки обращения"
+        ],
+        "link": {
+          "href": "https://levanilaw.ge",
+          "label": "Открыть сайт <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "external": true
+        }
+      },
+      {
+        "kind": "features",
+        "kicker": "СТАРТОВЫЕ ЦЕНЫ",
+        "heading": "Начните недорого.<br>Расширяйте по мере роста.",
+        "intro": "На старте сайт для адвоката можно запустить <strong>от 9 900 ₽</strong>. До обращения к нам можно бесплатно проверить текущий сайт или рассчитать новый проект.",
+        "cards": [
+          {
+            "heading": "Бесплатный SEO-аудит",
+            "text": "SEO Score, технические проверки и приоритетный план действий.",
+            "link": {
+              "href": "/ru/audit/",
+              "label": "Проверить сайт →"
+            }
+          },
+          {
+            "heading": "Калькулятор стоимости",
+            "text": "Ответьте на пять вопросов и сразу получите ориентировочный диапазон цены.",
+            "link": {
+              "href": "/ru/calculator/",
+              "label": "Рассчитать стоимость →"
+            }
+          },
+          {
+            "heading": "От 9 900 ₽",
+            "text": "Стартовая цена на компактный сайт в период запуска BEQSON.",
+            "link": {
+              "href": "#contact",
+              "label": "Обсудить проект →"
+            }
+          },
+          {
+            "heading": "Можно расширять",
+            "text": "Добавим SEO-страницы, CRM, аналитику и дополнительные языки по мере роста.",
+            "link": {
+              "href": "/ru/tools/",
+              "label": "Все бесплатные инструменты →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Вопросы о сайте<br>для адвоката.",
+        "intro": "Коротко о том, что обычно важно перед запуском юридического сайта.",
+        "cards": [
+          {
+            "heading": "Что должно быть на хорошем сайте адвоката?",
+            "text": "Направления практики, профиль адвоката, реальные сведения об опыте, языки, контакты, адрес и отдельные страницы услуг."
+          },
+          {
+            "heading": "Можно сделать сайт на нескольких языках?",
+            "text": "Да. Организуем локализованные версии и правильно свяжем их для посетителей и поисковиков."
+          },
+          {
+            "heading": "Вы занимаетесь SEO для адвокатов?",
+            "text": "Да — техническая база, метаданные, локальный поиск, внутренние ссылки и страницы услуг. Без обещаний конкретных позиций."
+          },
+          {
+            "heading": "Сколько стоит сайт?",
+            "text": "Стартовая цена — от 9 900 ₽. Итог зависит от количества страниц, языков, SEO, CRM и функций."
+          }
+        ]
+      }
+    ],
+    "ka": [
+      {
+        "kind": "features",
+        "kicker": "ადვოკატის ვებსაიტი",
+        "heading": "შექმნილი იმისთვის,<br>როგორ არჩევს კლიენტი იურისტს.",
+        "intro": "იურიდიული საიტი მხოლოდ ლამაზი არ უნდა იყოს. მან სწრაფად უნდა აჩვენოს სპეციალიზაცია, შექმნას ნდობა და მომხმარებელს მარტივი შემდეგი ნაბიჯი შესთავაზოს.",
+        "cards": [
+          {
+            "heading": "SEO გვერდები სერვისებისთვის",
+            "text": "ცალკე გვერდები სამოქალაქო, სისხლის, ადმინისტრაციული, საოჯახო და სხვა მიმართულებებისთვის ეხმარება როგორც კლიენტს, ისე საძიებო სისტემას.",
+            "number": "01"
+          },
+          {
+            "heading": "ნდობა ზედმეტი დაპირებების გარეშე",
+            "text": "გამოცდილება, განათლება, სამუშაო ენები, ოფისი და რეალური ფოტოები — მკაფიოდ და საქმის შედეგის დაპირების გარეშე.",
+            "number": "02"
+          },
+          {
+            "heading": "მრავალენოვანი სტრუქტურა",
+            "text": "ქართული, რუსული, ინგლისური და სხვა ვერსიები შეიძლება სწორად მოეწყოს ადგილობრივი და საერთაშორისო ძიებისთვის.",
+            "number": "03"
+          },
+          {
+            "heading": "მომართვები და CRM",
+            "text": "WhatsApp, Telegram, email, ფორმები, ანალიტიკა და CRM ვებსაიტს კლიენტების მოზიდვის სამუშაო სისტემად აქცევს.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "რეალური პროექტი",
+        "heading": "Levani Law — მოქმედი მრავალენოვანი იურიდიული საიტი.",
+        "intro": "ადვოკატ Levani Khelkhelauri-სთვის შევქმენით ქართული, რუსული და ინგლისური ვერსიები, იურიდიული სერვისების მკაფიო სტრუქტურა და ლოკალური ძიების საფუძველი.",
+        "channels": [
+          "სამენოვანი ვებსაიტის არქიტექტურა",
+          "სამოქალაქო, ადმინისტრაციული და სისხლის სამართლის მიმართულებები",
+          "SEO, Google და პირდაპირი საკონტაქტო გზები"
+        ],
+        "link": {
+          "href": "https://levanilaw.ge",
+          "label": "საიტის ნახვა <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "external": true
+        }
+      },
+      {
+        "kind": "features",
+        "kicker": "საწყისი ფასები",
+        "heading": "დაიწყეთ ხელმისაწვდომად.<br>გაზარდეთ ეტაპობრივად.",
+        "intro": "BEQSON-ის გაშვების პერიოდში ადვოკატის საიტის ფასი იწყება <strong>299 ₾-დან</strong>. მანამდე შეგიძლიათ უფასოდ შეამოწმოთ არსებული საიტი ან გამოთვალოთ ახალი პროექტის ფასი.",
+        "cards": [
+          {
+            "heading": "უფასო SEO აუდიტი",
+            "text": "SEO Score, ტექნიკური შემოწმება და პრიორიტეტული სამოქმედო გეგმა.",
+            "link": {
+              "href": "/ka/audit/",
+              "label": "საიტის შემოწმება →"
+            }
+          },
+          {
+            "heading": "ღირებულების კალკულატორი",
+            "text": "უპასუხეთ ხუთ კითხვას და მიიღეთ სავარაუდო ფასის დიაპაზონი.",
+            "link": {
+              "href": "/ka/calculator/",
+              "label": "ფასის გამოთვლა →"
+            }
+          },
+          {
+            "heading": "299 ₾-დან",
+            "text": "საწყისი ფასი კომპაქტური საიტისთვის BEQSON-ის გაშვების პერიოდში.",
+            "link": {
+              "href": "#contact",
+              "label": "პროექტის განხილვა →"
+            }
+          },
+          {
+            "heading": "მარტივად გასაფართოებელი",
+            "text": "შემდგომში დავამატებთ SEO გვერდებს, CRM-ს, ანალიტიკას და დამატებით ენებს.",
+            "link": {
+              "href": "/ka/tools/",
+              "label": "უფასო ინსტრუმენტები →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "კითხვები ადვოკატის<br>ვებსაიტზე.",
+        "intro": "მოკლე პასუხები მთავარ საკითხებზე იურიდიული საიტის დაწყებამდე.",
+        "cards": [
+          {
+            "heading": "რა უნდა ჰქონდეს კარგ ადვოკატის ვებსაიტს?",
+            "text": "პრაქტიკის მიმართულებები, ადვოკატის პროფილი, რეალური გამოცდილება, ენები, კონტაქტები, მისამართი და სერვისების ცალკე გვერდები."
+          },
+          {
+            "heading": "შესაძლებელია მრავალენოვანი საიტი?",
+            "text": "დიახ. ლოკალიზებულ ვერსიებს სწორად დავაკავშირებთ მომხმარებლებისა და საძიებო სისტემებისთვის."
+          },
+          {
+            "heading": "აკეთებთ SEO-ს ადვოკატებისთვის?",
+            "text": "დიახ — ტექნიკური საფუძველი, მეტამონაცემები, ლოკალური ძიება, შიდა ბმულები და სერვისების გვერდები. კონკრეტულ პოზიციებს არ ვპირდებით."
+          },
+          {
+            "heading": "რა ღირს ვებსაიტი?",
+            "text": "საწყისი ფასი 299 ₾-დან. საბოლოო ღირებულება დამოკიდებულია გვერდებზე, ენებზე, SEO-ზე, CRM-სა და ფუნქციებზე."
+          }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "kind": "features",
+        "kicker": "LAW FIRM WEBSITE DESIGN",
+        "heading": "Built for how legal clients<br>actually choose a lawyer.",
+        "intro": "A legal website has to do more than look premium. It should explain what you handle, establish credibility quickly and make the next step obvious on desktop and mobile.",
+        "cards": [
+          {
+            "heading": "Practice-area SEO pages",
+            "text": "Separate pages for civil, criminal, administrative, family, immigration or other services help people and search engines understand your expertise.",
+            "number": "01"
+          },
+          {
+            "heading": "Trust-first presentation",
+            "text": "Real experience, education, languages, office details and authentic photography presented clearly without exaggerated promises.",
+            "number": "02"
+          },
+          {
+            "heading": "Multilingual structure",
+            "text": "English, Georgian, Russian or other language versions can be organized for both users and international search visibility.",
+            "number": "03"
+          },
+          {
+            "heading": "Enquiries & CRM",
+            "text": "WhatsApp, Telegram, email, forms, analytics and CRM-ready lead capture can turn the website into a working client-acquisition system.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "REAL PROJECT",
+        "heading": "Levani Law — a live multilingual legal website.",
+        "intro": "We created a real website for lawyer Levani Khelkhelauri with Georgian, Russian and English versions, clear legal-service structure and local-search foundations.",
+        "channels": [
+          "Three-language website architecture",
+          "Civil, administrative and criminal-law positioning",
+          "SEO, Google visibility and direct enquiry paths"
+        ],
+        "link": {
+          "href": "https://levanilaw.ge",
+          "label": "View live project <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "external": true
+        }
+      },
+      {
+        "kind": "features",
+        "kicker": "LAUNCH PRICING",
+        "heading": "Start small.<br>Grow when it works.",
+        "intro": "International launch pricing starts from <strong>$149</strong>. Use our free tools before contacting us: audit an existing site or estimate a new project.",
+        "cards": [
+          {
+            "heading": "Free SEO Audit",
+            "text": "Get an SEO Score, technical checks and a priority action plan.",
+            "link": {
+              "href": "/en/audit/",
+              "label": "Run audit →"
+            }
+          },
+          {
+            "heading": "Website Cost Calculator",
+            "text": "Answer five questions and get an estimated price range instantly.",
+            "link": {
+              "href": "/en/calculator/",
+              "label": "Calculate cost →"
+            }
+          },
+          {
+            "heading": "Start from $149",
+            "text": "Focused starter websites for early clients during our launch period.",
+            "link": {
+              "href": "#contact",
+              "label": "Discuss project →"
+            }
+          },
+          {
+            "heading": "Multilingual & scalable",
+            "text": "Add SEO pages, CRM, analytics and extra languages as the project grows.",
+            "link": {
+              "href": "/en/tools/",
+              "label": "Explore free tools →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Law firm website<br>questions.",
+        "intro": "Practical answers before you start a legal website project.",
+        "cards": [
+          {
+            "heading": "What should a good law firm website include?",
+            "text": "Clear practice areas, lawyer profiles, real credentials, contact options, working languages, location information and focused service pages."
+          },
+          {
+            "heading": "Can you build a multilingual law firm website?",
+            "text": "Yes. We can structure localized versions and connect them correctly for visitors and search engines."
+          },
+          {
+            "heading": "Do you also help with SEO for lawyers?",
+            "text": "Yes — technical foundations, metadata, internal links, local search and practice-area pages. We never promise specific rankings."
+          },
+          {
+            "heading": "How much does it cost?",
+            "text": "International launch pricing starts from $149. Scope, languages, SEO, CRM and page count determine the final price."
+          }
+        ]
+      }
+    ],
+    "placement": "after-hero",
+    "replaceGeneric": false,
+    "marker": "LAWYERS_SEO_V1"
+  },
+  "dentists": {
+    "ru": [
+      {
+        "kind": "features",
+        "kicker": "САЙТ ДЛЯ СТОМАТОЛОГИИ",
+        "heading": "Построен вокруг того,<br>как пациент выбирает клинику.",
+        "intro": "Сайт стоматологии должен быстро ответить на три вопроса: что вы лечите, кто принимает и как записаться. Мы соединяем спокойный дизайн, SEO-структуру и удобный путь до обращения.",
+        "cards": [
+          {
+            "heading": "SEO-страницы услуг",
+            "text": "Отдельные страницы под имплантацию, ортодонтию, гигиену, эстетическую стоматологию, срочную помощь и другие направления.",
+            "number": "01"
+          },
+          {
+            "heading": "Врачи и доверие",
+            "text": "Профили специалистов, образование, рабочие языки, фотографии клиники и практическая информация без медицинских обещаний.",
+            "number": "02"
+          },
+          {
+            "heading": "Удобная запись",
+            "text": "Форма записи, телефон, WhatsApp и заметные кнопки сокращают путь от поиска до первого визита.",
+            "number": "03"
+          },
+          {
+            "heading": "Локальное SEO и языки",
+            "text": "География, карты и несколько языковых версий помогают работать и с местными, и с иностранными пациентами.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "ПОИСК · ДОВЕРИЕ · ЗАПИСЬ",
+        "heading": "От запроса в Google — до приёма.",
+        "intro": "Структурируем сайт по пути пациента и подключаем аналитику, чтобы клиника понимала, какие страницы и каналы приводят обращения.",
+        "channels": [
+          "Поисковые страницы по услугам и городу",
+          "Врачи, клиника и понятные факторы доверия",
+          "Запись, аналитика обращений и CRM"
+        ],
+        "link": {
+          "href": "/ru/audit/",
+          "label": "Проверить текущий сайт <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "external": false
+        }
+      },
+      {
+        "kind": "features",
+        "kicker": "СТАРТОВЫЕ ЦЕНЫ",
+        "heading": "Начните недорого.<br>Расширяйте сайт по мере роста.",
+        "intro": "На старте сайт стоматологии можно запустить <strong>от 9 900 ₽</strong>. До обращения к нам можно бесплатно проверить текущий сайт или рассчитать новый проект.",
+        "cards": [
+          {
+            "heading": "Бесплатный SEO-аудит",
+            "text": "SEO Score, технические проверки и приоритетный план действий.",
+            "link": {
+              "href": "/ru/audit/",
+              "label": "Проверить сайт →"
+            }
+          },
+          {
+            "heading": "Калькулятор стоимости",
+            "text": "Ответьте на пять вопросов и получите ориентировочный диапазон цены.",
+            "link": {
+              "href": "/ru/calculator/",
+              "label": "Рассчитать стоимость →"
+            }
+          },
+          {
+            "heading": "От 9 900 ₽",
+            "text": "Стартовая цена на компактный сайт в период запуска BEQSON.",
+            "link": {
+              "href": "#contact",
+              "label": "Обсудить проект →"
+            }
+          },
+          {
+            "heading": "Можно расширять",
+            "text": "Добавим услуги, языки, аналитику, CRM и интеграцию записи по мере роста.",
+            "link": {
+              "href": "/ru/tools/",
+              "label": "Все бесплатные инструменты →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Вопросы о сайте<br>стоматологии.",
+        "intro": "Коротко о том, что важно перед запуском сайта стоматолога или клиники.",
+        "cards": [
+          {
+            "heading": "Что должно быть на сайте стоматологии?",
+            "text": "Услуги, врачи, информация о клинике, адрес, часы работы, контакты и простой путь к записи."
+          },
+          {
+            "heading": "Можно подключить онлайн-запись?",
+            "text": "Да. Подключим форму записи, заявку на приём, телефон, WhatsApp и другие каналы."
+          },
+          {
+            "heading": "Вы делаете локальное SEO?",
+            "text": "Да — структура услуг, метаданные, внутренние ссылки и локальная поисковая база. Позиции не гарантируем."
+          },
+          {
+            "heading": "Сколько стоит сайт?",
+            "text": "Стартовая цена — от 9 900 ₽. Итог зависит от страниц, языков, записи, SEO и CRM."
+          }
+        ]
+      }
+    ],
+    "ka": [
+      {
+        "kind": "features",
+        "kicker": "ვებსაიტი სტომატოლოგიისთვის",
+        "heading": "აგებულია ისე,<br>როგორც პაციენტი ირჩევს კლინიკას.",
+        "intro": "სტომატოლოგიის საიტმა სწრაფად უნდა უპასუხოს სამ კითხვას: რა სერვისები გაქვთ, ვინ არიან ექიმები და როგორ შეიძლება ჩაწერა. დიზაინს ვაერთიანებთ SEO სტრუქტურასთან და მარტივ საკონტაქტო გზებთან.",
+        "cards": [
+          {
+            "heading": "SEO გვერდები სერვისებისთვის",
+            "text": "ცალკე გვერდები იმპლანტაციის, ორთოდონტიის, ჰიგიენის, ესთეტიკური სტომატოლოგიის და სხვა მიმართულებებისთვის.",
+            "number": "01"
+          },
+          {
+            "heading": "ექიმები და ნდობა",
+            "text": "ექიმების პროფილები, განათლება, სამუშაო ენები, კლინიკის ფოტოები და პრაქტიკული ინფორმაცია გადაჭარბებული სამედიცინო დაპირებების გარეშე.",
+            "number": "02"
+          },
+          {
+            "heading": "მარტივი ჩაწერა",
+            "text": "ჩაწერის ფორმა, ტელეფონი, WhatsApp და მკაფიო ღილაკები ამცირებს გზას ძიებიდან პირველ ვიზიტამდე.",
+            "number": "03"
+          },
+          {
+            "heading": "ლოკალური SEO და ენები",
+            "text": "ლოკაცია, რუკები და რამდენიმე ენობრივი ვერსია ეხმარება კლინიკას როგორც ადგილობრივ, ისე უცხოელ პაციენტებთან მუშაობაში.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "ძიება · ნდობა · ჩაწერა",
+        "heading": "Google-ის ძიებიდან — ვიზიტამდე.",
+        "intro": "საიტს ვაწყობთ პაციენტის გზის მიხედვით და ვაერთებთ ანალიტიკას, რათა კლინიკამ დაინახოს რომელი გვერდები და არხები მოაქვს მომართვები.",
+        "channels": [
+          "საძიებო გვერდები სერვისებისა და ქალაქის მიხედვით",
+          "ექიმები, კლინიკა და ნდობის ფაქტორები",
+          "ჩაწერა, მომართვების ანალიტიკა და CRM"
+        ],
+        "link": {
+          "href": "/ka/audit/",
+          "label": "არსებული საიტის შემოწმება <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "external": false
+        }
+      },
+      {
+        "kind": "features",
+        "kicker": "საწყისი ფასები",
+        "heading": "დაიწყეთ მარტივად.<br>გააფართოვეთ ზრდასთან ერთად.",
+        "intro": "სტარტზე სტომატოლოგიური საიტის შექმნა შესაძლებელია <strong>299 ₾-დან</strong>. ჩვენთან დაკავშირებამდე შეგიძლიათ უფასოდ შეამოწმოთ არსებული საიტი ან გამოთვალოთ ახალი პროექტის ფასი.",
+        "cards": [
+          {
+            "heading": "უფასო SEO აუდიტი",
+            "text": "SEO Score, ტექნიკური შემოწმებები და პრიორიტეტული სამოქმედო გეგმა.",
+            "link": {
+              "href": "/ka/audit/",
+              "label": "საიტის შემოწმება →"
+            }
+          },
+          {
+            "heading": "ღირებულების კალკულატორი",
+            "text": "უპასუხეთ ხუთ კითხვას და მიიღეთ სავარაუდო ფასის დიაპაზონი.",
+            "link": {
+              "href": "/ka/calculator/",
+              "label": "ღირებულების გამოთვლა →"
+            }
+          },
+          {
+            "heading": "299 ₾-დან",
+            "text": "საწყისი ფასი კომპაქტური საიტისთვის BEQSON-ის გაშვების პერიოდში.",
+            "link": {
+              "href": "#contact",
+              "label": "პროექტის განხილვა →"
+            }
+          },
+          {
+            "heading": "მარტივად ფართოვდება",
+            "text": "შემდგომ დავამატებთ სერვისებს, ენებს, ანალიტიკას, CRM-ს და ჩაწერის ინტეგრაციას.",
+            "link": {
+              "href": "/ka/tools/",
+              "label": "უფასო ინსტრუმენტები →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "კითხვები სტომატოლოგიურ<br>ვებსაიტზე.",
+        "intro": "მოკლე პასუხები სტომატოლოგის ან კლინიკის საიტის დაწყებამდე.",
+        "cards": [
+          {
+            "heading": "რა უნდა ჰქონდეს კლინიკის საიტს?",
+            "text": "სერვისები, ექიმები, კლინიკის ინფორმაცია, მისამართი, სამუშაო საათები, კონტაქტები და ჩაწერის მარტივი გზა."
+          },
+          {
+            "heading": "შეიძლება ონლაინ ჩაწერა?",
+            "text": "დიახ. დავაკავშირებთ ჩაწერის ფორმას, ვიზიტის მოთხოვნას, ტელეფონს, WhatsApp-ს და სხვა არხებს."
+          },
+          {
+            "heading": "აკეთებთ ლოკალურ SEO-ს?",
+            "text": "დიახ — სერვისების სტრუქტურა, მეტამონაცემები, შიდა ბმულები და ლოკალური ძიების საფუძველი. პოზიციებს არ ვიძლევით გარანტიას."
+          },
+          {
+            "heading": "რა ღირს საიტი?",
+            "text": "საწყისი ფასი 299 ₾-დან იწყება. საბოლოო ღირებულება დამოკიდებულია გვერდებზე, ენებზე, ჩაწერაზე, SEO-სა და CRM-ზე."
+          }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "kind": "features",
+        "kicker": "DENTAL WEBSITE DESIGN",
+        "heading": "Built around the way patients<br>choose a dental clinic.",
+        "intro": "A dental website should quickly answer three questions: what you treat, who the doctors are and how to book. We combine reassuring design with search-ready structure and clear conversion paths.",
+        "cards": [
+          {
+            "heading": "Treatment SEO pages",
+            "text": "Dedicated pages for implants, orthodontics, hygiene, cosmetic dentistry, emergency care and other services can match real patient searches.",
+            "number": "01"
+          },
+          {
+            "heading": "Doctor profiles & trust",
+            "text": "Present dentists, qualifications, languages, clinic photos and practical information without exaggerated medical claims.",
+            "number": "02"
+          },
+          {
+            "heading": "Booking-first UX",
+            "text": "Appointment forms, phone, WhatsApp and clear calls to action reduce friction between search and the first visit.",
+            "number": "03"
+          },
+          {
+            "heading": "Local & multilingual SEO",
+            "text": "Location pages, map signals and multilingual versions help clinics serve local patients and international audiences.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "SEARCH · TRUST · BOOKING",
+        "heading": "From Google search to appointment.",
+        "intro": "We structure the site around the patient journey, then connect analytics so the clinic can see which pages and channels generate enquiries.",
+        "channels": [
+          "Search pages for treatments and location",
+          "Doctors, clinic, reviews and practical trust signals",
+          "Booking, enquiry tracking and CRM-ready lead capture"
+        ],
+        "link": {
+          "href": "/en/audit/",
+          "label": "Audit an existing website <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "external": false
+        }
+      },
+      {
+        "kind": "features",
+        "kicker": "LAUNCH PRICING",
+        "heading": "Start lean.<br>Add features as you grow.",
+        "intro": "International launch pricing starts from <strong>$149</strong>. You can audit an existing clinic website or calculate a new project before contacting us.",
+        "cards": [
+          {
+            "heading": "Free SEO Audit",
+            "text": "SEO Score, technical checks and a priority action plan.",
+            "link": {
+              "href": "/en/audit/",
+              "label": "Run audit →"
+            }
+          },
+          {
+            "heading": "Website Cost Calculator",
+            "text": "Answer five questions and get an instant estimated range.",
+            "link": {
+              "href": "/en/calculator/",
+              "label": "Calculate cost →"
+            }
+          },
+          {
+            "heading": "Start from $149",
+            "text": "Focused starter websites during the BEQSON launch period.",
+            "link": {
+              "href": "#contact",
+              "label": "Discuss project →"
+            }
+          },
+          {
+            "heading": "Built to expand",
+            "text": "Add treatment pages, languages, analytics, CRM and booking integrations later.",
+            "link": {
+              "href": "/en/tools/",
+              "label": "Explore free tools →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Dental website<br>questions.",
+        "intro": "Practical answers before launching a dentist or dental clinic website.",
+        "cards": [
+          {
+            "heading": "What should a dental clinic website include?",
+            "text": "Treatment pages, dentist profiles, clinic details, location, opening hours, contact options and a clear booking path."
+          },
+          {
+            "heading": "Can you add online booking?",
+            "text": "Yes. We can connect appointment forms, booking requests, phone, WhatsApp and other contact methods."
+          },
+          {
+            "heading": "Do you help with local SEO for dentists?",
+            "text": "Yes — service-page structure, metadata, internal links and local-search foundations. We do not promise specific rankings."
+          },
+          {
+            "heading": "How much does it cost?",
+            "text": "International launch pricing starts from $149. Pages, languages, booking, SEO and CRM determine the final scope."
+          }
+        ]
+      }
+    ],
+    "placement": "before-contact",
+    "replaceGeneric": false,
+    "marker": "DENTISTS_SEO_V1"
+  },
+  "clinics": {
+    "ru": [
+      {
+        "kind": "features",
+        "kicker": "САЙТ ДЛЯ ВРАЧА И КЛИНИКИ",
+        "heading": "Структура под то,<br>как пациент ищет специалиста.",
+        "intro": "Медицинский сайт должен упрощать сложную информацию. Мы выстраиваем врачей, специализации, услуги и контакты так, чтобы человеку было понятно, куда двигаться дальше.",
+        "cards": [
+          {
+            "heading": "Профили врачей",
+            "text": "Отдельные страницы с реальными данными об образовании, специализации, языках, месте приёма и профессиональном опыте.",
+            "number": "01"
+          },
+          {
+            "heading": "Страницы услуг и направлений",
+            "text": "Консультации, диагностика, процедуры и специализации получают собственную понятную структуру для пользователей и поиска.",
+            "number": "02"
+          },
+          {
+            "heading": "Путь к записи",
+            "text": "Телефон, WhatsApp, формы или поддерживаемая система онлайн-записи размещаются там, где человеку логично сделать следующий шаг.",
+            "number": "03"
+          },
+          {
+            "heading": "Локальное и мультиязычное SEO",
+            "text": "Страницы по локациям и правильно связанные языковые версии помогают работать с местной и международной аудиторией.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "ПОИСК → ДОВЕРИЕ → ЗАПИСЬ",
+        "heading": "Понятный путь пациента.",
+        "intro": "Строим сайт вокруг реальных вопросов: какой специалист нужен, какие услуги есть, где находится клиника и как записаться на приём.",
+        "channels": [
+          "Поисковые страницы по специализациям, услугам и локациям",
+          "Профили врачей и проверяемые факты для доверия",
+          "Заявки на приём, аналитика и CRM"
+        ],
+        "link": {
+          "href": "/ru/audit/",
+          "label": "Проверить текущий сайт клиники <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "external": false
+        }
+      },
+      {
+        "kind": "features",
+        "kicker": "СТАРТОВЫЕ ЦЕНЫ",
+        "heading": "Начните с главного.<br>Расширяйте по мере необходимости.",
+        "intro": "Стартовая цена — <strong>от 9 900 ₽</strong>. Частный врач может начать с компактного сайта, а клиника постепенно добавить страницы врачей, услуг, филиалов и интеграцию записи.",
+        "cards": [
+          {
+            "heading": "Бесплатный SEO-аудит",
+            "text": "Проверим техническую основу, метаданные, индексируемость и приоритетные проблемы текущего сайта.",
+            "link": {
+              "href": "/ru/audit/",
+              "label": "Проверить сайт →"
+            }
+          },
+          {
+            "heading": "Калькулятор стоимости",
+            "text": "Рассчитайте ориентировочную стоимость нового сайта врача или клиники за несколько минут.",
+            "link": {
+              "href": "/ru/calculator/",
+              "label": "Рассчитать стоимость →"
+            }
+          },
+          {
+            "heading": "От 9 900 ₽",
+            "text": "Стартовая цена на компактные проекты для первых клиентов BEQSON.",
+            "link": {
+              "href": "#contact",
+              "label": "Обсудить проект →"
+            }
+          },
+          {
+            "heading": "Только реальные медицинские факты",
+            "text": "Сведения об услугах, квалификации и медицинские утверждения должны быть подтверждены врачом или клиникой. Мы не придумываем результаты лечения и гарантии.",
+            "link": {
+              "href": "/ru/tools/",
+              "label": "Бесплатные инструменты →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Вопросы о сайте<br>врача или клиники.",
+        "intro": "Что обычно важно решить до запуска медицинского сайта.",
+        "cards": [
+          {
+            "heading": "Что должно быть на сайте клиники?",
+            "text": "Врачи, специализации, услуги, адреса, режим работы, контакты и простой путь к записи или заявке."
+          },
+          {
+            "heading": "Можно сделать страницу каждого врача?",
+            "text": "Да. В профиле можно показать специализацию, образование, языки, место приёма и другие подтверждённые профессиональные сведения."
+          },
+          {
+            "heading": "Поможете с локальным SEO?",
+            "text": "Да — структура по локациям, метаданные, внутренние ссылки и локальный поиск. Конкретные позиции в Google не обещаем."
+          },
+          {
+            "heading": "Сколько стоит сайт?",
+            "text": "Стартовая цена — от 9 900 ₽. Итог зависит от врачей, услуг, языков, SEO, записи и CRM."
+          }
+        ]
+      }
+    ],
+    "ka": [
+      {
+        "kind": "features",
+        "kicker": "საიტი ექიმისა და კლინიკისთვის",
+        "heading": "სტრუქტურა იმის მიხედვით,<br>როგორ ეძებს პაციენტი ექიმს.",
+        "intro": "სამედიცინო საიტმა რთული ინფორმაცია მარტივად უნდა წარმოაჩინოს. ექიმებს, სპეციალიზაციებს, სერვისებსა და კონტაქტებს ისე ვაწყობთ, რომ შემდეგი ნაბიჯი მომხმარებლისთვის გასაგები იყოს.",
+        "cards": [
+          {
+            "heading": "ექიმების პროფილები",
+            "text": "ცალკე გვერდები რეალური ინფორმაციით განათლებაზე, სპეციალიზაციაზე, სამუშაო ენებზე, მიღების ადგილსა და პროფესიულ გამოცდილებაზე.",
+            "number": "01"
+          },
+          {
+            "heading": "სერვისებისა და სპეციალიზაციების გვერდები",
+            "text": "კონსულტაციებს, დიაგნოსტიკას, პროცედურებსა და მიმართულებებს ცალკე, გასაგები სტრუქტურა ექნება მომხმარებლისა და ძიებისთვის.",
+            "number": "02"
+          },
+          {
+            "heading": "ჩაწერის მარტივი გზა",
+            "text": "ტელეფონი, WhatsApp, ფორმა ან მხარდაჭერილი ონლაინ-ჩაწერის სისტემა განთავსდება იქ, სადაც მომხმარებელს შემდეგი ნაბიჯის გადადგმა სჭირდება.",
+            "number": "03"
+          },
+          {
+            "heading": "ლოკალური და მრავალენოვანი SEO",
+            "text": "ლოკაციის გვერდები და სწორად დაკავშირებული ენების ვერსიები ეხმარება კლინიკას იმუშაოს ადგილობრივ და საერთაშორისო აუდიტორიასთან.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "ძიება → ნდობა → ჩაწერა",
+        "heading": "პაციენტის გასაგები გზა.",
+        "intro": "საიტს რეალური კითხვების გარშემო ვაწყობთ: რომელი სპეციალისტი მჭირდება, რა სერვისებია, სად მდებარეობს კლინიკა და როგორ დავუკავშირდე.",
+        "channels": [
+          "საძიებო გვერდები სპეციალიზაციების, სერვისებისა და ლოკაციების მიხედვით",
+          "ექიმების პროფილები და გადამოწმებადი ფაქტები ნდობისთვის",
+          "ჩაწერის მოთხოვნები, ანალიტიკა და CRM"
+        ],
+        "link": {
+          "href": "/ka/audit/",
+          "label": "შეამოწმეთ არსებული საიტი <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "external": false
+        }
+      },
+      {
+        "kind": "features",
+        "kicker": "საწყისი ფასები",
+        "heading": "დაიწყეთ ძირითადით.<br>შემდეგ გააფართოვეთ.",
+        "intro": "საწყისი ფასი — <strong>299 ₾-დან</strong>. კერძო ექიმს შეუძლია დაიწყოს კომპაქტური საიტით, ხოლო კლინიკამ შემდეგ დაამატოს ექიმების, სერვისების, ფილიალებისა და ჩაწერის გვერდები.",
+        "cards": [
+          {
+            "heading": "უფასო SEO აუდიტი",
+            "text": "შეამოწმეთ ტექნიკური საფუძველი, მეტამონაცემები, ინდექსაცია და არსებული საიტის პრიორიტეტული პრობლემები.",
+            "link": {
+              "href": "/ka/audit/",
+              "label": "საიტის შემოწმება →"
+            }
+          },
+          {
+            "heading": "ღირებულების კალკულატორი",
+            "text": "რამდენიმე წუთში მიიღეთ ექიმის ან კლინიკის ახალი საიტის სავარაუდო ღირებულება.",
+            "link": {
+              "href": "/ka/calculator/",
+              "label": "ღირებულების გამოთვლა →"
+            }
+          },
+          {
+            "heading": "299 ₾-დან",
+            "text": "BEQSON-ის პირველი კლიენტებისთვის მოქმედი საწყისი ფასი კომპაქტურ პროექტებზე.",
+            "link": {
+              "href": "#contact",
+              "label": "პროექტის განხილვა →"
+            }
+          },
+          {
+            "heading": "მხოლოდ რეალური სამედიცინო ფაქტები",
+            "text": "სერვისები, კვალიფიკაცია და სამედიცინო ინფორმაცია უნდა იყოს ექიმის ან კლინიკის მიერ დადასტურებული. ჩვენ არ ვიგონებთ შედეგებსა და გარანტიებს.",
+            "link": {
+              "href": "/ka/tools/",
+              "label": "უფასო ინსტრუმენტები →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "კითხვები ექიმისა და<br>კლინიკის ვებსაიტზე.",
+        "intro": "რა არის მნიშვნელოვანი სამედიცინო საიტის გაშვებამდე.",
+        "cards": [
+          {
+            "heading": "რა უნდა იყოს კლინიკის საიტზე?",
+            "text": "ექიმები, სპეციალიზაციები, სერვისები, მისამართები, სამუშაო ინფორმაცია, კონტაქტები და ჩაწერის მარტივი გზა."
+          },
+          {
+            "heading": "შეიძლება თითოეულ ექიმს ჰქონდეს გვერდი?",
+            "text": "დიახ. პროფილში შეიძლება იყოს სპეციალიზაცია, განათლება, ენები, მიღების ადგილი და სხვა დადასტურებული პროფესიული ინფორმაცია."
+          },
+          {
+            "heading": "ლოკალურ SEO-შიც გვეხმარებით?",
+            "text": "დიახ — ლოკაციის სტრუქტურა, მეტამონაცემები, შიდა ბმულები და ლოკალური ძიების საფუძველი. Google-ში კონკრეტულ პოზიციას არ ვპირდებით."
+          },
+          {
+            "heading": "რა ღირს საიტი?",
+            "text": "საწყისი ფასი 299 ₾-დან იწყება. საბოლოო ღირებულება დამოკიდებულია ექიმებზე, სერვისებზე, ენებზე, SEO-ზე, ჩაწერის ინტეგრაციასა და CRM-ზე."
+          }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "kind": "features",
+        "kicker": "MEDICAL WEBSITE DESIGN",
+        "heading": "Built around the way patients<br>look for a doctor.",
+        "intro": "A clinic website should make complex information easy to navigate. We structure doctors, specialties, services and contact points so a visitor can understand where to go next without friction.",
+        "cards": [
+          {
+            "heading": "Doctor & specialist profiles",
+            "text": "Individual pages can present qualifications, specialties, working languages, clinic locations and factual professional information.",
+            "number": "01"
+          },
+          {
+            "heading": "Service & specialty pages",
+            "text": "Dedicated pages for consultations, diagnostics, procedures and specialties create a clearer experience and stronger search structure.",
+            "number": "02"
+          },
+          {
+            "heading": "Appointment path",
+            "text": "Phone, WhatsApp, forms or supported booking systems can be placed where patients naturally need the next step.",
+            "number": "03"
+          },
+          {
+            "heading": "Local & multilingual SEO",
+            "text": "Location pages and properly connected language versions help clinics serve local residents, expats and international patients.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "SEARCH → TRUST → APPOINTMENT",
+        "heading": "A clearer patient journey.",
+        "intro": "We design the site around real questions: which specialist do I need, what does the clinic offer, where is it located and how can I make contact?",
+        "channels": [
+          "Search-ready pages for specialties, services and locations",
+          "Doctor profiles and factual trust signals",
+          "Appointment enquiries, analytics and CRM-ready lead capture"
+        ],
+        "link": {
+          "href": "/en/audit/",
+          "label": "Audit an existing clinic website <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "external": false
+        }
+      },
+      {
+        "kind": "features",
+        "kicker": "LAUNCH PRICING",
+        "heading": "Start focused.<br>Add more when needed.",
+        "intro": "International launch pricing starts from <strong>$149</strong>. A private doctor can begin with a compact website, while a clinic can expand into doctor, specialty, location and booking pages.",
+        "cards": [
+          {
+            "heading": "Free SEO Audit",
+            "text": "Check technical basics, metadata, indexability and priority issues on an existing website.",
+            "link": {
+              "href": "/en/audit/",
+              "label": "Run audit →"
+            }
+          },
+          {
+            "heading": "Website Cost Calculator",
+            "text": "Estimate the cost of a new doctor or clinic website in a few minutes.",
+            "link": {
+              "href": "/en/calculator/",
+              "label": "Calculate cost →"
+            }
+          },
+          {
+            "heading": "From $149",
+            "text": "Launch pricing for focused starter websites during BEQSON's early-client period.",
+            "link": {
+              "href": "#contact",
+              "label": "Discuss project →"
+            }
+          },
+          {
+            "heading": "Responsible content",
+            "text": "Medical claims, credentials and service information should be factual and approved by the clinic or doctor. We do not invent outcomes or guarantees.",
+            "link": {
+              "href": "/en/tools/",
+              "label": "Explore free tools →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Medical website<br>questions.",
+        "intro": "Practical answers before launching a website for a doctor or private clinic.",
+        "cards": [
+          {
+            "heading": "What should a clinic website include?",
+            "text": "Doctors, specialties, services, locations, working information, contact methods and a simple appointment path."
+          },
+          {
+            "heading": "Can every doctor have a profile?",
+            "text": "Yes. Doctor pages can include specialty, qualifications, languages, locations and other verified professional details."
+          },
+          {
+            "heading": "Do you help with local SEO?",
+            "text": "Yes — location structure, metadata, internal links and local-search foundations. We never promise a specific Google position."
+          },
+          {
+            "heading": "How much does it cost?",
+            "text": "International launch pricing starts from $149. The final price depends on doctors, services, languages, SEO, booking integrations and CRM scope."
+          }
+        ]
+      }
+    ],
+    "placement": "before-contact",
+    "replaceGeneric": false,
+    "marker": "CLINICS_SEO_V1"
+  },
+  "realtors": {
+    "ru": [
+      {
+        "kind": "features",
+        "kicker": "САЙТ ДЛЯ НЕДВИЖИМОСТИ",
+        "heading": "От интереса к объекту<br>до реальной заявки.",
+        "intro": "Сайт риелтора должен не только красиво показывать недвижимость, но и помогать находить объекты через поиск, быстро сравнивать детали и легко записываться на просмотр.",
+        "cards": [
+          {
+            "heading": "Карточки объектов",
+            "text": "Фото, цена, район, характеристики, преимущества и отдельная кнопка заявки или записи на просмотр.",
+            "number": "01"
+          },
+          {
+            "heading": "SEO по районам и типам",
+            "text": "Отдельные страницы под города, районы, жилые комплексы, квартиры, дома и коммерческую недвижимость.",
+            "number": "02"
+          },
+          {
+            "heading": "Несколько языков",
+            "text": "Русская, грузинская, английская и другие версии помогают работать с местными и иностранными покупателями.",
+            "number": "03"
+          },
+          {
+            "heading": "Заявки и CRM",
+            "text": "Формы, WhatsApp, Telegram, аналитика и CRM сохраняют, с какого объекта пришёл каждый потенциальный клиент.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "ПОИСК → ОБЪЕКТ → ЗАЯВКА",
+        "heading": "Понятный путь от Google<br>до записи на просмотр.",
+        "intro": "Создаём страницы под реальные локации и запросы, а каждую карточку объекта связываем с удобным способом обращения.",
+        "channels": [
+          "SEO-страницы районов и направлений",
+          "Заявка с конкретного объекта, а не без контекста",
+          "CRM и аналитика источников обращений"
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "СТАРТОВЫЕ ЦЕНЫ",
+        "heading": "Начните компактно.<br>Расширяйте каталог постепенно.",
+        "intro": "Стартовая цена сайта для риелтора — <strong>от 9 900 ₽</strong>. Перед заказом можно бесплатно проверить текущий сайт или рассчитать новый проект.",
+        "cards": [
+          {
+            "heading": "Бесплатный SEO-аудит",
+            "text": "Проверим техническое SEO, метаданные и основные проблемы текущего сайта.",
+            "link": {
+              "href": "/ru/audit/",
+              "label": "Проверить сайт →"
+            }
+          },
+          {
+            "heading": "Калькулятор стоимости",
+            "text": "Оцените сайт с учётом страниц, SEO, CRM, языков и дополнительных функций.",
+            "link": {
+              "href": "/ru/calculator/",
+              "label": "Рассчитать стоимость →"
+            }
+          },
+          {
+            "heading": "От 9 900 ₽",
+            "text": "Можно начать с компактного сайта специалиста или агентства и расширять его по мере роста.",
+            "link": {
+              "href": "#contact",
+              "label": "Обсудить проект →"
+            }
+          },
+          {
+            "heading": "Для международных клиентов",
+            "text": "Добавим языки, SEO по локациям и отслеживание заявок из разных рынков.",
+            "link": {
+              "href": "/ru/tools/",
+              "label": "Бесплатные инструменты →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Вопросы о сайте<br>для недвижимости.",
+        "intro": "Что стоит продумать риелтору или агентству до запуска нового сайта.",
+        "cards": [
+          {
+            "heading": "Что должно быть на сайте риелтора?",
+            "text": "Карточки объектов, фото, цена и локация, информация об агенте, удобные контакты и понятная мобильная версия."
+          },
+          {
+            "heading": "Можно сделать каталог объектов?",
+            "text": "Да. У объектов могут быть собственные страницы, галереи, характеристики и отдельные формы заявки."
+          },
+          {
+            "heading": "Можно продвигать районы в поиске?",
+            "text": "Да. Создаём полезные страницы под города, районы, жилые комплексы и типы недвижимости."
+          },
+          {
+            "heading": "Сколько стоит сайт?",
+            "text": "Стартовая цена — от 9 900 ₽. Итог зависит от каталога, языков, SEO, CRM и других функций."
+          }
+        ]
+      }
+    ],
+    "ka": [
+      {
+        "kind": "features",
+        "kicker": "უძრავი ქონების ვებსაიტი",
+        "heading": "ინტერესიდან ობიექტამდე<br>და რეალურ განაცხადამდე.",
+        "intro": "უძრავი ქონების საიტმა უნდა აჩვენოს ობიექტი ხარისხიანად, დაეხმაროს მომხმარებელს დეტალების სწრაფად გაგებაში და მარტივად მიიყვანოს ნახვის მოთხოვნამდე.",
+        "cards": [
+          {
+            "heading": "ობიექტების გვერდები",
+            "text": "ფოტოები, ფასი, უბანი, მახასიათებლები, უპირატესობები და კონკრეტული მოქმედება — კითხვა ან ნახვის დაჯავშნა.",
+            "number": "01"
+          },
+          {
+            "heading": "SEO უბნებისა და ტიპებისთვის",
+            "text": "ცალკე გვერდები ქალაქებისთვის, უბნებისთვის, საცხოვრებელი კომპლექსებისა და ქონების ტიპებისთვის.",
+            "number": "02"
+          },
+          {
+            "heading": "მრავალენოვანი სტრუქტურა",
+            "text": "ქართული, ინგლისური, რუსული და სხვა ენები ადგილობრივ და საერთაშორისო მყიდველებთან მუშაობაში გეხმარებათ.",
+            "number": "03"
+          },
+          {
+            "heading": "განაცხადები და CRM",
+            "text": "ფორმები, WhatsApp, Telegram, ანალიტიკა და CRM აჩვენებს, რომელი ობიექტიდან მოვიდა თითოეული ლიდი.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "ძიება → ობიექტი → განაცხადი",
+        "heading": "მარტივი გზა Google-დან<br>ნახვის მოთხოვნამდე.",
+        "intro": "ვქმნით გვერდებს რეალური ლოკაციებისა და მოთხოვნების მიხედვით და თითოეულ ობიექტს ვუკავშირებთ მარტივ საკონტაქტო მოქმედებას.",
+        "channels": [
+          "SEO-გვერდები ქალაქებისა და უბნებისთვის",
+          "განაცხადი კონკრეტული ობიექტის კონტექსტით",
+          "CRM და განაცხადების წყაროს ანალიტიკა"
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "საწყისი ფასები",
+        "heading": "დაიწყეთ მარტივად.<br>კატალოგი ეტაპობრივად გაზარდეთ.",
+        "intro": "უძრავი ქონების საიტის საწყისი ფასი არის <strong>299 ₾-დან</strong>. მანამდე შეგიძლიათ უფასოდ შეამოწმოთ არსებული საიტი ან გამოთვალოთ ახალი პროექტის ღირებულება.",
+        "cards": [
+          {
+            "heading": "უფასო SEO აუდიტი",
+            "text": "შეამოწმეთ ტექნიკური SEO, მეტამონაცემები და მთავარი პრობლემები.",
+            "link": {
+              "href": "/ka/audit/",
+              "label": "საიტის შემოწმება →"
+            }
+          },
+          {
+            "heading": "ღირებულების კალკულატორი",
+            "text": "მიიღეთ შეფასება გვერდების, SEO-ს, CRM-ის, ენებისა და სხვა ფუნქციების მიხედვით.",
+            "link": {
+              "href": "/ka/calculator/",
+              "label": "ღირებულების გამოთვლა →"
+            }
+          },
+          {
+            "heading": "299 ₾-დან",
+            "text": "დაიწყეთ კომპაქტური აგენტის ან სააგენტოს საიტით და გააფართოვეთ საჭიროების მიხედვით.",
+            "link": {
+              "href": "#contact",
+              "label": "პროექტის განხილვა →"
+            }
+          },
+          {
+            "heading": "საერთაშორისო კლიენტებისთვის",
+            "text": "დავამატებთ ენებს, ლოკაციის SEO-ს და სხვადასხვა ბაზრიდან განაცხადების ანალიტიკას.",
+            "link": {
+              "href": "/ka/tools/",
+              "label": "უფასო ინსტრუმენტები →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "კითხვები უძრავი ქონების<br>ვებსაიტზე.",
+        "intro": "მთავარი საკითხები აგენტებისა და სააგენტოებისთვის ახალი საიტის დაწყებამდე.",
+        "cards": [
+          {
+            "heading": "რა უნდა ჰქონდეს უძრავი ქონების საიტს?",
+            "text": "ობიექტების გვერდები, ფოტოები, ფასი, ლოკაცია, აგენტის ინფორმაცია, მარტივი კონტაქტი და კარგი მობილური ვერსია."
+          },
+          {
+            "heading": "შესაძლებელია ობიექტების კატალოგი?",
+            "text": "დიახ. თითოეულ ობიექტს შეიძლება ჰქონდეს საკუთარი გალერეა, დეტალები და განაცხადის ფორმა."
+          },
+          {
+            "heading": "შესაძლებელია უბნების SEO?",
+            "text": "დიახ. ვქმნით სასარგებლო გვერდებს ქალაქების, უბნების, კომპლექსებისა და ქონების ტიპებისთვის."
+          },
+          {
+            "heading": "რა ღირს საიტი?",
+            "text": "საწყისი ფასი 299 ₾-დან იწყება. საბოლოო ღირებულება დამოკიდებულია კატალოგზე, ენებზე, SEO-ზე, CRM-სა და სხვა ფუნქციებზე."
+          }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "kind": "features",
+        "kicker": "REAL ESTATE WEBSITE DESIGN",
+        "heading": "Turn property interest<br>into a real conversation.",
+        "intro": "A real estate website should make every listing easy to explore and every next step easy to take. We connect presentation, local search and enquiry capture in one system.",
+        "cards": [
+          {
+            "heading": "Property pages that sell the details",
+            "text": "Photos, price, location, specifications, amenities and a clear viewing or enquiry action on every listing.",
+            "number": "01"
+          },
+          {
+            "heading": "Location & neighbourhood SEO",
+            "text": "Dedicated pages for cities, districts, neighbourhoods and property types create more relevant entry points from search.",
+            "number": "02"
+          },
+          {
+            "heading": "Multilingual buyer journeys",
+            "text": "English, Georgian, Russian and other versions can support international buyers, investors and owners.",
+            "number": "03"
+          },
+          {
+            "heading": "Lead capture & CRM",
+            "text": "Listing-specific forms, WhatsApp, Telegram, analytics and CRM-ready enquiries help you see which property generated each lead.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "SEARCH → PROPERTY → ENQUIRY",
+        "heading": "A clearer route from Google<br>to a viewing request.",
+        "intro": "Build pages around the places and property types people search for, then connect every listing to a simple enquiry action.",
+        "channels": [
+          "Location and neighbourhood landing pages",
+          "Property pages with specific enquiry context",
+          "CRM, analytics and source tracking for incoming leads"
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "LAUNCH PRICING",
+        "heading": "Start lean.<br>Add the catalogue as you grow.",
+        "intro": "International launch pricing starts from <strong>$149</strong>. You can also run a free SEO audit or estimate the project before contacting us.",
+        "cards": [
+          {
+            "heading": "Free SEO Audit",
+            "text": "Check technical SEO, metadata and priority issues on an existing real estate website.",
+            "link": {
+              "href": "/en/audit/",
+              "label": "Run audit →"
+            }
+          },
+          {
+            "heading": "Website Cost Calculator",
+            "text": "Estimate a new website based on pages, SEO, CRM, languages and other features.",
+            "link": {
+              "href": "/en/calculator/",
+              "label": "Calculate cost →"
+            }
+          },
+          {
+            "heading": "Start from $149",
+            "text": "Launch with a focused agent or agency website, then expand the catalogue and SEO structure.",
+            "link": {
+              "href": "#contact",
+              "label": "Discuss project →"
+            }
+          },
+          {
+            "heading": "International-ready",
+            "text": "Add languages, location pages and lead tracking for buyers from different markets.",
+            "link": {
+              "href": "/en/tools/",
+              "label": "Explore free tools →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Real estate website<br>questions.",
+        "intro": "Practical answers for agents and agencies planning a stronger online presence.",
+        "cards": [
+          {
+            "heading": "What should a real estate website include?",
+            "text": "Property pages, strong photography, location details, agent information, clear enquiry actions and mobile-friendly navigation."
+          },
+          {
+            "heading": "Can you build property listings?",
+            "text": "Yes. Listings can have their own galleries, details and enquiry paths through forms or messengers."
+          },
+          {
+            "heading": "Can the site target locations in Google?",
+            "text": "Yes. We can create relevant pages for cities, districts, neighbourhoods and property types as part of the SEO structure."
+          },
+          {
+            "heading": "How much does it cost?",
+            "text": "International launch pricing starts from $149. Catalogue size, languages, CRM and SEO scope determine the final price."
+          }
+        ]
+      }
+    ],
+    "placement": "before-contact",
+    "replaceGeneric": false,
+    "marker": "REALTORS_SEO_V1"
+  },
+  "accountants": {
+    "ru": [
+      {
+        "kind": "features",
+        "kicker": "САЙТ ДЛЯ БУХГАЛТЕРА",
+        "heading": "Покажите экспертизу понятно<br>ещё до первого звонка.",
+        "intro": "Клиенту бухгалтерской компании нужны ясность, доверие и понимание, подходит ли ему ваш формат работы. Мы превращаем перечень услуг в понятную B2B-структуру.",
+        "cards": [
+          {
+            "heading": "Отдельные страницы услуг",
+            "text": "Бухгалтерское сопровождение, зарплата, отчётность, налоги и другие направления получают собственные страницы вместо общего списка.",
+            "number": "01"
+          },
+          {
+            "heading": "Доверие для бизнеса",
+            "text": "Показываем процесс работы, типы клиентов, опыт и только подтверждённые квалификации в спокойной профессиональной подаче.",
+            "number": "02"
+          },
+          {
+            "heading": "Локальное и нишевое SEO",
+            "text": "Страницы под услуги, города и типы бизнеса помогают приводить посетителя сразу на релевантное решение его задачи.",
+            "number": "03"
+          },
+          {
+            "heading": "Консультации, аналитика и CRM",
+            "text": "Формы, WhatsApp, email, отслеживание источников и CRM помогают быстрее обрабатывать и квалифицировать обращения.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "ПОИСК → УСЛУГА → КОНСУЛЬТАЦИЯ",
+        "heading": "Понятный путь от вопроса бизнеса<br>до целевой заявки.",
+        "intro": "Создаём страницы вокруг реальных бухгалтерских и налоговых задач, а каждое направление связываем с простым действием — запросить консультацию.",
+        "channels": [
+          "SEO-страницы отдельных бухгалтерских и налоговых услуг",
+          "Локальные и отраслевые точки входа из поиска",
+          "Формы, аналитика источников и передача заявок в CRM"
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "СТАРТОВЫЕ ЦЕНЫ",
+        "heading": "Начните с основных услуг.<br>Расширяйте сайт постепенно.",
+        "intro": "Стартовая цена сайта для бухгалтера — <strong>от 9 900 ₽</strong>. Перед заказом можно бесплатно проверить текущий сайт или рассчитать новый проект.",
+        "cards": [
+          {
+            "heading": "Бесплатный SEO-аудит",
+            "text": "Проверим техническое SEO, метаданные и основные проблемы существующего сайта.",
+            "link": {
+              "href": "/ru/audit/",
+              "label": "Проверить сайт →"
+            }
+          },
+          {
+            "heading": "Калькулятор стоимости",
+            "text": "Оцените проект с учётом услуг, языков, SEO, CRM и форм заявок.",
+            "link": {
+              "href": "/ru/calculator/",
+              "label": "Рассчитать стоимость →"
+            }
+          },
+          {
+            "heading": "От 9 900 ₽",
+            "text": "Можно начать с ключевых направлений и позже добавлять новые услуги, статьи и автоматизацию.",
+            "link": {
+              "href": "#contact",
+              "label": "Обсудить проект →"
+            }
+          },
+          {
+            "heading": "Под B2B-клиентов",
+            "text": "Структура сайта строится вокруг бизнес-задач, доверия и целевых консультаций.",
+            "link": {
+              "href": "/ru/tools/",
+              "label": "Бесплатные инструменты →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Вопросы о сайте<br>для бухгалтера.",
+        "intro": "Что стоит продумать бухгалтеру или налоговому консультанту перед запуском сайта.",
+        "cards": [
+          {
+            "heading": "Что должно быть на сайте бухгалтера?",
+            "text": "Услуги, типы клиентов, подтверждённая экспертиза, ответы на частые вопросы и удобная заявка на консультацию."
+          },
+          {
+            "heading": "Можно сделать отдельные страницы услуг?",
+            "text": "Да. Бухгалтерия, налоги, зарплата и отчётность могут иметь собственные SEO-страницы."
+          },
+          {
+            "heading": "Можно продвигаться по локальным запросам?",
+            "text": "Да. Можно создавать релевантные страницы под услуги и локации, не обещая конкретных позиций в поиске."
+          },
+          {
+            "heading": "Сколько стоит сайт?",
+            "text": "Стартовая цена — от 9 900 ₽. Итог зависит от числа услуг, языков, CRM и объёма SEO."
+          }
+        ]
+      }
+    ],
+    "ka": [
+      {
+        "kind": "features",
+        "kicker": "ვებსაიტი ბუღალტრისთვის",
+        "heading": "აჩვენეთ პროფესიონალიზმი გასაგებად<br>პირველ ზარამდეც კი.",
+        "intro": "ბუღალტრული მომსახურების კლიენტს სჭირდება სიცხადე, ნდობა და სწრაფი პასუხი კითხვაზე — შეესაბამება თუ არა თქვენი მომსახურება მის ბიზნესს. ჩვენ სერვისების ჩამონათვალს მკაფიო B2B სტრუქტურად ვაქცევთ.",
+        "cards": [
+          {
+            "heading": "ცალკე სერვისების გვერდები",
+            "text": "ბუღალტრული მომსახურება, ხელფასები, ანგარიშგება, გადასახადები და სხვა მიმართულებები იღებს საკუთარ გვერდებს საერთო ჩამონათვალის ნაცვლად.",
+            "number": "01"
+          },
+          {
+            "heading": "ნდობა ბიზნეს კლიენტებისთვის",
+            "text": "ვაჩვენებთ მუშაობის პროცესს, კლიენტების ტიპებს, გამოცდილებას და მხოლოდ დადასტურებულ კვალიფიკაციას მშვიდ და პროფესიონალურ სტრუქტურაში.",
+            "number": "02"
+          },
+          {
+            "heading": "ლოკალური და ნიშური SEO",
+            "text": "სერვისების, ქალაქებისა და ბიზნესის ტიპების მიხედვით გვერდები მომხმარებელს ძიებიდან პირდაპირ მისთვის შესაბამის შეთავაზებაზე გადაიყვანს.",
+            "number": "03"
+          },
+          {
+            "heading": "კონსულტაციები, ანალიტიკა და CRM",
+            "text": "ფორმები, WhatsApp, email, წყაროს მონიტორინგი და CRM ხელს უწყობს მოთხოვნების სწრაფად დამუშავებას და კვალიფიცირებას.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "ძიება → სერვისი → კონსულტაცია",
+        "heading": "გასაგები გზა ბიზნესის კითხვიდან<br>მიზნობრივ მოთხოვნამდე.",
+        "intro": "ვქმნით გვერდებს რეალური საბუღალტრო და საგადასახადო ამოცანების გარშემო და თითოეულ სერვისს ვუკავშირებთ მარტივ მოქმედებას — კონსულტაციის მოთხოვნას.",
+        "channels": [
+          "ცალკეული საბუღალტრო და საგადასახადო სერვისების SEO-გვერდები",
+          "ლოკალური და დარგობრივი საძიებო შესასვლელები",
+          "ფორმები, წყაროს ანალიტიკა და მოთხოვნების CRM-ში გადაცემა"
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "საწყისი ფასები",
+        "heading": "დაიწყეთ ძირითადი სერვისებით.<br>საიტი ეტაპობრივად გააფართოვეთ.",
+        "intro": "ბუღალტრის ვებსაიტის საწყისი ფასი არის <strong>299 ₾-დან</strong>. შეკვეთამდე შეგიძლიათ უფასოდ შეამოწმოთ არსებული საიტი ან გამოთვალოთ ახალი პროექტის ფასი.",
+        "cards": [
+          {
+            "heading": "უფასო SEO აუდიტი",
+            "text": "შევამოწმებთ ტექნიკურ SEO-ს, მეტამონაცემებსა და არსებული საიტის ძირითად პრობლემებს.",
+            "link": {
+              "href": "/ka/audit/",
+              "label": "საიტის შემოწმება →"
+            }
+          },
+          {
+            "heading": "ღირებულების კალკულატორი",
+            "text": "შეაფასეთ პროექტი სერვისების, ენების, SEO-ს, CRM-ისა და განაცხადების ფორმების მიხედვით.",
+            "link": {
+              "href": "/ka/calculator/",
+              "label": "ღირებულების გამოთვლა →"
+            }
+          },
+          {
+            "heading": "299 ₾-დან",
+            "text": "შეგიძლიათ დაიწყოთ ძირითადი მიმართულებებით და მოგვიანებით დაამატოთ ახალი სერვისები, სტატიები და ავტომატიზაცია.",
+            "link": {
+              "href": "#contact",
+              "label": "პროექტის განხილვა →"
+            }
+          },
+          {
+            "heading": "B2B კლიენტებისთვის",
+            "text": "საიტის სტრუქტურა ეწყობა ბიზნესის ამოცანებს, ნდობასა და მიზნობრივ კონსულტაციებს.",
+            "link": {
+              "href": "/ka/tools/",
+              "label": "უფასო ინსტრუმენტები →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "კითხვები ბუღალტრის<br>ვებსაიტზე.",
+        "intro": "რა უნდა გაითვალისწინოს ბუღალტერმა ან საგადასახადო კონსულტანტმა ახალი საიტის გაშვებამდე.",
+        "cards": [
+          {
+            "heading": "რა უნდა იყოს ბუღალტრის ვებსაიტზე?",
+            "text": "სერვისები, კლიენტების ტიპები, დადასტურებული პროფესიონალიზმი, ხშირ კითხვებზე პასუხები და კონსულტაციის მოთხოვნის მარტივი გზა."
+          },
+          {
+            "heading": "შეიძლება სერვისებისთვის ცალკე გვერდების შექმნა?",
+            "text": "დიახ. ბუღალტერია, გადასახადები, ხელფასები და ანგარიშგება შეიძლება ცალკე SEO-გვერდებზე განთავსდეს."
+          },
+          {
+            "heading": "შეიძლება ლოკალურ ძიებაზე მუშაობა?",
+            "text": "დიახ. შესაძლებელია სერვისებისა და ლოკაციების მიხედვით შესაბამისი გვერდების შექმნა კონკრეტული პოზიციების გარანტიის გარეშე."
+          },
+          {
+            "heading": "რა ღირს საიტი?",
+            "text": "საწყისი ფასი 299 ₾-დან იწყება. საბოლოო ფასი დამოკიდებულია სერვისების რაოდენობაზე, ენებზე, CRM-სა და SEO-ს მოცულობაზე."
+          }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "kind": "features",
+        "kicker": "ACCOUNTANT WEBSITE DESIGN",
+        "heading": "Make expertise easy to understand<br>before the first call.",
+        "intro": "Accounting buyers look for clarity, trust and relevance. We structure your services so a business owner can quickly see what you handle, who you work with and how to start a conversation.",
+        "cards": [
+          {
+            "heading": "Service pages with search intent",
+            "text": "Bookkeeping, payroll, tax consulting, reporting and other services can each have focused pages instead of being buried in one generic list.",
+            "number": "01"
+          },
+          {
+            "heading": "Trust for B2B buyers",
+            "text": "Explain your process, client types, experience and verified credentials in a calm professional structure built for business decision-makers.",
+            "number": "02"
+          },
+          {
+            "heading": "Local & niche SEO",
+            "text": "Pages can target relevant services, locations and business audiences so search visitors land on a page that matches what they actually need.",
+            "number": "03"
+          },
+          {
+            "heading": "Consultations, analytics & CRM",
+            "text": "Forms, WhatsApp, email, source tracking and CRM-ready enquiries make it easier to qualify and follow up with potential clients.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "SEARCH → SERVICE → CONSULTATION",
+        "heading": "A clearer route from a business question<br>to a qualified enquiry.",
+        "intro": "Build pages around the accounting and tax questions clients search for, then connect each service to one simple consultation action.",
+        "channels": [
+          "Focused pages for individual accounting and tax services",
+          "Local and industry-specific search entry points",
+          "Lead forms, source tracking and CRM-ready follow-up"
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "LAUNCH PRICING",
+        "heading": "Start with your core services.<br>Expand as the practice grows.",
+        "intro": "International launch pricing starts from <strong>$149</strong>. Before contacting us, you can audit an existing website or estimate a new project for free.",
+        "cards": [
+          {
+            "heading": "Free SEO Audit",
+            "text": "Check technical SEO, metadata and priority issues on an existing accounting website.",
+            "link": {
+              "href": "/en/audit/",
+              "label": "Run audit →"
+            }
+          },
+          {
+            "heading": "Website Cost Calculator",
+            "text": "Estimate pages, languages, SEO, CRM and lead-generation features.",
+            "link": {
+              "href": "/en/calculator/",
+              "label": "Calculate cost →"
+            }
+          },
+          {
+            "heading": "Start from $149",
+            "text": "Launch with the essential service pages and expand content or automation later.",
+            "link": {
+              "href": "#contact",
+              "label": "Discuss project →"
+            }
+          },
+          {
+            "heading": "Built for B2B",
+            "text": "Structure the site around business questions, trust and qualified consultation enquiries.",
+            "link": {
+              "href": "/en/tools/",
+              "label": "Explore free tools →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Accountant website<br>questions.",
+        "intro": "Practical answers for accountants, bookkeeping firms and tax advisers planning a stronger online presence.",
+        "cards": [
+          {
+            "heading": "What should an accountant website include?",
+            "text": "Clear services, client types, trust signals, useful answers, mobile-friendly navigation and a simple consultation request."
+          },
+          {
+            "heading": "Can every service have its own page?",
+            "text": "Yes. Focused pages for bookkeeping, payroll, tax and reporting can improve clarity for both visitors and search engines."
+          },
+          {
+            "heading": "Can the site target local searches?",
+            "text": "Yes. We can structure relevant location and service pages as part of the SEO plan without promising specific rankings."
+          },
+          {
+            "heading": "How much does it cost?",
+            "text": "International launch pricing starts from $149. Languages, service count, CRM and SEO scope determine the final price."
+          }
+        ]
+      }
+    ],
+    "placement": "before-contact",
+    "replaceGeneric": true,
+    "marker": "ACCOUNTANTS_SEO_V1"
+  },
+  "construction": {
+    "ru": [
+      {
+        "kind": "features",
+        "kicker": "САЙТ ДЛЯ СТРОИТЕЛЬСТВА И РЕМОНТА",
+        "heading": "Пусть выполненные проекты<br>продают вашу работу.",
+        "intro": "В строительстве, ремонте и дизайне клиенту нужны доказательства. Поэтому сайт строим вокруг реальных проектов, понятных услуг, географии работы и простой заявки на расчёт.",
+        "cards": [
+          {
+            "heading": "Портфолио проектов",
+            "text": "Фото до и после, задача, площадь, материалы, этапы и результат показывают качество лучше общих рекламных обещаний.",
+            "number": "01"
+          },
+          {
+            "heading": "Страницы услуг",
+            "text": "Ремонт квартир, строительство домов, дизайн интерьера, комплектация и другие направления получают отдельные посадочные страницы.",
+            "number": "02"
+          },
+          {
+            "heading": "SEO по районам и городам",
+            "text": "Страницы под реальные зоны работы создают дополнительные точки входа для людей, которые ищут подрядчика рядом.",
+            "number": "03"
+          },
+          {
+            "heading": "Смета, аналитика и CRM",
+            "text": "Форма может собирать площадь, тип работ, бюджет и сроки, а источник заявки и данные клиента отправляются в CRM.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "ПОИСК → ПРОЕКТ → СМЕТА",
+        "heading": "От запроса в Google<br>до предметной заявки.",
+        "intro": "Ведём человека на нужную услугу или район, показываем релевантные работы и даём простой способ запросить расчёт.",
+        "channels": [
+          "SEO-страницы услуг и реальных зон работы",
+          "Кейсы и портфолио как доказательство качества",
+          "Заявки на смету с аналитикой источника и CRM"
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "СТАРТОВЫЕ ЦЕНЫ",
+        "heading": "Начните с основы.<br>Добавляйте проекты по мере роста.",
+        "intro": "Стартовая цена сайта — <strong>от 9 900 ₽</strong>. Перед заказом можно бесплатно проверить текущий сайт или рассчитать будущий проект.",
+        "cards": [
+          {
+            "heading": "Бесплатный SEO-аудит",
+            "text": "Проверим техническое SEO, метаданные и основные проблемы существующего сайта.",
+            "link": {
+              "href": "/ru/audit/",
+              "label": "Проверить сайт →"
+            }
+          },
+          {
+            "heading": "Калькулятор стоимости",
+            "text": "Оцените страницы, портфолио, районы, SEO, формы и CRM.",
+            "link": {
+              "href": "/ru/calculator/",
+              "label": "Рассчитать стоимость →"
+            }
+          },
+          {
+            "heading": "От 9 900 ₽",
+            "text": "Можно запустить компактный сайт и постепенно добавлять проекты, услуги и географию.",
+            "link": {
+              "href": "#contact",
+              "label": "Обсудить проект →"
+            }
+          },
+          {
+            "heading": "Бесплатные инструменты",
+            "text": "Проверьте метатеги, сниппет Google, UTM-ссылки и другие элементы маркетинга.",
+            "link": {
+              "href": "/ru/tools/",
+              "label": "Открыть инструменты →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Вопросы о сайте<br>для строителей.",
+        "intro": "Что стоит продумать строительной компании, ремонтной команде или дизайнеру интерьера перед запуском.",
+        "cards": [
+          {
+            "heading": "Что должно быть на сайте?",
+            "text": "Портфолио, услуги, география работ, факторы доверия и понятная заявка на расчёт."
+          },
+          {
+            "heading": "Можно разделить услуги?",
+            "text": "Да. Ремонт, строительство, дизайн и другие направления можно продвигать отдельными страницами."
+          },
+          {
+            "heading": "Можно продвигаться по районам?",
+            "text": "Да, если компания реально работает в этих районах или городах, под них можно строить полезную локальную SEO-структуру."
+          },
+          {
+            "heading": "Сколько стоит?",
+            "text": "Стартовая цена — от 9 900 ₽. Портфолио, география, языки, CRM и SEO определяют итоговый объём."
+          }
+        ]
+      }
+    ],
+    "ka": [
+      {
+        "kind": "features",
+        "kicker": "ვებსაიტი მშენებლობისა და რემონტისთვის",
+        "heading": "შესრულებული პროექტები<br>თქვენს სასარგებლოდ უნდა მუშაობდეს.",
+        "intro": "მშენებლობაში, რემონტსა და ინტერიერის დიზაინში კლიენტს მტკიცებულება სჭირდება. ამიტომ საიტს ვაწყობთ რეალური პროექტების, გასაგები სერვისების, სამუშაო ლოკაციებისა და მარტივი ხარჯთაღრიცხვის მოთხოვნის გარშემო.",
+        "cards": [
+          {
+            "heading": "პროექტების პორტფოლიო",
+            "text": "ფოტოები, ამოცანა, ფართობი, მასალები, სამუშაო ეტაპები და შედეგი ხარისხს უკეთ აჩვენებს, ვიდრე ზოგადი დაპირებები.",
+            "number": "01"
+          },
+          {
+            "heading": "სერვისების გვერდები",
+            "text": "ბინის რემონტი, სახლის მშენებლობა, ინტერიერის დიზაინი, კომპლექტაცია და სხვა მიმართულებები ცალკე გვერდებზე შეიძლება განთავსდეს.",
+            "number": "02"
+          },
+          {
+            "heading": "SEO ქალაქებისა და უბნების მიხედვით",
+            "text": "რეალური სამუშაო არეალების გვერდები ქმნის დამატებით შესასვლელებს მათთვის, ვინც ახლომდებარე შემსრულებელს ეძებს.",
+            "number": "03"
+          },
+          {
+            "heading": "ხარჯთაღრიცხვა, ანალიტიკა და CRM",
+            "text": "ფორმა აგროვებს ფართობს, სამუშაოს ტიპს, ბიუჯეტსა და ვადებს, ხოლო წყარო და ლიდის მონაცემები CRM-ში გადადის.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "ძიება → პროექტი → ხარჯთაღრიცხვა",
+        "heading": "Google-ის ძიებიდან<br>კონკრეტულ მოთხოვნამდე.",
+        "intro": "მომხმარებელი ხვდება საჭირო სერვისის ან ლოკაციის გვერდზე, ხედავს შესაბამის ნამუშევრებს და მარტივად ითხოვს ფასის შეფასებას.",
+        "channels": [
+          "SEO-გვერდები სერვისებისა და რეალური სამუშაო ზონებისთვის",
+          "ქეისები და პორტფოლიო როგორც ხარისხის მტკიცებულება",
+          "ხარჯთაღრიცხვის მოთხოვნები წყაროს ანალიტიკითა და CRM-ით"
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "საწყისი ფასები",
+        "heading": "დაიწყეთ საფუძვლით.<br>შემდეგ დაამატეთ პროექტები.",
+        "intro": "ვებსაიტის საწყისი ფასი არის <strong>299 ₾-დან</strong>. შეკვეთამდე შეგიძლიათ უფასოდ შეამოწმოთ არსებული საიტი ან გამოთვალოთ ახალი პროექტის ღირებულება.",
+        "cards": [
+          {
+            "heading": "უფასო SEO აუდიტი",
+            "text": "შევამოწმებთ ტექნიკურ SEO-ს, მეტამონაცემებსა და ძირითადი პრობლემებს.",
+            "link": {
+              "href": "/ka/audit/",
+              "label": "საიტის შემოწმება →"
+            }
+          },
+          {
+            "heading": "ღირებულების კალკულატორი",
+            "text": "შეაფასეთ გვერდები, პორტფოლიო, ლოკაციები, SEO, ფორმები და CRM.",
+            "link": {
+              "href": "/ka/calculator/",
+              "label": "ღირებულების გამოთვლა →"
+            }
+          },
+          {
+            "heading": "299 ₾-დან",
+            "text": "შეგიძლიათ დაიწყოთ კომპაქტური საიტით და შემდეგ დაამატოთ პროექტები, სერვისები და ლოკაციები.",
+            "link": {
+              "href": "#contact",
+              "label": "პროექტის განხილვა →"
+            }
+          },
+          {
+            "heading": "უფასო ინსტრუმენტები",
+            "text": "შეამოწმეთ მეტა ტეგები, Google preview, UTM ბმულები და სხვა მარკეტინგული ელემენტები.",
+            "link": {
+              "href": "/ka/tools/",
+              "label": "ინსტრუმენტების ნახვა →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "კითხვები სამშენებლო<br>ვებსაიტის შესახებ.",
+        "intro": "რას უნდა მიაქციოს ყურადღება სამშენებლო კომპანიამ, სარემონტო გუნდმა ან ინტერიერის დიზაინერმა საიტის გაშვებამდე.",
+        "cards": [
+          {
+            "heading": "რა უნდა იყოს ვებსაიტზე?",
+            "text": "პორტფოლიო, სერვისები, სამუშაო არეალები, ნდობის ფაქტორები და ხარჯთაღრიცხვის მარტივი მოთხოვნა."
+          },
+          {
+            "heading": "შეიძლება სერვისების დაყოფა?",
+            "text": "დიახ. რემონტი, მშენებლობა, დიზაინი და სხვა მიმართულებები ცალკე გვერდებით შეიძლება განვითარდეს."
+          },
+          {
+            "heading": "შეიძლება უბნებზე SEO?",
+            "text": "დიახ, თუ ბიზნესი რეალურად მუშაობს ამ ქალაქებში ან უბნებში, მათთვის შეიძლება სასარგებლო ლოკალური გვერდების შექმნა."
+          },
+          {
+            "heading": "რა ღირს?",
+            "text": "საწყისი ფასი არის 299 ₾-დან. პორტფოლიო, ლოკაციები, ენები, CRM და SEO განსაზღვრავს საბოლოო მოცულობას."
+          }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "kind": "features",
+        "kicker": "CONSTRUCTION WEBSITE DESIGN",
+        "heading": "Make completed work<br>your strongest sales argument.",
+        "intro": "For construction, renovation and interior design, visitors want proof. We build around real projects, clear services, locations served and a simple route to request an estimate.",
+        "cards": [
+          {
+            "heading": "Project portfolio",
+            "text": "Before-and-after visuals, project scope, materials, challenges and outcomes turn completed work into proof of capability.",
+            "number": "01"
+          },
+          {
+            "heading": "Service pages",
+            "text": "Renovation, construction, interior design, fit-out and other services can each have a focused page matched to search intent.",
+            "number": "02"
+          },
+          {
+            "heading": "Location SEO",
+            "text": "Pages for cities, neighbourhoods or service areas create relevant entry points for people looking for contractors nearby.",
+            "number": "03"
+          },
+          {
+            "heading": "Quote forms, analytics & CRM",
+            "text": "Capture area, project type, budget and timing, then track the source and send qualified enquiries into your CRM workflow.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "SEARCH → PROJECT → QUOTE",
+        "heading": "From a local search<br>to a qualified project enquiry.",
+        "intro": "Bring visitors to the right service or location page, prove your work with relevant projects and make requesting an estimate simple.",
+        "channels": [
+          "Service and location pages for relevant search intent",
+          "Project case studies that prove quality and specialization",
+          "Quote requests with source tracking and CRM-ready lead data"
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "LAUNCH PRICING",
+        "heading": "Start focused.<br>Grow the portfolio over time.",
+        "intro": "International launch pricing starts from <strong>$149</strong>. Audit an existing website or estimate a new construction or design project before contacting us.",
+        "cards": [
+          {
+            "heading": "Free SEO Audit",
+            "text": "Check technical SEO, metadata and priority issues on your current website.",
+            "link": {
+              "href": "/en/audit/",
+              "label": "Run audit →"
+            }
+          },
+          {
+            "heading": "Website Cost Calculator",
+            "text": "Estimate pages, portfolio scope, locations, SEO, forms and CRM features.",
+            "link": {
+              "href": "/en/calculator/",
+              "label": "Calculate cost →"
+            }
+          },
+          {
+            "heading": "Start from $149",
+            "text": "Launch a focused website and add projects, services and locations as the business grows.",
+            "link": {
+              "href": "#contact",
+              "label": "Discuss project →"
+            }
+          },
+          {
+            "heading": "Free marketing tools",
+            "text": "Use BEQSON tools for metadata, UTM links, Google previews and more.",
+            "link": {
+              "href": "/en/tools/",
+              "label": "Explore tools →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Construction website<br>questions.",
+        "intro": "Practical answers for contractors, renovation teams and interior designers planning a stronger web presence.",
+        "cards": [
+          {
+            "heading": "What should the website include?",
+            "text": "A strong portfolio, service pages, service areas, trust signals and a simple quote request path."
+          },
+          {
+            "heading": "Can every service have its own page?",
+            "text": "Yes. Renovation, construction, interiors and specialist services can each target their own search intent."
+          },
+          {
+            "heading": "Can we target specific cities or areas?",
+            "text": "Yes. Useful location pages can be part of the local SEO structure where the business genuinely serves those areas."
+          },
+          {
+            "heading": "How much does it cost?",
+            "text": "International launch pricing starts from $149. Portfolio depth, locations, languages, CRM and SEO scope determine the final price."
+          }
+        ]
+      }
+    ],
+    "placement": "before-contact",
+    "replaceGeneric": false,
+    "marker": "CONSTRUCTION_SEO_V1"
+  },
+  "hotels": {
+    "ru": [
+      {
+        "kind": "features",
+        "kicker": "САЙТ ДЛЯ ОТЕЛЯ",
+        "heading": "Помогаем гостю представить отдых<br>и сделать следующий шаг.",
+        "intro": "Сайт отеля должен соединять атмосферу и практичность: показать номера, преимущества локации, условия проживания и дать понятный способ обратиться напрямую.",
+        "cards": [
+          {
+            "heading": "Номера и объекты",
+            "text": "Фото, удобства, вместимость, особенности, локация и отдельная кнопка заявки или бронирования для каждого варианта размещения.",
+            "number": "01"
+          },
+          {
+            "heading": "Прямые заявки",
+            "text": "Форма бронирования, WhatsApp, email или существующий сервис бронирования дают гостю простой прямой путь с сайта.",
+            "number": "02"
+          },
+          {
+            "heading": "SEO по направлениям",
+            "text": "Страницы под города, районы, курорты и типы размещения создают дополнительные точки входа из поиска.",
+            "number": "03"
+          },
+          {
+            "heading": "Языки, аналитика и CRM",
+            "text": "Мультиязычность, отслеживание источников и CRM помогают понимать, откуда приходят прямые обращения.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "ПОИСК → ПРОЖИВАНИЕ → ЗАЯВКА",
+        "heading": "Короче путь от Google<br>до прямого обращения.",
+        "intro": "Привлекаем подходящий поисковый трафик, понятно показываем варианты проживания и даём гостю простой способ связаться напрямую.",
+        "channels": [
+          "SEO-страницы направлений и типов размещения",
+          "Страницы номеров с понятной заявкой на доступность",
+          "Аналитика, источники обращений и CRM"
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "СТАРТОВЫЕ ЦЕНЫ",
+        "heading": "Начните с основы.<br>Расширяйте сайт по мере роста.",
+        "intro": "Стартовая цена сайта для отеля или апартаментов — <strong>от 9 900 ₽</strong>. Перед заказом можно бесплатно проверить текущий сайт или рассчитать новый проект.",
+        "cards": [
+          {
+            "heading": "Бесплатный SEO-аудит",
+            "text": "Проверим техническое SEO, метаданные и основные проблемы текущего сайта.",
+            "link": {
+              "href": "/ru/audit/",
+              "label": "Проверить сайт →"
+            }
+          },
+          {
+            "heading": "Калькулятор стоимости",
+            "text": "Оцените проект с учётом страниц, языков, SEO, CRM и функций бронирования.",
+            "link": {
+              "href": "/ru/calculator/",
+              "label": "Рассчитать стоимость →"
+            }
+          },
+          {
+            "heading": "От 9 900 ₽",
+            "text": "Можно начать с компактного сайта объекта размещения и постепенно добавлять номера, направления и интеграции.",
+            "link": {
+              "href": "#contact",
+              "label": "Обсудить проект →"
+            }
+          },
+          {
+            "heading": "Для иностранных гостей",
+            "text": "Добавим языковые версии и страницы под разные рынки и направления.",
+            "link": {
+              "href": "/ru/tools/",
+              "label": "Бесплатные инструменты →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Вопросы о сайте<br>для отеля.",
+        "intro": "Что стоит продумать отелю, апартаментам или туристическому проекту перед запуском.",
+        "cards": [
+          {
+            "heading": "Что должно быть на сайте отеля?",
+            "text": "Номера или объекты, фотографии, удобства, информация о локации, мобильная версия и понятная заявка или бронирование."
+          },
+          {
+            "heading": "Можно принимать прямые заявки?",
+            "text": "Да. Сделаем формы и мессенджеры, а при наличии подходящего сервиса подключим или свяжем сайт с booking engine."
+          },
+          {
+            "heading": "Можно продвигаться по локациям?",
+            "text": "Да. В SEO-структуру можно включить страницы городов, районов, курортов и типов размещения."
+          },
+          {
+            "heading": "Сколько стоит сайт?",
+            "text": "Стартовая цена — от 9 900 ₽. Языки, количество номеров, интеграции, CRM и SEO определяют итоговый объём."
+          }
+        ]
+      }
+    ],
+    "ka": [
+      {
+        "kind": "features",
+        "kicker": "სასტუმროს ვებსაიტი",
+        "heading": "აჩვენეთ სტუმარს გამოცდილება<br>და გაუმარტივეთ შემდეგი ნაბიჯი.",
+        "intro": "სასტუმროს საიტი უნდა აერთიანებდეს ატმოსფეროსა და პრაქტიკულ ინფორმაციას: ნომრები, ლოკაცია, პირობები და პირდაპირი კონტაქტის ან ჯავშნის მარტივი გზა.",
+        "cards": [
+          {
+            "heading": "ნომრები და ობიექტები",
+            "text": "ფოტოები, პირობები, ტევადობა, ლოკაცია და ცალკე მოთხოვნის ან ჯავშნის მოქმედება თითოეული ვარიანტისთვის.",
+            "number": "01"
+          },
+          {
+            "heading": "პირდაპირი მოთხოვნები",
+            "text": "ფორმა, WhatsApp, email ან არსებული ჯავშნის სერვისი სტუმარს საიტიდან პირდაპირი მოქმედების მარტივ გზას აძლევს.",
+            "number": "02"
+          },
+          {
+            "heading": "ლოკალური და ტურისტული SEO",
+            "text": "ქალაქების, რაიონების, კურორტებისა და განთავსების ტიპების გვერდები ქმნის დამატებით შესასვლელებს საძიებო სისტემიდან.",
+            "number": "03"
+          },
+          {
+            "heading": "ენები, ანალიტიკა და CRM",
+            "text": "მრავალენოვანი გვერდები, წყაროების მონიტორინგი და CRM დაგეხმარებათ გაიგოთ, საიდან მოდის პირდაპირი მოთხოვნები.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "ძიება → განთავსება → მოთხოვნა",
+        "heading": "მოკლე გზა Google-იდან<br>პირდაპირ კონტაქტამდე.",
+        "intro": "ვიზიდავთ შესაბამის საძიებო ტრაფიკს, მკაფიოდ ვაჩვენებთ განთავსების ვარიანტებს და სტუმარს ვაძლევთ პირდაპირი კონტაქტის მარტივ გზას.",
+        "channels": [
+          "SEO გვერდები მიმართულებებისა და განთავსების ტიპებისთვის",
+          "ნომრების გვერდები ხელმისაწვდომობის მკაფიო მოთხოვნით",
+          "ანალიტიკა, მოთხოვნის წყაროები და CRM"
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "სასტარტო ფასები",
+        "heading": "დაიწყეთ საჭირო საფუძვლით.<br>გააფართოეთ საიტი ზრდასთან ერთად.",
+        "intro": "სასტუმროს ან აპარტამენტების საიტის სასტარტო ფასი არის <strong>299 ₾-დან</strong>. შეკვეთამდე შეგიძლიათ უფასოდ შეამოწმოთ არსებული საიტი ან გამოთვალოთ ახალი პროექტი.",
+        "cards": [
+          {
+            "heading": "უფასო SEO აუდიტი",
+            "text": "შეამოწმეთ ტექნიკური SEO, მეტამონაცემები და მიმდინარე საიტის მთავარი პრობლემები.",
+            "link": {
+              "href": "/ka/audit/",
+              "label": "საიტის შემოწმება →"
+            }
+          },
+          {
+            "heading": "ღირებულების კალკულატორი",
+            "text": "შეაფასეთ პროექტი გვერდების, ენების, SEO-ს, CRM-ისა და ჯავშნის ფუნქციების მიხედვით.",
+            "link": {
+              "href": "/ka/calculator/",
+              "label": "ღირებულების გამოთვლა →"
+            }
+          },
+          {
+            "heading": "299 ₾-დან",
+            "text": "დაიწყეთ კომპაქტური საიტით და მოგვიანებით დაამატეთ ნომრები, მიმართულებები და ინტეგრაციები.",
+            "link": {
+              "href": "#contact",
+              "label": "პროექტის განხილვა →"
+            }
+          },
+          {
+            "heading": "უცხოელი სტუმრებისთვის",
+            "text": "დავამატებთ ენებს და საძიებო გვერდებს სხვადასხვა ბაზრისა და მიმართულებისთვის.",
+            "link": {
+              "href": "/ka/tools/",
+              "label": "უფასო ინსტრუმენტები →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "კითხვები სასტუმროს<br>ვებსაიტზე.",
+        "intro": "რა უნდა გაითვალისწინოს სასტუმრომ, აპარტამენტებმა ან ტურისტულმა ბიზნესმა ახალი საიტის გაშვებამდე.",
+        "cards": [
+          {
+            "heading": "რა უნდა იყოს სასტუმროს საიტზე?",
+            "text": "ნომრები ან ობიექტები, ფოტოები, პირობები, ლოკაცია, მობილური ვერსია და მკაფიო მოთხოვნა ან ჯავშანი."
+          },
+          {
+            "heading": "შეიძლება პირდაპირი ჯავშნის მოთხოვნები?",
+            "text": "დიახ. დავამატებთ ფორმებსა და მესენჯერებს, ხოლო შესაბამისი სერვისის არსებობისას booking engine-ს დავუკავშირებთ."
+          },
+          {
+            "heading": "შეიძლება ლოკაციებზე SEO?",
+            "text": "დიახ. SEO სტრუქტურაში შეიძლება შევიდეს ქალაქები, რაიონები, კურორტები და განთავსების ტიპები."
+          },
+          {
+            "heading": "რა ღირს საიტი?",
+            "text": "სასტარტო ფასი არის 299 ₾-დან. ენები, ნომრები, ინტეგრაციები, CRM და SEO განსაზღვრავს საბოლოო მოცულობას."
+          }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "kind": "features",
+        "kicker": "HOTEL WEBSITE DESIGN",
+        "heading": "Help guests picture the stay<br>and take the next step.",
+        "intro": "A hospitality website should combine atmosphere with practical information: where to stay, what is included, why the location matters and how to enquire or book directly.",
+        "cards": [
+          {
+            "heading": "Room & property pages",
+            "text": "Photography, amenities, occupancy, location details and clear calls to enquire or book for every room, apartment or accommodation type.",
+            "number": "01"
+          },
+          {
+            "heading": "Direct booking paths",
+            "text": "Reservation enquiries, WhatsApp, email or an existing booking engine can be connected so guests have a simple direct route from the website.",
+            "number": "02"
+          },
+          {
+            "heading": "Destination & local SEO",
+            "text": "Useful pages for destinations, neighbourhoods, accommodation types and travel intent create more relevant entry points from search.",
+            "number": "03"
+          },
+          {
+            "heading": "Languages, analytics & CRM",
+            "text": "Multilingual pages, enquiry source tracking and CRM-ready lead capture help hospitality businesses understand where direct demand comes from.",
+            "number": "04"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "SEARCH → STAY → ENQUIRY",
+        "heading": "A shorter route from Google<br>to a direct conversation.",
+        "intro": "Attract relevant searches, present the stay clearly and give visitors an easy direct action without forcing them to hunt for contact details.",
+        "channels": [
+          "Destination and accommodation SEO pages",
+          "Room or property pages with clear availability actions",
+          "Analytics, enquiry source tracking and CRM-ready leads"
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "LAUNCH PRICING",
+        "heading": "Start with the essentials.<br>Expand as direct demand grows.",
+        "intro": "International launch pricing starts from <strong>$149</strong>. Before contacting us, you can audit an existing site or estimate a new hospitality project for free.",
+        "cards": [
+          {
+            "heading": "Free SEO Audit",
+            "text": "Check technical SEO, metadata and priority issues on an existing hotel or apartment website.",
+            "link": {
+              "href": "/en/audit/",
+              "label": "Run audit →"
+            }
+          },
+          {
+            "heading": "Website Cost Calculator",
+            "text": "Estimate pages, languages, SEO, CRM and booking-related features.",
+            "link": {
+              "href": "/en/calculator/",
+              "label": "Calculate cost →"
+            }
+          },
+          {
+            "heading": "Start from $149",
+            "text": "Launch a focused hospitality website and expand room types, destinations and integrations later.",
+            "link": {
+              "href": "#contact",
+              "label": "Discuss project →"
+            }
+          },
+          {
+            "heading": "International-ready",
+            "text": "Add languages and local search pages for guests from different markets.",
+            "link": {
+              "href": "/en/tools/",
+              "label": "Explore free tools →"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Hotel website<br>questions.",
+        "intro": "Practical answers for hotels, apartments and tourism businesses planning a stronger direct web presence.",
+        "cards": [
+          {
+            "heading": "What should a hotel website include?",
+            "text": "Room or property pages, strong visuals, amenities, location details, mobile usability and clear enquiry or booking actions."
+          },
+          {
+            "heading": "Can you add direct booking?",
+            "text": "We can build direct enquiry flows and connect supported third-party booking engines or reservation links where available."
+          },
+          {
+            "heading": "Can the site target destinations in Google?",
+            "text": "Yes. We can structure useful pages around destinations, neighbourhoods and accommodation types as part of the SEO plan."
+          },
+          {
+            "heading": "How much does it cost?",
+            "text": "International launch pricing starts from $149. Languages, room types, booking integrations, CRM and SEO scope determine the final price."
+          }
+        ]
+      }
+    ],
+    "placement": "before-contact",
+    "replaceGeneric": true,
+    "marker": "HOTELS_SEO_V1"
+  },
+  "autoservices": {
+    "placement": "before-contact",
+    "replaceGeneric": true,
+    "marker": null,
+    "ru": [
+      {
+        "kind": "features",
+        "kicker": "BEQSON / DETAIL",
+        "heading": "Что важно именно<br>для автосервиса и детейлинга.",
+        "intro": "Соединяем сильную визуальную подачу с поисковой структурой и понятной записью.",
+        "cards": [
+          {
+            "heading": "Страницы конкретных услуг",
+            "text": "Отдельно показываем диагностику, обслуживание, полировку, керамику, защитные плёнки и другие услуги, которые реально продаёт сервис.",
+            "number": "01",
+            "icon": "layers"
+          },
+          {
+            "heading": "Работы «до / после»",
+            "text": "Реальные автомобили, задача, процесс, материалы и результат помогают доказать качество ещё до звонка.",
+            "number": "02",
+            "icon": "sparkle"
+          },
+          {
+            "heading": "Локальное SEO + марки авто",
+            "text": "Продвигаем услуги по городу и району, а при реальной специализации — по маркам и категориям автомобилей.",
+            "number": "03",
+            "icon": "map"
+          },
+          {
+            "heading": "Запись + заявки в CRM",
+            "text": "Собираем услугу, модель автомобиля, желаемую дату и контакт клиента, чтобы обращения не терялись и измерялись по источникам.",
+            "number": "04",
+            "icon": "check"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "SEO · LOCAL · BOOKINGS",
+        "heading": "Из локального поиска — к записи автомобиля.",
+        "intro": "Превращаем запросы по услуге и локации в доказательство качества, быстрый контакт и измеримую запись.",
+        "channels": [
+          "Поиск услуги, марки автомобиля и города",
+          "Страница услуги + реальные работы + доверие",
+          "Запись, WhatsApp или звонок с фиксацией заявки"
+        ],
+        "channelArrows": true
+      },
+      {
+        "kind": "features",
+        "kicker": "SEO ДЛЯ АВТОБИЗНЕСА",
+        "heading": "Продвигаем не «автосервис вообще», а конкретные услуги.",
+        "intro": "Сильный сайт должен находиться не только по названию компании. Структурируем страницы под коммерческие запросы, чтобы каждая важная услуга могла приводить клиента из поиска.",
+        "cards": [
+          {
+            "heading": "SEO услуг",
+            "text": "Отдельные посадочные под детейлинг, полировку, керамику, PPF, диагностику, ТО и другие приоритетные направления.",
+            "number": "01"
+          },
+          {
+            "heading": "Локальное SEO",
+            "text": "Город, район, зона обслуживания, согласованные данные в картах и контент под тех, кто ищет сервис рядом.",
+            "number": "02"
+          },
+          {
+            "heading": "Специализация по авто",
+            "text": "Если она реальная — создаём полезные страницы под марки, типы автомобилей или специализированное оборудование сервиса.",
+            "number": "03"
+          }
+        ],
+        "actions": [
+          {
+            "class": "button primary",
+            "href": "/ru/audit/",
+            "label": "Бесплатный SEO-аудит"
+          },
+          {
+            "class": "text-link",
+            "href": "/ru/calculator/",
+            "label": "Рассчитать стоимость сайта<svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow\"></use></svg>"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "BEQSON / СТАРТ",
+        "heading": "Стартовая цена для автобизнеса",
+        "intro": "Сфокусированный стартовый сайт — от 9 900 ₽. Большой каталог услуг, мультиязычность, расширенное SEO, онлайн-запись и CRM-интеграции рассчитываются отдельно.",
+        "channels": [
+          "Start — 9 900 ₽",
+          "Бесплатный SEO-аудит",
+          "Рассчитать стоимость сайта"
+        ],
+        "channelArrows": false,
+        "link": {
+          "class": "button primary",
+          "href": "#contact",
+          "label": "Обсудить проект",
+          "external": false
+        }
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Частые вопросы об автосервисных сайтах",
+        "intro": null,
+        "cards": [
+          {
+            "heading": "Что должно быть на сайте автосервиса или детейлинга?",
+            "text": "Понятные страницы услуг, реальные примеры работ, адрес и часы работы, способы связи, факторы доверия и быстрый путь к записи или запросу цены."
+          },
+          {
+            "heading": "Можно ли сделать отдельную страницу для каждой услуги?",
+            "text": "Да. Детейлинг, полировка, керамика, защитная плёнка, диагностика, ТО и другие важные услуги могут получить отдельные SEO-страницы."
+          },
+          {
+            "heading": "Вы делаете локальное SEO для автосервисов?",
+            "text": "Да. Можем выстроить страницы услуг и локаций, метаданные и внутренние ссылки и подготовить сайт к локальному поиску. Конкретные позиции в Google не гарантируются."
+          },
+          {
+            "heading": "Можно отправлять заявки сразу в CRM?",
+            "text": "Да. Форма может собирать услугу, автомобиль и контакты клиента и передавать заявку в CRM-сценарий для дальнейшей работы и учёта источника."
+          }
+        ]
+      }
+    ],
+    "ka": [
+      {
+        "kind": "features",
+        "kicker": "BEQSON / DETAIL",
+        "heading": "რა არის მნიშვნელოვანი<br>ავტოსერვისისა და დეტეილინგისთვის.",
+        "intro": "ვაერთიანებთ ძლიერ ვიზუალურ პრეზენტაციას, საძიებო სტრუქტურასა და მარტივ ჩაწერას.",
+        "cards": [
+          {
+            "heading": "ცალკე გვერდები სერვისებისთვის",
+            "text": "დიაგნოსტიკა, ტექნიკური მომსახურება, პოლირება, კერამიკა, დამცავი ფირი და სხვა რეალური სერვისები ცალ-ცალკე და გასაგებად.",
+            "number": "01",
+            "icon": "layers"
+          },
+          {
+            "heading": "ნამუშევრები „მანამდე / შემდეგ“",
+            "text": "რეალური ავტომობილები, პრობლემა, პროცესი, გამოყენებული მასალები და შედეგი ხარისხს კონტაქტამდე აჩვენებს.",
+            "number": "02",
+            "icon": "sparkle"
+          },
+          {
+            "heading": "ლოკალური SEO + ავტომარკები",
+            "text": "სერვისებს ქალაქისა და რაიონის მიხედვით ვაწყობთ, ხოლო რეალური სპეციალიზაციის შემთხვევაში — ავტომარკებისა და კატეგორიების მიხედვითაც.",
+            "number": "03",
+            "icon": "map"
+          },
+          {
+            "heading": "ჩაწერა + CRM-ready ლიდები",
+            "text": "ვაგროვებთ სერვისს, ავტომობილის მოდელს, სასურველ თარიღსა და კონტაქტს, რათა არცერთი მოთხოვნა არ დაიკარგოს.",
+            "number": "04",
+            "icon": "check"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "SEO · LOCAL · BOOKINGS",
+        "heading": "ლოკალური ძიებიდან — ავტომობილის ჩაწერამდე.",
+        "intro": "სერვისისა და ლოკაციის ძიებას ვაქცევთ ხარისხის მტკიცებულებად, სწრაფ კონტაქტად და გაზომვად ჩაწერად.",
+        "channels": [
+          "სერვისის, ავტომარკისა და ქალაქის ძიება",
+          "სერვისის გვერდი + რეალური ნამუშევრები + ნდობა",
+          "ჩაწერა, WhatsApp ან ზარი — მოთხოვნის დაფიქსირებით"
+        ],
+        "channelArrows": true
+      },
+      {
+        "kind": "features",
+        "kicker": "SEO ავტობიზნესისთვის",
+        "heading": "ვაწინაურებთ კონკრეტულ სერვისებს და არა მხოლოდ კომპანიის სახელს.",
+        "intro": "ძლიერი საიტი მხოლოდ ბრენდის სახელით არ უნდა იძებნებოდეს. გვერდებს კომერციული მოთხოვნების მიხედვით ვაწყობთ, რათა თითოეულ მნიშვნელოვან სერვისს Google-იდან კლიენტის მოყვანა შეეძლოს.",
+        "cards": [
+          {
+            "heading": "სერვისების SEO",
+            "text": "ცალკე გვერდები დეტეილინგის, პოლირების, კერამიკის, PPF-ის, დიაგნოსტიკის, ტექნიკური მომსახურებისა და სხვა მიმართულებებისთვის.",
+            "number": "01"
+          },
+          {
+            "heading": "ლოკალური SEO",
+            "text": "ქალაქი, რაიონი, მომსახურების არეალი, რუკების მონაცემების თანმიმდევრულობა და კონტენტი ახლომდებარე კლიენტებისთვის.",
+            "number": "02"
+          },
+          {
+            "heading": "ავტომარკების სპეციალიზაცია",
+            "text": "თუ ეს რეალური უპირატესობაა, ვქმნით სასარგებლო გვერდებს კონკრეტული მარკების, ავტომობილის ტიპებისა ან სპეციალიზებული აღჭურვილობისთვის.",
+            "number": "03"
+          }
+        ],
+        "actions": [
+          {
+            "class": "button primary",
+            "href": "/ka/audit/",
+            "label": "უფასო SEO აუდიტი"
+          },
+          {
+            "class": "text-link",
+            "href": "/ka/calculator/",
+            "label": "საიტის ღირებულების გამოთვლა<svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow\"></use></svg>"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "BEQSON / START",
+        "heading": "საწყისი ფასი ავტობიზნესისთვის",
+        "intro": "ფოკუსირებული საწყისი საიტი — 299 ₾-დან. დიდი სერვისების კატალოგი, რამდენიმე ენა, გაფართოებული SEO, ონლაინ ჩაწერა და CRM ინტეგრაციები ცალკე ფასდება.",
+        "channels": [
+          "Start — 299 ₾",
+          "უფასო SEO აუდიტი",
+          "საიტის ღირებულების გამოთვლა"
+        ],
+        "channelArrows": false,
+        "link": {
+          "class": "button primary",
+          "href": "#contact",
+          "label": "პროექტის განხილვა",
+          "external": false
+        }
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "ხშირი კითხვები ავტოსერვისის საიტებზე",
+        "intro": null,
+        "cards": [
+          {
+            "heading": "რა უნდა იყოს ავტოსერვისის ან დეტეილინგის საიტზე?",
+            "text": "გასაგები სერვისების გვერდები, რეალური ნამუშევრები, მისამართი და სამუშაო საათები, საკონტაქტო გზები, ნდობის ელემენტები და სწრაფი ჩაწერა ან ფასის მოთხოვნა."
+          },
+          {
+            "heading": "შეიძლება თითოეული სერვისისთვის ცალკე გვერდი გაკეთდეს?",
+            "text": "დიახ. დეტეილინგს, პოლირებას, კერამიკას, დამცავ ფირს, დიაგნოსტიკას, ტექნიკურ მომსახურებას და სხვა მნიშვნელოვან სერვისებს შეიძლება ჰქონდეს საკუთარი SEO გვერდი."
+          },
+          {
+            "heading": "აკეთებთ ლოკალურ SEO-ს ავტოსერვისებისთვის?",
+            "text": "დიახ. შეგვიძლია დავაწყოთ სერვისებისა და ლოკაციების გვერდები, მეტამონაცემები და შიდა ბმულები და მოვამზადოთ საიტი ლოკალური ძიებისთვის. კონკრეტული პოზიციები გარანტირებული არ არის."
+          },
+          {
+            "heading": "შეიძლება მოთხოვნები პირდაპირ CRM-ში გადავიდეს?",
+            "text": "დიახ. ფორმა აგროვებს სერვისს, ავტომობილის მონაცემებსა და კლიენტის კონტაქტს და გადასცემს მოთხოვნას CRM-ready პროცესში შემდგომი მუშაობისა და წყაროს აღრიცხვისთვის."
+          }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "kind": "features",
+        "kicker": "BEQSON / DETAIL",
+        "heading": "What matters for<br>auto service & detailing.",
+        "intro": "Combine strong visual proof with search-focused structure and a simple booking path.",
+        "cards": [
+          {
+            "heading": "Service pages that match search intent",
+            "text": "Create focused pages for diagnostics, maintenance, paint correction, ceramic coating, PPF, polishing and the services you actually sell.",
+            "number": "01",
+            "icon": "layers"
+          },
+          {
+            "heading": "Before-and-after proof",
+            "text": "Show real vehicles, the problem, process, materials and finished result so visitors can judge quality before they contact you.",
+            "number": "02",
+            "icon": "sparkle"
+          },
+          {
+            "heading": "Local SEO + vehicle brands",
+            "text": "Build search visibility around your city, neighbourhood, services and the vehicle brands or categories you specialise in.",
+            "number": "03",
+            "icon": "map"
+          },
+          {
+            "heading": "Booking + CRM-ready leads",
+            "text": "Collect the service, car model, preferred date and contact details, then pass each enquiry into a measurable lead workflow.",
+            "number": "04",
+            "icon": "check"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "SEO · LOCAL · BOOKINGS",
+        "heading": "From local search to a booked car.",
+        "intro": "Turn service and location searches into clear proof, fast contact and trackable bookings.",
+        "channels": [
+          "Google search for a service, car brand and location",
+          "Service page + real work + trust signals",
+          "Booking request, WhatsApp or call captured in CRM"
+        ],
+        "channelArrows": true
+      },
+      {
+        "kind": "features",
+        "kicker": "SEO FOR AUTO SERVICES",
+        "heading": "Promote the services people actually search for.",
+        "intro": "A strong auto business website should not rank only for your company name. We structure pages around real commercial intent so each important service can become an entry point from search.",
+        "cards": [
+          {
+            "heading": "Service SEO",
+            "text": "Separate landing pages for detailing, polishing, ceramic coating, diagnostics, maintenance and other high-value services.",
+            "number": "01"
+          },
+          {
+            "heading": "Local SEO",
+            "text": "City and service-area signals, map/profile consistency and location-focused content for customers searching nearby.",
+            "number": "02"
+          },
+          {
+            "heading": "Brand specialisation",
+            "text": "Where it is genuine, create useful pages around the makes, vehicle types or specialist equipment your workshop works with.",
+            "number": "03"
+          }
+        ],
+        "actions": [
+          {
+            "class": "button primary",
+            "href": "/en/audit/",
+            "label": "Run free SEO Audit"
+          },
+          {
+            "class": "text-link",
+            "href": "/en/calculator/",
+            "label": "Estimate website cost<svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow\"></use></svg>"
+          }
+        ]
+      },
+      {
+        "kind": "path",
+        "kicker": "BEQSON / LAUNCH",
+        "heading": "Launch pricing for auto businesses",
+        "intro": "A focused starter website begins from $149. Larger service catalogues, multilingual pages, advanced SEO, booking flows and CRM integrations are scoped separately.",
+        "channels": [
+          "Start — $149",
+          "Run free SEO Audit",
+          "Estimate website cost"
+        ],
+        "channelArrows": false,
+        "link": {
+          "class": "button primary",
+          "href": "#contact",
+          "label": "Discuss your project",
+          "external": false
+        }
+      },
+      {
+        "kind": "features",
+        "kicker": "FAQ",
+        "heading": "Auto service website FAQ",
+        "intro": null,
+        "cards": [
+          {
+            "heading": "What should an auto repair or detailing website include?",
+            "text": "Clear service pages, real work examples, location and opening hours, contact options, trust signals and a fast way to request a booking or quote."
+          },
+          {
+            "heading": "Can you create separate pages for each service?",
+            "text": "Yes. High-value services such as detailing, polishing, ceramic coating, PPF, diagnostics or maintenance can each have focused pages for stronger search intent and conversion."
+          },
+          {
+            "heading": "Do you provide local SEO for auto services?",
+            "text": "Yes. We can structure service and location pages, improve metadata and internal linking, and prepare the website for local search. Specific rankings are never guaranteed."
+          },
+          {
+            "heading": "Can enquiries go into a CRM?",
+            "text": "Yes. Forms can collect the requested service, vehicle information and contact details and feed them into a CRM-ready workflow for follow-up and source tracking."
+          }
+        ]
+      }
+    ]
+  }
+}
