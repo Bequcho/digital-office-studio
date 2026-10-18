@@ -22,6 +22,7 @@ jobs:
           pattern = re.compile(r'"sameAs"\s*:\s*\[\s*"https://t\.me/digital_studio_beqson"\s*\]')
           replacement = '"sameAs":["https://t.me/digital_studio_beqson","' + clutch_url + '"]'
           for p in Path('.').rglob('*.html'):
+              if '.git' in p.parts or 'crm' in p.parts: continue
               s = p.read_text(encoding='utf-8')
               updated = pattern.sub(replacement, s)
               if updated != s:

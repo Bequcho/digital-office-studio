@@ -16,7 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Replace blank HTML capture with direct canvas PDF rendering
-        run: python scripts/fix_pdf_export.py
+        run: |
+          # PDF v3 supersedes the old inline rendering patches.
+          python scripts/install_audit_pdf_v3.py
       - name: Commit PDF fix
         run: |
           git config user.name "github-actions[bot]"

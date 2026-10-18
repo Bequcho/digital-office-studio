@@ -26,6 +26,7 @@ jobs:
             'от $39 / месяц':'от 2 900 ₽ / месяц',
           }
           for a,b in repl.items():
+            if b in s: continue
             if a not in s:
               raise SystemExit(f'ru/index.html pattern not found: {a[:80]}')
             s=s.replace(a,b,1)
@@ -47,6 +48,7 @@ jobs:
             ("const estimateText=(lang==='ru'?'Расчёт':lang==='ka'?'შეფასება':'Estimate')+': $'+est.low+'–$'+est.high;", "const estimateText=(lang==='ru'?'Расчёт':lang==='ka'?'შეფასება':'Estimate')+': '+(isGeorgia?(est.low+'–'+est.high+' ₾'):(isRussia?(est.low.toLocaleString('ru-RU')+'–'+est.high.toLocaleString('ru-RU')+' ₽'):('$'+est.low+'–$'+est.high)));"),
           ]
           for a,b in pairs:
+            if b in s: continue
             if a not in s:
               raise SystemExit(f'calculator pattern not found: {a[:100]}')
             s=s.replace(a,b,1)
@@ -61,6 +63,7 @@ jobs:
             ('/assets/website-calculator.js?v=1','/assets/website-calculator.js?v=2-rub'),
           ]
           for a,b in pairs:
+            if b in s: continue
             if a not in s:
               raise SystemExit(f'ru calculator page pattern not found: {a}')
             s=s.replace(a,b,1)

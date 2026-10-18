@@ -16,56 +16,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Add audit links and promo blocks
         run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          pages = {
-            'ru/index.html': {
-              'nav': 'Бесплатный SEO-аудит',
-              'eyebrow': 'BEQSON WEBSITE AUDIT',
-              'title': 'Бесплатно проверьте свой сайт',
-              'text': 'За минуту покажем SEO Score, ключевые технические проблемы и план действий. Полный отчёт можно сохранить в PDF.',
-              'button': 'Проверить сайт бесплатно →',
-            },
-            'ka/index.html': {
-              'nav': 'უფასო SEO აუდიტი',
-              'eyebrow': 'BEQSON WEBSITE AUDIT',
-              'title': 'შეამოწმეთ თქვენი საიტი უფასოდ',
-              'text': 'ერთ წუთში მიიღეთ SEO Score, ძირითადი ტექნიკური პრობლემები და სამოქმედო გეგმა. სრული ანგარიში შეგიძლიათ შეინახოთ PDF-ად.',
-              'button': 'საიტის უფასო შემოწმება →',
-            },
-            'en/index.html': {
-              'nav': 'Free SEO audit',
-              'eyebrow': 'BEQSON WEBSITE AUDIT',
-              'title': 'Check your website for free',
-              'text': 'Get an SEO Score, key technical issues and an action plan in about a minute. The full report can be saved as a PDF.',
-              'button': 'Run free website audit →',
-            },
-          }
-
-          css = '''<style id="audit-entry-style">
-.audit-nav-link{color:#55cfff!important;font-weight:850!important;position:relative}.audit-nav-link:after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2f8cff,#42d5ff);box-shadow:0 0 12px rgba(66,213,255,.65)}
-.audit-promo{padding:22px 0 10px}.audit-promo-card{position:relative;overflow:hidden;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;padding:28px 32px;border:1px solid rgba(55,168,255,.42);border-radius:24px;background:radial-gradient(circle at 86% 18%,rgba(42,182,255,.22),transparent 34%),linear-gradient(120deg,#071d39,#0a3766);box-shadow:0 22px 70px rgba(0,0,0,.18)}.audit-promo-card:after{content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(79,185,255,.16);border-radius:50%;right:-120px;top:-170px}.audit-promo-copy{position:relative;z-index:1}.audit-promo-kicker{display:block;color:#50c8ff;font-size:11px;font-weight:900;letter-spacing:2.1px;margin-bottom:8px}.audit-promo h2{margin:0 0 7px;color:#fff;font-size:clamp(24px,3vw,34px);line-height:1.12}.audit-promo p{margin:0;max-width:760px;color:#a9c6e2;line-height:1.55}.audit-promo-btn{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;min-height:58px;padding:0 23px;border:1px solid #4acbff;border-radius:16px;background:linear-gradient(135deg,#167cff,#27c8ff);color:#fff!important;font-weight:900;white-space:nowrap;box-shadow:0 0 0 1px rgba(74,203,255,.14),0 0 30px rgba(39,200,255,.24);transition:transform .18s ease,filter .18s ease}.audit-promo-btn:hover{transform:translateY(-2px);filter:brightness(1.07)}
-@media(max-width:900px){.audit-promo-card{grid-template-columns:1fr}.audit-promo-btn{width:100%}}@media(max-width:600px){.audit-promo{padding-top:14px}.audit-promo-card{padding:22px}.audit-promo p{font-size:14px}}
-</style>'''
-
-          for path_str, t in pages.items():
-            path = Path(path_str)
-            s = path.read_text(encoding='utf-8')
-
-            if 'id="audit-entry-style"' not in s:
-              s = s.replace('</head>', css + '</head>', 1)
-
-            if 'audit-nav-link' not in s:
-              s = s.replace('<div class="mobile-contacts">', f'<a class="audit-nav-link" href="/audit/">{t["nav"]}</a><div class="mobile-contacts">', 1)
-
-            if 'class="audit-promo"' not in s:
-              block = f'''<section class="audit-promo" aria-label="{t['nav']}"><div class="shell"><div class="audit-promo-card"><div class="audit-promo-copy"><span class="audit-promo-kicker">{t['eyebrow']}</span><h2>{t['title']}</h2><p>{t['text']}</p></div><a class="audit-promo-btn" href="/audit/">{t['button']}</a></div></div></section>'''
-              marker = '<section class="legacy-industries"'
-              s = s.replace(marker, block + marker, 1)
-
-            path.write_text(s, encoding='utf-8')
-          PY
+          # Render approved components; do not inject another audit/navigation block.
+          python tools/build.py
+          python tools/test_build.py
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"

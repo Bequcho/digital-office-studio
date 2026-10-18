@@ -8,6 +8,10 @@ on:
       - 'audit/index.html'
       - 'scripts/localize_audit.py'
       - 'scripts/fix_audit_i18n.py'
+      - 'scripts/install_audit_pdf_v3.py'
+      - 'tools/seo_hreflang.py'
+      - 'tools/seo_schema.py'
+      - 'tools/seo_social.py'
 
 permissions:
   contents: write
@@ -17,29 +21,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Patch localization script runtime replacements
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('scripts/localize_audit.py')
-          s = p.read_text(encoding='utf-8')
-          s = s.replace("s = re.sub(r'function errorText\\(code\\)\\{.*?\\}\\nfunction checkHtml', error_fn + '\\nfunction checkHtml', s, count=1, flags=re.S)", "s = re.sub(r'function errorText\\(code\\)\\{.*?\\}\\nfunction checkHtml', lambda _m: error_fn + '\\nfunction checkHtml', s, count=1, flags=re.S)")
-          s = s.replace("s = re.sub(r'function checkHtml\\(c\\)\\{.*?\\}\\nfunction issues', helper + '\\nfunction issues', s, count=1, flags=re.S)", "s = re.sub(r'function checkHtml\\(c\\)\\{.*?\\}\\nfunction issues', lambda _m: helper + '\\nfunction issues', s, count=1, flags=re.S)")
-          s = s.replace("s = re.sub(r'function actionFor\\(c\\)\\{.*?\\}\\nfunction planItems', action_fn + '\\nfunction planItems', s, count=1, flags=re.S)", "s = re.sub(r'function actionFor\\(c\\)\\{.*?\\}\\nfunction planItems', lambda _m: action_fn + '\\nfunction planItems', s, count=1, flags=re.S)")
-          s = s.replace("s = re.sub(r'function planItems\\(d\\)\\{.*?\\}\\nfunction updateContactLinks', plan_fn + '\\nfunction updateContactLinks', s, count=1, flags=re.S)", "s = re.sub(r'function planItems\\(d\\)\\{.*?\\}\\nfunction updateContactLinks', lambda _m: plan_fn + '\\nfunction updateContactLinks', s, count=1, flags=re.S)")
-          s = s.replace("s = re.sub(r'function updateContactLinks\\(d\\)\\{.*?\\}\\nform.addEventListener', contact_fn + '\\nform.addEventListener', s, count=1, flags=re.S)", "s = re.sub(r'function updateContactLinks\\(d\\)\\{.*?\\}\\nform.addEventListener', lambda _m: contact_fn + '\\nform.addEventListener', s, count=1, flags=re.S)")
-          p.write_text(s, encoding='utf-8')
-          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Build localized audit pages
         run: |
           python scripts/localize_audit.py
           python scripts/fix_audit_i18n.py
           python scripts/install_audit_pdf_v3.py
+      - name: Install validation dependency
+        run: python -m pip install -r tools/requirements-workflows.txt
+      - name: Validate localized audit pages
+        run: |
+          python tools/test_seo_metadata.py
+          python tools/test_seo_schema.py
+          python tools/test_seo_social.py
+          python tools/test_sitemap.py
+          python tools/test_workflows.py --localization-only
       - name: Commit localized pages
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ru/audit/index.html ka/audit/index.html en/audit/index.html ru/index.html ka/index.html en/index.html sitemap.xml
+          git add ru/audit/index.html ka/audit/index.html en/audit/index.html sitemap.xml
           if git diff --cached --quiet; then
             echo "No changes needed"
             exit 0

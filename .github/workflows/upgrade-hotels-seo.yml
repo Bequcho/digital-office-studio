@@ -18,7 +18,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Upgrade multilingual hotel SEO pages
-        run: python scripts/upgrade_hotels_seo.py
+        run: python tools/build.py
+      - name: Validate generated site
+        run: python tools/test_build.py
       - name: Commit generated pages
         run: |
           if git diff --quiet; then

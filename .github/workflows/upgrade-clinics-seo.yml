@@ -16,7 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Upgrade clinic pages
-        run: python scripts/upgrade_clinics_seo.py
+        run: python tools/build.py
+      - name: Validate generated site
+        run: python tools/test_build.py
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"

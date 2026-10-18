@@ -12,26 +12,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Add tools navigation and sitemap entries
         run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          patches = {
-            'ru/index.html': ('<a href="#pricing">Стоимость</a><a href="#case">Наши проекты</a>', '<a href="#pricing">Стоимость</a><a href="/ru/tools/">Инструменты</a><a href="#case">Наши проекты</a>'),
-            'en/index.html': ('<a href="#pricing">Pricing</a><a href="#case">Our Projects</a>', '<a href="#pricing">Pricing</a><a href="/en/tools/">Free Tools</a><a href="#case">Our Projects</a>'),
-            'ka/index.html': ('<a href="#pricing">ღირებულება</a><a href="#case">ჩვენი პროექტები</a>', '<a href="#pricing">ღირებულება</a><a href="/ka/tools/">უფასო ინსტრუმენტები</a><a href="#case">ჩვენი პროექტები</a>'),
-          }
-          for filename,(old,new) in patches.items():
-              p=Path(filename); s=p.read_text(encoding='utf-8')
-              if new in s: continue
-              if old not in s: raise SystemExit(f'Navigation marker not found in {filename}')
-              p.write_text(s.replace(old,new,1),encoding='utf-8')
-
-          p=Path('sitemap.xml'); s=p.read_text(encoding='utf-8')
-          if 'https://beqson.com/ru/tools/' not in s:
-              block='''  <url><loc>https://beqson.com/ru/tools/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/tools/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/tools/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/tools/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/tools/" /></url>\n  <url><loc>https://beqson.com/ka/tools/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/tools/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/tools/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/tools/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/tools/" /></url>\n  <url><loc>https://beqson.com/en/tools/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/tools/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/tools/" /><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/tools/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/tools/" /></url>\n'''
-              if '</urlset>' not in s: raise SystemExit('sitemap closing tag not found')
-              p.write_text(s.replace('</urlset>',block+'</urlset>',1),encoding='utf-8')
-          PY
+          # Render approved components; do not inject another audit/navigation block.
+          python tools/build.py
+          python tools/test_build.py
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"

@@ -43,7 +43,7 @@ jobs:
               '<span>$</span>890<small>': '<span>$</span>499<small>',
           }
           for path in root.rglob('*.html'):
-              if '.git' in path.parts:
+              if '.git' in path.parts or 'crm' in path.parts:
                   continue
               s = path.read_text(encoding='utf-8')
               orig = s

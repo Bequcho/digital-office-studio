@@ -1,8 +1,13 @@
-name: IndexNow submit changed URLs
+name: IndexNow manual sitemap validation
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Validate production URLs only. Uncheck only after a successful Pages deployment and dry run.'
+        type: boolean
+        required: true
+        default: true
 
 permissions:
   contents: read
@@ -10,122 +15,16 @@ permissions:
 jobs:
   submit:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
-
-      - name: Detect public URLs changed by this push
-        id: urls
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate sitemap and optionally submit
         env:
-          BEFORE: ${{ github.event.before }}
-          AFTER: ${{ github.sha }}
+          DRY_RUN: ${{ inputs.dry_run }}
           INDEXNOW_KEY: 9a97aa27a069ea0350203fe532357c06
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import json, os, re, subprocess, xml.etree.ElementTree as ET
-
-          before = os.environ.get('BEFORE', '')
-          after = os.environ.get('AFTER', 'HEAD')
-          key = os.environ['INDEXNOW_KEY']
-          key_file = f'{key}.txt'
-
-          def changed_files():
-              try:
-                  if before and set(before) != {'0'}:
-                      out = subprocess.check_output(['git','diff','--name-only',before,after], text=True)
-                  else:
-                      out = subprocess.check_output(['git','diff-tree','--no-commit-id','--name-only','-r',after], text=True)
-              except Exception:
-                  out = subprocess.check_output(['git','show','--pretty=','--name-only',after], text=True)
-              return [x.strip() for x in out.splitlines() if x.strip()]
-
-          files = changed_files()
-          urls = []
-
-          # First activation: our site has just received a broad SEO/schema update,
-          # so submit the currently public sitemap URLs once when the key is added.
-          if key_file in files and Path('sitemap.xml').exists():
-              root = ET.parse('sitemap.xml').getroot()
-              ns = {'sm':'http://www.sitemaps.org/schemas/sitemap/0.9'}
-              urls.extend((n.text or '').strip() for n in root.findall('sm:url/sm:loc', ns))
-          else:
-              for path in files:
-                  p = path.replace('\\','/')
-                  if not re.match(r'^(ru|ka|en)/', p):
-                      continue
-                  if '/crm/' in '/' + p:
-                      continue
-                  if p.endswith('/index.html') or re.match(r'^(ru|ka|en)/index\.html$', p):
-                      directory = p[:-len('index.html')]
-                      urls.append('https://beqson.com/' + directory)
-
-          # Keep only this host, public localized pages, unique URLs.
-          clean = []
-          seen = set()
-          for u in urls:
-              if not u.startswith('https://beqson.com/'):
-                  continue
-              if '/crm/' in u:
-                  continue
-              if u not in seen:
-                  seen.add(u)
-                  clean.append(u)
-
-          Path('indexnow-urls.json').write_text(json.dumps(clean, ensure_ascii=False), encoding='utf-8')
-          print(f'Changed files: {len(files)}')
-          print(f'IndexNow URLs: {len(clean)}')
-          for u in clean[:80]:
-              print(u)
-          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as fh:
-              fh.write(f'count={len(clean)}\n')
-          PY
-
-      - name: Wait for public IndexNow key file
-        if: steps.urls.outputs.count != '0'
-        env:
-          INDEXNOW_KEY: 9a97aa27a069ea0350203fe532357c06
-        run: |
-          KEY_URL="https://beqson.com/${INDEXNOW_KEY}.txt"
-          for i in $(seq 1 36); do
-            BODY="$(curl -fsSL --max-time 10 "$KEY_URL" 2>/dev/null || true)"
-            if [ "$(printf '%s' "$BODY" | tr -d '\r\n ')" = "$INDEXNOW_KEY" ]; then
-              echo "IndexNow key file is publicly reachable."
-              exit 0
-            fi
-            echo "Waiting for GitHub Pages deployment ($i/36)..."
-            sleep 5
-          done
-          echo "IndexNow key file did not become reachable in time."
-          exit 1
-
-      - name: Submit changed URLs to IndexNow
-        if: steps.urls.outputs.count != '0'
-        env:
-          INDEXNOW_KEY: 9a97aa27a069ea0350203fe532357c06
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import json, os
-          urls = json.loads(Path('indexnow-urls.json').read_text(encoding='utf-8'))
-          payload = {
-              'host': 'beqson.com',
-              'key': os.environ['INDEXNOW_KEY'],
-              'keyLocation': f"https://beqson.com/{os.environ['INDEXNOW_KEY']}.txt",
-              'urlList': urls[:10000],
-          }
-          Path('indexnow-payload.json').write_text(json.dumps(payload, ensure_ascii=False), encoding='utf-8')
-          PY
-          CODE="$(curl -sS --max-time 30 -o indexnow-response.txt -w '%{http_code}' \
-            -H 'Content-Type: application/json; charset=utf-8' \
-            --data-binary @indexnow-payload.json \
-            https://api.indexnow.org/IndexNow)"
-          echo "IndexNow HTTP status: $CODE"
-          cat indexnow-response.txt || true
-          echo
-          if [ "$CODE" != "200" ] && [ "$CODE" != "202" ]; then
-            echo "IndexNow submission failed."
-            exit 1
-          fi
-          echo "IndexNow accepted the changed URLs."
+        run: python tools/indexnow.py --dry-run "$DRY_RUN"

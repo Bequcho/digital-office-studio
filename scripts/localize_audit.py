@@ -1,5 +1,11 @@
 from pathlib import Path
 import re
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from tools.seo_hreflang import render_hreflang
+from tools.seo_schema import PageMetadata, SCHEMA_RE, render_schema
+from tools.seo_social import update_social
+from tools.build_sitemap import build_sitemap
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = (ROOT / 'audit/index.html').read_text(encoding='utf-8')
@@ -168,13 +174,7 @@ def js_obj(mapping):
 
 
 def add_hreflang(s, canonical):
-    block = (
-        f'<link rel="canonical" href="{canonical}">'
-        '<link rel="alternate" hreflang="ru" href="https://beqson.com/ru/audit/">'
-        '<link rel="alternate" hreflang="ka" href="https://beqson.com/ka/audit/">'
-        '<link rel="alternate" hreflang="en" href="https://beqson.com/en/audit/">'
-        '<link rel="alternate" hreflang="x-default" href="https://beqson.com/ka/audit/">'
-    )
+    block = f'<link rel="canonical" href="{canonical}">' + render_hreflang('audit', order=('ru', 'ka', 'en', 'x-default'))
     return re.sub(r'<link rel="canonical" href="[^"]+">(?:<link rel="alternate" hreflang="(?:ru|ka|en|x-default)" href="[^"]+">)*', block, s, count=1)
 
 
@@ -186,7 +186,7 @@ def localize_js(s, lang):
     d = DYN[lang]
 
     error_fn = "function errorText(code){const map=" + errors + ";return map[code]||'" + fallback.replace("'", "\\'") + "'}"
-    s = re.sub(r'function errorText\(code\)\{.*?\}\nfunction checkHtml', error_fn + '\nfunction checkHtml', s, count=1, flags=re.S)
+    s = re.sub(r'function errorText\(code\)\{.*?\}\nfunction checkHtml', lambda _m: error_fn + '\nfunction checkHtml', s, count=1, flags=re.S)
 
     helper = (
         "const AUDIT_LABELS=" + labels + ";\n"
@@ -197,10 +197,10 @@ def localize_js(s, lang):
         + "return ok?'" + d['yes'].replace("'", "\\'") + "':'" + d['no'].replace("'", "\\'") + "'}\n"
         + "function checkHtml(c){const cls=c.points===c.max?'ok':(c.points>0?'partial':'bad'),ico=cls==='ok'?'✓':(cls==='partial'?'!':'×');return '<div class=\"check '+cls+'\"><div class=\"ico\">'+ico+'</div><div><strong>'+esc(labelFor(c))+'</strong><div class=\"detail\">'+esc(detailFor(c))+'</div></div><div class=\"pts\">'+c.points+'/'+c.max+'</div></div>'}"
     )
-    s = re.sub(r'function checkHtml\(c\)\{.*?\}\nfunction issues', helper + '\nfunction issues', s, count=1, flags=re.S)
+    s = re.sub(r'function checkHtml\(c\)\{.*?\}\nfunction issues', lambda _m: helper + '\nfunction issues', s, count=1, flags=re.S)
 
     action_fn = "function actionFor(c){const actions=" + actions + ";return actions[c.id]||labelFor(c)}"
-    s = re.sub(r'function actionFor\(c\)\{.*?\}\nfunction planItems', action_fn + '\nfunction planItems', s, count=1, flags=re.S)
+    s = re.sub(r'function actionFor\(c\)\{.*?\}\nfunction planItems', lambda _m: action_fn + '\nfunction planItems', s, count=1, flags=re.S)
 
     plan_fn = (
         "function planItems(d){const bad=issues(d);if(bad.length)return bad.map(c=>({title:labelFor(c),text:actionFor(c)}));return["
@@ -208,7 +208,7 @@ def localize_js(s, lang):
         + "{title:'" + d['sem_title'].replace("'", "\\'") + "',text:'" + d['sem_text'].replace("'", "\\'") + "'},"
         + "{title:'" + d['local_title'].replace("'", "\\'") + "',text:'" + d['local_text'].replace("'", "\\'") + "'}]}"
     )
-    s = re.sub(r'function planItems\(d\)\{.*?\}\nfunction updateContactLinks', plan_fn + '\nfunction updateContactLinks', s, count=1, flags=re.S)
+    s = re.sub(r'function planItems\(d\)\{.*?\}\nfunction updateContactLinks', lambda _m: plan_fn + '\nfunction updateContactLinks', s, count=1, flags=re.S)
 
     contact = d['contact'].replace("'", "\\'")
     subject = d['email_subject'].replace("'", "\\'")
@@ -218,7 +218,7 @@ def localize_js(s, lang):
         "$('ctaTelegram').href='https://t.me/digital_studio_beqson';"
         "$('ctaEmail').href='mailto:digitalstudiobeqson@gmail.com?subject='+encodeURIComponent('" + subject + "'.replace('{host}',host))+'&body='+encodeURIComponent(msg+'\\n\\n'+site)}"
     )
-    s = re.sub(r'function updateContactLinks\(d\)\{.*?\}\nform.addEventListener', contact_fn + '\nform.addEventListener', s, count=1, flags=re.S)
+    s = re.sub(r'function updateContactLinks\(d\)\{.*?\}\nform.addEventListener', lambda _m: contact_fn + '\nform.addEventListener', s, count=1, flags=re.S)
 
     replacements = {
         "$('previewTitle').textContent='Что стоит улучшить'": "$('previewTitle').textContent='" + d['preview_bad'].replace("'", "\\'") + "'",
@@ -261,25 +261,20 @@ for lang, cfg in PAGES.items():
         s = s.replace(old, new)
     if lang != 'ru':
         s = localize_js(s, lang)
+    meta = PageMetadata(s)
+    app = {'@type': 'WebApplication', 'name': meta.title, 'url': cfg['canonical'],
+           'applicationCategory': 'BusinessApplication', 'operatingSystem': 'Any',
+           'inLanguage': lang, 'offers': {'@type': 'Offer', 'price': '0',
+                                        'priceCurrency': {'ru':'RUB','ka':'GEL','en':'USD'}[lang]},
+           '@id': cfg['canonical'] + '#app'}
+    schema = render_schema(lang, 'audit', cfg['canonical'], meta.title, meta.description,
+                           extra_entities=[app])
+    s = SCHEMA_RE.sub('', s).replace('</head>', schema + '</head>', 1)
+    s = update_social(s)
     cfg['path'].parent.mkdir(parents=True, exist_ok=True)
     cfg['path'].write_text(s, encoding='utf-8')
 
-# Homepage links should always keep the visitor in the same language.
-for lang in ('ru', 'ka', 'en'):
-    p = ROOT / f'{lang}/index.html'
-    s = p.read_text(encoding='utf-8')
-    s = s.replace('href="/audit/"', f'href="/{lang}/audit/"')
-    p.write_text(s, encoding='utf-8')
-
-# Add the three localized audit URLs to sitemap once.
-sitemap = ROOT / 'sitemap.xml'
-if sitemap.exists():
-    s = sitemap.read_text(encoding='utf-8')
-    urls = [f'https://beqson.com/{lang}/audit/' for lang in ('ru','ka','en')]
-    missing = [u for u in urls if u not in s]
-    if missing:
-        block = ''.join(f'  <url><loc>{u}</loc></url>\n' for u in missing)
-        s = s.replace('</urlset>', block + '</urlset>')
-        sitemap.write_text(s, encoding='utf-8')
+# Discover existing canonical pages without changing crawl rules.
+build_sitemap(ROOT)
 
 print('Localized audit pages built successfully.')

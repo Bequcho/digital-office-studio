@@ -20,7 +20,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Upgrade multilingual dentist pages
-        run: python scripts/upgrade_dentists_seo.py
+        run: python tools/build.py
+      - name: Validate generated site
+        run: python tools/test_build.py
       - name: Commit changes
         run: |
           if git diff --quiet; then

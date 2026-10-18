@@ -21,7 +21,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Upgrade realtor landing pages
-        run: python scripts/upgrade_realtors_seo.py
+        run: python tools/build.py
+      - name: Validate generated site
+        run: python tools/test_build.py
       - name: Commit changes
         run: |
           if git diff --quiet; then

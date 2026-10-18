@@ -18,37 +18,9 @@ jobs:
 
       - name: Inject lead system into HTML pages
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-
-          css = '<link rel="stylesheet" href="/assets/lead-system.css?v=1">'
-          js = '<script src="/assets/lead-system.js?v=2" defer></script>'
-          changed = []
-
-          for path in Path('.').rglob('*.html'):
-              if path.name == '404.html' or '.git' in path.parts:
-                  continue
-              text = path.read_text(encoding='utf-8')
-              original = text
-
-              if '/assets/lead-system.css' not in text and '</head>' in text:
-                  text = text.replace('</head>', css + '</head>', 1)
-
-              if '/assets/lead-system.js' in text:
-                  text = re.sub(r'<script src="/assets/lead-system\.js\?v=[^"]+" defer></script>', js, text)
-              elif '</body>' in text:
-                  text = text.replace('</body>', js + '</body>', 1)
-
-              if text != original:
-                  path.write_text(text, encoding='utf-8')
-                  changed.append(str(path))
-
-          print('Updated pages:')
-          for item in changed:
-              print(' -', item)
-          PY
-
+          # The maintained page generator owns lead-system includes and their scope.
+          python tools/build.py
+          python tools/test_build.py
       - name: Commit injected references
         run: |
           if git diff --quiet; then
@@ -57,6 +29,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add '*.html' '**/*.html'
+          git add index.html ru/index.html ka/index.html en/index.html ru/*/index.html ka/*/index.html en/*/index.html
           git commit -m "chore: bump BEQSON lead system to v2"
           git push

@@ -19,7 +19,9 @@ jobs:
         with:
           python-version: '3.x'
       - name: Upgrade lawyers pages
-        run: python scripts/upgrade_lawyers_seo.py
+        run: python tools/build.py
+      - name: Validate generated site
+        run: python tools/test_build.py
       - name: Commit changes
         run: |
           if git diff --quiet; then
