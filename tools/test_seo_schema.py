@@ -3,6 +3,8 @@
 from pathlib import Path
 from html.parser import HTMLParser
 import ast
+from html import unescape
+from urllib.parse import urljoin
 import json
 import re
 import textwrap
@@ -76,21 +78,47 @@ def validate(source, route):
     assert page['isPartOf'] == {'@id':WEBSITE}
     assert page['url'] == doc.canonical == BASE+route
     assert page['@id'] == doc.canonical+'#webpage'
-    assert page['inLanguage'] == doc.language == route.split('/')[0]
+    assert page['inLanguage'] == doc.language == ('ru' if route == 'audit/' else route.split('/')[0])
     assert page['name'] == doc.title and page['description'] == doc.description
     if route in METADATA:
         assert page['name'] == METADATA[route]['title']
         assert page['description'] == METADATA[route]['description']
-    slug=route.split('/',1)[1].strip('/')
+    slug='audit' if route == 'audit/' else route.split('/',1)[1].strip('/')
     expected_types=['Organization','WebSite','CollectionPage' if slug in ('projects','tools') else 'WebPage']
     if slug in SERVICE_NAMES:
-        expected_types.append('Service')
+        expected_types.extend(['Service', 'BreadcrumbList'])
         service=graph[3]
         assert service['@id'] == doc.canonical+'#service'
         assert service['name'] == SERVICE_NAMES[slug][('ka','ru','en').index(doc.language)]
         assert service['provider'] == {'@id':ORG} and service['areaServed'] == AREA
         assert service['mainEntityOfPage'] == {'@id':page['@id']}
         assert page['mainEntity'] == {'@id':service['@id']}
+        crumbs = graph[4]
+        assert crumbs['@id'] == doc.canonical + '#breadcrumb'
+        assert page['breadcrumb'] == {'@id': crumbs['@id']}
+        items = crumbs['itemListElement']
+        assert [item['position'] for item in items] == [1, 2]
+        assert all(item['@type'] == 'ListItem' for item in items)
+        assert [item['item'] for item in items] == [BASE + doc.language + '/', doc.canonical]
+        # Compare against actual visible HTML, independently of generator config.
+        if '<body' in source:
+            visible = re.findall(r'<nav class="breadcrumbs"[^>]*>(.*?)</nav>', source, re.S)
+            assert len(visible) == 1
+            home = re.search(r'<a href="([^"]+)">(.*?)</a>', visible[0])
+            spans = re.findall(r'<span>(.*?)</span>', visible[0])
+            assert [item['name'] for item in items] == [unescape(home[2]), unescape(spans[-1])]
+            assert urljoin(doc.canonical, home[1]) == items[0]['item']
+    if route == 'audit/':
+        expected_types.append('WebApplication')
+        app = graph[3]
+        assert app['@id'] == BASE + 'audit/#app'
+        assert app['url'] == page['url'] and app['inLanguage'] == 'ru'
+        assert app['name'] == doc.title
+        assert app['publisher'] == {'@id': ORG}
+        assert app['mainEntityOfPage'] == {'@id': page['@id']}
+        assert page['mainEntity'] == {'@id': app['@id']}
+        assert app['applicationCategory'] == 'BusinessApplication'
+        assert [entity['@type'] for entity in graph] == expected_types
     if route in METADATA: assert [entity['@type'] for entity in graph] == expected_types
     return page['@id']
 
@@ -110,6 +138,13 @@ def main():
             if not slug.startswith('tools/') and slug not in ('audit','calculator'):
                 assert SCHEMA_RE.sub('',update_schema(stale,'' if slug=='.' else slug))==SCHEMA_RE.sub('',source)
             count+=1
+    audit = (ROOT/'audit/index.html').read_text()
+    ids.append(validate(audit, 'audit/')); count += 1
+    assert update_schema(audit, 'audit') == audit
+    without_schema = SCHEMA_RE.sub('', audit)
+    assert update_schema(without_schema, 'audit') == audit
+    assert sum(len(re.findall(r'"@type":"BreadcrumbList"', (ROOT/lang/slug/'index.html').read_text()))
+               for lang in ('ka', 'ru', 'en') for slug in SERVICE_NAMES) == 24
     assert len(ids)==len(set(ids))
     root=(ROOT/'index.html').read_text();assert not Document(root).blocks
     assert (ROOT/'assets/beqson-mark-v3.png').is_file()
@@ -133,7 +168,7 @@ def main():
     tag=render_schema('en','example',BASE+'en/example/',unsafe,'Русский & English')
     assert tag.count('</script>')==1 and '&amp;' not in tag
     assert json.loads(tag.split('>',1)[1].rsplit('</script>',1)[0])['@graph'][2]['name']==unsafe
-    print(f'PASS: {count} language pages, 30 primary graphs, root fallback, unique IDs, links, Unicode, regression isolation, idempotence and both generators')
+    print(f'PASS: {count} indexable pages, 24 visible breadcrumb trails, standalone audit, 30 primary graphs, root fallback, unique IDs, links, Unicode, regression isolation, idempotence and both generators')
 
 
 if __name__=='__main__':main()

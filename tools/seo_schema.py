@@ -31,6 +31,8 @@ SERVICE_NAMES = {
     'autoservices': ['ვებსაიტების შექმნა ავტოსერვისებისთვის', 'Создание сайтов для автосервисов', 'Website Design for Auto Repair Businesses'],
     'hotels': ['ვებსაიტების შექმნა სასტუმროებისთვის', 'Создание сайтов для отелей', 'Website Design for Hotels'],
 }
+CONTENT = json.loads((ROOT / 'tools/content.json').read_text())
+INDUSTRIES = {item['slug']: item for item in json.loads((ROOT / 'tools/industries.json').read_text())}
 AREA = [{'@type': 'Country', 'name': 'Georgia'}, 'Worldwide']
 SCHEMA_RE = re.compile(r'<script\b(?=[^>]*\btype=["\']application/ld\+json["\'])[^>]*>.*?</script\s*>', re.I | re.S)
 
@@ -40,6 +42,8 @@ def generate_schema(language, slug, canonical, title, description, page_type='We
         raise ValueError('Unsupported language')
     slug = slug or ''
     expected = BASE + language + '/' + (slug + '/' if slug else '')
+    if language == 'ru' and slug == 'audit' and canonical == BASE + 'audit/':
+        expected = canonical
     if canonical != expected or page_type not in ('WebPage', 'CollectionPage'):
         raise ValueError('Schema URL/type must match the localized page')
     # The primary 30 pages always use the SEO Step 2 source of truth.
@@ -71,6 +75,20 @@ def generate_schema(language, slug, canonical, title, description, page_type='We
                       'name': SERVICE_NAMES[slug][('ka', 'ru', 'en').index(language)],
                       'description': description, 'provider': {'@id': ORG},
                       'areaServed': deepcopy(AREA), 'mainEntityOfPage': {'@id': page['@id']}})
+        breadcrumb_id = canonical + '#breadcrumb'
+        page['breadcrumb'] = {'@id': breadcrumb_id}
+        graph.append({'@type': 'BreadcrumbList', '@id': breadcrumb_id,
+                      'itemListElement': [
+                          {'@type': 'ListItem', 'position': 1, 'name': CONTENT[language]['home'],
+                           'item': BASE + language + '/'},
+                          {'@type': 'ListItem', 'position': 2, 'name': INDUSTRIES[slug][language]['name'],
+                           'item': canonical}]})
+    # The standalone audit implements the same real audit tool as localized pages.
+    if canonical == BASE + 'audit/' and not extra_entities:
+        extra_entities = [{'@type': 'WebApplication', '@id': canonical + '#app',
+                           'name': title, 'url': canonical, 'inLanguage': language,
+                           'applicationCategory': 'BusinessApplication', 'operatingSystem': 'Any',
+                           'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'RUB'}}]
     # Keep the actual existing tool application; never fabricate a new application.
     for entity in extra_entities:
         if entity.get('@type') not in ('WebApplication', 'SoftwareApplication'):
@@ -147,13 +165,20 @@ def main():
             elif result != source:
                 path.write_text(result)
             count += 1
+    path = ROOT / 'audit/index.html'
+    source = path.read_text(); result = update_schema(source, 'audit')
+    if args.check:
+        if result != source: raise SystemExit('Stale schema: audit/index.html')
+    elif result != source:
+        path.write_text(result)
+    count += 1
     # Root remains a redirect fallback, with no independent structured-data entity.
     path = ROOT / 'index.html'; source = path.read_text(); result = SCHEMA_RE.sub('', source)
     if args.check:
         if source != result: raise SystemExit('Root redirect must not carry independent JSON-LD')
     elif source != result:
         path.write_text(result)
-    print(f'Schema {"verified" if args.check else "updated"}: {count} language pages and root fallback')
+    print(f'Schema {"verified" if args.check else "updated"}: {count} indexable pages and root fallback')
 
 
 if __name__ == '__main__':
