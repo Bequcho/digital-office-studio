@@ -1,10 +1,6 @@
 name: Upgrade lawyers SEO pages
 
 on:
-  push:
-    paths:
-      - 'scripts/upgrade_lawyers_seo.py'
-      - '.github/workflows/upgrade-lawyers-seo.yml'
   workflow_dispatch:
 
 permissions:

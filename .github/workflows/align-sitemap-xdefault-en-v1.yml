@@ -1,9 +1,7 @@
 name: Align sitemap x-default to EN v1
 
 on:
-  push:
-    paths:
-      - 'sitemap-xdefault-trigger-v1.txt'
+  workflow_dispatch:
 
 permissions:
   contents: write

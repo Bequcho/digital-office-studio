@@ -1,8 +1,7 @@
 name: Activate Meta Checker
 on:
-  push:
-    paths:
-      - '.github/workflows/activate-meta-checker.yml'
+  workflow_dispatch:
+
 permissions:
   contents: write
 jobs:

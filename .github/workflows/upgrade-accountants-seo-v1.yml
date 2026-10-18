@@ -1,9 +1,7 @@
 name: Upgrade accountants SEO pages v1
 
 on:
-  push:
-    paths:
-      - '.github/workflows/upgrade-accountants-seo-v1.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write

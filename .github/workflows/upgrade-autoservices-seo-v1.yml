@@ -1,9 +1,7 @@
 name: Upgrade autoservices SEO pages v1
 
 on:
-  push:
-    paths:
-      - '.github/workflows/upgrade-autoservices-seo-v1.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write

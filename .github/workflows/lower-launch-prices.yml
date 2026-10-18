@@ -1,9 +1,7 @@
 name: Apply launch pricing
 
 on:
-  push:
-    paths:
-      - '.github/workflows/lower-launch-prices.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write

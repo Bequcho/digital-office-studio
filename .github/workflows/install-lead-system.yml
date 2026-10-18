@@ -1,9 +1,6 @@
 name: Install BEQSON Lead System
 
 on:
-  push:
-    paths:
-      - '.github/workflows/install-lead-system.yml'
   workflow_dispatch:
 
 permissions:

@@ -1,12 +1,7 @@
 name: Install SEO audit PDF v3
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/install-audit-pdf-v3.yml'
-      - 'assets/audit-pdf-v3.js'
-      - 'scripts/install_audit_pdf_v3.py'
+  workflow_dispatch:
 
 permissions:
   contents: write

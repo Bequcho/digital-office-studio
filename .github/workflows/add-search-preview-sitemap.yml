@@ -1,8 +1,7 @@
 name: Add Search Preview to sitemap
 on:
-  push:
-    paths:
-      - '.github/workflows/add-search-preview-sitemap.yml'
+  workflow_dispatch:
+
 permissions:
   contents: write
 jobs:

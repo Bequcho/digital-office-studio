@@ -1,9 +1,7 @@
 name: Upgrade core structured data v1
 
 on:
-  push:
-    paths:
-      - 'schema-upgrade-trigger-v1.txt'
+  workflow_dispatch:
 
 permissions:
   contents: write

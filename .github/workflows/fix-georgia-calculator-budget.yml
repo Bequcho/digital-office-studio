@@ -1,8 +1,7 @@
 name: Align Georgian calculator budget brackets
 on:
-  push:
-    paths:
-      - '.github/workflows/fix-georgia-calculator-budget.yml'
+  workflow_dispatch:
+
 permissions:
   contents: write
 jobs:

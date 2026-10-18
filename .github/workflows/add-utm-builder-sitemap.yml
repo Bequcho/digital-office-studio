@@ -1,9 +1,7 @@
 name: Add UTM Builder to sitemap
 
 on:
-  push:
-    paths:
-      - '.github/workflows/add-utm-builder-sitemap.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write

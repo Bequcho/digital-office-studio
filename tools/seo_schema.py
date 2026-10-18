@@ -84,11 +84,11 @@ def generate_schema(language, slug, canonical, title, description, page_type='We
                           {'@type': 'ListItem', 'position': 2, 'name': INDUSTRIES[slug][language]['name'],
                            'item': canonical}]})
     # The standalone audit implements the same real audit tool as localized pages.
-    if canonical == BASE + 'audit/' and not extra_entities:
+    if slug == 'audit' and not extra_entities:
         extra_entities = [{'@type': 'WebApplication', '@id': canonical + '#app',
                            'name': title, 'url': canonical, 'inLanguage': language,
                            'applicationCategory': 'BusinessApplication', 'operatingSystem': 'Any',
-                           'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'RUB'}}]
+                           'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': {'ru':'RUB','ka':'GEL','en':'USD'}[language]}}]
     # Keep the actual existing tool application; never fabricate a new application.
     for entity in extra_entities:
         if entity.get('@type') not in ('WebApplication', 'SoftwareApplication'):
@@ -137,6 +137,13 @@ def update_schema(source, slug):
         payload = json.loads(re.sub(r'^<script[^>]*>|</script\s*>$', '', block, flags=re.I))
         old_entities.extend(payload.get('@graph', [payload]))
     applications = [item for item in old_entities if item.get('@type') in ('WebApplication', 'SoftwareApplication')]
+    # Canonicalized legacy /audit/ shares the RU application's identity.
+    for app in applications:
+        if slug == 'audit' and app.get('url') == BASE + 'audit/' and meta.canonical == BASE + 'ru/audit/':
+            app['url'] = meta.canonical
+            app['@id'] = meta.canonical + '#app'
+        if meta.canonical == BASE + 'ka/tools/meta-checker/':
+            app['name'] = meta.title
     page_type = 'CollectionPage' if slug in ('projects', 'tools') else 'WebPage'
     tag = render_schema(meta.language, slug, meta.canonical, meta.title, meta.description, page_type, applications)
     # Normalize to exactly one head script; all other HTML stays byte-for-byte intact.

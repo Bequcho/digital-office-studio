@@ -100,7 +100,7 @@ requires `dry_run=false` plus the GitHub `workflow_dispatch` context on `main`.
 
 Offline tests (`python tools/test_indexnow.py`) use fake HTTP responses and block
 real sockets. They cover the default dry-run, manual-send gate, URL filtering,
-production failures and all 52 real sitemap entries. They never send IndexNow
+production failures and all 51 canonical sitemap entries. They never send IndexNow
 requests. The validation workflow runs these tests automatically, not IndexNow.
 
 Existing bot commits use checkout's default GITHUB_TOKEN, not a PAT or custom SSH
@@ -108,3 +108,33 @@ key. Such pushes normally do not trigger another push workflow, preventing recur
 runs. Parallel writers can still encounter a non-fast-forward push rejection;
 there are no force pushes. The local simulation cannot verify repository rules,
 Actions permissions, branch protection or the actual Pages deployment settings.
+
+## Release hardening (SEO Step 9.5)
+
+Only two repository workflows remain automatic on a main push:
+
+- `validate-workflows.yml`: permanent read-only CI; also runs on main PRs.
+- `localize-audit-pages.yml`: maintained localization of the audit source when
+  its source/generators change. It needs `contents: write` to persist generated
+  language pages, and exits before commit/push when there are no changes.
+
+The other 28 historical installers/upgrades are now manual-only, alongside the
+already manual portfolio builder and IndexNow. They installed features or ran
+one-off migrations already present in the approved site: tool activation/hubs,
+pricing, lead capture, audit/PDF entry points, Clutch, profession SEO, and earlier
+schema/sitemap migrations. Editing these workflows no longer triggers a migration.
+Their write permissions remain necessary for their explicit manual commit steps.
+The clinics migration now exits before both commit and push on an empty diff.
+No custom Pages deployment workflow exists in this checkout; Pages repository
+settings are separate and have not been changed. Verify them before release.
+
+`tools/seo_overrides.json` is the shared source for the Georgian meta-checker
+SEO title and the legacy audit canonical. `tools/seo_overrides.py` applies them
+through the existing schema/social generators during the full build, without
+changing body content. `/ru/audit/` is the RU canonical tool in the multilingual
+family; `/audit/` continues serving the identical working tool with canonical
+pointing to `/ru/audit/`. This is a canonical alias, not an HTTP redirect or
+noindex page. The alias shares canonical Schema identities and og:url, and is
+excluded from sitemap/IndexNow discovery. There are now 51 self-canonical URLs
+(17 per language), plus the legacy alias. Metadata tests check all 51 for
+uniqueness and explicitly validate the alias, covering the original 52 addresses.

@@ -118,17 +118,28 @@ def main():
             language_counts[language] += 1
     check_html_language((ROOT / 'index.html').read_text(), 'ka')
     print(f'HTML lang: {language_counts}; root fallback: ka')
-    count = 0
-    for path in ROOT.rglob('*.html'):
-        parts = path.relative_to(ROOT).parts
-        if parts[0] == 'tools' or any(part in {'.git', 'node_modules'} for part in parts):
-            continue
-        source = path.read_text()
-        if re.search(r'noindex|http-equiv=[\"\']refresh', source, re.I):
-            continue
-        route = path.parent.relative_to(ROOT).as_posix() + '/'
-        check(source, canonical='https://beqson.com/' + route)
-        count += 1
+    # Use the real indexability discovery, not a whole-document noindex regex.
+    from build_sitemap import discover
+    pages, excluded = discover()
+    assert len(pages) == 51
+    assert excluded['audit/index.html'] == 'canonical points elsewhere'
+    all_titles = {}; all_descriptions = {}
+    for url, path in pages.items():
+        parsed = check(path.read_text(), canonical=url, hreflang=True)
+        for field, seen in [('titles', all_titles), ('descriptions', all_descriptions)]:
+            value = getattr(parsed, field)[0]
+            assert value not in seen, (field, seen.get(value), url)
+            seen[value] = url
+    alias = check((ROOT/'audit/index.html').read_text(), canonical='https://beqson.com/ru/audit/')
+    target = check((ROOT/'ru/audit/index.html').read_text())
+    assert alias.titles == target.titles and alias.descriptions == target.descriptions
+    assert (ROOT/'audit/index.html').read_text().split('<body',1)[1] == (ROOT/'ru/audit/index.html').read_text().split('<body',1)[1]
+    from seo_overrides import OVERRIDES
+    for route, values in OVERRIDES.items():
+        parsed = check((ROOT/route/'index.html').read_text())
+        if 'title' in values: assert parsed.titles == [values['title']]
+        if 'canonical' in values: assert parsed.canonicals == [values['canonical']]
+    count = len(pages)
     spec = importlib.util.spec_from_file_location('site_build', ROOT / 'tools/build.py')
     build = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(build)

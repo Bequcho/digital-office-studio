@@ -1,9 +1,6 @@
 name: Upgrade hotels SEO pages
 
 on:
-  push:
-    paths:
-      - '.github/workflows/upgrade-hotels-seo.yml'
   workflow_dispatch:
 
 permissions:

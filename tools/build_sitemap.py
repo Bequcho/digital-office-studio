@@ -105,7 +105,8 @@ def render(root=ROOT):
     output = re.sub(r'<url\b[^>]*>.*?</url>', retain, source, flags=re.S)
     additions = ''.join('  <url><loc>'+url+'</loc></url>\n' for url in sorted(set(urls)-seen))
     if additions: output = output.replace('</urlset>', additions+'</urlset>', 1)
-    return output
+    # Removing an entry must not leave indentation-only lines in XML.
+    return re.sub(r'(?m)^[ \t]+$', '', output)
 
 
 def build_sitemap(root=ROOT, check=False):

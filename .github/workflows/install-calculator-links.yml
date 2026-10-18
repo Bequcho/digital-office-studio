@@ -1,11 +1,7 @@
 name: Install website calculator links
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/install-calculator-links.yml'
-      - 'scripts/install_calculator_links.py'
+  workflow_dispatch:
 
 permissions:
   contents: write

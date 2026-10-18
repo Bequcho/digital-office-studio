@@ -14,12 +14,14 @@ try:
  from .seo_schema import render_schema, SCHEMA_RE, update_schema
  from .build_sitemap import build_sitemap
  from .seo_social import update_social
+ from .seo_overrides import apply_overrides
 except ImportError:
  from seo_hreflang import render_hreflang
  from build_components import HOME, home_promos, home_industries, home_projects, home_trust, industry_details, has_generic_sections, LEAD_STYLE, LEAD_SCRIPT
  from seo_schema import render_schema, SCHEMA_RE, update_schema
  from build_sitemap import build_sitemap
  from seo_social import update_social
+ from seo_overrides import apply_overrides
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = json.loads((ROOT/'tools/content.json').read_text())
 SEO_METADATA = json.loads((ROOT/'tools/seo_metadata.json').read_text())
@@ -223,6 +225,7 @@ def main():
  # Preserve existing crawl rules, especially the private CRM exclusion.
  if not (ROOT/'robots.txt').exists():
   write('robots.txt','User-agent: *\nAllow: /\nDisallow: /crm/\nSitemap: '+BASE_URL+'sitemap.xml\n')
+ apply_overrides(ROOT)
  write('audit/index.html',update_schema((ROOT/'audit/index.html').read_text(), 'audit'))
  build_sitemap(ROOT)
  write('site.webmanifest',json.dumps({'name':'BEQSON Digital Studio','short_name':'BEQSON','lang':'ka','start_url':'./','scope':'./','display':'browser','background_color':'#081529','theme_color':'#081529','icons':[{'src':'assets/app-icon-192-v3.png','sizes':'192x192','type':'image/png'},{'src':'assets/app-icon-512-v3.png','sizes':'512x512','type':'image/png'}]},indent=2)+'\n')

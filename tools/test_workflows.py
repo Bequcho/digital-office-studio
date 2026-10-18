@@ -143,6 +143,13 @@ def main():
     assert submit['env']['INDEXNOW_KEY'] == '9a97aa27a069ea0350203fe532357c06'
     assert submit['run'] == 'python tools/indexnow.py --dry-run "$DRY_RUN"'
     assert indexnow['permissions'] == {'contents': 'read'}
+    automatic = {p.name for p, d in workflows.items() if 'push' in d['on']}
+    assert automatic == {'validate-workflows.yml', 'localize-audit-pages.yml'}, automatic
+    for p, d in workflows.items():
+        if p.name not in automatic:
+            assert set(d['on']) == {'workflow_dispatch'}, p.name
+    clinics = (ROOT/'.github/workflows/upgrade-clinics-seo.yml').read_text()
+    assert 'if git diff --cached --quiet; then exit 0; fi' in clinics
     calls = 0; count = 0
     with TemporaryDirectory(prefix='beqson-workflow-regression-') as directory:
         root = Path(directory)/'site'

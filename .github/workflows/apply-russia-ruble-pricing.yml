@@ -1,8 +1,7 @@
 name: Apply Russia ruble pricing
 on:
-  push:
-    paths:
-      - '.github/workflows/apply-russia-ruble-pricing.yml'
+  workflow_dispatch:
+
 permissions:
   contents: write
 jobs:

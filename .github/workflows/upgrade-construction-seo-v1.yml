@@ -1,9 +1,7 @@
 name: Upgrade construction SEO pages v1
 
 on:
-  push:
-    paths:
-      - '.github/workflows/upgrade-construction-seo-v1.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write

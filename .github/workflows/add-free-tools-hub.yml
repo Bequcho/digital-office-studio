@@ -1,8 +1,7 @@
 name: Connect Free Tools hub
 on:
-  push:
-    paths:
-      - '.github/workflows/add-free-tools-hub.yml'
+  workflow_dispatch:
+
 permissions:
   contents: write
 jobs:

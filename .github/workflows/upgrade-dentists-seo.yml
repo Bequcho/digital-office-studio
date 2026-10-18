@@ -1,10 +1,7 @@
 name: Upgrade dentists SEO pages
 
 on:
-  push:
-    paths:
-      - 'scripts/upgrade_dentists_seo.py'
-      - '.github/workflows/upgrade-dentists-seo.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write

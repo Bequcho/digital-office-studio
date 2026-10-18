@@ -76,7 +76,7 @@ def validate(source, route):
     assert site['@type'] == 'WebSite' and site['@id'] == WEBSITE
     assert site['publisher'] == page['publisher'] == {'@id':ORG}
     assert page['isPartOf'] == {'@id':WEBSITE}
-    assert page['url'] == doc.canonical == BASE+route
+    assert page['url'] == doc.canonical == BASE+('ru/audit/' if route == 'audit/' else route)
     assert page['@id'] == doc.canonical+'#webpage'
     assert page['inLanguage'] == doc.language == ('ru' if route == 'audit/' else route.split('/')[0])
     assert page['name'] == doc.title and page['description'] == doc.description
@@ -111,7 +111,7 @@ def validate(source, route):
     if route == 'audit/':
         expected_types.append('WebApplication')
         app = graph[3]
-        assert app['@id'] == BASE + 'audit/#app'
+        assert app['@id'] == BASE + 'ru/audit/#app'
         assert app['url'] == page['url'] and app['inLanguage'] == 'ru'
         assert app['name'] == doc.title
         assert app['publisher'] == {'@id': ORG}
@@ -139,7 +139,8 @@ def main():
                 assert SCHEMA_RE.sub('',update_schema(stale,'' if slug=='.' else slug))==SCHEMA_RE.sub('',source)
             count+=1
     audit = (ROOT/'audit/index.html').read_text()
-    ids.append(validate(audit, 'audit/')); count += 1
+    assert validate(audit, 'audit/') == BASE + 'ru/audit/#webpage'
+    count += 1
     assert update_schema(audit, 'audit') == audit
     without_schema = SCHEMA_RE.sub('', audit)
     assert update_schema(without_schema, 'audit') == audit
@@ -168,7 +169,7 @@ def main():
     tag=render_schema('en','example',BASE+'en/example/',unsafe,'Русский & English')
     assert tag.count('</script>')==1 and '&amp;' not in tag
     assert json.loads(tag.split('>',1)[1].rsplit('</script>',1)[0])['@graph'][2]['name']==unsafe
-    print(f'PASS: {count} indexable pages, 24 visible breadcrumb trails, standalone audit, 30 primary graphs, root fallback, unique IDs, links, Unicode, regression isolation, idempotence and both generators')
+    print(f'PASS: {count - 1} indexable pages plus legacy audit alias, 24 visible breadcrumb trails, standalone audit, 30 primary graphs, root fallback, unique IDs, links, Unicode, regression isolation, idempotence and both generators')
 
 
 if __name__=='__main__':main()

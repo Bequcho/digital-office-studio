@@ -1,8 +1,7 @@
 name: Add Clutch trust signal
 on:
-  push:
-    paths:
-      - '.github/workflows/add-clutch-trust.yml'
+  workflow_dispatch:
+
 permissions:
   contents: write
 jobs:

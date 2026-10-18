@@ -1,10 +1,7 @@
 name: Fix audit PDF and contact icons
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/fix-audit-pdf-icons.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write

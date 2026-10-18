@@ -1,10 +1,6 @@
 name: Upgrade realtors SEO pages
 
 on:
-  push:
-    paths:
-      - 'scripts/upgrade_realtors_seo.py'
-      - '.github/workflows/upgrade-realtors-seo.yml'
   workflow_dispatch:
 
 permissions:
