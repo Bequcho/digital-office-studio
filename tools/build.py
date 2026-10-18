@@ -181,7 +181,7 @@ def homepage(lang,base,fallback=False):
  values=''.join(f'<div class="value-item">{tile(ico,small=True)}<div><p class="value-title">{title}</p><p>{desc}</p></div></div>' for ico,(title,desc) in zip(('globe','pin','layers','trend'),c['values']))
  steps=''.join(f'<article class="step-card"><span class="step-number">0{i+1}</span>{tile(ico)}<h3>{title}</h3><p>{desc}</p></article>' for i,(ico,(title,desc)) in enumerate(zip(('search','plan','pin','message','megaphone','chart'),c['steps'])))
  faqs=''.join(f'<details><summary>{esc(q)}{icon("plus")}</summary><p>{esc(a)}</p></details>' for q,a in c['faqs'])
- extra_head = f'<link rel="stylesheet" href="{base}assets/banners/banner.css?v=2"><link rel="stylesheet" href="{base}assets/banners/{lang}-hero.css?v={3 if lang=="ka" else 1}">'+LEAD_STYLE
+ extra_head = f'<link rel="stylesheet" href="{base}assets/banners/banner.css?v=2"><link rel="stylesheet" href="{base}assets/banners/{lang}-hero.css?v={3 if lang=="ka" else 2 if lang=="ru" else 1}">'+LEAD_STYLE
  if not fallback:
   extra_head += (ROOT/'tools/templates/home-audit-style.html').read_text()+'<link rel="stylesheet" href="/assets/projects.css?v=6-industry-cover">'
  return head(lang,base,c['title'],c['description'],fallback=fallback).replace('</head>',extra_head+'</head>')+f'''<body id="top">{header(lang,base,home_sections=not fallback)}<main id="main">

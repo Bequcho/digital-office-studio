@@ -44,3 +44,12 @@ html:lang(ru) .classic-hero-copy{padding-right:24px}
     background-position:112% 50%;
   }
 }
+
+/* Keep the longer Russian headline balanced within the existing hero column. */
+html:lang(ru) .classic-hero h1{
+  font-size:clamp(32px,3.6vw,60px);
+  line-height:1.05;
+}
+@media(max-width:768px){
+  html:lang(ru) .classic-hero h1{font-size:clamp(26px,7.8vw,44px)}
+}
