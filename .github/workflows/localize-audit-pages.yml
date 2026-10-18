@@ -12,6 +12,7 @@ on:
       - 'tools/seo_hreflang.py'
       - 'tools/seo_schema.py'
       - 'tools/seo_social.py'
+      - 'tools/requirements-workflows.txt'
 
 permissions:
   contents: write
