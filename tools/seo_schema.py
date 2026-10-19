@@ -131,6 +131,12 @@ class PageMetadata(HTMLParser):
 
 
 def update_schema(source, slug):
+    # The dedicated Shopify service landing pages carry truthful custom Offer
+    # and Service markup alongside the standard BEQSON graph. They are maintained
+    # as a single author-controlled block and must not be overwritten by the
+    # general industry-page schema rewriter.
+    if slug == 'shopify':
+        return source
     meta = PageMetadata(source)
     old_entities = []
     for block in SCHEMA_RE.findall(source):
