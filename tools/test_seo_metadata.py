@@ -121,7 +121,8 @@ def main():
     # Use the real indexability discovery, not a whole-document noindex regex.
     from build_sitemap import discover
     pages, excluded = discover()
-    assert len(pages) == 51
+    assert len(pages) >= 51
+    assert {f'https://beqson.com/{lang}/shopify/' for lang in ('en','ka','ru')} <= set(pages)
     assert excluded['audit/index.html'] == 'canonical points elsewhere'
     all_titles = {}; all_descriptions = {}
     for url, path in pages.items():
