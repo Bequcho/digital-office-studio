@@ -72,3 +72,45 @@
 @media(max-width:900px){.home-project-card{min-height:350px}.home-project-card:before{flex-basis:170px;height:170px}}
 @media(max-width:620px){.home-project-card{min-height:0}.home-project-card:before{flex-basis:190px;height:190px}.home-project-card strong{font-size:20px}}
 @media(prefers-reduced-motion:reduce){.home-project-card:before{transition:none!important}.home-project-card:hover:before{transform:none!important}}
+
+/* BEQSON 2026: accessible dual neon actions for Kakheti Wine House */
+.project-body .project-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:12px;margin-top:24px}
+.project-action{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:64px;padding:14px 16px;border:1px solid rgba(81,224,255,.75);border-radius:14px;background:linear-gradient(130deg,rgba(15,97,157,.94),rgba(9,47,92,.94));box-shadow:0 0 0 1px rgba(91,226,255,.08),0 0 24px rgba(27,192,246,.13),inset 0 1px 0 rgba(255,255,255,.15);color:#f3fcff!important;font-size:14px;font-weight:800;line-height:1.38;text-decoration:none!important;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease}
+.project-action--shopify{border-color:rgba(190,126,255,.75);background:linear-gradient(130deg,rgba(99,57,170,.94),rgba(41,26,92,.96));box-shadow:0 0 0 1px rgba(202,149,255,.07),0 0 24px rgba(146,85,238,.13),inset 0 1px 0 rgba(255,255,255,.13)}
+.project-action:hover{transform:translateY(-2px);border-color:#8af4ff;box-shadow:0 0 0 1px rgba(130,232,255,.22),0 0 29px rgba(35,206,255,.34),0 12px 30px rgba(0,0,0,.2)}
+.project-action--shopify:hover{border-color:#dcb4ff;box-shadow:0 0 0 1px rgba(218,178,255,.23),0 0 29px rgba(180,107,255,.32),0 12px 30px rgba(0,0,0,.2)}
+.project-action:focus-visible,.beqson-work-card:focus-visible,.beqson-work-all:focus-visible{outline:3px solid #9decff;outline-offset:4px}
+.project-action-arrow{display:inline-flex;flex:0 0 28px;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.13);font-size:18px;line-height:1}
+
+/* Premium full portfolio on the home page, matched to the project's real catalogue */
+.beqson-work{position:relative;overflow:hidden;padding:94px 0 100px;background:radial-gradient(circle at 12% 12%,rgba(45,165,246,.15),transparent 26%),radial-gradient(circle at 91% 68%,rgba(123,76,242,.095),transparent 28%),linear-gradient(180deg,#06172f,#0a2140);color:#f0f9ff}
+.beqson-work:before{content:"";pointer-events:none;position:absolute;inset:0;opacity:.34;background-image:linear-gradient(rgba(140,203,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(140,203,255,.035) 1px,transparent 1px);background-size:48px 48px}
+.beqson-work>.shell{position:relative;z-index:1}
+.beqson-work-heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:33px}
+.beqson-work-heading .eyebrow{color:#68ddff}
+.beqson-work-heading h2{max-width:650px;margin:8px 0 0;color:#fff;font-size:clamp(32px,4.5vw,56px);line-height:1.06;letter-spacing:-.04em}
+.beqson-work-heading>p{max-width:490px;margin:0;color:#a9c8e1;font-size:16px;line-height:1.6}
+.beqson-work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.beqson-work-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid rgba(76,173,224,.32);border-radius:22px;background:linear-gradient(150deg,rgba(13,48,87,.97),rgba(7,30,58,.97));box-shadow:0 12px 35px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.04);color:#fff!important;text-decoration:none!important;transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease}
+.beqson-work-card:hover{transform:translateY(-5px);border-color:rgba(98,222,255,.9);box-shadow:0 18px 48px rgba(0,0,0,.22),0 0 25px rgba(29,188,255,.12)}
+.beqson-work-art{position:relative;display:block;overflow:hidden;height:154px;background:#081d37;border-bottom:1px solid rgba(96,181,225,.2)}
+.beqson-work-art:after{content:"";pointer-events:none;position:absolute;inset:0;background:linear-gradient(180deg,transparent 72%,rgba(5,19,39,.42))}
+.beqson-work-art img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.beqson-work-card:hover img{transform:scale(1.045)}
+.beqson-work-card--featured .beqson-work-art{height:218px}
+.beqson-work-copy{display:flex;flex:1;flex-direction:column;align-items:stretch;gap:12px;padding:20px}
+.beqson-work-meta{display:flex;align-items:center;justify-content:space-between;gap:9px}
+.beqson-work-badge{display:inline-block;border:1px solid rgba(91,204,250,.3);border-radius:999px;padding:7px 9px;color:#78dcff;background:rgba(26,105,161,.18);font-size:10px;line-height:1.2;font-weight:800;letter-spacing:.035em}
+.beqson-work-cat{color:#85aaca;font-size:10px;font-weight:850;letter-spacing:.11em;white-space:nowrap}
+.beqson-work-name{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;color:#fff;font-size:clamp(18px,1.55vw,21px);line-height:1.26;letter-spacing:-.02em}
+.beqson-work-desc{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;color:#a9c7dd;font-size:13px;line-height:1.55}
+.beqson-work-cta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:8px;color:#63d7ff;font-size:13px;font-weight:900}
+.beqson-work-cta>span{display:inline-grid;place-items:center;width:29px;height:29px;border-radius:9px;background:rgba(62,176,230,.13);font-size:17px;transition:background .2s ease,transform .2s ease}
+.beqson-work-card:hover .beqson-work-cta>span{background:rgba(67,196,250,.28);transform:translate(2px,-2px)}
+.beqson-work-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:28px}
+.beqson-work-bottom p{max-width:650px;color:#93b4cf;font-size:13px;line-height:1.55}
+.beqson-work-all{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:54px;padding:0 22px;border:1px solid rgba(106,218,255,.78);border-radius:13px;background:linear-gradient(130deg,#126ba6,#0c3b70);color:#fff!important;white-space:nowrap;font-size:14px;font-weight:900;text-decoration:none!important;box-shadow:0 0 25px rgba(53,200,255,.14);transition:box-shadow .2s ease,transform .2s ease}
+.beqson-work-all:hover{transform:translateY(-2px);box-shadow:0 0 34px rgba(53,200,255,.32)}
+@media(max-width:1030px){.beqson-work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.beqson-work-card--featured .beqson-work-art{height:190px}.beqson-work-heading{align-items:start;flex-direction:column}.beqson-work-heading>p{max-width:780px}}
+@media(max-width:680px){.project-body .project-actions{grid-template-columns:1fr;gap:10px}.project-action{min-height:57px;padding:12px 15px}.beqson-work{padding:64px 0 70px}.beqson-work-grid{grid-template-columns:minmax(0,1fr);gap:15px}.beqson-work-art,.beqson-work-card--featured .beqson-work-art{height:auto;aspect-ratio:16/9}.beqson-work-copy{padding:18px}.beqson-work-name{font-size:20px}.beqson-work-bottom{flex-direction:column;align-items:stretch}.beqson-work-all{white-space:normal;text-align:center}.beqson-work-bottom p{margin:0}}
+@media(prefers-reduced-motion:reduce){.project-action,.beqson-work-card,.beqson-work-art img,.beqson-work-cta>span,.beqson-work-all{transition:none!important}.project-action:hover,.beqson-work-card:hover,.beqson-work-all:hover,.beqson-work-card:hover img,.beqson-work-card:hover .beqson-work-cta>span{transform:none!important}}
