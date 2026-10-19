@@ -1,0 +1,11 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": {
+    "wp": "latest",
+    "php": "8.3"
+  },
+  "landingPage": "/",
+  "siteOptions": {
+    "blogname": "FORME HOME | WordPress Test"
+  }
+}
