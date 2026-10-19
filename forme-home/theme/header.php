@@ -1,0 +1,7 @@
+<!doctype html><html <?php language_attributes(); ?>><head><meta charset="<?php bloginfo('charset'); ?>"><meta name="viewport" content="width=device-width,initial-scale=1"><?php wp_head(); ?></head><body <?php body_class(); ?>><?php wp_body_open(); ?>
+<div class="top-note">FORME HOME / ИНТЕРЬЕРЫ С ХАРАКТЕРОМ • БЕСПЛАТНАЯ ДЕМОНСТРАЦИЯ</div>
+<header class="site-header"><div class="wrap nav">
+<a class="brand" href="<?php echo esc_url(home_url('/')); ?>"><span class="brand-mark">F</span><span>FORME<span class="brand-sub" style="display:block">H O M E</span></span></a>
+<nav class="nav-links"><a href="<?php echo esc_url(home_url('/')); ?>">Главная</a><a href="<?php echo esc_url(forme_shop()); ?>">Каталог</a><a href="<?php echo esc_url(home_url('/#collections')); ?>">Коллекции</a><a href="<?php echo esc_url(home_url('/#about')); ?>">О проекте</a></nav>
+<div class="nav-icons"><a href="<?php echo esc_url(forme_shop()); ?>" aria-label="Каталог">⌕</a><a class="bag" href="<?php echo esc_url(forme_cart()); ?>" aria-label="Корзина">♧<span class="count"><?php echo function_exists('WC') && WC()->cart ? (int)WC()->cart->get_cart_contents_count() : '0'; ?></span></a></div>
+</div></header><div class="demo-ribbon"><strong>Интерактивный магазин WooCommerce.</strong> Добавляйте товары в корзину и оформляйте тестовые заказы — никаких реальных покупок и платежей.</div>
