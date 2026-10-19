@@ -56,4 +56,10 @@
   <url><loc>https://beqson.com/ka/projects/</loc><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/projects/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/projects/" /><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/projects/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/projects/" /></url>
   <url><loc>https://beqson.com/ru/projects/</loc><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/projects/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/projects/" /><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/projects/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/projects/" /></url>
 
+
+<!-- Shopify store design and development: English, Georgian, Russian -->
+<url><loc>https://beqson.com/en/shopify/</loc><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/shopify/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/shopify/" /><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/shopify/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/shopify/" /></url>
+<url><loc>https://beqson.com/ka/shopify/</loc><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/shopify/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/shopify/" /><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/shopify/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/shopify/" /></url>
+<url><loc>https://beqson.com/ru/shopify/</loc><xhtml:link rel="alternate" hreflang="en" href="https://beqson.com/en/shopify/" /><xhtml:link rel="alternate" hreflang="ka" href="https://beqson.com/ka/shopify/" /><xhtml:link rel="alternate" hreflang="ru" href="https://beqson.com/ru/shopify/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://beqson.com/en/shopify/" /></url>
+
 </urlset>
