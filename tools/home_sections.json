@@ -17,6 +17,14 @@
         "text": "Сайты, SEO, GEO, AI-автоматизация и дизайн: выберите услугу и получите ориентировочную или индивидуальную оценку.",
         "href": "/ru/calculator/",
         "label": "Выбрать услугу →"
+      },
+      {
+        "calculator": false,
+        "kicker": "BEQSON GEO / AI SEARCH VISIBILITY",
+        "heading": "Станьте понятнее AI-поиску",
+        "text": "GEO Audit: проверим доступность сайта для AI-поиска, содержание страниц, информацию о бренде и реальные сигналы цитируемости.",
+        "href": "/ru/geo/",
+        "label": "GEO-аудит и самопроверка ↗"
       }
     ],
     "industries": {
@@ -166,6 +174,14 @@
         "text": "ვებსაიტები, SEO, GEO, AI ავტომატიზაცია და დიზაინი — აირჩიეთ სერვისი და მიიღეთ საორიენტაციო ან ინდივიდუალური შეფასება.",
         "href": "/ka/calculator/",
         "label": "სერვისის არჩევა →"
+      },
+      {
+        "calculator": false,
+        "kicker": "BEQSON GEO / AI SEARCH VISIBILITY",
+        "heading": "გახადეთ თქვენი ბიზნესი AI ძიებისთვის გასაგები",
+        "text": "GEO Audit ამოწმებს საძიებო ბოტების წვდომას, ბრენდის სიცხადეს, კონტენტსა და რეალურ ციტირების სიგნალებს.",
+        "href": "/ka/geo/",
+        "label": "GEO აუდიტი და თვითშემოწმება ↗"
       }
     ],
     "industries": {
@@ -315,6 +331,14 @@
         "text": "Websites, SEO, GEO, AI automation and design: choose your service and get an estimate or a tailored quote.",
         "href": "/en/calculator/",
         "label": "Explore service pricing →"
+      },
+      {
+        "calculator": false,
+        "kicker": "BEQSON GEO / AI SEARCH VISIBILITY",
+        "heading": "Make your business easier to understand in AI search",
+        "text": "GEO Audit checks crawler access, brand clarity, useful content and observable citation signals.",
+        "href": "/en/geo/",
+        "label": "Explore GEO Audit ↗"
       }
     ],
     "industries": {
