@@ -14,6 +14,24 @@ jobs:
           python - <<'PY'
           from pathlib import Path
 
+          # Calculator 2/3 already includes the RUB migration. Verify its data,
+          # then leave the newer configurator intact instead of patching V1 code.
+          calculator = Path('assets/website-calculator.js').read_text(encoding='utf-8')
+          home = Path('ru/index.html').read_text(encoding='utf-8')
+          page = Path('ru/calculator/index.html').read_text(encoding='utf-8')
+          applied = (
+            "const priceRu={type:{landing:9900,business:14900,redesign:19900,store:34900},size:{one:0,small:5000,medium:10000,large:18000},extra:{seo:4000,local:3000,crm:6000,languages:5000,copy:4000,analytics:2500,payments:6000,booking:4500}};" in calculator
+            and "const price=isGeorgia?priceKa:(isRussia?priceRu:priceUsd);" in calculator
+            and "if(isRussia){if(mid<=15000)return 'до 15 000 ₽'" in calculator
+            and all('<span>₽</span>'+price in home for price in ('9 900', '19 900', '34 900'))
+            and 'от 2 900 ₽ / месяц' in home
+            and '"priceCurrency":"RUB"' in page
+            and '19 900–23 500 ₽' in page
+          )
+          if applied:
+            print('RUB pricing already applied; preserving current calculator.')
+            raise SystemExit(0)
+
           # Russian homepage pricing
           p = Path('ru/index.html')
           s = p.read_text(encoding='utf-8')

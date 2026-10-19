@@ -10,7 +10,8 @@ cards = {
 for lang, card in cards.items():
     p = Path(lang) / 'index.html'
     s = p.read_text(encoding='utf-8')
-    if 'BEQSON WEBSITE COST CALCULATOR' not in s:
+    # Detect the entry point structurally; its translated wording can evolve.
+    if 'calculator-home-strip' not in s:
         m = re.search(r'(<section class="audit-home-strip">.*?</section>)', s, flags=re.S)
         if not m:
             raise SystemExit(f'audit block not found in {p}')

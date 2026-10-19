@@ -12,11 +12,11 @@
       },
       {
         "calculator": true,
-        "kicker": "BEQSON WEBSITE COST CALCULATOR",
-        "heading": "Рассчитайте стоимость сайта",
-        "text": "Ответьте на 5 быстрых вопросов — сразу получите ориентировочный бюджет проекта и подходящий пакет BEQSON.",
+        "kicker": "BEQSON DIGITAL SERVICES CALCULATOR",
+        "heading": "Рассчитайте стоимость проекта",
+        "text": "Сайты, SEO, GEO, AI-автоматизация и дизайн: выберите услугу и получите ориентировочную или индивидуальную оценку.",
         "href": "/ru/calculator/",
-        "label": "Рассчитать стоимость →"
+        "label": "Выбрать услугу →"
       }
     ],
     "industries": {
@@ -161,11 +161,11 @@
       },
       {
         "calculator": true,
-        "kicker": "BEQSON WEBSITE COST CALCULATOR",
-        "heading": "გაიგეთ ვებსაიტის სავარაუდო ღირებულება",
-        "text": "უპასუხეთ 5 მოკლე კითხვას და მყისიერად მიიღეთ პროექტის სავარაუდო ბიუჯეტი და შესაბამისი BEQSON პაკეტი.",
+        "kicker": "BEQSON DIGITAL SERVICES CALCULATOR",
+        "heading": "შეაფასეთ თქვენი ციფრული პროექტი",
+        "text": "ვებსაიტები, SEO, GEO, AI ავტომატიზაცია და დიზაინი — აირჩიეთ სერვისი და მიიღეთ საორიენტაციო ან ინდივიდუალური შეფასება.",
         "href": "/ka/calculator/",
-        "label": "ღირებულების გამოთვლა →"
+        "label": "სერვისის არჩევა →"
       }
     ],
     "industries": {
@@ -310,11 +310,11 @@
       },
       {
         "calculator": true,
-        "kicker": "BEQSON WEBSITE COST CALCULATOR",
-        "heading": "Estimate your website cost",
-        "text": "Answer 5 quick questions and get an instant project range plus the recommended BEQSON package.",
+        "kicker": "BEQSON DIGITAL SERVICES CALCULATOR",
+        "heading": "Estimate your digital project",
+        "text": "Websites, SEO, GEO, AI automation and design: choose your service and get an estimate or a tailored quote.",
         "href": "/en/calculator/",
-        "label": "Calculate website cost →"
+        "label": "Explore service pricing →"
       }
     ],
     "industries": {
