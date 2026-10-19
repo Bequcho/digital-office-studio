@@ -1,0 +1,23 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": {
+    "wp": "latest",
+    "php": "8.3"
+  },
+  "landingPage": "/wp-admin/plugins.php",
+  "siteOptions": {
+    "blogname": "FORME HOME | WooCommerce Test"
+  },
+  "steps": [
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "wordpress.org/plugins",
+        "slug": "woocommerce"
+      },
+      "options": {
+        "activate": true
+      }
+    }
+  ]
+}
