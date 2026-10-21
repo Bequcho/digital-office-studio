@@ -272,3 +272,12 @@ if (lightbox && typeof lightbox.showModal === 'function') {
     link.href = `mailto:digitalstudiobeqson@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(genericMessage)}`;
   });
 })();
+
+/* Load the optional BEQSON AI Consultant link without changing existing page flows. */
+(() => {
+  if (document.querySelector('script[data-beqson-ai-launcher]')) return;
+  const el = document.createElement('script');
+  el.dataset.beqsonAiLauncher = '1';
+  el.src = '/assets/ai-launcher.js?v=1';
+  document.head.appendChild(el);
+})();
