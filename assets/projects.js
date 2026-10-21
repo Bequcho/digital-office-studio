@@ -5,6 +5,6 @@ document.addEventListener('DOMContentLoaded',()=>{const buttons=[...document.que
   if (document.querySelector('script[data-beqson-ai-launcher]')) return;
   const el = document.createElement('script');
   el.dataset.beqsonAiLauncher = '1';
-  el.src = '/assets/ai-launcher.js?v=2';
+  el.src = '/assets/ai-launcher.js?v=3';
   document.head.appendChild(el);
 })();
