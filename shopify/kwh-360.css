@@ -1,0 +1,76 @@
+/* BEQSON × Kakheti Wine House: isolated 360 viewer for Shopify Horizon. */
+media-gallery:has(>.kws-gallery-trigger){position:relative}
+media-gallery>.kws-gallery-trigger{position:absolute;left:18px;top:18px;z-index:20;display:inline-flex;align-items:center;justify-content:center;min-height:41px;padding:10px 18px;border:1px solid rgba(254,239,213,.7);border-radius:100px;background:#612e3d;color:#fff8ea;font:600 12px/1.25 Arial,sans-serif;letter-spacing:.03em;cursor:pointer;box-shadow:0 8px 30px rgba(25,13,18,.25);transition:background .2s,transform .2s}
+media-gallery>.kws-gallery-trigger:hover{background:#461d2b;transform:translateY(-2px)}
+.kws-dialog{box-sizing:border-box;border:0;padding:0;background:#f7efe2;color:#35232b;box-shadow:0 25px 90px #0e0810aa;width:min(1020px,calc(100vw - 32px));max-width:1020px;max-height:calc(100dvh - 32px);overflow:auto;margin:auto}
+.kws-dialog::backdrop{background:rgba(17,11,17,.82);backdrop-filter:blur(5px)}
+.kws-dialog *{box-sizing:border-box}
+.kws-dialog button{cursor:pointer;font:600 12px/1.25 Arial,sans-serif}
+.kws-dialog button:focus-visible,media-gallery>.kws-gallery-trigger:focus-visible,.kws-drag:focus-visible{outline:3px solid #dca65c;outline-offset:3px}
+.kws-dialog .kws-close{position:sticky;top:12px;float:right;z-index:50;width:39px;height:39px;margin:12px 12px -51px 0;border:1px solid #d8c4b1;background:#fff6ea;color:#552b37;font:25px Arial,sans-serif;border-radius:50%;display:grid;place-items:center}
+.kws-grid{display:grid;grid-template-columns:1fr .82fr;min-height:540px}
+.kws-visual{position:relative;min-height:540px;background:#201b22;overflow:hidden}
+.kws-tabs{position:absolute;top:23px;left:18px;right:18px;z-index:20;display:flex;gap:4px;padding:4px;border-radius:99px;border:1px solid #e8ceb654;background:#1b121bbb;backdrop-filter:blur(12px)}
+.kws-tabs button{flex:1;min-height:35px;padding:8px 4px;border:0;border-radius:99px;background:transparent;color:#eddec8;font-size:11px}
+.kws-tabs button.is-active{background:#efe0c8;color:#4e2a34}
+.kws-scene{position:relative;display:grid;place-items:center;min-height:540px;overflow:hidden;background:radial-gradient(ellipse at 52% 42%,#63484b 0%,#292129 42%,#13141b 78%);isolation:isolate}
+.kws-scene:before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 35% 23%,#ffeddd22,transparent 33%);pointer-events:none}
+.kws-scene:after{content:'';position:absolute;bottom:105px;left:17%;width:66%;height:25px;border-radius:50%;background:#0008;filter:blur(15px);pointer-events:none}
+.kws-orbit{position:absolute;top:56%;left:50%;width:300px;height:300px;border:1px solid #ffe4bd2b;border-radius:50%;transform:translate(-50%,-50%) rotateX(70deg);box-shadow:0 0 70px #cf927a16;pointer-events:none}
+.kws-drag{display:grid;place-items:center;z-index:2;width:100%;max-width:395px;height:440px;margin-top:15px;touch-action:none;user-select:none;cursor:grab;perspective:1000px}
+.kws-drag.is-dragging{cursor:grabbing}
+.kws-rotor{position:relative;width:200px;height:390px;transform-style:preserve-3d;transform:rotateX(-6deg) rotateY(-23deg);transition:scale .3s;filter:drop-shadow(12px 14px 12px #0006);pointer-events:none;will-change:transform}
+.kws-scene.is-zoomed .kws-rotor{scale:1.2}
+.kws-body,.kws-neck{position:absolute;inset:0;transform-style:preserve-3d}
+.kws-facet{position:absolute;top:110px;left:calc(50% - 10px);width:20px;height:270px;transform:rotateY(calc(var(--step)*15deg)) translateZ(76px);background:linear-gradient(90deg,#00000016,#ffffff05 50%,#00000017),linear-gradient(180deg,#291317,#4d1d26 14%,#421920 65%,#170e14);filter:brightness(var(--shade))}
+.kws-dialog[data-kws-tone="amber"] .kws-facet{background:linear-gradient(90deg,#00000011,#ffffff06 50%,#00000017),linear-gradient(180deg,#5b391e,#a16c33 14%,#825328 65%,#332118)}
+.kws-neck-facet{position:absolute;top:21px;left:calc(50% - 6px);height:107px;width:12px;transform:rotateY(calc(var(--step)*22.5deg)) translateZ(29px);background:linear-gradient(90deg,#27191b,#6a3032 45%,#1b141b)}
+.kws-dialog[data-kws-tone="amber"] .kws-neck-facet{background:linear-gradient(90deg,#322318,#92602f 48%,#291e18)}
+.kws-shoulder{position:absolute;top:97px;left:calc(50% - 76px);width:152px;height:37px;background:linear-gradient(90deg,#29141b,#62292c 30%,#9e4f4d 46%,#291118);clip-path:polygon(32% 0,68% 0,100% 78%,100% 100%,0 100%,0 78%);transform:translateZ(38px)}
+.kws-dialog[data-kws-tone="amber"] .kws-shoulder{background:linear-gradient(90deg,#402c1d,#9d6735 35%,#c9944d 50%,#4b291b)}
+.kws-cork{position:absolute;top:0;left:calc(50% - 31px);width:62px;height:33px;transform:translateZ(19px);border-radius:4px 4px 6px 6px;background:linear-gradient(90deg,#291a18,#654832 22%,#ae8762 48%,#4a3428 81%,#211714);border:2px solid #523727;box-shadow:0 2px 4px #0008}
+.kws-label{position:absolute;top:164px;left:calc(50% - 64px);height:165px;width:128px;padding:11px 9px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;background:linear-gradient(110deg,#cdbb9d,#fbf0d4 21%,#e6d9bd 60%,#ae9a81);border:4px double #9f815d;color:#4c2932;transform:translateZ(77px);box-shadow:0 2px 6px #0008;backface-visibility:hidden}
+.kws-label span{font:600 12px/1.1 Georgia,serif;letter-spacing:.1em}
+.kws-label i{font:22px Georgia,serif;color:#a17843;font-style:normal}
+.kws-label strong{font:normal 13px/1.1 Georgia,serif;overflow-wrap:anywhere;max-width:100%}
+.kws-label small{font:8px Arial,sans-serif;letter-spacing:.1em}
+.kws-back{position:absolute;top:201px;left:calc(50% - 55px);width:110px;height:95px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:15px;background:#e7d8ba;border:3px double #a89779;color:#765341;transform:rotateY(180deg) translateZ(77px);backface-visibility:hidden;font:600 28px Georgia,serif}
+.kws-back small{font:7px Arial,sans-serif;letter-spacing:.1em}
+.kws-hint{position:absolute;bottom:82px;left:0;right:0;color:#eadac7;text-align:center;font:11px/1.4 Arial,sans-serif;pointer-events:none}
+.kws-controls{position:absolute;bottom:21px;left:0;right:0;display:flex;justify-content:center;gap:10px;z-index:3}
+.kws-controls button{padding:10px 16px;min-width:105px;border:1px solid #edddc277;color:#fff0dc;border-radius:99px;background:#21141b99;backdrop-filter:blur(8px)}
+.kws-controls button:hover{background:#5e3040b5}
+.kws-dialog .kws-original{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#e9ddcf}
+.kws-dialog.is-photo .kws-scene{display:none}
+.kws-dialog.is-photo .kws-original{display:block}
+.kws-info{padding:clamp(35px,5vw,67px) clamp(24px,4vw,54px);display:flex;flex-direction:column;justify-content:center;background:#f7efe2}
+.kws-overline{font:600 11px Arial,sans-serif;letter-spacing:.21em;color:#9c6a4e}
+.kws-info h2{font:normal clamp(37px,4.5vw,57px)/1.05 Georgia,serif;letter-spacing:-.045em;margin:24px 0 20px;color:#3c2930}
+.kws-price{font:normal 29px Georgia,serif;color:#783b48}
+.kws-disclosure{font:13px/1.8 Arial,sans-serif;color:#806a60;margin:32px 0 28px;border-top:1px solid #dfc9b8;padding-top:25px}
+.kws-back-button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 21px;border:1px solid #622f3b;background:#622f3b;color:#fdf4e6;text-align:left}
+.kws-back-button span{font-size:17px}
+@media(max-width:780px){.kws-grid{grid-template-columns:1fr}.kws-visual,.kws-scene{min-height:420px}.kws-drag{height:325px;margin-top:30px;scale:.74}.kws-scene:after{bottom:45px}.kws-orbit{width:220px;height:220px}.kws-tabs{top:15px;left:15px;right:15px}.kws-hint{bottom:65px;font-size:10px}.kws-controls{bottom:17px}.kws-info{padding:35px 24px}.kws-info h2{font-size:38px;margin:15px 0}.kws-price{font-size:24px}.kws-disclosure{margin:23px 0}media-gallery>.kws-gallery-trigger{top:12px;left:12px;font-size:10px;padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){.kws-rotor,media-gallery>.kws-gallery-trigger{transition:none}}
+
+/* Authentic bottle front photo; 3D side and rear silhouettes remain illustrative. */
+.kws-facet{left:calc(50% - 6px);width:12px;transform:rotateY(calc(var(--step)*15deg)) translateZ(46px)}
+.kws-neck-facet{left:calc(50% - 3.5px);width:7px;transform:rotateY(calc(var(--step)*22.5deg)) translateZ(18px)}
+.kws-shoulder{left:calc(50% - 46px);width:92px;transform:translateZ(24px)}
+.kws-cork{left:calc(50% - 19px);width:38px;transform:translateZ(12px)}
+.kws-dialog .kws-real-bottle{display:block;position:absolute;top:0;left:calc(50% - 156px);width:312px;height:390px;min-height:0;max-width:none;object-fit:fill;transform:translateZ(49px);backface-visibility:hidden;pointer-events:none;clip-path:polygon(44.4% 1.5%,55.6% 1.5%,56% 3%,56% 6.5%,55.8% 8%,55.8% 26%,57.5% 27.8%,60% 29.8%,62.5% 32.6%,64.3% 35.8%,64.5% 94%,63.5% 95.5%,60% 96.5%,55% 97.1%,45% 97.1%,40% 96.5%,36.5% 95.5%,35.5% 94%,35.7% 35.8%,37.5% 32.6%,40% 29.8%,42.5% 27.8%,44.2% 26%,44.2% 8%,44% 6.5%,44% 3%)}
+
+/* Actual embedded GLB rendering; preserve accessible pointer controls and CSS fallback. */
+.kws-scene{position:relative}
+.kws-scene .kws-webgl-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;z-index:2;pointer-events:none}
+.kws-scene .kws-drag{position:relative;z-index:3}
+.kws-scene.is-webgl-ready .kws-rotor{opacity:0}
+.kws-scene.is-webgl-ready .kws-hint{z-index:4}
+.kws-scene .kws-controls{z-index:5}
+
+/* Keep the photographed bottle fully visible below the 3D/photo tabs.
+   This also makes the non-WebGL photo fallback look intentional, rather than
+   clipping the capsule under the controls. */
+.kws-dialog.is-photo .kws-original{top:68px;height:calc(100% - 68px);object-fit:contain;background:#f6eee3}
+@media(max-width:780px){.kws-dialog.is-photo .kws-original{top:59px;height:calc(100% - 59px)}}
+
