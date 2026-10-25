@@ -34,3 +34,11 @@ button,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer
 .cm-facet:nth-child(3n),.cm-facet:nth-child(4n){filter:inherit}
 .cm-podium{bottom:113px}
 @media(max-width:480px){.cm-podium{bottom:110px}}
+
+/* Interaction/performance pass: the 3D subtree stays compositor-friendly. */
+.cm-turntable{touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+.cm-stage.is-dragging .cm-turntable{cursor:grabbing}
+.cm-rotor{will-change:transform;pointer-events:none}
+.cm-rotor *{pointer-events:none}
+.cm-facet{filter:none;background:repeating-linear-gradient(0deg,transparent 0 7px,#071e3024 8px,transparent 10px),color-mix(in srgb,var(--tone) var(--facet-light,85%),#051421)}
+.cm-facet:nth-child(3n),.cm-facet:nth-child(4n){filter:none}

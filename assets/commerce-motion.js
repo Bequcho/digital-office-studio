@@ -30,7 +30,7 @@
   let startAngle = 0;
   let dragPointer = -1;
   let lastTime = 0;
-  let resumeTimer = 0;
+  let resumeAt = 0;
   let toastTimer = 0;
   let restoreFocus = null;
 
@@ -40,24 +40,28 @@
     const span = document.createElement('span');
     span.className = 'cm-facet';
     span.style.setProperty('--i', i);
-    // Lighting varies around the circumference, so facets read as a cylinder.
+    // CSS colors are cheaper to composite than a separate filter on each facet.
     const frontFacing = Math.cos(i * Math.PI / 12);
-    span.style.filter = `brightness(${(.58 + .40 * Math.max(0, frontFacing)).toFixed(2)})`;
+    span.style.setProperty('--facet-light', `${Math.round(58 + 40 * Math.max(0, frontFacing))}%`);
     span.setAttribute('aria-hidden', 'true');
     facets.appendChild(span);
   }
 
   function setAngle(deg) {
     angle = ((deg % 360) + 360) % 360;
-    rotor.style.setProperty('--angle', `${angle.toFixed(2)}deg`);
+    // Animate only transform: changing an inherited CSS variable every frame
+    // invalidated the styles of all 24 cylinder facets and caused jank.
+    rotor.style.transform = `rotateX(-18deg) rotateY(${angle.toFixed(2)}deg)`;
   }
   function animate(now) {
-    const delta = lastTime ? Math.min(40, now - lastTime) : 0;
+    const delta = lastTime ? Math.min(48, now - lastTime) : 0;
     lastTime = now;
-    if (spinning && !dragging && !document.hidden && !reduced.matches) setAngle(angle + delta * .011);
+    if (spinning && !dragging && now >= resumeAt && !document.hidden) setAngle(angle + delta * .022);
     requestAnimationFrame(animate);
   }
-  if (!reduced.matches) requestAnimationFrame(animate);
+  // Keep the loop available for a deliberate press of Play even when the user
+  // has reduced-motion enabled; initial autoplay still respects their setting.
+  requestAnimationFrame(animate);
 
   function updateAutoButton() {
     autoButton.setAttribute('aria-pressed', String(spinning));
@@ -69,37 +73,50 @@
     stage.classList.toggle('is-zoomed', zoomed);
   }
   autoButton.addEventListener('click', () => {
-    clearTimeout(resumeTimer);
     spinning = !spinning;
+    resumeAt = 0;
+    lastTime = 0;
     updateAutoButton();
   });
   zoomButton.addEventListener('click', () => {zoomed = !zoomed;updateZoomButton();});
   updateAutoButton();
 
-  turntable.addEventListener('pointerdown', event => {
+  // The entire product stage is a drag target, not just the speaker silhouette.
+  // Exclude the controls so Pause and Zoom remain normal clickable buttons.
+  stage.addEventListener('pointerdown', event => {
     if (event.button !== 0 && event.pointerType === 'mouse') return;
+    if (event.target.closest('button, a, input, select, textarea')) return;
+    if (dragging) return;
     dragging = true;
     dragPointer = event.pointerId;
     startX = event.clientX;
     startAngle = angle;
     stage.classList.add('is-dragging');
-    clearTimeout(resumeTimer);
-    turntable.setPointerCapture(event.pointerId);
+    resumeAt = Infinity;
+    if (stage.setPointerCapture) {
+      try { stage.setPointerCapture(event.pointerId); } catch { /* window listeners are the fallback */ }
+    }
+    event.preventDefault();
   });
-  turntable.addEventListener('pointermove', event => {
+  window.addEventListener('pointermove', event => {
     if (!dragging || event.pointerId !== dragPointer) return;
-    setAngle(startAngle + (event.clientX - startX) * .85);
+    setAngle(startAngle + (event.clientX - startX) * .7);
   });
   const endDrag = event => {
     if (!dragging || event.pointerId !== dragPointer) return;
     dragging = false;
     dragPointer = -1;
     stage.classList.remove('is-dragging');
-    if (turntable.hasPointerCapture(event.pointerId)) turntable.releasePointerCapture(event.pointerId);
+    // Let the customer inspect the chosen angle before autoplay resumes.
+    resumeAt = performance.now() + 1400;
+    if (stage.hasPointerCapture?.(event.pointerId)) stage.releasePointerCapture(event.pointerId);
   };
-  turntable.addEventListener('pointerup', endDrag);
-  turntable.addEventListener('pointercancel', endDrag);
-  turntable.addEventListener('lostpointercapture', () => {dragging=false;stage.classList.remove('is-dragging');});
+  window.addEventListener('pointerup', endDrag);
+  window.addEventListener('pointercancel', endDrag);
+  stage.addEventListener('lostpointercapture', event => {
+    if (dragging && event.pointerId === dragPointer) endDrag(event);
+  });
+  setAngle(angle);
   turntable.addEventListener('keydown', event => {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();setAngle(angle + (event.key === 'ArrowLeft' ? -15 : 15));

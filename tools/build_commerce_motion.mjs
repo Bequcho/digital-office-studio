@@ -92,7 +92,7 @@ function render(lang, t) {
 <title>${esc(t.title)}</title><meta name="description" content="${esc(t.description)}">
 <link rel="canonical" href="https://beqson.com/${lang}/commerce-motion/">${alternates}
 <meta property="og:type" content="website"><meta property="og:title" content="${esc(t.title)}"><meta property="og:description" content="${esc(t.description)}"><meta property="og:url" content="https://beqson.com/${lang}/commerce-motion/"><meta property="og:image" content="https://beqson.com/assets/project-covers/beqson-commerce-motion.svg">
-<link rel="icon" href="/assets/favicon-v3.png"><link rel="stylesheet" href="/assets/commerce-motion.css?v=1"><script src="/assets/commerce-motion.js?v=1" defer></script>
+<link rel="icon" href="/assets/favicon-v3.png"><link rel="stylesheet" href="/assets/commerce-motion.css?v=2"><script src="/assets/commerce-motion.js?v=2" defer></script>
 </head><body class="cm-page" data-lang="${lang}">
 <a class="cm-skip" href="#main">${esc(t.skip)}</a>
 <header class="cm-header"><div class="cm-shell cm-topline"><a class="cm-logo" href="/${lang}/">BEQSON<span>.</span><small>DIGITAL STUDIO</small></a><nav class="cm-nav" aria-label="Navigation"><a class="cm-back" href="/${lang}/projects/">${esc(t.back)}</a><div class="cm-langs">${nav}</div><button class="cm-cart-btn" type="button" data-open-cart aria-label="${esc(t.cart)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 4h3l2.2 11.5h11.5l2.3-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span data-cart-count>0</span></button></nav></div></header>
