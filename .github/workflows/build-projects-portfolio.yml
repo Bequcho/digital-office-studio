@@ -159,8 +159,20 @@ jobs:
 
               return update_social(markup)
 
+          # Preserve manually curated portfolio concepts when regenerating the main project index.
+          # In particular, Kakheti Wine House is a truthful Shopify concept case
+          # with its own image and service-page CTA.
+          import re
           for lang in ('en','ru','ka'):
-              d=Path(lang)/'projects'; d.mkdir(parents=True,exist_ok=True); (d/'index.html').write_text(page(lang),encoding='utf-8')
+              d=Path(lang)/'projects'
+              d.mkdir(parents=True,exist_ok=True)
+              target=d/'index.html'
+              existing=target.read_text(encoding='utf-8') if target.exists() else ''
+              preserved=re.search(r'<article class="project-card" id="kakheti-wine-house".*?</article>', existing, flags=re.S)
+              generated=page(lang)
+              if preserved:
+                  generated=generated.replace('<div class="projects-grid">', '<div class="projects-grid">'+preserved.group(0), 1)
+              target.write_text(generated,encoding='utf-8')
           Path('projects').mkdir(exist_ok=True)
           Path('projects/index.html').write_text('''<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>BEQSON Projects</title><script>const l=(navigator.language||'en').toLowerCase();location.replace(l.startsWith('ka')?'/ka/projects/':l.startsWith('ru')?'/ru/projects/':'/en/projects/');</script></head><body><a href="/en/projects/">BEQSON Projects</a></body></html>''',encoding='utf-8')
 
