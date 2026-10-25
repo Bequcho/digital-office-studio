@@ -101,5 +101,8 @@ media-gallery>.kws-gallery-trigger:hover{background:#461d2b;transform:translateY
   .kws-dialog{border-radius:12px}
   .kws-info{border-left:0;border-top:1px solid #d6bd9c66}
   .kws-scene:after{bottom:30px}
+  /* Reserve a real close-button gutter; never cover the rear-photo tab. */
+  .kws-tabs{right:60px}
+  .kws-tabs button{padding:8px 2px;font-size:10px}
 }
 
