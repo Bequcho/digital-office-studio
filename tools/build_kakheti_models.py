@@ -207,11 +207,25 @@ def make_photographic_wrap(photo, tone, foil, width=1536, height=2048):
     heel_dim = .72 + .28*np.clip(y_model/.038, 0, 1)
     rear *= heel_dim[:, :, None]*(1-cap_mask[:, :, None]) + cap_mask[:, :, None]
 
-    # Original photograph dominates the entire visible front. Blend out only
-    # along the extreme silhouette, where the single-view capture has no data.
+    # Studio backdrop must never enter the bottle texture.  In the shoulder
+    # rows the diameter changes rapidly, so even a few pixels of projection
+    # mismatch used to introduce a conspicuous straight-edged beige rectangle.
+    # Compare each photographed pixel with the empty backdrop at that height,
+    # and replace backdrop samples by reconstructed coloured glass.  This is
+    # limited to the upper glass/foil, preserving the exact paper label pixels.
+    backdrop = pixels[np.broadcast_to(yi[:, :1], (height, 1)), 60, :]
+    backdrop_difference = np.max(np.abs(front - backdrop), axis=2)
+    foreground = np.clip((backdrop_difference - 10.0) / 30.0, 0, 1)
+    foreground = foreground * foreground * (3 - 2 * foreground)
+    upper_only = np.clip((540.0 - yy) / 50.0, 0, 1)
+    foreground = 1 - upper_only * (1 - foreground)
+
+    # Original photograph dominates the front. Blend out toward the unseen
+    # side and any pixels that were originally photographic background.
     edge = np.clip((np.abs(x)-1.31)/.39, 0, 1)
     edge = edge*edge*(3-2*edge)
-    wrap = front*(1-edge[:, :, None]) + rear*edge[:, :, None]
+    photo_mix = (1-edge) * foreground
+    wrap = front*photo_mix[:, :, None] + rear*(1-photo_mix[:, :, None])
     return Image.fromarray(np.uint8(np.clip(wrap, 0, 255)), 'RGB')
 
 
