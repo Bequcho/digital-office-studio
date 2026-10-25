@@ -85,3 +85,9 @@
 @media(max-width:780px){.head-inner .kwh-cart-toggle{order:2}.dialog-visual.kwh-visual-enhanced{min-height:420px}.dialog-visual.kwh-visual-enhanced>img{min-height:420px}.kwh-motion-view,.kwh-model-stage{min-height:420px}.kwh-model-drag{height:320px;margin-top:30px;scale:.73}.kwh-model-stage:after{bottom:42px}.kwh-model-ring{width:220px;height:220px}.kwh-view-tabs{top:15px;left:12px;right:12px}.kwh-render-disclose{top:68px}.kwh-model-hint{bottom:65px;font-size:10px}.kwh-model-actions{bottom:17px}.kwh-cart-heading,.kwh-cart-list,.kwh-cart-footer{padding:20px}.kwh-product-buy{margin-top:18px}.kwh-product-add{min-width:180px}}
 @media(max-width:390px){.kwh-view-tabs button{font-size:9px}.kwh-cart-toggle{padding:8px}.kwh-model-drag{scale:.69}}
 @media(prefers-reduced-motion:reduce){.kwh-cart-toggle,.kwh-view-tabs button,.kwh-model-actions button,.kwh-product-add,.kwh-cart-toast,.kwh-bottle-rotor{transition:none}}
+/* Genuine product photograph clipped to the matching glass outline; only the unseen side/back remain illustrative. */
+.kwh-bottle-facet{left:calc(50% - 6px);width:12px;transform:rotateY(calc(var(--step)*15deg)) translateZ(46px)}
+.kwh-neck-facet{left:calc(50% - 3.5px);width:7px;transform:rotateY(calc(var(--step)*22.5deg)) translateZ(18px)}
+.kwh-bottle-shoulder{left:calc(50% - 46px);width:92px;transform:translateZ(24px)}
+.kwh-bottle-cork{left:calc(50% - 19px);width:38px;transform:translateZ(12px)}
+.dialog-visual .kwh-real-bottle{display:block;position:absolute;top:0;left:calc(50% - 156px);width:312px;height:390px;min-height:0;max-width:none;object-fit:fill;transform:translateZ(49px);backface-visibility:hidden;pointer-events:none;clip-path:polygon(44.4% 1.5%,55.6% 1.5%,56% 3%,56% 6.5%,55.8% 8%,55.8% 26%,57.5% 27.8%,60% 29.8%,62.5% 32.6%,64.3% 35.8%,64.5% 94%,63.5% 95.5%,60% 96.5%,55% 97.1%,45% 97.1%,40% 96.5%,36.5% 95.5%,35.5% 94%,35.7% 35.8%,37.5% 32.6%,40% 29.8%,42.5% 27.8%,44.2% 26%,44.2% 8%,44% 6.5%,44% 3%)}
