@@ -4,7 +4,8 @@ The original photographic front is preserved pixel-for-pixel within its visible
 arc. The rear receives its own photorealistic concept image / counterlabel.
 Unphotographed side angles blend into a restrained synthetic glass material.
 The original fronts are supplied locally and not bundled in this repository.
-The concept reverse views live in assets/models/rear-source for reproducibility.
+The first concept reverses live in rear-source; the upgraded catalogue-quality
+reverses live in rear-premium. Both sets remain available for comparison.
 """
 
 from __future__ import annotations
@@ -22,6 +23,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = Path(__file__).resolve().parents[1] / "assets" / "models"
 REAR_SOURCE = OUTPUT / "rear-source"
+PREMIUM_REAR = OUTPUT / "rear-premium"
 
 WINES = [
     ("kisi-amber-2023", "kisi-original.png", "amber", "gold"),
@@ -253,7 +255,10 @@ def make_photographic_wrap(photo, back_photo, tone, foil, width=1536, height=204
 
 def build(filename, source, tone, foil):
     photo = Image.open(ROOT / source).convert('RGB')
-    back_photo = Image.open(REAR_SOURCE / (filename + '-back.jpg')).convert('RGB')
+    rear_path = PREMIUM_REAR / (filename + '-back.jpg')
+    if not rear_path.is_file():
+        rear_path = REAR_SOURCE / (filename + '-back.jpg')
+    back_photo = Image.open(rear_path).convert('RGB')
     if photo.size != (1122, 1402):
         raise ValueError(f'Unexpected crop calibration for {source}: {photo.size}')
     if back_photo.size != photo.size:

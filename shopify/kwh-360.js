@@ -46,7 +46,7 @@
       modelURL: root.dataset.kwsModelUrl,
       webgl: null, webglStarted: false,
       spinning: !prefersReduced.matches,
-      angle: -23, dragInfo: null, resumeAt: 0,
+      angle: -23, angularVelocity: 0, dragInfo: null, resumeAt: 0,
       mode: 'model', zoomed: false,
     };
     renderAngle(instance);
@@ -66,6 +66,7 @@
     const photo = root.querySelector('.kws-original');
     const frontSrc = photo?.getAttribute('src') || '';
     const frontSrcset = photo?.getAttribute('srcset');
+    const frontAlt = photo?.getAttribute('alt') || '';
     // Both assets are in the SAME Shopify draft theme; the GLB carries a
     // version query parameter while the additional rear JPG is loaded by path.
     const backSrc = String(instance.modelURL || '').replace(/\.glb(?:\?[^#]*)?$/, '-back.jpg');
@@ -82,6 +83,7 @@
 
     const selectMode = mode => {
       instance.mode = mode;
+      if (mode !== 'model') instance.angularVelocity = 0;
       dialog.classList.toggle('is-photo', mode === 'photo' || mode === 'back');
       if (photo && (mode === 'photo' || mode === 'back')) {
         if (mode === 'back') {
@@ -89,6 +91,7 @@
           photo.alt = copy.rearAlt;
           if (photo.getAttribute('src') !== backSrc) photo.src = backSrc;
         } else {
+          photo.alt = frontAlt;
           if (frontSrcset !== null) photo.setAttribute('srcset', frontSrcset);
           if (photo.getAttribute('src') !== frontSrc) photo.src = frontSrc;
         }
@@ -155,6 +158,7 @@
     }));
     spin.addEventListener('click', () => {
       instance.spinning = !instance.spinning;
+      instance.angularVelocity = 0;
       instance.resumeAt = 0;
       spin.setAttribute('aria-pressed', String(instance.spinning));
       spin.textContent = `${instance.spinning ? '❚❚' : '↻'} ${spin.dataset.label}`;
@@ -170,7 +174,9 @@
 
     instance.drag.addEventListener('pointerdown', event => {
       if (event.pointerType === 'mouse' && event.button !== 0) return;
-      instance.dragInfo = { pointerId: event.pointerId, x: event.clientX, angle: instance.angle };
+      instance.dragInfo = { pointerId: event.pointerId, x: event.clientX, angle: instance.angle,
+        lastX: event.clientX, lastTime: performance.now() };
+      instance.angularVelocity = 0;
       instance.resumeAt = Infinity;
       instance.drag.classList.add('is-dragging');
       try { instance.drag.setPointerCapture(event.pointerId); } catch {}
@@ -180,12 +186,24 @@
       const drag = instance.dragInfo;
       if (!drag || drag.pointerId !== event.pointerId) return;
       instance.angle = drag.angle + (event.clientX - drag.x) * .7;
+      const time = performance.now();
+      const stepMs = time - drag.lastTime;
+      if (stepMs > 4) {
+        const instantaneous = Math.max(-.55, Math.min(.55,
+          (event.clientX - drag.lastX) * .7 / stepMs));
+        instance.angularVelocity = instance.angularVelocity*.35 + instantaneous*.65;
+      }
+      drag.lastX = event.clientX;
+      drag.lastTime = time;
       renderAngle(instance);
     });
     function endDrag(event) {
       const drag = instance.dragInfo;
       if (!drag || drag.pointerId !== event.pointerId) return;
       instance.dragInfo = null;
+      if (prefersReduced.matches || performance.now() - drag.lastTime > 120) {
+        instance.angularVelocity = 0;
+      }
       instance.drag.classList.remove('is-dragging');
       instance.resumeAt = performance.now() + 1400;
       try { if (instance.drag.hasPointerCapture(event.pointerId)) instance.drag.releasePointerCapture(event.pointerId); } catch {}
@@ -206,7 +224,12 @@
     if (!document.hidden) {
       for (const instance of instances) {
         if (instance.dialog.open && instance.mode === 'model') {
-          if (instance.spinning && !instance.dragInfo && now >= instance.resumeAt) {
+          if (!instance.dragInfo && Math.abs(instance.angularVelocity) > .004) {
+            instance.angle += instance.angularVelocity * dt;
+            instance.angularVelocity *= Math.exp(-dt*.0055);
+            renderAngle(instance);
+          } else if (instance.spinning && !instance.dragInfo && now >= instance.resumeAt) {
+            instance.angularVelocity = 0;
             instance.angle += dt * .016;
             renderAngle(instance);
           }

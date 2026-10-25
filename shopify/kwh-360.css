@@ -74,3 +74,32 @@ media-gallery>.kws-gallery-trigger:hover{background:#461d2b;transform:translateY
 .kws-dialog.is-photo .kws-original{top:68px;height:calc(100% - 68px);object-fit:contain;background:#f6eee3}
 @media(max-width:780px){.kws-dialog.is-photo .kws-original{top:59px;height:calc(100% - 59px)}}
 
+/* 2026 / Atelier finish: natural wine-catalogue studio, not a neon tech demo.
+   Keep the photographic image and GLB on a matching warm seamless backdrop. */
+.kws-dialog{border-radius:16px;outline:1px solid #d4b99b66;overflow:auto}
+.kws-visual{background:#efe5d8}
+.kws-scene{background:radial-gradient(ellipse at 50% 36%,#fffaf1 0%,#f1e8dd 43%,#dfd0be 100%)}
+.kws-scene:before{background:radial-gradient(ellipse at 22% 16%,#fff9f1b8,transparent 55%)}
+.kws-scene:after{bottom:73px;left:25%;width:50%;height:19px;background:#3a2d2a36;filter:blur(18px)}
+.kws-orbit{opacity:0}
+.kws-tabs{border:1px solid #d6b89273;background:#342326e8;box-shadow:0 8px 28px #26151920}
+.kws-tabs button{color:#f2e6d3;letter-spacing:.015em}
+.kws-tabs button.is-active{background:linear-gradient(145deg,#fff9ec,#e7d6b9);color:#442b30;box-shadow:0 1px 5px #00000013}
+.kws-tabs button:disabled{opacity:.43;cursor:not-allowed}
+.kws-hint{color:#645249;text-shadow:0 1px 8px #fff8ed}
+.kws-controls button{border:1px solid #b99464a8;background:#473238e8;color:#fff4e0;box-shadow:0 5px 18px #34221a25}
+.kws-controls button:hover{background:#613d48}
+.kws-info{background:linear-gradient(150deg,#fbf6ed 0%,#f5eadd 100%);border-left:1px solid #d6bd9c66}
+.kws-overline{color:#9b754b;letter-spacing:.25em}
+.kws-info h2{color:#302329}
+.kws-price{color:#723c48}
+.kws-disclosure{border-top-color:#d5b991}
+.kws-back-button{background:#56303c;border-color:#56303c;transition:background .2s,transform .2s}
+.kws-back-button:hover{background:#6d3948;transform:translateY(-2px)}
+.kws-dialog.is-photo .kws-original{background:#f6eee3}
+@media(max-width:780px){
+  .kws-dialog{border-radius:12px}
+  .kws-info{border-left:0;border-top:1px solid #d6bd9c66}
+  .kws-scene:after{bottom:30px}
+}
+

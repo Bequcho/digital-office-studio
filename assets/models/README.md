@@ -17,7 +17,10 @@ Previously the label and foil were separate flat-looking overlays; the new
 projection removes their rectangular seams. Each reverse side now has a unique,
 photorealistic **AI-designed back-view studio image**, whose smaller
 counterlabel matches the particular wine and the front's glass and capsule
-palette. The six source images are preserved as JPEGs in `rear-source/`.
+palette. The original concept reverses remain in `rear-source/`; a second,
+more sophisticated set with detailed Kakhetian vineyard and qvevri engravings,
+textured paper and restrained gold foiling lives in `rear-premium/` and is used
+by the current models. The original front photographs remain unchanged.
 The intervening side angles use a smooth studio-glass reconstruction. Each
 `.glb` contains its own complete 360° texture; no extra image requests are
 needed at viewing time.
@@ -33,5 +36,5 @@ The `*-label.webp` and `*-cap.webp` files are low-bandwidth curved CSS viewer
 fallback textures. They are not required by the standalone `.glb` files.
 
 Regenerate the models with `python tools/build_kakheti_models.py` using the
-original local front photos and checked-in `rear-source/` images; run
+original local front photos and checked-in `rear-premium/` images; run
 `python tools/test_kakheti_glb.py` to verify them.
