@@ -53,16 +53,56 @@
     instances.push(instance);
     const spin = root.querySelector('[data-kws-spin]');
     const zoom = root.querySelector('[data-kws-zoom]');
+    const locale = (document.documentElement.lang || 'en').toLowerCase();
+    const language = locale.startsWith('ka') ? 'ka' : locale.startsWith('ru') ? 'ru' : 'en';
+    const copy = {
+      en: { back: 'Rear label', rearAlt: 'AI-designed back of the wine bottle',
+        note: 'Original front photograph, AI-designed rear label and reconstructed glass sides. The rear label is a design concept.' },
+      ru: { back: 'Задняя сторона', rearAlt: 'Созданная задняя сторона бутылки вина',
+        note: 'Спереди — оригинальное фото, сзади — созданная дизайнерская контрэтикетка, по бокам — 3D-реконструкция. Задняя этикетка является концептом.' },
+      ka: { back: 'უკანა მხარე', rearAlt: 'ბოთლის კონცეპტუალური უკანა ეტიკეტი',
+        note: 'წინ — ორიგინალი ფოტო, უკან — AI-ით შექმნილი ეტიკეტის კონცეფცია; გვერდები 3D რეკონსტრუქციაა.' },
+    }[language];
+    const photo = root.querySelector('.kws-original');
+    const frontSrc = photo?.getAttribute('src') || '';
+    const frontSrcset = photo?.getAttribute('srcset');
+    // Both assets are in the SAME Shopify draft theme; the GLB carries a
+    // version query parameter while the additional rear JPG is loaded by path.
+    const backSrc = String(instance.modelURL || '').replace(/\.glb(?:\?[^#]*)?$/, '-back.jpg');
+    if (backSrc !== instance.modelURL && photo) {
+      const backTab = document.createElement('button');
+      backTab.type = 'button';
+      backTab.dataset.kwsMode = 'back';
+      backTab.textContent = copy.back;
+      backTab.setAttribute('aria-pressed', 'false');
+      root.querySelector('.kws-tabs')?.appendChild(backTab);
+    }
+    const disclosure = root.querySelector('.kws-disclosure');
+    if (disclosure) disclosure.textContent = copy.note;
 
     const selectMode = mode => {
       instance.mode = mode;
-      dialog.classList.toggle('is-photo', mode === 'photo');
+      dialog.classList.toggle('is-photo', mode === 'photo' || mode === 'back');
+      if (photo && (mode === 'photo' || mode === 'back')) {
+        if (mode === 'back') {
+          photo.removeAttribute('srcset');
+          photo.alt = copy.rearAlt;
+          if (photo.getAttribute('src') !== backSrc) photo.src = backSrc;
+        } else {
+          if (frontSrcset !== null) photo.setAttribute('srcset', frontSrcset);
+          if (photo.getAttribute('src') !== frontSrc) photo.src = frontSrc;
+        }
+      }
       root.querySelectorAll('[data-kws-mode]').forEach(item => {
         const active = item.dataset.kwsMode === mode;
         item.classList.toggle('is-active', active);
         item.setAttribute('aria-pressed', String(active));
       });
     };
+    photo?.addEventListener('error', () => {
+      // A missing concept asset should never leave a broken image in the UI.
+      if (instance.mode === 'back') selectMode('photo');
+    });
 
     const photoFallback = error => {
       // Never expose the old CSS cardboard-style bottle if the browser lacks
@@ -70,12 +110,10 @@
       console.warn('Kakheti 3D preview: showing original product photo', error);
       instance.webglStarted = true;
       instance.scene.classList.add('is-webgl-unavailable');
-      const locale = (document.documentElement.lang || 'en').toLowerCase();
-      const language = locale.startsWith('ka') ? 'ka' : locale.startsWith('ru') ? 'ru' : 'en';
       const messages = {
-        en: {trigger: 'View bottle photo', note: '3D is not available in this browser. Showing the original product photograph.'},
-        ru: {trigger: 'Посмотреть фото', note: 'В этом браузере 3D недоступно. Показываем настоящую фотографию бутылки.'},
-        ka: {trigger: 'ბოთლის ფოტოს ნახვა', note: 'ამ ბრაუზერში 3D მიუწვდომელია. ნაჩვენებია ბოთლის ნამდვილი ფოტო.'},
+        en: {trigger: 'View bottle photos', note: '3D is unavailable in this browser. You can view the real front photo and the AI-designed rear label concept.'},
+        ru: {trigger: 'Посмотреть бутылку', note: 'В этом браузере 3D недоступно. Можно посмотреть настоящее фото спереди и созданную заднюю этикетку.'},
+        ka: {trigger: 'ბოთლის ფოტოები', note: 'ამ ბრაუზერში 3D მიუწვდომელია. შეგიძლიათ იხილოთ ორიგინალი წინა ფოტო და შექმნილი უკანა ეტიკეტი.'},
       }[language];
       trigger.textContent = messages.trigger;
       const info = root.querySelector('.kws-disclosure');
