@@ -69,7 +69,9 @@
     const frontAlt = photo?.getAttribute('alt') || '';
     // Both assets are in the SAME Shopify draft theme; the GLB carries a
     // version query parameter while the additional rear JPG is loaded by path.
-    const backSrc = String(instance.modelURL || '').replace(/\.glb(?:\?[^#]*)?$/, '-back.jpg');
+    const modelSource = String(instance.modelURL || '');
+    const backSrc = modelSource.replace(/\.glb(\?[^#]*)?$/, (_match, query) =>
+      `-back.jpg${query ? `${query}&` : '?'}beqson=premium-v2`);
     if (backSrc !== instance.modelURL && photo) {
       const backTab = document.createElement('button');
       backTab.type = 'button';
