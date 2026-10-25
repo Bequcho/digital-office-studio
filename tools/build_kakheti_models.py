@@ -1,9 +1,10 @@
-"""Generate photogrammetric-style wine-bottle GLBs from catalog photography.
+"""Generate wine-bottle GLBs from front photos and AI-designed reverse views.
 
-The *entire* photographed front (glass, highlights, label and foil) is projected
-onto a curved bottle. Side/back pixels are synthesized, not represented as
-photographs of previously unseen angles. The originals are required locally
-outside the repository and are never bundled into the site's source tree.
+The original photographic front is preserved pixel-for-pixel within its visible
+arc. The rear receives its own photorealistic concept image / counterlabel.
+Unphotographed side angles blend into a restrained synthetic glass material.
+The original fronts are supplied locally and not bundled in this repository.
+The concept reverse views live in assets/models/rear-source for reproducibility.
 """
 
 from __future__ import annotations
@@ -20,6 +21,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = Path(__file__).resolve().parents[1] / "assets" / "models"
+REAR_SOURCE = OUTPUT / "rear-source"
 
 WINES = [
     ("kisi-amber-2023", "kisi-original.png", "amber", "gold"),
@@ -113,8 +115,9 @@ class Model:
                               "wrapS": 33071, "wrapT": 33071}],
                 "bufferViews": self.views, "accessors": self.accessors,
                 "buffers": [{"byteLength": len(self.bin)}],
-                "extras": {"source": "Kakheti Wine House concept photography",
-                           "accuracy": "Photographic front projection; unseen sides and back reconstructed"}}
+                "extras": {"source": "Kakheti Wine House front photos + AI-generated concept rear labels",
+                           "accuracy": "Photographic front and generated back projections; sides reconstructed",
+                           "labelStatus": "Rear label design concept, not manufacturer-approved packaging"}}
         json_data = json.dumps(gltf, ensure_ascii=False, separators=(',', ':')).encode()
         json_data += b' ' * ((-len(json_data)) % 4)
         bin_data = bytes(self.bin) + b'\0' * ((-len(self.bin)) % 4)
@@ -170,13 +173,14 @@ PROFILE = [
 ]
 
 
-def make_photographic_wrap(photo, tone, foil, width=1536, height=2048):
-    """Perspective-correct front projection, with a reconstructed rear hemisphere.
+def make_photographic_wrap(photo, back_photo, tone, foil, width=1536, height=2048):
+    """Perspective-correct front/rear projections on the same curved glass.
 
     A UV *height* coordinate is essential here; evenly spaced profile-row UVs
     would deform the photographed label and make the bottle look illustrated.
     """
     pixels = np.asarray(photo, dtype=np.float32)
+    back_pixels = np.asarray(back_photo, dtype=np.float32)
     hh, ww = pixels.shape[:2]
     x = np.linspace(-math.pi, math.pi, width, endpoint=True, dtype=np.float32)[None, :]
     rows = np.linspace(0, 1, height, dtype=np.float32)[:, None]
@@ -189,13 +193,19 @@ def make_photographic_wrap(photo, tone, foil, width=1536, height=2048):
     xi = np.rint(xx).astype(np.int32)
     yi = np.broadcast_to(np.rint(yy).astype(np.int32), (height, width))
     front = pixels[yi, np.broadcast_to(xi, (height, width))]
+    # The reverse view has its own readable counterlabel, correct gold capsule
+    # and independently photographed highlights. Invert the horizontal sample
+    # direction because the camera is looking at the negative-Z hemisphere.
+    xx_back = np.clip(ww/2 - radius * 4210 * np.sin(x), 0, ww-1)
+    back_xi = np.rint(xx_back).astype(np.int32)
+    back = back_pixels[yi, np.broadcast_to(back_xi, (height, width))]
 
     foil_rgb = {
         'gold': (164., 107., 39.), 'burgundy': (85., 22., 35.),
         'black': (49., 48., 43.)
     }[foil]
     glass_rgb = (70., 34., 14.) if tone == 'amber' else (30., 12., 19.)
-    # A restrained photographic studio light rig on the otherwise unseen rear.
+    # Restrained studio illumination bridges the two photographic hemispheres.
     light_ribbon = 45*np.exp(-((x-2.12)/.17)**2) + 19*np.exp(-((x+2.40)/.13)**2)
     rear = np.empty((height, width, 3), dtype=np.float32)
     cap_mask = np.clip((y_model-.245)/.012, 0, 1)
@@ -213,30 +223,45 @@ def make_photographic_wrap(photo, tone, foil, width=1536, height=2048):
     # Compare each photographed pixel with the empty backdrop at that height,
     # and replace backdrop samples by reconstructed coloured glass.  This is
     # limited to the upper glass/foil, preserving the exact paper label pixels.
-    backdrop = pixels[np.broadcast_to(yi[:, :1], (height, 1)), 60, :]
-    backdrop_difference = np.max(np.abs(front - backdrop), axis=2)
-    foreground = np.clip((backdrop_difference - 10.0) / 30.0, 0, 1)
-    foreground = foreground * foreground * (3 - 2 * foreground)
+    def foreground_alpha(texture, image_pixels):
+        backdrop = image_pixels[np.broadcast_to(yi[:, :1], (height, 1)), 60, :]
+        difference = np.max(np.abs(texture - backdrop), axis=2)
+        alpha = np.clip((difference - 10.0) / 30.0, 0, 1)
+        return alpha * alpha * (3 - 2 * alpha)
+
+    foreground = foreground_alpha(front, pixels)
+    rear_foreground = foreground_alpha(back, back_pixels)
     upper_only = np.clip((540.0 - yy) / 50.0, 0, 1)
     foreground = 1 - upper_only * (1 - foreground)
+    rear_foreground = 1 - upper_only * (1 - rear_foreground)
 
     # Original photograph dominates the front. Blend out toward the unseen
     # side and any pixels that were originally photographic background.
     edge = np.clip((np.abs(x)-1.31)/.39, 0, 1)
     edge = edge*edge*(3-2*edge)
-    photo_mix = (1-edge) * foreground
-    wrap = front*photo_mix[:, :, None] + rear*(1-photo_mix[:, :, None])
+    front_mix = (1-edge) * foreground
+    back_edge = np.clip((np.abs(x)-2.05)/.48, 0, 1)
+    back_edge = back_edge*back_edge*(3-2*back_edge)
+    back_mix = back_edge * rear_foreground
+    # The front and back never overlap; side material makes a gradual transition
+    # across the otherwise unknowable angles without rectangular paper edges.
+    side_mix = 1-front_mix-back_mix
+    wrap = (front*front_mix[:, :, None] + back*back_mix[:, :, None]
+            + rear*side_mix[:, :, None])
     return Image.fromarray(np.uint8(np.clip(wrap, 0, 255)), 'RGB')
 
 
 def build(filename, source, tone, foil):
     photo = Image.open(ROOT / source).convert('RGB')
+    back_photo = Image.open(REAR_SOURCE / (filename + '-back.jpg')).convert('RGB')
     if photo.size != (1122, 1402):
         raise ValueError(f'Unexpected crop calibration for {source}: {photo.size}')
+    if back_photo.size != photo.size:
+        raise ValueError(f'Back photo size does not match front for {filename}')
 
     model = Model(filename)
-    wrap = make_photographic_wrap(photo, tone, foil)
-    photographed = model.add_texture(wrap, 'Studio photo projection, 360 degree reconstruction')
+    wrap = make_photographic_wrap(photo, back_photo, tone, foil)
+    photographed = model.add_texture(wrap, 'Original front plus concept back photo projection')
     bottle_mat = model.material('Photographically textured '+tone+' glass and capsule',
                                 (1.,1.,1.), .19, .04, texture=photographed,
                                 gloss='studio softbox reflections')

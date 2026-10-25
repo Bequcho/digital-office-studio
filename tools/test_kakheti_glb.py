@@ -21,7 +21,8 @@ for path in files:
     assert len(gltf['meshes']) == 1
     assert len(gltf['images']) == 1
     assert all(item['mimeType'] == 'image/jpeg' for item in gltf['images'])
-    assert 'Photographic front projection' in gltf['extras']['accuracy']
+    assert 'Photographic front and generated back' in gltf['extras']['accuracy']
+    assert gltf['extras']['labelStatus'].startswith('Rear label design concept')
     assert gltf['accessors'][0]['count'] >= 2000
     for accessor in gltf['accessors']:
         assert accessor['count'] > 0
