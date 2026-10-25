@@ -1,12 +1,12 @@
-/* BEQSON wine concept: illustrative 3D bottles and a client-only demo cart. */
+/* BEQSON wine concept: glTF 3D bottles with a client-only demo cart. */
 (() => {
   'use strict';
 
   const lang = document.documentElement.lang === 'ka' ? 'ka' : document.documentElement.lang === 'en' ? 'en' : 'ru';
   const words = {
-    ru: { catalogHint:'НОВОЕ · Откройте любое вино — вращайте 3D-бутылку с настоящей этикеткой и попробуйте интерактивную корзину.', cart:'Корзина', threeD:'3D-обзор бутылки', photo:'Оригинальное фото', pause:'Остановить', play:'Вращать', zoom:'Приблизить', unzoom:'Отдалить', hint:'Потяните мышью или пальцем, чтобы повернуть', note:'Лицевая сторона — оригинальное фото бутылки. Боковой и задний ракурсы смоделированы приблизительно.', quantity:'Количество', add:'Добавить в демо-корзину', added:'Добавлено в корзину', empty:'Ваша демо-корзина пока пуста', total:'Итого', remove:'Удалить', checkout:'Завершить демо-заказ', complete:'Демо-заказ завершён', completeText:'Это демонстрация: заказ никуда не отправлен, оплата не производится.', keep:'Продолжить просмотр', disclaimer:'Демонстрационный проект BEQSON. Реальные заказы не принимаются.', close:'Закрыть корзину', minus:'Уменьшить количество', plus:'Увеличить количество', spin:'Интерактивное вращение бутылки' },
-    en: { catalogHint:'NEW · Explore every wine in a 3D view featuring its real label, and try the interactive demo cart.', cart:'Cart', threeD:'3D bottle view', photo:'Actual product photo', pause:'Pause', play:'Rotate', zoom:'Zoom in', unzoom:'Zoom out', hint:'Drag with your mouse or finger to rotate', note:'The front uses the actual bottle photo. Side and back views are approximations.', quantity:'Quantity', add:'Add to demo cart', added:'Added to cart', empty:'Your demo cart is empty', total:'Total', remove:'Remove', checkout:'Complete demo checkout', complete:'Demo checkout complete', completeText:'This is a demo. No order is placed and no payment is made.', keep:'Keep browsing', disclaimer:'A BEQSON concept. No real orders are accepted.', close:'Close cart', minus:'Decrease quantity', plus:'Increase quantity', spin:'Interactive bottle rotation' },
-    ka: { catalogHint:'სიახლე · დაათვალიერეთ ღვინო 3D რეჟიმში ნამდვილი ეტიკეტით და სცადეთ დემო კალათაც.', cart:'კალათა', threeD:'ბოთლის 3D ხედი', photo:'ნამდვილი ფოტო', pause:'შეჩერება', play:'ბრუნვა', zoom:'გადიდება', unzoom:'დაპატარავება', hint:'გადაატრიალეთ მაუსით ან თითით', note:'წინა მხარე ნამდვილი ფოტოა. გვერდითი და უკანა ხედები მიახლოებით არის მოდელირებული.', quantity:'რაოდენობა', add:'დემო კალათაში დამატება', added:'დამატებულია', empty:'დემო კალათა ცარიელია', total:'ჯამი', remove:'წაშლა', checkout:'დემო შეკვეთის დასრულება', complete:'დემო შეკვეთა დასრულდა', completeText:'ეს დემოა — შეკვეთა არ იგზავნება და თანხა არ იჭრება.', keep:'დათვალიერების გაგრძელება', disclaimer:'BEQSON-ის დემო პროექტი. რეალური შეკვეთები არ მიიღება.', close:'კალათის დახურვა', minus:'რაოდენობის შემცირება', plus:'რაოდენობის გაზრდა', spin:'ბოთლის ინტერაქტიული ბრუნვა' },
+    ru: { catalogHint:'НОВОЕ · Откройте любое вино — вращайте объёмную 3D-модель с оригинальной этикеткой и попробуйте интерактивную корзину.', cart:'Корзина', threeD:'3D-модель бутылки', photo:'Оригинальное фото', pause:'Остановить', play:'Вращать', zoom:'Приблизить', unzoom:'Отдалить', hint:'Потяните мышью или пальцем, чтобы повернуть', note:'Это объёмная 3D-модель. Этикетка воссоздана по фото товара; невидимые на фото ракурсы реконструированы.', quantity:'Количество', add:'Добавить в демо-корзину', added:'Добавлено в корзину', empty:'Ваша демо-корзина пока пуста', total:'Итого', remove:'Удалить', checkout:'Завершить демо-заказ', complete:'Демо-заказ завершён', completeText:'Это демонстрация: заказ никуда не отправлен, оплата не производится.', keep:'Продолжить просмотр', disclaimer:'Демонстрационный проект BEQSON. Реальные заказы не принимаются.', close:'Закрыть корзину', minus:'Уменьшить количество', plus:'Увеличить количество', spin:'Интерактивное вращение бутылки' },
+    en: { catalogHint:'NEW · Rotate fully dimensional wine models featuring their original labels, and try the demo cart.', cart:'Cart', threeD:'3D bottle model', photo:'Original product photo', pause:'Pause', play:'Rotate', zoom:'Zoom in', unzoom:'Zoom out', hint:'Drag with your mouse or finger to rotate', note:'This is a true 3D mesh. The front label comes from the product photo; unseen angles are reconstructed.', quantity:'Quantity', add:'Add to demo cart', added:'Added to cart', empty:'Your demo cart is empty', total:'Total', remove:'Remove', checkout:'Complete demo checkout', complete:'Demo checkout complete', completeText:'This is a demo. No order is placed and no payment is made.', keep:'Keep browsing', disclaimer:'A BEQSON concept. No real orders are accepted.', close:'Close cart', minus:'Decrease quantity', plus:'Increase quantity', spin:'Interactive bottle rotation' },
+    ka: { catalogHint:'სიახლე · დაათვალიერეთ მოცულობითი 3D ბოთლები ორიგინალური ეტიკეტებით და სცადეთ დემო კალათაც.', cart:'კალათა', threeD:'ბოთლის 3D მოდელი', photo:'ორიგინალური ფოტო', pause:'შეჩერება', play:'ბრუნვა', zoom:'გადიდება', unzoom:'დაპატარავება', hint:'გადაატრიალეთ მაუსით ან თითით', note:'ეს მოცულობითი 3D მოდელია. ეტიკეტი აღებულია პროდუქტის ფოტოდან; უხილავი მხარეები მიახლოებით აღდგენილია.', quantity:'რაოდენობა', add:'დემო კალათაში დამატება', added:'დამატებულია', empty:'დემო კალათა ცარიელია', total:'ჯამი', remove:'წაშლა', checkout:'დემო შეკვეთის დასრულება', complete:'დემო შეკვეთა დასრულდა', completeText:'ეს დემოა — შეკვეთა არ იგზავნება და თანხა არ იჭრება.', keep:'დათვალიერების გაგრძელება', disclaimer:'BEQSON-ის დემო პროექტი. რეალური შეკვეთები არ მიიღება.', close:'კალათის დახურვა', minus:'რაოდენობის შემცირება', plus:'რაოდენობის გაზრდა', spin:'ბოთლის ინტერაქტიული ბრუნვა' },
   }[lang];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const money = amount => `${amount.toFixed(2)} GEL`;
@@ -80,7 +80,7 @@
     visual.dataset.kind = kind;
     const view = document.createElement('div');
     view.className = 'kwh-motion-view';
-    view.innerHTML = `<div class="kwh-view-tabs" role="group" aria-label="Product view"><button type="button" class="is-active" data-wine-mode="3d" aria-pressed="true">↻ ${escapeHTML(words.threeD)}</button><button type="button" data-wine-mode="photo" aria-pressed="false">▧ ${escapeHTML(words.photo)}</button></div><div class="kwh-model-stage" data-wine-stage><div class="kwh-model-ring" aria-hidden="true"></div><div class="kwh-model-drag" data-wine-drag role="img" tabindex="0" aria-label="${escapeHTML(words.spin)}"><div class="kwh-bottle-rotor" data-wine-rotor><div class="kwh-bottle-body" data-wine-body></div><div class="kwh-bottle-neck" data-wine-neck></div><div class="kwh-bottle-shoulder" aria-hidden="true"></div><div class="kwh-bottle-cork" aria-hidden="true"></div><img class="kwh-real-bottle" src="${escapeHTML(img.src)}" alt="" aria-hidden="true" draggable="false"></div></div><p class="kwh-model-hint">${escapeHTML(words.hint)}</p><div class="kwh-model-actions"><button type="button" data-wine-spin aria-pressed="false"></button><button type="button" data-wine-zoom aria-pressed="false"></button></div></div><p class="kwh-render-disclose">${escapeHTML(words.note)}</p>`;
+    view.innerHTML = `<div class="kwh-view-tabs" role="group" aria-label="Product view"><button type="button" class="is-active" data-wine-mode="3d" aria-pressed="true">↻ ${escapeHTML(words.threeD)}</button><button type="button" data-wine-mode="photo" aria-pressed="false">▧ ${escapeHTML(words.photo)}</button></div><div class="kwh-model-stage" data-wine-stage><div class="kwh-model-ring" aria-hidden="true"></div><div class="kwh-model-drag" data-wine-drag role="img" tabindex="0" aria-label="${escapeHTML(words.spin)}"><div class="kwh-bottle-rotor" data-wine-rotor><div class="kwh-bottle-body" data-wine-body></div><div class="kwh-bottle-neck" data-wine-neck></div><div class="kwh-bottle-shoulder" aria-hidden="true"></div><div class="kwh-bottle-cork" aria-hidden="true"></div><div class="kwh-photo-label" data-wine-label aria-hidden="true"></div><div class="kwh-photo-cap" data-wine-cap aria-hidden="true"></div></div><canvas class="kwh-webgl-canvas" data-wine-webgl aria-hidden="true"></canvas></div><p class="kwh-model-hint">${escapeHTML(words.hint)}</p><div class="kwh-model-actions"><button type="button" data-wine-spin aria-pressed="false"></button><button type="button" data-wine-zoom aria-pressed="false"></button></div></div><p class="kwh-render-disclose">${escapeHTML(words.note)}</p>`;
     visual.insertBefore(view, img);
     const body = view.querySelector('[data-wine-body]');
     const neck = view.querySelector('[data-wine-neck]');
@@ -97,7 +97,19 @@
       facet.style.setProperty('--step', i);
       neck.appendChild(facet);
     }
-    const state={dialog,stage:view.querySelector('[data-wine-stage]'),drag:view.querySelector('[data-wine-drag]'),rotor:view.querySelector('[data-wine-rotor]'),spinButton:view.querySelector('[data-wine-spin]'),zoomButton:view.querySelector('[data-wine-zoom]'),angle:-22,spinning:!reduced.matches,zoomed:false,dragging:false,resumeAt:0,mode:'3d',quantity:1};
+    for(const part of [{selector:'[data-wine-label]',count:24,arc:84,width:6,kind:'label'},
+                      {selector:'[data-wine-cap]',count:14,arc:81,width:4,kind:'cap'}]){
+      const holder=view.querySelector(part.selector);
+      for(let i=0;i<part.count;i++){
+        const facet=document.createElement('span');
+        facet.className=`kwh-textured-facet kwh-textured-${part.kind}`;
+        facet.style.backgroundImage=`url('/assets/models/${id}-${part.kind}.webp')`;
+        facet.style.backgroundPosition=`-${i*part.width}px 0`;
+        facet.style.transform=`rotateY(${-part.arc+(i+.5)*2*part.arc/part.count}deg) translateZ(${part.kind==='label'?47:19}px)`;
+        holder.appendChild(facet);
+      }
+    }
+    const state={dialog,stage:view.querySelector('[data-wine-stage]'),drag:view.querySelector('[data-wine-drag]'),rotor:view.querySelector('[data-wine-rotor]'),canvas:view.querySelector('[data-wine-webgl]'),modelURL:`/assets/models/${id}.glb`,webgl:null,webglStarted:false,spinButton:view.querySelector('[data-wine-spin]'),zoomButton:view.querySelector('[data-wine-zoom]'),angle:-22,spinning:!reduced.matches,zoomed:false,dragging:false,resumeAt:0,mode:'3d',quantity:1};
     bottleStates.set(id,state);
     setAngle(state,-22);updateSpin(state);updateZoom(state);
 
@@ -170,7 +182,17 @@
     const active=document.querySelector('.wine-dialog[open]');
     if(active&&!document.hidden){
       const state=bottleStates.get(active.id.slice(5));
-      if(state?.mode==='3d'&&state.spinning&&!state.dragging&&now>=state.resumeAt)setAngle(state,state.angle+dt*.018);
+      if(state?.mode==='3d'){
+        if(!state.webglStarted&&window.Kakheti3DViewer){
+          state.webglStarted=true;
+          window.Kakheti3DViewer.create(state.canvas,state.modelURL).then(renderer=>{
+            state.webgl=renderer;
+            state.stage.classList.add('is-webgl-ready');
+          }).catch(error=>console.warn('Wine model fell back to photo preview',error));
+        }
+        if(state.spinning&&!state.dragging&&now>=state.resumeAt)setAngle(state,state.angle+dt*.018);
+        if(state.webgl)state.webgl.render(state.angle,state.zoomed);
+      }
     }
     requestAnimationFrame(animate);
   }
