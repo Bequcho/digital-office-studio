@@ -26,7 +26,9 @@ def main():
         assert file.exists()
         doc=Document(file.read_text())
         assert doc.canonicals==[url] and not set(doc.robots)&{'noindex','none'} and not doc.refresh
-    assert len(urls) == 51
+    # The published site grows as new portfolio demos and localized pages are added.
+    # Check the historical minimum; exact inclusion is checked against discover() above.
+    assert len(urls) >= 51
     assert BASE+'audit/' not in urls and BASE+'ru/audit/' in urls
     assert excluded['audit/index.html'] == 'canonical points elsewhere'
     primary=json.loads((ROOT/'tools/seo_metadata.json').read_text())

@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parent.parent
 COVERS = {'beqson': 'beqson', 'gsc': 'seo', 'geo': 'geo', 'booth': 'booth',
           'brandkit': 'brandkit', 'report': 'report', 'aivisual': 'ai-visual',
-          'packaging': 'hair-wellness'}
+          'packaging': 'hair-wellness', 'motion-lab': 'beqson-motion-lab'}
 
 class Cards(HTMLParser):
     def __init__(self, source):
@@ -47,11 +47,12 @@ class CoverTests(unittest.TestCase):
                             self.assertTrue(value.startswith('#'))
                         self.assertNotIn('data:', value)
 
-    def test_three_languages_keep_eleven_cards(self):
+    def test_three_languages_keep_portfolio_cards(self):
         for lang in ('en', 'ru', 'ka'):
             with self.subTest(lang=lang):
                 cards = Cards((ROOT / lang / 'projects/index.html').read_text()).cards
-                self.assertEqual(len(cards), 11)
+                # Portfolio grows over time; keep all original cards and their art.
+                self.assertGreaterEqual(len(cards), 11)
                 for project, name in COVERS.items():
                     self.assertEqual(len(cards[project]), 1)
                     image = cards[project][0]

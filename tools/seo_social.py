@@ -37,7 +37,15 @@ def is_social(tag):
 
 
 def image_info(language, slug, title):
-    if slug in SERVICE_NAMES:
+    if slug == 'motion-lab':
+        path = 'assets/project-covers/beqson-motion-lab-og.jpg'; width, height = 1600, 1000
+        alt = {
+            'ka': 'BEQSON Motion Lab — ინტერაქტიული ვებდიზაინისა და AI ინტერფეისის კონცეფცია',
+            'ru': 'BEQSON Motion Lab — интерактивный концепт веб-дизайна и AI-интерфейса',
+            'en': 'BEQSON Motion Lab — interactive web design and AI interface concept',
+        }[language]
+        mime = 'image/jpeg'
+    elif slug in SERVICE_NAMES:
         path = f'assets/concepts/{language}/{slug}-og.jpg'; width, height = 1200, 800
         label = {'ka':'BEQSON-ის ვებსაიტის კონცეფცია', 'ru':'Концепция сайта BEQSON', 'en':'BEQSON website concept'}[language]
         alt = label + ' — ' + SERVICE_NAMES[slug][('ka','ru','en').index(language)]
