@@ -158,8 +158,13 @@ def revolved(profile, divisions=160, theta_min=-math.pi, theta_max=math.pi,
 PROFILE = [
     (.0000,.0250),(.001,.029),(.002,.033),(.004,.036),(.007,.038),(.013,.0385),
     (.035,.0385),(.062,.0385),(.132,.0385),(.177,.0385),(.196,.0385),
-    (.205,.0383),(.210,.0377),(.215,.0360),(.221,.0324),(.227,.0280),
-    (.234,.0226),(.240,.0182),(.246,.0160),(.251,.0153),(.260,.0153),
+    # Calibrated to the *visible* outline in the studio photographs.  In those
+    # shots the dark glass neck continues to ~y=360px; the shoulders do not
+    # flare until ~y=380px.  The earlier shoulder began around y=300px and
+    # pulled bright studio-background pixels into a conspicuous rectangle.
+    (.200,.0385),(.203,.0384),(.2075,.0365),(.212,.0330),(.2167,.0292),
+    (.2214,.0240),(.2248,.0210),(.229,.0170),(.234,.0153),(.246,.0153),
+    (.251,.0153),(.260,.0153),
     (.283,.0153),(.297,.0153),(.300,.0162),(.302,.0163),(.304,.0160),
     (.306,.0160),(.308,.0153),(.310,.0140),
 ]
