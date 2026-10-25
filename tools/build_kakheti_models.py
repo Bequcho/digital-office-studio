@@ -1,7 +1,9 @@
-"""Generate six standalone glTF binary wine-bottle models from catalog photography.
+"""Generate photogrammetric-style wine-bottle GLBs from catalog photography.
 
-The photographs are frontal views; bottle shape, side and rear surfaces are
-reconstructed, while the front label/capsule artwork is sampled from the photos.
+The *entire* photographed front (glass, highlights, label and foil) is projected
+onto a curved bottle. Side/back pixels are synthesized, not represented as
+photographs of previously unseen angles. The originals are required locally
+outside the repository and are never bundled into the site's source tree.
 """
 
 from __future__ import annotations
@@ -13,7 +15,7 @@ import struct
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageEnhance
+from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -73,7 +75,7 @@ class Model:
 
     def add_texture(self, photo: Image.Image, name: str):
         stream = io.BytesIO()
-        photo.save(stream, 'JPEG', quality=92, subsampling=0, optimize=True)
+        photo.save(stream, 'JPEG', quality=89, subsampling=0, optimize=True)
         view = self.buffer_view(stream.getvalue())
         self.images.append({"name": name, "mimeType": "image/jpeg", "bufferView": view})
         self.textures.append({"name": name, "source": len(self.images) - 1, "sampler": 0})
@@ -112,7 +114,7 @@ class Model:
                 "bufferViews": self.views, "accessors": self.accessors,
                 "buffers": [{"byteLength": len(self.bin)}],
                 "extras": {"source": "Kakheti Wine House concept photography",
-                           "accuracy": "3D shape reconstructed; genuine front label image"}}
+                           "accuracy": "Photographic front projection; unseen sides and back reconstructed"}}
         json_data = json.dumps(gltf, ensure_ascii=False, separators=(',', ':')).encode()
         json_data += b' ' * ((-len(json_data)) % 4)
         bin_data = bytes(self.bin) + b'\0' * ((-len(self.bin)) % 4)
@@ -125,8 +127,8 @@ class Model:
             out.write(bin_data)
 
 
-def revolved(profile, divisions=96, theta_min=-math.pi, theta_max=math.pi,
-             uv_mode="circumference"):
+def revolved(profile, divisions=160, theta_min=-math.pi, theta_max=math.pi,
+             uv_mode="height"):
     points, normals, uvs, faces = [], [], [], []
     for j, (height, radius) in enumerate(profile):
         prev = profile[max(0, j-1)]
@@ -141,10 +143,11 @@ def revolved(profile, divisions=96, theta_min=-math.pi, theta_max=math.pi,
             normal /= np.linalg.norm(normal)
             points.append((radius * sine, height, radius * cosine))
             normals.append(normal.tolist())
-            if uv_mode == 'projected':
-                u = (sine - math.sin(theta_min)) / (
-                    math.sin(theta_max) - math.sin(theta_min)) if theta_min < 0 < theta_max else u
-            uvs.append((u, 1 - j / (len(profile) - 1)))
+            if uv_mode == 'height':
+                v = 1 - (height-profile[0][0])/(profile[-1][0]-profile[0][0])
+            else:
+                v = 1 - j/(len(profile)-1)
+            uvs.append((u, v))
     for j in range(len(profile) - 1):
         for i in range(divisions):
             a, b = j*(divisions+1)+i, (j+1)*(divisions+1)+i
@@ -152,30 +155,59 @@ def revolved(profile, divisions=96, theta_min=-math.pi, theta_max=math.pi,
     return points, normals, uvs, faces
 
 
-def label_surface(y_bottom, y_top, radius, arc=1.47, divisions=100, rows=32):
-    """Patch with photo-projected UVs so frontal lettering stays proportionate."""
-    points, normals, uvs, faces = [], [], [], []
-    bound = math.sin(arc)
-    for j in range(rows+1):
-        t = j/rows
-        y = y_bottom + (y_top-y_bottom)*t
-        for i in range(divisions+1):
-            theta = -arc + 2*arc*(i/divisions)
-            sine, cosine = math.sin(theta), math.cos(theta)
-            points.append((radius*sine,y,radius*cosine))
-            normals.append((sine,0,cosine))
-            uvs.append(((sine+bound)/(2*bound),1-t))
-    for j in range(rows):
-        for i in range(divisions):
-            a = j*(divisions+1)+i
-            b = (j+1)*(divisions+1)+i
-            faces += [(a,a+1,b),(a+1,b+1,b)]
-    return points,normals,uvs,faces
+PROFILE = [
+    (.0000,.0250),(.001,.029),(.002,.033),(.004,.036),(.007,.038),(.013,.0385),
+    (.035,.0385),(.062,.0385),(.132,.0385),(.177,.0385),(.196,.0385),
+    (.205,.0383),(.210,.0377),(.215,.0360),(.221,.0324),(.227,.0280),
+    (.234,.0226),(.240,.0182),(.246,.0160),(.251,.0153),(.260,.0153),
+    (.283,.0153),(.297,.0153),(.300,.0162),(.302,.0163),(.304,.0160),
+    (.306,.0160),(.308,.0153),(.310,.0140),
+]
 
 
-def crop_art(photo, rect, size):
-    region = photo.crop(rect).resize(size, Image.Resampling.LANCZOS)
-    return ImageEnhance.Contrast(region).enhance(1.02)
+def make_photographic_wrap(photo, tone, foil, width=1536, height=2048):
+    """Perspective-correct front projection, with a reconstructed rear hemisphere.
+
+    A UV *height* coordinate is essential here; evenly spaced profile-row UVs
+    would deform the photographed label and make the bottle look illustrated.
+    """
+    pixels = np.asarray(photo, dtype=np.float32)
+    hh, ww = pixels.shape[:2]
+    x = np.linspace(-math.pi, math.pi, width, endpoint=True, dtype=np.float32)[None, :]
+    rows = np.linspace(0, 1, height, dtype=np.float32)[:, None]
+    y_model = .310 * (1 - rows)
+    radius = np.interp(y_model[:, 0], [p[0] for p in PROFILE],
+                       [p[1] for p in PROFILE]).astype(np.float32)[:, None]
+    # Coordinates were measured against the original 1122 x 1402 px catalog shots.
+    yy = np.clip(20 + rows * (1348 - 20), 0, hh-1)
+    xx = np.clip(ww/2 + radius * 4210 * np.sin(x), 0, ww-1)
+    xi = np.rint(xx).astype(np.int32)
+    yi = np.broadcast_to(np.rint(yy).astype(np.int32), (height, width))
+    front = pixels[yi, np.broadcast_to(xi, (height, width))]
+
+    foil_rgb = {
+        'gold': (164., 107., 39.), 'burgundy': (85., 22., 35.),
+        'black': (49., 48., 43.)
+    }[foil]
+    glass_rgb = (70., 34., 14.) if tone == 'amber' else (30., 12., 19.)
+    # A restrained photographic studio light rig on the otherwise unseen rear.
+    light_ribbon = 45*np.exp(-((x-2.12)/.17)**2) + 19*np.exp(-((x+2.40)/.13)**2)
+    rear = np.empty((height, width, 3), dtype=np.float32)
+    cap_mask = np.clip((y_model-.245)/.012, 0, 1)
+    rear_color = np.array(glass_rgb)[None, None, :]*(1-cap_mask[:, :, None]) + \
+        np.array(foil_rgb)[None, None, :]*cap_mask[:, :, None]
+    rear[:] = rear_color
+    rear += light_ribbon[:, :, None]*np.array([1., .86, .65])[None, None, :]
+    # Glass grows darker near the heel; foil stays lustrous on top.
+    heel_dim = .72 + .28*np.clip(y_model/.038, 0, 1)
+    rear *= heel_dim[:, :, None]*(1-cap_mask[:, :, None]) + cap_mask[:, :, None]
+
+    # Original photograph dominates the entire visible front. Blend out only
+    # along the extreme silhouette, where the single-view capture has no data.
+    edge = np.clip((np.abs(x)-1.31)/.39, 0, 1)
+    edge = edge*edge*(3-2*edge)
+    wrap = front*(1-edge[:, :, None]) + rear*edge[:, :, None]
+    return Image.fromarray(np.uint8(np.clip(wrap, 0, 255)), 'RGB')
 
 
 def build(filename, source, tone, foil):
@@ -184,44 +216,12 @@ def build(filename, source, tone, foil):
         raise ValueError(f'Unexpected crop calibration for {source}: {photo.size}')
 
     model = Model(filename)
-    label_art = crop_art(photo, (404, 598, 716, 1186), (512, 966))
-    cap_art = crop_art(photo, (494, 92, 628, 275), (256, 350))
-    front = model.add_texture(label_art, "Original front label")
-    cap = model.add_texture(cap_art, "Original capsule emblem")
-    label_art.save(OUTPUT / (filename + '-label.webp'), 'WEBP', quality=88, method=6)
-    cap_art.save(OUTPUT / (filename + '-cap.webp'), 'WEBP', quality=88, method=6)
-
-    glass = ((.37,.16,.052) if tone == 'amber' else (.075,.024,.036))
-    foil_color = {'gold':(.60,.34,.11), 'burgundy':(.28,.046,.09), 'black':(.055,.055,.052)}[foil]
-    glass_mat = model.material('Thick '+tone+' wine glass', glass, 0.13, 0.08, gloss='polished')
-    label_mat = model.material('Authentic photographed front label', (1,1,1), 0.82, texture=front)
-    foil_mat = model.material('Metallic '+foil+' capsule', foil_color, 0.28, 0.45)
-    cap_mat = model.material('Original embossed capsule print', (1,1,1), 0.6, .05, texture=cap)
-    punt_mat = model.material('Recessed bottle base',tuple(x*.65 for x in glass), .26, .05)
-
-    profile = [
-        (.001,.028),(.002,.033),(.004,.036),(.007,.038),(.013,.0385),
-        (.035,.0385),(.062,.0385),(.132,.0385),(.177,.0385),(.196,.0385),
-        (.205,.0383),(.210,.0377),(.215,.0360),(.221,.0324),(.227,.0280),
-        (.234,.0226),(.240,.0182),(.246,.0160),(.251,.0153),(.260,.0153),
-        (.283,.0153),(.302,.0153),(.308,.0155),
-    ]
-    model.add_mesh('Sculpted glass bottle', *revolved(profile), glass_mat)
-    model.add_mesh('Gently curved photographed paper label',
-                   *label_surface(.0415,.1755,.03905), label_mat)
-
-    model.add_mesh('Foil capsule', *revolved([
-        (.251,.01558),(.255,.0158),(.258,.0159),(.292,.0159),
-        (.298,.0163),(.302,.0163),(.304,.0155),(.308,.0155),(.310,.0136),
-    ]), foil_mat)
-    model.add_mesh('Original capsule emblem',
-                   *label_surface(.257,.293,.01616,arc=1.42,rows=16), cap_mat)
-    model.add_mesh('Capsule lip', *revolved([
-        (.300,.0154),(.302,.0171),(.307,.0171),(.309,.0165),(.310,.0138)
-    ]), foil_mat)
-    model.add_mesh('Heavy glass heel', *revolved([
-        (.000,.0265),(.0008,.0315),(.003,.036),(.006,.0382)
-    ]), punt_mat)
+    wrap = make_photographic_wrap(photo, tone, foil)
+    photographed = model.add_texture(wrap, 'Studio photo projection, 360 degree reconstruction')
+    bottle_mat = model.material('Photographically textured '+tone+' glass and capsule',
+                                (1.,1.,1.), .19, .04, texture=photographed,
+                                gloss='studio softbox reflections')
+    model.add_mesh('Full photographic glass silhouette', *revolved(PROFILE), bottle_mat)
     output = OUTPUT / (filename + '.glb')
     model.write(output)
     print(f'{output.name}: {output.stat().st_size:,} bytes, {len(model.meshes)} mesh pieces')

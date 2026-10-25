@@ -9,15 +9,18 @@ Six self-contained, standards-based glTF 2.0 binary (`.glb`) files:
 - `mukuzani-reserve-2021.glb`
 - `saperavi-qvevri-2022.glb`
 
-Each model includes a sculpted cylindrical glass mesh, tapered shoulders,
-neck, capsule, heel, and curved labels. The *front label and capsule artwork*
-is sampled from the corresponding Kakheti Wine House product photo and embedded
-in the GLB; no additional image requests are needed to load the model.
+Each model includes a sculpted glass silhouette with bottle heel, tapered
+shoulders, neck and capsule. A **height-calibrated photographic projection** of
+the entire front of the source bottle wraps its surface: the original glass
+highlights, exact label lettering, color and foil are captured together.
+Previously the label and foil were separate flat-looking overlays; the new
+projection removes their rectangular seams. Back and hidden sides have a
+subdued studio-light reconstruction. No additional image requests are needed.
 
-**Accuracy:** These are 3D reconstructions from one frontal source photo per
-wine. Real measurements, hidden side details, and authentic reverse labels
-were not available. This is a concept collection, not photogrammetry of real
-commercial bottles or an exact manufacturing CAD model.
+**Accuracy:** These are **single-photo-based reconstructions**, not multi-camera
+360° product scans. True side and back photography and authentic reverse labels
+were not available. The front is photographic; the rear is visually plausible
+but not a documentary reproduction. This is a concept collection.
 
 The `*-label.webp` and `*-cap.webp` files are low-bandwidth curved CSS viewer
 fallback textures. They are not required by the standalone `.glb` files.

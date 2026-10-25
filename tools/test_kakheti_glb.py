@@ -18,9 +18,11 @@ for path in files:
     bin_size, bin_type = struct.unpack_from('<I4s', contents, bin_offset)
     assert bin_type == b'BIN\0'
     assert bin_size == len(contents) - bin_offset - 8
-    assert len(gltf['meshes']) == 6
-    assert len(gltf['images']) == 2
+    assert len(gltf['meshes']) == 1
+    assert len(gltf['images']) == 1
     assert all(item['mimeType'] == 'image/jpeg' for item in gltf['images'])
+    assert 'Photographic front projection' in gltf['extras']['accuracy']
+    assert gltf['accessors'][0]['count'] >= 2000
     for accessor in gltf['accessors']:
         assert accessor['count'] > 0
         view = gltf['bufferViews'][accessor['bufferView']]

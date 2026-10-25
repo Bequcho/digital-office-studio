@@ -40,22 +40,36 @@
     out vec4 fragColor;
     void main(){
       vec3 n=normalize(vNormal);
-      vec3 light=normalize(vec3(-.52,.52,.8));
-      vec3 fill=normalize(vec3(.8,.06,.12));
+      vec3 light=normalize(vec3(-.64,.64,.75));
+      vec3 fill=normalize(vec3(.7,.12,.40));
       vec3 viewDir=normalize(-vPosition);
       float diffuse=max(dot(n,light),0.0);
       float fillLight=max(dot(n,fill),0.0);
-      float outline=pow(1.0-max(dot(n,viewDir),0.0),2.0);
+      float facing=clamp(dot(n,viewDir),0.0,1.0);
+      float fresnel=pow(1.0-facing,3.5);
       vec3 base=uTextured?texture(uTexture,vUV).rgb:uColor;
       if(uTextured){
-        float lit=.83+.16*diffuse+.05*fillLight;
-        fragColor=vec4(clamp(base*lit,0.0,1.0),1.0);
+        // The original studio photograph is projected over the front surface.
+        // Preserve its accurate label and optical details; only gently relight
+        // as the bottle turns into its reconstructed side and back.
+        float photoLight=mix(.77+.19*diffuse+.06*fillLight,
+                             .985+.015*diffuse, smoothstep(.25,.90,facing));
+        float labelV=smoothstep(.405,.445,vUV.y)*(1.0-smoothstep(.875,.90,vUV.y));
+        float labelU=smoothstep(.29,.34,vUV.x)*(1.0-smoothstep(.66,.71,vUV.x));
+        float paper=labelU*labelV;
+        float glass=1.0-paper*.86;
+        // Two large vertical softboxes (not sharp metallic CGI streaks).
+        float strip1=exp(-pow((n.x+.63)/.18,2.0))*max(n.z+.20,.0);
+        float strip2=exp(-pow((n.x-.76)/.11,2.0))*max(n.z+.26,.0);
+        float reflection=(strip1*.19+strip2*.13+fresnel*.15)*glass;
+        vec3 color=base*photoLight+vec3(.93,.91,.87)*reflection;
+        fragColor=vec4(clamp(color,0.0,1.0),1.0);
       }else{
         float lit=.44+.57*diffuse+.23*fillLight;
         float streak=pow(max(dot(n,normalize(vec3(-.4,.02,.92))),0.0),22.0);
         float spec=pow(max(dot(reflect(-light,n),viewDir),0.0),70.0);
         vec3 color=base*lit + vec3(.74,.77,.79)*(streak*.38 + spec*.42)*uGloss;
-        color+=vec3(.14,.12,.10)*outline*uGloss;
+        color+=vec3(.14,.12,.10)*fresnel*uGloss;
         fragColor=vec4(clamp(color,0.0,1.0),1.0);
       }
     }`;
@@ -191,7 +205,7 @@
       gl.useProgram(p);
       gl.uniformMatrix4fv(uniforms.projection,false,projection(w/h));
       gl.uniform1f(uniforms.angle,degrees*Math.PI/180);
-      gl.uniform1f(uniforms.distance,zoomed?.61:.79);
+      gl.uniform1f(uniforms.distance,zoomed?.57:.70);
       for(const mesh of meshes){
         gl.bindVertexArray(mesh.vao);
         gl.uniform3fv(uniforms.color,mesh.color);
