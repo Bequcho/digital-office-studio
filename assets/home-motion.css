@@ -1,0 +1,105 @@
+/* BEQSON Homepage Motion — progressive enhancement for RU / EN / KA. */
+@media (prefers-reduced-motion: no-preference) {
+  html.bq-motion-ready .bq-reveal {
+    opacity: 0;
+    translate: 0 22px;
+    transition: opacity 720ms cubic-bezier(.2,.7,.2,1),
+      translate 720ms cubic-bezier(.2,.7,.2,1);
+    transition-delay: var(--bq-delay, 0ms);
+  }
+
+  html.bq-motion-ready .bq-reveal.bq-visible {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  /* Gentle atmospheric light behind the existing hero photograph. */
+  .classic-hero::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 5%;
+    left: 47%;
+    width: min(45vw, 660px);
+    height: min(45vw, 660px);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(30, 173, 255, .17), rgba(30, 173, 255, .05) 37%, transparent 70%);
+    filter: blur(20px);
+    pointer-events: none;
+    animation: bq-hero-glow 10s ease-in-out infinite alternate;
+  }
+
+  .classic-hero-grid { position: relative; z-index: 2; }
+
+  @keyframes bq-hero-glow {
+    from { opacity: .45; transform: translate3d(-3%, 1%, 0) scale(.92); }
+    to { opacity: 1; transform: translate3d(3%, -2%, 0) scale(1.09); }
+  }
+
+  .classic-btn.primary {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(10, 132, 253, .35), 0 0 0 1px rgba(114, 221, 255, .17);
+  }
+
+  .classic-btn.primary::after {
+    content: "";
+    position: absolute;
+    inset: -25% auto -25% 0;
+    width: 42%;
+    transform: translateX(-280%) skewX(-24deg);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .26), transparent);
+    pointer-events: none;
+    animation: bq-button-glint 7s ease-in-out infinite;
+  }
+
+  @keyframes bq-button-glint {
+    0%, 11%, 100% { transform: translateX(-280%) skewX(-24deg); }
+    23%, 28% { transform: translateX(490%) skewX(-24deg); }
+  }
+
+  .classic-btn.primary:is(:hover, :focus-visible) {
+    box-shadow: 0 14px 38px rgba(10, 156, 255, .46), 0 0 28px rgba(48, 202, 255, .24);
+  }
+
+  /* A depth effect that does not fight the cards' existing hover styles. */
+  html.bq-motion-ready .beqson-work-card {
+    position: relative;
+    isolation: isolate;
+    transform-style: preserve-3d;
+  }
+
+  html.bq-motion-ready .beqson-work-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--bq-pointer-x, 50%) var(--bq-pointer-y, 50%), rgba(78, 207, 255, .2), transparent 46%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 350ms ease;
+  }
+
+  html.bq-motion-ready .beqson-work-card:is(:hover, :focus-visible)::before { opacity: 1; }
+
+  @media (hover: hover) and (pointer: fine) {
+    html.bq-motion-ready .beqson-work-card:hover {
+      transform: perspective(1200px) translateY(-7px)
+        rotateX(var(--bq-tilt-x, 0deg)) rotateY(var(--bq-tilt-y, 0deg));
+      border-color: rgba(115, 224, 255, .9);
+      box-shadow: 0 24px 55px rgba(0, 0, 0, .3), 0 0 32px rgba(45, 193, 255, .15);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .classic-hero::before { display: none; }
+    html.bq-motion-ready .bq-reveal { translate: 0 14px; transition-duration: 540ms; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.bq-motion-ready .bq-reveal { opacity: 1; translate: none; transition: none; }
+  .classic-hero::before, .classic-btn.primary::after { animation: none; }
+}
