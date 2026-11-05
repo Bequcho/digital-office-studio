@@ -65,6 +65,9 @@ PATHS={
  'sparkle':'<path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z"/>',
  'zoom':'<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M7 10h6m-3-3v6"/>'}
 
+# Location/map cards use the existing location artwork.
+PATHS['map'] = PATHS['pin']
+
 def icon(name,cls=''):
  sprite=urlsplit(BASE_URL).path+'assets/icons.svg'
  if name in ('whatsapp','telegram','mail'): sprite+='?v=11-contact-solid'
@@ -127,6 +130,7 @@ def head(lang,base,title,description,slug=None,noindex=False,fallback=False):
   script_version = '19-static-schema' if fallback else '20-static-social'
  else:
   script_version = '17-visible-h1'
+ motion_assets = '<link rel="stylesheet" href="/assets/home-motion.css?v=5"><script src="/assets/home-motion.js?v=2" defer></script>' if not (slug or noindex or fallback) else ''
  style_version = '12-clutch-trust' if not (slug or noindex or fallback) else '11-contact-solid'
  if fallback:
   schema_markup = ''
@@ -138,7 +142,7 @@ def head(lang,base,title,description,slug=None,noindex=False,fallback=False):
 <meta name="description" content="{esc(seo_description)}"><meta name="theme-color" content="#081529">{('<meta name="robots" content="noindex,follow">' if noindex else '')}
 <link rel="canonical" href="{canonical}">{alternates}<link rel="shortcut icon" href="{base}favicon-v3.ico?v=3"><link rel="icon" href="{base}assets/favicon-v3.png?v=3" type="image/png"><link rel="apple-touch-icon" href="{base}assets/apple-touch-icon-v3.png?v=3"><link rel="manifest" href="{base}site.webmanifest?v=3">
 <meta property="og:type" content="website"><meta property="og:site_name" content="BEQSON Digital Studio"><meta property="og:locale" content="{c['locale']}"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(description)}"><meta property="og:url" content="{canonical}"><meta property="og:image" content="{image}"><meta property="og:image:type" content="{'image/jpeg' if slug else 'image/png'}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="{'800' if slug else '630'}"><meta property="og:image:alt" content="{esc(title)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{image}"><meta name="twitter:image:alt" content="{esc(title)}">
-<link rel="preload" href="{base}assets/fonts/{font}-800.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{base}styles.css?v={style_version}"><script src="{base}script.js?v={script_version}" defer></script>
+<link rel="preload" href="{base}assets/fonts/{font}-800.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{base}styles.css?v={style_version}"><script src="{base}script.js?v={script_version}" defer></script>{motion_assets}
 {schema_markup}{LEAD_STYLE if slug else ""}</head>'''
  return markup if (noindex or fallback) else update_social(markup)
 HERO_SIZES='(max-width: 359px) calc((100vw - 28px) * .95), (max-width: 480px) calc((100vw - 36px) * .95), (max-width: 590px) calc((100vw - 48px) * .92), (max-width: 760px) 500px, (max-width: 1000px) calc((100vw - 73px) / 2), (max-width: 1180px) calc((100vw - 97px) / 2), (max-width: 1304px) calc((100vw - 106px) / 2.05), 600px'
@@ -171,9 +175,15 @@ def pricing(lang, fallback=False):
   url='https://wa.me/'+PHONE+'?text='+quote(msg)
   cards+=f'''<article class="price-card {"featured" if i==1 else ""}"><div class="plan-top"><span class="plan-tag">{c['recommended'] if i==1 else ('01 / START' if i==0 else '03 / PRO')}</span>{tile(ico,'gold' if i==2 else '')}</div><h3>{name}</h3><p class="plan-subtitle">{subtitle}</p><p class="price-amount"><span>{prices["currency"]}</span>{price}<small>{c['oneTime']}</small></p><ul class="check-list">{''.join('<li>'+icon('check')+'<span>'+x+'</span></li>' for x in features)}</ul><a class="button {"primary" if i==1 else "outline"}" href="{esc(url)}" target="_blank" rel="noopener noreferrer">{c['choose']}{icon('arrow')}</a></article>'''
  return f'''<section class="pricing-section section" id="pricing"><div class="shell"><div class="section-heading centered"><p class="eyebrow">{c['pricingKicker']}</p><h2>{c['pricingTitle']}</h2><p>{c['pricingText']}</p></div><div class="pricing-grid">{cards}</div><div class="pricing-bottom"><p class="fine-print">{prices['note']}</p><p class="maintenance">{c['maintenance']}<b>{prices['perMonth']}</b></p></div></div></section>'''
-def home_banner(lang, base):
+def home_banner(lang, base, fallback=False):
     # Render the visible heading in HTML, without waiting for JavaScript.
-    return (ROOT/'tools/templates'/f'home-hero-{lang}.html').read_text().strip()
+    banner = (ROOT/'tools/templates'/f'home-hero-{lang}.html').read_text(encoding='utf-8').strip()
+    if not fallback:
+        media = (ROOT/'tools/templates'/f'home-media-{lang}.html').read_text(encoding='utf-8')
+        if banner.count('    </section>') != 1:
+            raise ValueError(f'Expected one hero section in {lang} template')
+        banner = banner.replace('    </section>', media + '    </section>', 1)
+    return banner
 
 
 def homepage(lang,base,fallback=False):
@@ -181,17 +191,18 @@ def homepage(lang,base,fallback=False):
  values=''.join(f'<div class="value-item">{tile(ico,small=True)}<div><p class="value-title">{title}</p><p>{desc}</p></div></div>' for ico,(title,desc) in zip(('globe','pin','layers','trend'),c['values']))
  steps=''.join(f'<article class="step-card"><span class="step-number">0{i+1}</span>{tile(ico)}<h3>{title}</h3><p>{desc}</p></article>' for i,(ico,(title,desc)) in enumerate(zip(('search','plan','pin','message','megaphone','chart'),c['steps'])))
  faqs=''.join(f'<details><summary>{esc(q)}{icon("plus")}</summary><p>{esc(a)}</p></details>' for q,a in c['faqs'])
- extra_head = f'<link rel="stylesheet" href="{base}assets/banners/banner.css?v=2"><link rel="stylesheet" href="{base}assets/banners/{lang}-hero.css?v={3 if lang=="ka" else 2 if lang=="ru" else 1}">'+LEAD_STYLE
+ extra_head = f'<link rel="stylesheet" href="{base}assets/banners/banner.css?v={2 if fallback else 4}"><link rel="stylesheet" href="{base}assets/banners/{lang}-hero.css?v={(3 if lang=="ka" else 2 if lang=="ru" else 1) if fallback else HOME[lang]["heroStyleVersion"]}">'+LEAD_STYLE
  if not fallback:
-  extra_head += (ROOT/'tools/templates/home-audit-style.html').read_text()+'<link rel="stylesheet" href="/assets/projects.css?v=6-industry-cover">'
+  extra_head += (ROOT/'tools/templates/home-audit-style.html').read_text()+'<link rel="stylesheet" href="/assets/projects.css?v=8-ai-project-cta">'
+ legacy_case = f'''<section class="section case-section" id="case"><div class="shell case-grid"><div><p class="eyebrow">{c['caseKicker']}</p><h2>{c['caseTitle']}</h2><p class="lead">{c['caseText']}</p><ul class="tags">{''.join('<li>'+x+'</li>' for x in c['caseTags'])}</ul><a class="button dark" href="https://levanilaw.ge/" target="_blank" rel="noopener noreferrer">{c['caseButton']}{icon('arrow-up')}</a></div><a class="case-visual" href="https://levanilaw.ge/" target="_blank" rel="noopener noreferrer"><span class="case-top">LEVANI KHELKHELAURI<span>LAWYER / TBILISI</span></span><div class="case-monogram" aria-hidden="true">LK</div><p>{lines(c['caseQuote'])}</p><span class="case-bottom">LEVANILAW.GE {icon('arrow-up')}</span></a></div></section>''' if fallback else ''
  return head(lang,base,c['title'],c['description'],fallback=fallback).replace('</head>',extra_head+'</head>')+f'''<body id="top">{header(lang,base,home_sections=not fallback)}<main id="main">
-{home_banner(lang,base)}
+{home_banner(lang,base,fallback)}
 <section class="value-section"><div class="shell value-grid">{values}</div></section>
-{home_promos(lang) if not fallback else ''}{home_industries(lang,base)}
+{home_promos(lang) if not fallback else ''}{home_industries(lang,base,fallback)}
 <section class="section growth-section" id="growth"><div class="shell"><div class="section-heading split"><div><p class="eyebrow">{c['growthKicker']}</p><h2>{c['growthTitle']}</h2></div><p>{c['growthText']}</p></div><div class="steps-grid">{steps}</div><p class="fine-print growth-note">{c['growthNote']}</p></div></section>
 {pricing(lang,fallback)}
-<section class="section case-section" id="case"><div class="shell case-grid"><div><p class="eyebrow">{c['caseKicker']}</p><h2>{c['caseTitle']}</h2><p class="lead">{c['caseText']}</p><ul class="tags">{''.join('<li>'+x+'</li>' for x in c['caseTags'])}</ul><a class="button dark" href="https://levanilaw.ge/" target="_blank" rel="noopener noreferrer">{c['caseButton']}{icon('arrow-up')}</a></div><a class="case-visual" href="https://levanilaw.ge/" target="_blank" rel="noopener noreferrer"><span class="case-top">LEVANI KHELKHELAURI<span>LAWYER / TBILISI</span></span><div class="case-monogram" aria-hidden="true">LK</div><p>{lines(c['caseQuote'])}</p><span class="case-bottom">LEVANILAW.GE {icon('arrow-up')}</span></a></div></section>
-{(home_projects(lang)+chr(10)) if not fallback else ''}<section class="section faq-section"><div class="shell faq-grid"><div><p class="eyebrow">FAQ</p><h2>{c['faqTitle']}</h2></div><div class="faq-list">{faqs}</div></div></section>
+{legacy_case if fallback else home_projects(lang)}
+<section class="section faq-section"><div class="shell faq-grid"><div><p class="eyebrow">FAQ</p><h2>{c['faqTitle']}</h2></div><div class="faq-list">{faqs}</div></div></section>
 {(home_trust(lang)+chr(10)) if not fallback else ''}{contact_section(lang)}</main>{footer(lang,base)}{LEAD_SCRIPT}</body></html>\n'''
 
 def industry_page(lang,n):

@@ -1,0 +1,14 @@
+/* Compact navigation for the independent audit and FORME HOME headers. */
+.page-languages{display:flex;align-items:center;gap:2px;flex-shrink:0;width:max-content;padding:2px;border:1px solid var(--language-line,#244a74);border-radius:10px;color:var(--language-text,#cfe5fb)}
+.page-languages a{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px;padding:0 7px;border-radius:7px;font:700 12px/1 Arial,Helvetica,sans-serif;letter-spacing:.04em;color:inherit;text-decoration:none}
+.page-languages a:hover{background:var(--language-hover,rgba(66,213,255,.12))}
+.page-languages a[aria-current="page"]{background:var(--language-active,#73d8ff);color:var(--language-active-text,#071b36)}
+.page-languages a:focus-visible{outline:3px solid var(--language-focus,#73d8ff);outline-offset:2px}
+.top.audit-language-header{gap:16px}
+.audit-language-header .back{margin-left:auto}
+.topbar .shell.forme-language-header{height:auto;min-height:76px;flex-wrap:wrap;gap:12px 20px;padding-top:12px;padding-bottom:12px;--language-line:#bcbdb5;--language-text:#344337;--language-hover:rgba(52,67,55,.08);--language-active:#344337;--language-active-text:#f7f6f2;--language-focus:#344337}
+@media(max-width:650px){
+  .top.audit-language-header,.topbar .shell.forme-language-header{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);height:auto;min-height:70px;gap:10px 12px;padding-top:12px;padding-bottom:12px}
+  .audit-language-header .back,.forme-language-header .back{justify-self:end;max-width:100%;text-align:center}
+  .audit-language-header .page-languages,.forme-language-header .page-languages{grid-column:1/-1;justify-self:center}
+}

@@ -173,3 +173,5 @@ body.ml-page{margin:0;background:var(--ml-bg);color:var(--ml-ink);font:400 16px/
   .ml-ai-question{font-size:7px;line-height:1.22;white-space:normal;min-height:34px;padding:4px 5px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ml-page *, .ml-page *:before,.ml-page *:after{animation:none!important;transition:none!important}.ml-js [data-reveal]{opacity:1!important;transform:none!important}}
+
+@media(max-width:760px){.ml-hero .ml-shell{grid-template-columns:minmax(0,1fr)}.ml-page h1,.ml-page h2,.ml-page h3{overflow-wrap:anywhere}.ml-eyebrow{overflow-wrap:anywhere;min-width:0}.ml-eyebrow:before{flex-shrink:0}}

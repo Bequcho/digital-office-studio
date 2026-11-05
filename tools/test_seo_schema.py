@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Local JSON-LD structure, identity, content and regression checks."""
+from site_contract import DEDICATED, family
 from pathlib import Path
 from html.parser import HTMLParser
 import ast
@@ -53,8 +54,36 @@ def walk(value):
         for child in value: yield from walk(child)
 
 
+def validate_dedicated(doc, route):
+    slug=family(route)
+    expected={'ai-consultant':['Service'], 'meta-static-ads':['CreativeWork'],
+              'shopify':['WebPage','Service'],
+              'geo':['Organization','WebSite','WebPage','Service','BreadcrumbList'],
+              'forme-home':[], 'kakheti-wine-house':[]}[slug]
+    assert len(doc.blocks)==(1 if expected else 0), route
+    if not expected: return None  # Showcase pages deliberately carry no JSON-LD.
+    data=json.loads(doc.blocks[0]);assert data['@context']=='https://schema.org'
+    graph=data.get('@graph',[data]);assert isinstance(graph,list)
+    assert [e.get('@type') for e in graph]==expected,route
+    ids=[e['@id'] for e in graph if '@id' in e];assert len(ids)==len(set(ids))
+    for obj in walk(graph):
+        if set(obj)=={'@id'}: assert obj['@id'] in ids,obj
+        assert obj.get('@type') not in ('Review','AggregateRating','SearchAction')
+    assert doc.canonical==BASE+route and doc.language==route.split('/')[0]
+    primary=next(e for e in graph if e['@type'] in ('Service','CreativeWork','WebPage'))
+    assert primary['url']==doc.canonical
+    if slug in ('geo','shopify'):
+        page=next(e for e in graph if e['@type']=='WebPage')
+        assert page['name']==doc.title and page['description']==doc.description
+        assert page['inLanguage']==doc.language
+    if slug=='meta-static-ads':assert primary['inLanguage']==doc.language
+    return doc.canonical+'#webpage'
+
+
 def validate(source, route):
     doc = Document(source)
+    if family(route) in DEDICATED:
+        return validate_dedicated(doc, route)
     assert len(doc.blocks) == 1, route
     data = json.loads(doc.blocks[0])
     assert data['@context'] == 'https://schema.org'
@@ -124,14 +153,18 @@ def validate(source, route):
 
 
 def main():
-    ids=[]; count=0
+    ids=[]; count=0; dedicated_count=0
     for language in ('ka','ru','en'):
         for path in sorted((ROOT/language).rglob('index.html')):
             route=path.parent.relative_to(ROOT).as_posix()+'/'
-            source=path.read_text();ids.append(validate(source,route))
+            source=path.read_text();identity=validate(source,route)
+            if identity: ids.append(identity)
             structure=Document(source)
             assert (structure.html_count, structure.head_count, structure.h1_count)==(1,1,1), path
             slug=path.parent.relative_to(ROOT/language).as_posix()
+            if slug in DEDICATED:
+                dedicated_count+=1
+                continue
             assert update_schema(source,'' if slug=='.' else slug)==source, 'Not idempotent'
             # Replacing old or duplicate schema must preserve every other HTML byte.
             stale=SCHEMA_RE.sub('<script type="application/ld+json">{"@context":"https://schema.org","@graph":[]}</script>',source)
@@ -169,7 +202,7 @@ def main():
     tag=render_schema('en','example',BASE+'en/example/',unsafe,'Русский & English')
     assert tag.count('</script>')==1 and '&amp;' not in tag
     assert json.loads(tag.split('>',1)[1].rsplit('</script>',1)[0])['@graph'][2]['name']==unsafe
-    print(f'PASS: {count - 1} indexable pages plus legacy audit alias, 24 visible breadcrumb trails, standalone audit, 30 primary graphs, root fallback, unique IDs, links, Unicode, regression isolation, idempotence and both generators')
+    print(f'PASS: {count - 1 + dedicated_count} indexable pages plus legacy audit alias, 24 visible breadcrumb trails, standalone audit, 30 primary graphs, root fallback, unique IDs, links, Unicode, regression isolation, idempotence and both generators')
 
 
 if __name__=='__main__':main()

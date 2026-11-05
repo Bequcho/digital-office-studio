@@ -15,25 +15,24 @@ LEAD_SCRIPT = '<script src="/assets/lead-system.js?v=2" defer></script>'
 
 def home_promos(lang):
     return ''.join(
-        f'<section class="audit-home-strip{" calculator-home-strip" if c["calculator"] else ""}"><div class="shell"><div class="audit-home-card"><div><span class="audit-home-kicker">{c["kicker"]}</span><h2>{c["heading"]}</h2><p>{c["text"]}</p></div><a class="audit-home-btn" href="{c["href"]}">{c["label"]}</a></div></div></section>'
+        f'<section class="audit-home-strip{" calculator-home-strip" if c["calculator"] else (" " + c["class"] if c.get("class") else "")}"><div class="shell"><div class="audit-home-card"><div><span class="audit-home-kicker">{c["kicker"]}</span><h2>{c["heading"]}</h2><p>{c["text"]}</p></div><a class="audit-home-btn" href="{c["href"]}">{c["label"]}</a></div></div></section>'
         for c in HOME[lang]['promos'])
 
 
-def home_industries(lang, base):
+def home_industries(lang, base, fallback=False):
     d = HOME[lang]['industries']
     cards = ''.join(
         f'<a class="legacy-niche" href="{base}{lang}/{c["slug"]}/"><img alt="{c["alt"]}" loading="lazy" decoding="async" src="{base}assets/images/{c["image"]}"><div><h3>{c["heading"]}</h3><p>{c["text"]}</p></div></a>'
         for c in d['cards'])
+    if not fallback:
+        cards += ''.join(
+            f'<a class="legacy-niche" href="{c["href"]}"><img alt="{c["alt"]}" loading="lazy" decoding="async" src="{c["image"]}"><div><h3>{c["heading"]}</h3><p>{c["text"]}</p></div></a>'
+            for c in d['additionalCards'])
     return f'<section class="legacy-industries" id="services"><div class="legacy-industries-inner"><div class="legacy-section-head"><span class="legacy-kicker">{d["kicker"]}</span><h2>{d["heading"]}</h2><p>{d["text"]}</p></div><div class="legacy-niche-grid">{cards}</div></div></section>'
 
 
 def home_projects(lang):
-    d = HOME[lang]['projects']
-    cards = ''.join(
-        f'<a class="home-project-card" href="{c["href"]}"><span>{c["tag"]}</span><strong>{c["heading"]}</strong><small>{c["text"]}</small></a>'
-        for c in d['cards'])
-    a = d['cta']
-    return f'<section class="home-projects-strip"><div class="shell"><div class="home-projects-head"><div><p class="eyebrow">PORTFOLIO</p><h2>{d["heading"]}</h2></div><p>{d["text"]}</p></div><div class="home-projects-grid">{cards}</div><a class="{a["class"]}" href="{a["href"]}">{a["label"]}</a></div></section>'
+    return (TOOLS / 'templates' / f'home-work-{lang}.html').read_text(encoding='utf-8').strip()
 
 
 def home_trust(lang):

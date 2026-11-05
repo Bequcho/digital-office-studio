@@ -1,3 +1,40 @@
+/* One introductory signature per tab/session. Static markup is the fallback. */
+(() => {
+  'use strict';
+  const brand = document.querySelector('.site-header .brand');
+  const mark = brand && brand.querySelector('img');
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  if (!mark || motion.matches) return;
+  const key = 'beqson-signature-seen-v1';
+  // If storage is unavailable, prefer a static logo to repeated introductions.
+  try { if (sessionStorage.getItem(key)) return; } catch (_) { return; }
+  const finish = () => brand.classList.remove('bq-signature', 'bq-signature-pending');
+  const start = async () => {
+    if (document.hidden) return;
+    document.removeEventListener('visibilitychange', start);
+    // Reserve the unchanged geometry while decoding, avoiding a visible logo
+    // followed by a second reveal. Slow/failed assets fall back to static.
+    brand.classList.add('bq-signature-pending');
+    let expired = false;
+    const pending = setTimeout(() => { expired = true; finish(); }, 1200);
+    try { await Promise.all([mark.decode(), document.fonts.ready]); }
+    catch (_) { clearTimeout(pending); finish(); return; }
+    clearTimeout(pending);
+    if (expired || motion.matches || document.hidden || !brand.isConnected) { finish(); return; }
+    try { sessionStorage.setItem(key, '1'); } catch (_) { finish(); return; }
+    brand.classList.replace('bq-signature-pending', 'bq-signature');
+    brand.addEventListener('animationend', event => {
+      if (event.animationName === 'bq-signature-finish') finish();
+    });
+    motion.addEventListener('change', finish, {once:true});
+    window.addEventListener('pagehide', finish, {once:true});
+    // Also recover if a browser cancels the final pseudo-element animation.
+    setTimeout(finish, 2800);
+  };
+  if (document.hidden) document.addEventListener('visibilitychange', start);
+  else start();
+})();
+
 /* BEQSON Homepage Motion — tiny dependency-free enhancement. */
 (() => {
   'use strict';

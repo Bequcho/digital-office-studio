@@ -16,7 +16,7 @@
       goal: 'Что хотите улучшить?', goalPh: 'Новый сайт, SEO, заявки, CRM, автоматизация...', budget: 'Ориентир по бюджету', budgetPh: 'Пока не определён',
       submit: 'Отправить заявку', sending: 'Отправляем…', successTitle: 'Заявка отправлена',
       successText: 'Спасибо. Мы получили данные и свяжемся с вами удобным способом.',
-      error: 'Не удалось отправить заявку. Напишите нам в WhatsApp или Telegram.', close: 'Закрыть',
+      error: 'Не удалось отправить заявку. Напишите нам в WhatsApp или Telegram.', close: 'Закрыть', required: 'Заполните это поле.',
       consent: 'Отправляя форму, вы разрешаете использовать данные только для ответа на ваш запрос.', direct: 'Или напишите напрямую',
       budgetOptions: ['До $300', '$300–500', '$500–900', '$900+', 'Пока не определён'],
       industries: ['Адвокат / юрист', 'Стоматология', 'Частный врач / клиника', 'Недвижимость', 'Бухгалтерия / налоги', 'Строительство / дизайн', 'Автосервис / детейлинг', 'Отель / туризм', 'Другая сфера']
@@ -29,7 +29,7 @@
       goal: 'რისი გაუმჯობესება გსურთ?', goalPh: 'ახალი საიტი, SEO, ლიდები, CRM, ავტომატიზაცია...', budget: 'სავარაუდო ბიუჯეტი', budgetPh: 'ჯერ არ არის განსაზღვრული',
       submit: 'განაცხადის გაგზავნა', sending: 'იგზავნება…', successTitle: 'განაცხადი გაიგზავნა',
       successText: 'გმადლობთ. მონაცემები მივიღეთ და თქვენთვის მოსახერხებელი გზით დაგიკავშირდებით.',
-      error: 'განაცხადის გაგზავნა ვერ მოხერხდა. მოგვწერეთ WhatsApp-ში ან Telegram-ში.', close: 'დახურვა',
+      error: 'განაცხადის გაგზავნა ვერ მოხერხდა. მოგვწერეთ WhatsApp-ში ან Telegram-ში.', close: 'დახურვა', required: 'გთხოვთ, შეავსოთ ეს ველი.',
       consent: 'ფორმის გაგზავნით გვაძლევთ უფლებას, მონაცემები გამოვიყენოთ მხოლოდ თქვენს მოთხოვნაზე პასუხისთვის.', direct: 'ან მოგვწერეთ პირდაპირ',
       budgetOptions: ['$300-მდე', '$300–500', '$500–900', '$900+', 'ჯერ არ არის განსაზღვრული'],
       industries: ['ადვოკატი / იურისტი', 'სტომატოლოგია', 'კერძო ექიმი / კლინიკა', 'უძრავი ქონება', 'ბუღალტერია / გადასახადები', 'მშენებლობა / დიზაინი', 'ავტოსერვისი / დეტეილინგი', 'სასტუმრო / ტურიზმი', 'სხვა სფერო']
@@ -42,7 +42,7 @@
       goal: 'What would you like to improve?', goalPh: 'New website, SEO, leads, CRM, automation...', budget: 'Approximate budget', budgetPh: 'Not decided yet',
       submit: 'Send request', sending: 'Sending…', successTitle: 'Request sent',
       successText: 'Thank you. We received your details and will contact you using your preferred channel.',
-      error: 'We could not send the request. Please contact us via WhatsApp or Telegram.', close: 'Close',
+      error: 'We could not send the request. Please contact us via WhatsApp or Telegram.', close: 'Close', required: 'Please fill out this field.',
       consent: 'By submitting, you allow us to use this data only to respond to your request.', direct: 'Or message us directly',
       budgetOptions: ['Up to $300', '$300–500', '$500–900', '$900+', 'Not decided yet'],
       industries: ['Lawyer / legal', 'Dentistry', 'Private doctor / clinic', 'Real estate', 'Accounting / tax', 'Construction / design', 'Auto service / detailing', 'Hotel / tourism', 'Other']
@@ -59,20 +59,20 @@
     items.map(item => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`).join('');
 
   root.innerHTML = `
-    <button class="bls-launcher" type="button" aria-haspopup="dialog" aria-controls="beqson-lead-dialog">
+    <button class="bls-launcher" type="button" aria-haspopup="dialog" aria-controls="beqson-lead-dialog" aria-expanded="false">
       <span class="bls-launcher-dot" aria-hidden="true"></span>
       <span>${escapeHtml(t.launcher)}</span>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </button>
     <div class="bls-backdrop" hidden></div>
-    <section class="bls-modal" id="beqson-lead-dialog" role="dialog" aria-modal="true" aria-labelledby="beqson-lead-title" hidden>
+    <section class="bls-modal" id="beqson-lead-dialog" role="dialog" aria-modal="true" aria-labelledby="beqson-lead-title" aria-describedby="beqson-lead-description" tabindex="-1" hidden>
       <button class="bls-close" type="button" aria-label="${escapeHtml(t.close)}">×</button>
       <div class="bls-glow bls-glow-a" aria-hidden="true"></div>
       <div class="bls-glow bls-glow-b" aria-hidden="true"></div>
       <div class="bls-modal-head">
         <span class="bls-eyebrow">${escapeHtml(t.eyebrow)}</span>
         <h2 id="beqson-lead-title">${escapeHtml(t.title)}</h2>
-        <p>${escapeHtml(t.text)}</p>
+        <p id="beqson-lead-description">${escapeHtml(t.text)}</p>
       </div>
       <form class="bls-form" novalidate>
         <div class="bls-grid">
@@ -108,12 +108,54 @@
   const submit = root.querySelector('.bls-submit');
   const status = root.querySelector('.bls-status');
   let previousFocus = null;
+  let isOpen = false;
+  let focusTimer;
+  let closeTimer;
+  let backgroundState = [];
+  const requiredFields = ['name', 'contact', 'message'].map(name => form.elements[name]);
+
+  function validateRequired(field) {
+    const valid = Boolean(field.value.trim());
+    field.setCustomValidity(valid ? '' : t.required);
+    if (valid) field.removeAttribute('aria-invalid');
+    else field.setAttribute('aria-invalid', 'true');
+  }
+  requiredFields.forEach(field => field.addEventListener('input', () => validateRequired(field)));
+
+  function focusableElements() {
+    return Array.from(modal.querySelectorAll('a[href], button, input, select, textarea, [tabindex]'))
+      .filter(element => element.tabIndex >= 0 && !element.disabled &&
+        !element.closest('[hidden], [inert]') && element.getClientRects().length &&
+        getComputedStyle(element).visibility !== 'hidden');
+  }
 
   launcher.addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
   backdrop.addEventListener('click', closeModal);
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && !modal.hidden) closeModal();
+    if (!isOpen) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeModal();
+    } else if (event.key === 'Tab') {
+      const elements = focusableElements();
+      const first = elements[0];
+      const last = elements[elements.length - 1];
+      if (!first) {
+        event.preventDefault();
+        modal.focus();
+      } else if (event.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !modal.contains(document.activeElement))) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  document.addEventListener('focusin', event => {
+    if (isOpen && !modal.contains(event.target)) (focusableElements()[0] || modal).focus();
   });
 
   form.addEventListener('submit', async event => {
@@ -121,6 +163,9 @@
     status.className = 'bls-status';
     status.textContent = '';
 
+    // Trim only the edges; preserve meaningful spacing and newlines inside text.
+    [...requiredFields, form.elements.website].forEach(field => { field.value = field.value.trim(); });
+    requiredFields.forEach(validateRequired);
     if (!form.reportValidity()) return;
     if (form.elements.company_fax.value) return;
 
@@ -221,24 +266,49 @@
     return data;
   }
 
-  function openModal() {
-    previousFocus = document.activeElement;
+  function openModal(event) {
+    if (isOpen) return;
+    clearTimeout(closeTimer);
+    clearTimeout(focusTimer);
+    previousFocus = event?.currentTarget || document.activeElement;
+    isOpen = true;
     modal.hidden = false;
+    modal.inert = false;
+    modal.removeAttribute('aria-hidden');
     backdrop.hidden = false;
+    launcher.setAttribute('aria-expanded', 'true');
     document.documentElement.classList.add('bls-lock');
-    requestAnimationFrame(() => root.classList.add('is-open'));
-    setTimeout(() => modal.querySelector('input, select, textarea, button')?.focus(), 80);
+    // Keep existing inert states intact when the dialog closes.
+    backgroundState = [...document.body.children, launcher]
+      .filter(element => element !== root && !['SCRIPT', 'STYLE', 'LINK'].includes(element.tagName))
+      .map(element => [element, element.inert]);
+    backgroundState.forEach(([element]) => { element.inert = true; });
+    requestAnimationFrame(() => { if (isOpen) root.classList.add('is-open'); });
+    focusTimer = setTimeout(() => {
+      if (isOpen) (modal.querySelector('input:not([type="hidden"])') || modal).focus();
+    }, 80);
     emitEvent('lead_form_open', { language: lang, page: location.pathname });
   }
 
   function closeModal() {
+    if (!isOpen) return;
+    isOpen = false;
+    clearTimeout(focusTimer);
     root.classList.remove('is-open');
     document.documentElement.classList.remove('bls-lock');
-    setTimeout(() => {
+    launcher.setAttribute('aria-expanded', 'false');
+    modal.inert = true;
+    backgroundState.forEach(([element, inert]) => { element.inert = inert; });
+    backgroundState = [];
+    if (previousFocus?.isConnected && !previousFocus.disabled &&
+        !previousFocus.closest('[inert], [hidden]') && previousFocus.getClientRects().length) {
+      previousFocus.focus({ preventScroll: true });
+    }
+    modal.setAttribute('aria-hidden', 'true');
+    closeTimer = setTimeout(() => {
       modal.hidden = true;
       backdrop.hidden = true;
     }, 180);
-    previousFocus?.focus?.();
   }
 
   function setSubmitting(state) {

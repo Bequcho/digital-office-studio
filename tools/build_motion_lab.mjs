@@ -147,7 +147,7 @@ const keys = ["wireframe", "design", "store", "ai"];
 
 function render(lang, t) {
   const langLinks = langs.map(code => `<a href="/${code}/motion-lab/" hreflang="${code}" lang="${code}" ${code === lang ? 'aria-current="page"' : ""}>${code === "ka" ? "GE" : code.toUpperCase()}</a>`).join("");
-  const alternate = langs.map(code => `<link rel="alternate" hreflang="${code}" href="https://beqson.com/${code}/motion-lab/">`).join("");
+  const alternate = langs.map(code => `<link rel="alternate" hreflang="${code}" href="https://beqson.com/${code}/motion-lab/">`).join("") + '<link rel="alternate" hreflang="x-default" href="https://beqson.com/en/motion-lab/">';
   const pills = t.pill.map((label, i) => `<button class="ml-stage-pill" type="button" data-ml-target="${keys[i]}" ${i===0 ? 'aria-current="step"' : ""}>${String(i+1).padStart(2,"0")} · ${esc(label)}</button>`).join("");
   const steps = t.steps.map((step, i) => `<article id="step-${keys[i]}" class="ml-step ${i===0 ? "is-active" : ""}" data-ml-step="${keys[i]}" data-url="${esc(t.browser[i])}"><span class="ml-step-number">${esc(step.number)}</span><h3>${esc(step.title)}</h3><p>${esc(step.body)}</p><span class="ml-step-tag">${esc(step.tag)}</span></article>`).join("\n");
   const caps = t.capabilities.map(cap => `<article class="ml-capability" data-reveal><b aria-hidden="true">${esc(cap.icon)}</b><h3>${esc(cap.title)}</h3><p>${esc(cap.text)}</p></article>`).join("");

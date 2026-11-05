@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Validate social metadata, image files, generator output and update isolation."""
+from site_contract import DEDICATED, family
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 from pathlib import Path
@@ -30,8 +31,45 @@ class Social(HTMLParser):
         if tag=='head':self.head=False
 
 
+def validate_dedicated(source):
+    page=PageMetadata(source); tags=Social(source).values
+    slug=family(urlsplit(page.canonical).path.lstrip('/'))
+    required={'og:type','og:url','og:title','og:description','og:image'}
+    if slug in ('geo','meta-static-ads','shopify'):required.add('twitter:card')
+    if slug=='geo':required |= {'og:locale','twitter:title','twitter:description','twitter:image'}
+    if slug=='meta-static-ads':required |= {'og:image:width','og:image:height'}
+    assert required <= tags.keys(),required-tags.keys()
+    assert tags['og:type']==('article' if slug=='meta-static-ads' else 'website')
+    assert tags['og:url']==page.canonical
+    assert tags['og:title'].strip() and tags['og:description'].strip()
+    # Twitter accepts Open Graph title/description/image fallbacks. Explicit
+    # tags, when present, must agree with their OG counterparts.
+    for field in ('title','description','image','image:alt'):
+        if 'twitter:'+field in tags:
+            assert tags['twitter:'+field]==tags['og:'+field]
+    if 'twitter:card' in tags:assert tags['twitter:card']=='summary_large_image'
+    if 'og:locale' in tags:assert tags['og:locale']==LOCALES[page.language]
+    url=urlsplit(tags['og:image']);assert url.scheme=='https'
+    if url.netloc=='beqson.com':
+        path=ROOT/unquote(url.path.lstrip('/'));assert path.is_file(),path
+        if path.suffix=='.svg':
+            import xml.etree.ElementTree as ET
+            assert ET.parse(path).getroot().tag.endswith('svg')
+        else:
+            with Image.open(path) as image:
+                image.verify()
+            with Image.open(path) as image:
+                for key,actual in [('width',image.width),('height',image.height)]:
+                    if 'og:image:'+key in tags:assert int(tags['og:image:'+key])==actual
+    else:
+        assert url.netloc=='cdn.shopify.com' and slug in ('shopify','kakheti-wine-house')
+    return tags
+
+
 def validate(source):
     page=PageMetadata(source);tags=Social(source).values
+    if family(urlsplit(page.canonical).path.lstrip("/")) in DEDICATED:
+        return validate_dedicated(source)
     for prefix in ['og','twitter']:
         assert tags[prefix+':title']==page.title
         assert tags[prefix+':description']==page.description
@@ -55,6 +93,7 @@ def main():
     for url,path in pages.items():
         source=path.read_text();validate(source)
         # Social updater must preserve all non-social bytes, even with duplicate input.
+        if family(urlsplit(url).path.lstrip('/')) in DEDICATED: continue
         clean=lambda s:META_RE.sub(lambda m:'' if is_social(m[0]) else m[0],s)
         duplicate=source.replace('</head>','<meta property="og:title" content="old"></head>')
         updated=update_social(duplicate);validate(updated);assert clean(source)==clean(updated)

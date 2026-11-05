@@ -63,10 +63,10 @@ def discover(root=ROOT):
         if any(part.startswith('.') or part in ('node_modules', '__pycache__', 'templates') for part in parts): continue
         if parts[0] in ('scripts', 'tests', 'test', 'backend'): continue
         if parts[0] == 'crm':
-            excluded[str(relative)] = 'private CRM'; continue
+            excluded[relative.as_posix()] = 'private CRM'; continue
         doc = Document(file.read_text())
         if doc.html != 1:
-            excluded[str(relative)] = 'not a complete public HTML document'; continue
+            excluded[relative.as_posix()] = 'not a complete public HTML document'; continue
         route = '/' + relative.as_posix()
         if route.endswith('/index.html'): route = route[:-len('index.html')]
         actual = BASE.rstrip('/') + quote(route)
@@ -80,7 +80,7 @@ def discover(root=ROOT):
             url = urlsplit(doc.canonicals[0])
             if url.scheme != 'https' or url.netloc != 'beqson.com' or url.query or url.fragment:
                 reason = 'noncanonical URL format'
-        if reason: excluded[str(relative)] = reason
+        if reason: excluded[relative.as_posix()] = reason
         else: included[actual] = file
     return included, excluded
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Sitemap discovery, exclusions, preservation and idempotence tests."""
+from site_contract import URLS, xdefault
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from urllib.parse import urlsplit, unquote
@@ -26,9 +27,18 @@ def main():
         assert file.exists()
         doc=Document(file.read_text())
         assert doc.canonicals==[url] and not set(doc.robots)&{'noindex','none'} and not doc.refresh
-    # The published site grows as new portfolio demos and localized pages are added.
-    # Check the historical minimum; exact inclusion is checked against discover() above.
-    assert len(urls) >= 51
+    for entry in entries:
+        url=entry.findtext('{'+NS+'}loc')
+        annotations=entry.findall('{http://www.w3.org/1999/xhtml}link')
+        if annotations:
+            route=url.removeprefix(BASE);suffix=route.split('/',1)[1]
+            expected_links={lang:BASE+lang+'/'+suffix for lang in ('ka','ru','en')}
+            expected_links['x-default']=expected_links[xdefault(route)]
+            assert len(annotations)==4
+            assert {a.get('hreflang'):a.get('href') for a in annotations}==expected_links
+            assert all(a.get('rel')=='alternate' and a.get('href') in URLS for a in annotations)
+    # Independent route inventory catches pages missing from both discovery and XML.
+    assert set(urls) == URLS
     assert BASE+'audit/' not in urls and BASE+'ru/audit/' in urls
     assert excluded['audit/index.html'] == 'canonical points elsewhere'
     primary=json.loads((ROOT/'tools/seo_metadata.json').read_text())

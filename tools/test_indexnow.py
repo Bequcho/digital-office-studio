@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Offline IndexNow tests. All HTTP is fake; sockets are blocked as a backstop."""
+from site_contract import URLS
 from dataclasses import replace
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -198,7 +199,7 @@ class IndexNowTests(unittest.TestCase):
     def test_real_sitemap_dry_run_with_mocked_production(self):
         urls = sitemap_urls((ROOT/'sitemap.xml').read_text())
         pages, _ = discover(ROOT)
-        self.assertEqual(len(urls), 51)
+        self.assertEqual(set(urls), URLS)
         self.assertEqual(set(urls), set(pages))
         replies = {url:Response(200,url,{'content-type':'text/html'},p.read_text()) for url,p in pages.items()}
         replies.update({BASE+'sitemap.xml':Response(200,BASE+'sitemap.xml',{},(ROOT/'sitemap.xml').read_text()),
@@ -207,7 +208,7 @@ class IndexNowTests(unittest.TestCase):
         fake = FakeHTTP(replies)
         report = run(ROOT, key=KEY, fetch=fake)
         self.assertIsNone(report['blocked'])
-        self.assertEqual(len(report['accepted']), 51)
+        self.assertEqual(set(report['accepted']), URLS)
         self.assertFalse(report['skipped'] or fake.posts)
 
 

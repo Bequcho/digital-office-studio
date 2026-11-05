@@ -100,12 +100,19 @@ class BuildRegressionTests(unittest.TestCase):
             page = Page(self.source(lang))
             with self.subTest(lang=lang):
                 for cls in ('audit-home-strip', 'audit-home-strip calculator-home-strip',
-                            'home-projects-strip', 'clutch-trust-strip'):
+                            'audit-home-strip geo-home-strip', 'section beqson-work', 'clutch-trust-strip'):
                     self.assertEqual(len(page.select('section', **{'class': cls})), 1, cls)
                 for slug in ('audit', 'calculator', 'projects', 'tools'):
                     self.assertTrue(page.select('a', href=f'/{lang}/{slug}/'), slug)
-                self.assertEqual(len(page.select('a', **{'class': 'legacy-niche'})), 8)
-                self.assertEqual(len(page.select('a', **{'class': 'home-project-card'})), 6)
+                self.assertEqual(len(page.select('a', **{'class': 'legacy-niche'})), 10)
+                cards = [a for a in page.select('a') if 'beqson-work-card' in a.get('class', '').split()]
+                expected = {f'/{lang}/{slug}/' for slug in ('kakheti-wine-house','forme-home','meta-static-ads','motion-lab','ai-consultant')}
+                expected |= {f'/{lang}/projects/#{slug}' for slug in ('beqson','gsc','geo','redesign','industry','booth','brandkit','report','aivisual','packaging')}
+                expected.add('https://levanilaw.ge/')
+                self.assertEqual({a['href'] for a in cards}, expected)
+                self.assertEqual(len(cards),len(expected))
+                for slug in ('shopify', 'ai-consultant'):
+                    self.assertTrue(page.select('a', href=f'/{lang}/{slug}/'))
 
     def test_lead_system_and_section_inventory(self):
         for lang in LANGS:
@@ -134,7 +141,8 @@ class BuildRegressionTests(unittest.TestCase):
                     self.assertTrue(page.select('a', href=f'/{lang}/{target}/'))
 
     def test_seo_steps_one_to_eight(self):
-        for test in ('test_seo_metadata.py', 'test_seo_schema.py', 'test_sitemap.py', 'test_seo_social.py'):
+        for test in ('test_seo_metadata.py', 'test_seo_schema.py', 'test_sitemap.py', 'test_seo_social.py',
+                     'test_site.py', 'test_validation.py'):
             with self.subTest(test=test):
                 result = subprocess.run([sys.executable, 'tools/' + test], cwd=self.root,
                                         env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1'},

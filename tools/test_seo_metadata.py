@@ -8,6 +8,7 @@ import re
 import ast
 import textwrap
 from urllib.parse import urlsplit
+from site_contract import URLS, xdefault
 
 ROOT = Path(__file__).resolve().parents[1]
 METADATA = json.loads((ROOT / 'tools/seo_metadata.json').read_text())
@@ -80,7 +81,7 @@ def check(source, expected=None, canonical=None, hreflang=False):
         assert canonical is not None
         suffix = urlsplit(canonical).path.split('/', 2)[2]
         expected_links = {lang: f'https://beqson.com/{lang}/{suffix}' for lang in ('ka', 'ru', 'en')}
-        expected_links['x-default'] = expected_links['en']
+        expected_links['x-default'] = expected_links[xdefault(urlsplit(canonical).path.lstrip('/'))]
         assert len(parser.alternates) == 4, parser.alternates
         assert dict(parser.alternates) == expected_links, parser.alternates
         for _, href in parser.alternates:
@@ -121,7 +122,7 @@ def main():
     # Use the real indexability discovery, not a whole-document noindex regex.
     from build_sitemap import discover
     pages, excluded = discover()
-    assert len(pages) == 51
+    assert set(pages) == URLS, (URLS - set(pages), set(pages) - URLS)
     assert excluded['audit/index.html'] == 'canonical points elsewhere'
     all_titles = {}; all_descriptions = {}
     for url, path in pages.items():

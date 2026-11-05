@@ -4,7 +4,13 @@ from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urljoin, urlsplit, unquote
 import json
-import runpy
+import subprocess
+import sys
+import os
+from site_contract import public_files, expected_files, ROUTES, URLS, TECHNICAL
+from test_seo_metadata import check
+from test_seo_schema import validate as validate_schema
+from test_sitemap import main as validate_sitemap
 import shutil
 import tempfile
 import unittest
@@ -19,8 +25,10 @@ SLUGS = tuple(n['slug'] for n in json.loads((ROOT/'tools/industries.json').read_
 class Page(HTMLParser):
     def __init__(self, path):
         super().__init__()
-        self.path=path; self.elements=[]; self.ids=[]; self.scripts=[]; self.current_script=None
+        self.path=path; self.doctypes=[]; self.elements=[]; self.ids=[]; self.scripts=[]; self.current_script=None
         self.feed(path.read_text())
+    def handle_decl(self, decl):
+        self.doctypes.append(decl.lower())
     def handle_starttag(self, tag, attributes):
         attrs=dict(attributes); self.elements.append((tag,attrs))
         if attrs.get('id'): self.ids.append(attrs['id'])
@@ -37,17 +45,28 @@ class Page(HTMLParser):
 class SiteTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.pages={p.relative_to(ROOT).as_posix():Page(p) for p in ROOT.rglob('*.html')}
+        cls.pages={route:Page(p) for route,p in public_files(ROOT).items()}
     def test_routes_and_language(self):
-        expected={'index.html','404.html'}|{f'{l}/index.html' for l in LANGS}|{f'{l}/{s}/index.html' for l in LANGS for s in SLUGS}
+        expected=expected_files()
         self.assertEqual(set(self.pages),expected)
         for route,page in self.pages.items():
             with self.subTest(route=route):
-                self.assertEqual(page.select('html')[0]['lang'],route.split('/')[0] if '/' in route else ('ka' if route=='index.html' else 'ru'))
-                self.assertEqual(len(page.select('h1')),1)
-                self.assertEqual(len(page.select('main')),1)
+                if route.split('/')[0] in LANGS:
+                    self.assertEqual(page.select('html')[0]['lang'],route.split('/')[0])
+                elif route!='projects/index.html':
+                    self.assertIn(page.select('html')[0]['lang'], LANGS)
+                redirects={'calculator/index.html','projects/index.html','tools/index.html','tools/search-preview/index.html','tools/utm-builder/index.html'}
+                if route in redirects:
+                    from build_sitemap import Document
+                    doc=Document(page.path.read_text())
+                    self.assertTrue(doc.refresh or any('location.replace' in js for js in doc.scripts),route)
+                else:
+                    self.assertEqual(len(page.select('h1')),2 if route=='crm/index.html' else 1)
+                    self.assertEqual(len(page.select('main')),1)
                 self.assertEqual(len(page.ids),len(set(page.ids)))
-                self.assertEqual(page.path.read_text().lower().count('<!doctype html>'),1)
+                self.assertEqual(page.doctypes,['doctype html'])
+                self.assertEqual(len(page.select('html')),1)
+                self.assertEqual(len(page.select('head')),1)
     def test_local_references_and_anchors(self):
         count=0
         for route,page in self.pages.items():
@@ -83,33 +102,27 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(len(manifest),24)
         for slug in SLUGS:self.assertEqual(len({manifest[f'{l}/{slug}']['title'] for l in LANGS}),3)
     def test_canonical_alternates_and_social_images(self):
-        for route,page in self.pages.items():
-            canonical=page.select('link',rel='canonical')
-            self.assertEqual(len(canonical),1)
-            expected=BASE+('ka/' if route=='index.html' else route.removesuffix('index.html'))
-            self.assertEqual(canonical[0]['href'],expected)
-            alternates=page.select('link',rel='alternate')
-            self.assertEqual(len(alternates),0 if route=='404.html' else 4)
-            if route!='404.html':self.assertEqual({a['hreflang'] for a in alternates},{*LANGS,'x-default'})
-            if route!='404.html':
-                suffix=route.split('/')[1]+'/' if route.count('/')==2 else ''
-                self.assertEqual(next(a['href'] for a in alternates if a['hreflang']=='x-default'),BASE+'ka/'+suffix)
-            self.assertEqual(len(page.select('meta',name='description')),1)
-            self.assertEqual(len(page.select('title')),1)
-            for attribute in ['og:image','og:image:width','og:image:height','og:image:alt']:
-                self.assertEqual(len(page.select('meta',property=attribute)),1)
-            if route=='404.html':self.assertEqual(page.select('meta',name='robots')[0]['content'],'noindex,follow')
+        for route in ROUTES:
+            source=(ROOT/route/'index.html').read_text()
+            check(source, canonical=BASE+route, hreflang=True)
+        for route in TECHNICAL:
+            page=self.pages[route]
+            targets={'404.html':'404.html', 'index.html':'ka/',
+                     'audit/index.html':'ru/audit/', 'calculator/index.html':'en/calculator/'}
+            self.assertEqual([a['href'] for a in page.select('link',rel='canonical')],
+                             [BASE+targets[route]] if route in targets else [])
+            if route.startswith('crm/'):
+                self.assertTrue(any('noindex' in a.get('content','') for a in page.select('meta',name='robots')))
+            elif route=='index.html':
+                self.assertEqual(page.select('link',rel='canonical')[0]['href'],BASE+'ka/')
+            elif route=='audit/index.html':
+                self.assertEqual(page.select('link',rel='canonical')[0]['href'],BASE+'ru/audit/')
+            else:
+                self.assertTrue(any('noindex' in a.get('content','') for a in page.select('meta',name='robots')),route)
     def test_json_ld_and_sitemap(self):
-        for route,page in self.pages.items():
-            for raw in page.scripts:
-                graph=json.loads(raw)['@graph'];ids=[x['@id'] for x in graph if '@id' in x]
-                self.assertEqual(len(ids),len(set(ids)))
-                webpage=next(x for x in graph if x['@type']=='WebPage')
-                self.assertEqual(webpage['url'],page.select('link',rel='canonical')[0]['href'])
-        tree=ET.parse(ROOT/'sitemap.xml');urls=tree.findall('{*}url');self.assertEqual(len(urls),27)
-        for entry in urls:
-            self.assertEqual(len(entry.findall('{*}link')),4)
-            self.assertNotIn('404',entry.find('{*}loc').text)
+        for route in ROUTES:
+            validate_schema((ROOT/route/'index.html').read_text(), route)
+        validate_sitemap()
         json.loads((ROOT/'site.webmanifest').read_text())
     def test_legacy_image_links_remain_available(self):
         for slug in SLUGS:
@@ -119,25 +132,35 @@ class SiteTests(unittest.TestCase):
             for link in page.select('a',target='_blank'):
                 self.assertIn('noopener',link.get('rel',''))
     def test_icon_sprite_references(self):
-        tree=ET.parse(ROOT/'assets/icons.svg')
-        ids={node.attrib['id'] for node in tree.getroot() if 'id' in node.attrib}
-        self.assertGreater(len(ids),20)
-        for page in self.pages.values():
-            for use in page.select('use'):self.assertIn(urlsplit(use['href']).fragment,ids)
+        self.assertGreater(len(list(ET.parse(ROOT/'assets/icons.svg').getroot())),20)
+        for route,page in self.pages.items():
+            for use in page.select('use'):
+                ref=use.get('href',use.get('xlink:href',''))
+                dest=urlsplit(urljoin(BASE+route,ref))
+                if not dest.netloc or dest.netloc=='beqson.com':
+                    path=ROOT/unquote(dest.path.lstrip('/'))
+                    if path.suffix=='.svg':
+                        ids={e.get('id') for e in ET.parse(path).iter()}
+                    else:
+                        target=self.pages[unquote(dest.path.lstrip('/'))]
+                        ids=set(target.ids)
+                    self.assertTrue(dest.fragment and dest.fragment in ids,(route,ref))
     def test_no_early_lightbox_image_download(self):
         for route,page in self.pages.items():
-            if len(route.split('/'))==3:
+            if route in {f'{l}/{slug}/index.html' for l in LANGS for slug in SLUGS}:
                 image=next(a for t,a in page.elements if t=='img' and not a.get('src'))
                 self.assertTrue(image['alt'])
     def test_generated_pages_are_current(self):
         with tempfile.TemporaryDirectory(prefix='beqson-build-test-') as tmp:
             output=Path(tmp)
-            shutil.copytree(ROOT/'tools',output/'tools',ignore=shutil.ignore_patterns('__pycache__'))
-            runpy.run_path(str(output/'tools/build.py'),run_name='__main__')
-            for generated in output.rglob('*'):
-                relative=generated.relative_to(output)
-                if not generated.is_file() or relative.parts[0]=='tools':continue
-                self.assertEqual(generated.read_bytes(),(ROOT/relative).read_bytes(),str(relative))
+            shutil.copytree(ROOT,output/'site',ignore=shutil.ignore_patterns('.git','__pycache__','.agents','.codex'))
+            output=output/'site'
+            from test_build import snapshot
+            before=snapshot(output)
+            result=subprocess.run([sys.executable,'tools/build.py'],cwd=output,
+                env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'},capture_output=True,text=True)
+            self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+            self.assertEqual(before,snapshot(output))
 
 
 if __name__=='__main__':unittest.main(verbosity=2)

@@ -24,7 +24,8 @@
         "heading": "Станьте понятнее AI-поиску",
         "text": "GEO Audit: проверим доступность сайта для AI-поиска, содержание страниц, информацию о бренде и реальные сигналы цитируемости.",
         "href": "/ru/geo/",
-        "label": "GEO-аудит и самопроверка ↗"
+        "label": "GEO-аудит и самопроверка ↗",
+        "class": "geo-home-strip"
       }
     ],
     "industries": {
@@ -88,54 +89,23 @@
           "heading": "Отели / апартаменты / туризм",
           "text": "Больше прямых заявок и бронирований"
         }
-      ]
-    },
-    "projects": {
-      "heading": "Ещё наши работы",
-      "text": "Сайты, SEO, AI, брендинг и дизайн — не ограничиваем портфолио одним кейсом.",
-      "cards": [
-        {
-          "href": "/ru/projects/#beqson",
-          "tag": "Проект студии",
-          "heading": "BEQSON Digital Studio — мультиязычный бизнес-сайт",
-          "text": "Собственная платформа студии: отраслевые страницы, бесплатные SEO-инструменты, сбор лидов, CRM-процессы, тарифы и конверсионная навигац…"
-        },
-        {
-          "href": "/ru/projects/#geo",
-          "tag": "Фреймворк",
-          "heading": "AI Search Visibility (GEO) Audit Framework — ChatGPT &amp; Gemini",
-          "text": "Собственный фреймворк для оценки того, насколько понятно бизнес представлен для AI-поиска: сущности, контент, цитируемость и технически…"
-        },
-        {
-          "href": "/ru/projects/#industry",
-          "tag": "Концепт",
-          "heading": "Коллекция отраслевых сайтов — мультиязычные концепты",
-          "text": "Набор направлений для юристов, стоматологов, клиник, риелторов, бухгалтеров, строительства, автосервисов и hospitality.…"
-        },
-        {
-          "href": "/ru/projects/#brandkit",
-          "tag": "Концепт",
-          "heading": "B2B SaaS Marketing &amp; Brand Asset Kit",
-          "text": "Модульный набор маркетинговых материалов для B2B SaaS: кампании, social graphics и sales-материалы в одном стиле.…"
-        },
-        {
-          "href": "/ru/projects/#report",
-          "tag": "Концепт",
-          "heading": "B2B SaaS Case Study &amp; Report Design",
-          "text": "Концепт отчёта и case study, который превращает сложную B2B-информацию в аккуратную историю с понятной иерархией данных.…"
-        },
-        {
-          "href": "/ru/projects/#aivisual",
-          "tag": "Концепт",
-          "heading": "AI-Assisted Marketing Visual Exploration",
-          "text": "Исследование AI-визуалов для маркетинга с ручной арт-дирекцией и доводкой до пригодных для кампании композиций.…"
-        }
       ],
-      "cta": {
-        "href": "/ru/projects/",
-        "class": "home-projects-more",
-        "label": "Все проекты →"
-      }
+      "additionalCards": [
+        {
+          "href": "/ru/shopify/",
+          "image": "/assets/images/online-stores.webp",
+          "alt": "Интернет-магазины и онлайн-продажи",
+          "heading": "Интернет-магазины и онлайн-продажи (E-Commerce)",
+          "text": "Каталог товаров, корзина, оплата и доставка"
+        },
+        {
+          "href": "/ru/ai-consultant/",
+          "image": "/assets/project-covers/beqson-ai-consultant-v3.webp",
+          "alt": "BEQSON AI консультант",
+          "heading": "AI-консультант для бизнеса",
+          "text": "AI-чат на сайте: рекомендации, услуги и связь с клиентами"
+        }
+      ]
     },
     "clutch": {
       "label": "Профиль компании на независимой платформе",
@@ -154,7 +124,8 @@
       ],
       "perMonth": "от 2 900 ₽ / месяц",
       "note": "Стартовые цены для первых клиентов в России и русскоязычного рынка. Стоимость указана в RUB. Финальный объём фиксируем до начала работы. Домен, платные сервисы и рекламный бюджет оплачиваются отдельно при необходимости."
-    }
+    },
+    "heroStyleVersion": "3"
   },
   "ka": {
     "toolsLabel": "უფასო ინსტრუმენტები",
@@ -181,7 +152,8 @@
         "heading": "გახადეთ თქვენი ბიზნესი AI ძიებისთვის გასაგები",
         "text": "GEO Audit ამოწმებს საძიებო ბოტების წვდომას, ბრენდის სიცხადეს, კონტენტსა და რეალურ ციტირების სიგნალებს.",
         "href": "/ka/geo/",
-        "label": "GEO აუდიტი და თვითშემოწმება ↗"
+        "label": "GEO აუდიტი და თვითშემოწმება ↗",
+        "class": "geo-home-strip"
       }
     ],
     "industries": {
@@ -245,54 +217,23 @@
           "heading": "სასტუმროები / აპარტამენტები / ტურიზმი",
           "text": "მეტი პირდაპირი მოთხოვნა და ჯავშანი"
         }
-      ]
-    },
-    "projects": {
-      "heading": "სხვა ნამუშევრები",
-      "text": "ვებ, SEO, AI, ბრენდინგი და დიზაინი — ჩვენი პორტფოლიო ერთ ქეისზე არ მთავრდება.",
-      "cards": [
-        {
-          "href": "/ka/projects/#beqson",
-          "tag": "სტუდიის პროექტი",
-          "heading": "BEQSON Digital Studio — მრავალენოვანი ბიზნეს-საიტი",
-          "text": "სტუდიის საკუთარი პლატფორმა: ინდუსტრიული გვერდები, უფასო SEO ხელსაწყოები, ლიდების შეგროვება, CRM პროცესები, ფასები და კონვერსიული ნავიგა…"
-        },
-        {
-          "href": "/ka/projects/#geo",
-          "tag": "ფრეიმვორკი",
-          "heading": "AI Search Visibility (GEO) Audit Framework — ChatGPT &amp; Gemini",
-          "text": "საკუთარი ფრეიმვორკი AI ძიებაში ბიზნესის აღქმის შესაფასებლად: entity signals, კონტენტი, ციტირებადობა და ტექნიკური საფუძველი.…"
-        },
-        {
-          "href": "/ka/projects/#industry",
-          "tag": "კონცეფცია",
-          "heading": "ინდუსტრიული საიტების კოლექცია — მრავალენოვანი კონცეფციები",
-          "text": "კონცეფციები იურისტებისთვის, სტომატოლოგებისთვის, კლინიკებისთვის, უძრავი ქონებისთვის, ბუღალტრებისთვის, მშენებლობისთვის, ავტოსერვისებისა დ…"
-        },
-        {
-          "href": "/ka/projects/#brandkit",
-          "tag": "კონცეფცია",
-          "heading": "B2B SaaS Marketing &amp; Brand Asset Kit",
-          "text": "მოდულური B2B SaaS მარკეტინგული მასალები კამპანიებისთვის, social graphics-ისა და sales მასალებისთვის.…"
-        },
-        {
-          "href": "/ka/projects/#report",
-          "tag": "კონცეფცია",
-          "heading": "B2B SaaS Case Study &amp; Report Design",
-          "text": "რეპორტისა და case study-ის კონცეფცია, რომელიც რთულ B2B ინფორმაციას მკაფიო და პროფესიონალურ ისტორიად აწყობს.…"
-        },
-        {
-          "href": "/ka/projects/#aivisual",
-          "tag": "კონცეფცია",
-          "heading": "AI-Assisted Marketing Visual Exploration",
-          "text": "AI-დახმარებით შექმნილი მარკეტინგული ვიზუალური მიმართულებების კვლევა, ხელით არტ-დირექციით და საბოლოო კომპოზიციების დამუშავებით.…"
-        }
       ],
-      "cta": {
-        "href": "/ka/projects/",
-        "class": "home-projects-more",
-        "label": "ყველა პროექტი →"
-      }
+      "additionalCards": [
+        {
+          "href": "/ka/shopify/",
+          "image": "/assets/images/online-stores.webp",
+          "alt": "ონლაინმაღაზიები და გაყიდვები",
+          "heading": "ონლაინმაღაზიები და გაყიდვები (E-Commerce)",
+          "text": "პროდუქტები, კალათა, გადახდა და მიწოდება"
+        },
+        {
+          "href": "/ka/ai-consultant/",
+          "image": "/assets/project-covers/beqson-ai-consultant-v3.webp",
+          "alt": "BEQSON AI კონსულტანტი",
+          "heading": "AI კონსულტანტი ბიზნესისთვის",
+          "text": "AI ჩატი მომსახურებებზე და მომხმარებლის კითხვებზე"
+        }
+      ]
     },
     "clutch": {
       "label": "კომპანიის პროფილი დამოუკიდებელ პლატფორმაზე",
@@ -311,7 +252,8 @@
       ],
       "perMonth": "49 ₾-დან / თვე",
       "note": "გაშვების სპეციალური ფასები პირველი 5 კლიენტისთვის. ფასები მოცემულია GEL-ში. სამუშაოს მოცულობას დაწყებამდე ვათანხმებთ. დომენი, ფასიანი სერვისები და სარეკლამო ბიუჯეტი საჭიროებისამებრ ცალკე იფარება."
-    }
+    },
+    "heroStyleVersion": "4"
   },
   "en": {
     "toolsLabel": "Free Tools",
@@ -338,7 +280,8 @@
         "heading": "Make your business easier to understand in AI search",
         "text": "GEO Audit checks crawler access, brand clarity, useful content and observable citation signals.",
         "href": "/en/geo/",
-        "label": "Explore GEO Audit ↗"
+        "label": "Explore GEO Audit ↗",
+        "class": "geo-home-strip"
       }
     ],
     "industries": {
@@ -402,54 +345,23 @@
           "heading": "Hotels / apartments / tourism",
           "text": "More direct requests and bookings"
         }
-      ]
-    },
-    "projects": {
-      "heading": "More selected work",
-      "text": "Explore web, SEO, AI, branding and design projects beyond our first client case.",
-      "cards": [
-        {
-          "href": "/en/projects/#beqson",
-          "tag": "Studio Project",
-          "heading": "BEQSON Digital Studio — Multilingual Business Website",
-          "text": "Our own multilingual studio platform with industry pages, free SEO tools, lead capture, CRM workflows, pricing and conversion-focused n…"
-        },
-        {
-          "href": "/en/projects/#geo",
-          "tag": "Framework",
-          "heading": "AI Search Visibility (GEO) Audit Framework — ChatGPT &amp; Gemini",
-          "text": "A self-initiated framework for reviewing how clearly a business is understood by AI answer engines, with entity, content and citation-r…"
-        },
-        {
-          "href": "/en/projects/#industry",
-          "tag": "Concept Project",
-          "heading": "Industry Website Collection — Multilingual Concepts",
-          "text": "A collection of niche website directions for lawyers, dentists, clinics, realtors, accountants, construction, auto services and hospita…"
-        },
-        {
-          "href": "/en/projects/#brandkit",
-          "tag": "Concept Project",
-          "heading": "B2B SaaS Marketing &amp; Brand Asset Kit",
-          "text": "A modular set of B2B SaaS marketing assets designed to keep campaign visuals, social graphics and sales materials consistent.…"
-        },
-        {
-          "href": "/en/projects/#report",
-          "tag": "Concept Project",
-          "heading": "B2B SaaS Case Study &amp; Report Design",
-          "text": "A report and case-study concept that turns dense B2B information into a polished narrative with clear data hierarchy and reusable layou…"
-        },
-        {
-          "href": "/en/projects/#aivisual",
-          "tag": "Concept Project",
-          "heading": "AI-Assisted Marketing Visual Exploration",
-          "text": "A controlled exploration of AI-assisted visual directions for marketing campaigns, refined into usable compositions rather than raw gen…"
-        }
       ],
-      "cta": {
-        "href": "/en/projects/",
-        "class": "home-projects-more",
-        "label": "View all projects →"
-      }
+      "additionalCards": [
+        {
+          "href": "/en/shopify/",
+          "image": "/assets/images/online-stores.webp",
+          "alt": "Online Stores",
+          "heading": "Online Stores & Sales (E-Commerce)",
+          "text": "Product catalog, shopping cart, payments and delivery"
+        },
+        {
+          "href": "/en/ai-consultant/",
+          "image": "/assets/project-covers/beqson-ai-consultant-v3.webp",
+          "alt": "BEQSON AI Consultant",
+          "heading": "AI Consultant for Business",
+          "text": "AI chat for service guidance and visitor questions"
+        }
+      ]
     },
     "clutch": {
       "label": "Independent company profile",
@@ -468,7 +380,8 @@
       ],
       "perMonth": "from $39 / month",
       "note": "Prices in USD. We agree the final scope before work begins. Domain fees, paid services and advertising budgets are separate where needed."
-    }
+    },
+    "heroStyleVersion": "2"
   },
   "root": {
     "pricing": {

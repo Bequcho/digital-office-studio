@@ -250,6 +250,17 @@ def localize_js(s, lang):
     return s
 
 
+def language_navigation(lang):
+    labels = {'ru': 'Язык страницы', 'ka': 'გვერდის ენა', 'en': 'Page language'}
+    names = {'ru': 'Русский', 'ka': 'ქართული', 'en': 'English'}
+    links = []
+    for target in ('ru', 'ka', 'en'):
+        current = ' aria-current="page"' if target == lang else ''
+        links.append(f'<a href="/{target}/audit/" hreflang="{target}" lang="{target}"'
+                     f' aria-label="{names[target]}"{current}>{target.upper()}</a>')
+    return f'<nav class="page-languages" aria-label="{labels[lang]}">' + ''.join(links) + '</nav>'
+
+
 for lang, cfg in PAGES.items():
     s = BASE
     s = re.sub(r'<html lang="[^"]+">', f'<html lang="{cfg["html_lang"]}">', s, count=1)
@@ -259,6 +270,12 @@ for lang, cfg in PAGES.items():
     s = s.replace('class="back" href="/ru/"', f'class="back" href="{cfg["home"]}"', 1)
     for old, new in cfg['repl'].items():
         s = s.replace(old, new)
+    # The base is also the public Russian /audit/ alias. Keep its visible links,
+    # replacing only this component for each real localized equivalent.
+    s, navigation_count = re.subn(r'<nav class="page-languages"[^>]*>.*?</nav>',
+                                 lambda _m: language_navigation(lang), s, count=1)
+    if navigation_count != 1:
+        raise RuntimeError('Audit source must contain one language navigation')
     if lang != 'ru':
         s = localize_js(s, lang)
     meta = PageMetadata(s)
