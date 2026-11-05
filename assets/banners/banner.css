@@ -136,6 +136,13 @@
 }
 
 /* Classic split hero restored from the approved visual reference. */
+/* Long Georgian desktop labels should not widen the document at laptop widths. */
+@media (min-width:1051px) and (max-width:1450px){
+  html:lang(ka) .header-inner{gap:14px}
+  html:lang(ka) .main-nav{gap:14px}
+  html:lang(ka) .main-nav>a{font-size:12px}
+  html:lang(ka) .header-tools{gap:12px}
+}
 .classic-hero{
   position:relative;
   overflow:hidden;
