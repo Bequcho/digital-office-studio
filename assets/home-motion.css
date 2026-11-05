@@ -1,5 +1,42 @@
 /* BEQSON Homepage Motion — progressive enhancement for RU / EN / KA. */
 @media (prefers-reduced-motion: no-preference) {
+  /* The actual transparent brand mark stays sharp; only light and depth move. */
+  .site-header .brand { position: relative; isolation: isolate; }
+
+  .site-header .brand img {
+    transform-origin: center;
+    animation: bq-mark-breathe 7s ease-in-out infinite;
+  }
+
+  .site-header .brand::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 0;
+    width: 41px;
+    height: 41px;
+    transform: translateY(-50%);
+    background: linear-gradient(110deg, transparent 21%, rgba(255,255,255,.05) 40%, rgba(237,251,255,.94) 50%, rgba(87,214,255,.2) 60%, transparent 77%);
+    background-size: 275% 100%;
+    -webkit-mask: url('/assets/beqson-mark-v3.png') center / contain no-repeat;
+    mask: url('/assets/beqson-mark-v3.png') center / contain no-repeat;
+    animation: bq-mark-sheen 7s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes bq-mark-breathe {
+    0%, 100% { transform: translateY(0) rotate(0deg); filter: drop-shadow(0 4px 5px #0006); }
+    50% { transform: translateY(-2px) rotate(-2deg); filter: drop-shadow(0 4px 9px rgba(38,184,255,.46)); }
+  }
+
+  @keyframes bq-mark-sheen {
+    0%, 12%, 45%, 100% { background-position: 115% 0; opacity: 0; }
+    16% { opacity: .8; }
+    33% { background-position: -110% 0; opacity: .8; }
+    38% { opacity: 0; }
+  }
+
   html.bq-motion-ready .bq-reveal {
     opacity: 0;
     translate: 0 22px;
@@ -30,6 +67,51 @@
   }
 
   .classic-hero-grid { position: relative; z-index: 2; }
+
+  /* Light crossing the product illustration; no animation of text or buttons. */
+  .classic-hero-grid::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 6%;
+    bottom: 6%;
+    left: 49%;
+    width: 17%;
+    background: linear-gradient(104deg, transparent 15%, rgba(43,154,255,.015) 34%, rgba(146,230,255,.24) 50%, rgba(60,193,255,.04) 65%, transparent 85%);
+    filter: blur(13px);
+    pointer-events: none;
+    opacity: 0;
+    animation: bq-hero-light-sweep 12s ease-in-out infinite;
+  }
+
+  /* A few restrained cyan sparkles echo the artwork's existing neon orbit. */
+  .classic-hero-grid::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 8% 0 10% 54%;
+    background:
+      radial-gradient(circle at 15% 38%, rgba(233,253,255,.95) 0 1.5px, rgba(44,195,255,.55) 2.5px, transparent 6px),
+      radial-gradient(circle at 52% 12%, rgba(233,253,255,.85) 0 1px, rgba(44,195,255,.48) 2px, transparent 5px),
+      radial-gradient(circle at 85% 34%, rgba(233,253,255,.9) 0 1.5px, rgba(44,195,255,.5) 2.5px, transparent 7px),
+      radial-gradient(circle at 31% 76%, rgba(233,253,255,.8) 0 1px, rgba(44,195,255,.38) 2px, transparent 5px),
+      radial-gradient(circle at 74% 81%, rgba(233,253,255,.85) 0 1px, rgba(44,195,255,.4) 2px, transparent 6px);
+    filter: drop-shadow(0 0 6px rgba(46,197,255,.8));
+    pointer-events: none;
+    animation: bq-hero-stars 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes bq-hero-light-sweep {
+    0%, 14%, 100% { transform: translateX(-75%) skewX(-10deg); opacity: 0; }
+    30% { opacity: .6; }
+    48%, 54% { transform: translateX(270%) skewX(-10deg); opacity: 0; }
+  }
+
+  @keyframes bq-hero-stars {
+    0% { transform: translate3d(0, 5px, 0); opacity: .22; }
+    40% { opacity: .8; }
+    100% { transform: translate3d(0, -9px, 0); opacity: .4; }
+  }
 
   @keyframes bq-hero-glow {
     from { opacity: .45; transform: translate3d(-3%, 1%, 0) scale(.92); }
@@ -95,7 +177,35 @@
 
   @media (max-width: 768px) {
     .classic-hero::before { display: none; }
+    .classic-hero-grid::before,
+    .classic-hero-grid::after { display: none; }
     html.bq-motion-ready .bq-reveal { translate: 0 14px; transition-duration: 540ms; }
+  }
+
+  /* The hero artwork is below the headline on phones: a tiny cinematic zoom. */
+  @media (min-width: 431px) and (max-width: 768px) {
+    .classic-hero::after { animation: bq-hero-phone-pan 12s ease-in-out infinite alternate; }
+    @keyframes bq-hero-phone-pan {
+      from { background-size: 150% auto; background-position: 123% 50%; }
+      to { background-size: 156% auto; background-position: 123% 47%; }
+    }
+  }
+
+  @media (max-width: 430px) {
+    .site-header .brand::before { width: 34px; height: 34px; }
+    .classic-hero::after { animation: bq-hero-small-phone-pan 12s ease-in-out infinite alternate; }
+    @keyframes bq-hero-small-phone-pan {
+      from { background-size: 170% auto; background-position: 112% 50%; }
+      to { background-size: 176% auto; background-position: 112% 47%; }
+    }
+  }
+
+  @media (min-width: 431px) and (max-width: 760px) {
+    .site-header .brand::before { width: 37px; height: 37px; }
+  }
+
+  @media (max-width: 359px) {
+    .site-header .brand::before { display: none; }
   }
 }
 
