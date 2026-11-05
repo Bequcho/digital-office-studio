@@ -107,14 +107,14 @@ class SiteTests(unittest.TestCase):
             check(source, canonical=BASE+route, hreflang=True)
         for route in TECHNICAL:
             page=self.pages[route]
-            targets={'404.html':'404.html', 'index.html':'ka/',
+            targets={'404.html':'404.html', 'index.html':'en/',
                      'audit/index.html':'ru/audit/', 'calculator/index.html':'en/calculator/'}
             self.assertEqual([a['href'] for a in page.select('link',rel='canonical')],
                              [BASE+targets[route]] if route in targets else [])
             if route.startswith('crm/'):
                 self.assertTrue(any('noindex' in a.get('content','') for a in page.select('meta',name='robots')))
             elif route=='index.html':
-                self.assertEqual(page.select('link',rel='canonical')[0]['href'],BASE+'ka/')
+                self.assertEqual(page.select('link',rel='canonical')[0]['href'],BASE+'en/')
             elif route=='audit/index.html':
                 self.assertEqual(page.select('link',rel='canonical')[0]['href'],BASE+'ru/audit/')
             else:

@@ -160,8 +160,11 @@ class BuildRegressionTests(unittest.TestCase):
 
     def test_root_redirect_and_fallback(self):
         source = self.source('')
-        self.assertIn('location.replace("/ka/" + location.search + location.hash)', source)
-        self.assertIn('<html lang="ka">', source)
+        self.assertIn('location.replace("/en/" + location.search + location.hash)', source)
+        self.assertIn('<meta http-equiv="refresh" content="0;url=/en/">', source)
+        self.assertIn('<html lang="en">', source)
+        self.assertIn('<link rel="canonical" href="https://beqson.com/en/">', source)
+        self.assertNotIn('/assets/home-motion.js', source)
         self.assertNotIn('type="application/ld+json"', source)
 
 

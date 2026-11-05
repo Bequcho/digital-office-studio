@@ -99,7 +99,7 @@ def main():
         assert len({value[field] for value in METADATA.values()}) == 30, field
     for route, expected in METADATA.items():
         check((ROOT / route / 'index.html').read_text(), expected, 'https://beqson.com/' + route, hreflang=True)
-    check((ROOT / 'index.html').read_text(), METADATA['ka/'], 'https://beqson.com/ka/', hreflang=True)
+    check((ROOT / 'index.html').read_text(), METADATA['en/'], 'https://beqson.com/en/', hreflang=True)
     # Verify actual reciprocal links, self-reference and target files in every group.
     for route in METADATA:
         source = check((ROOT / route / 'index.html').read_text())
@@ -117,8 +117,8 @@ def main():
         for path in (ROOT / language).rglob('*.html'):
             check_html_language(path.read_text(), language)
             language_counts[language] += 1
-    check_html_language((ROOT / 'index.html').read_text(), 'ka')
-    print(f'HTML lang: {language_counts}; root fallback: ka')
+    check_html_language((ROOT / 'index.html').read_text(), 'en')
+    print(f'HTML lang: {language_counts}; root redirect: en')
     # Use the real indexability discovery, not a whole-document noindex regex.
     from build_sitemap import discover
     pages, excluded = discover()

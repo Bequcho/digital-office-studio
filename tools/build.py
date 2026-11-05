@@ -229,9 +229,22 @@ def industry_page(lang,n):
 
 def write(path,content):
  p=ROOT/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(content,encoding='utf-8')
+def root_redirect():
+ # Keep the entry point independent of preferences and homepage animation state.
+ meta=SEO_METADATA['en/']
+ return update_social(f'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<script>location.replace("/en/" + location.search + location.hash);</script><meta http-equiv="refresh" content="0;url=/en/">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(meta['title'])}</title>
+<meta name="description" content="{esc(meta['description'])}"><meta name="theme-color" content="#081529">
+<link rel="canonical" href="{BASE_URL}en/">{render_hreflang(None, order=('ru','ka','en','x-default'))}
+<style>html{{background:#081529;color:#eaf1fc}}a{{color:inherit}}</style>
+</head><body><main id="main"><h1>BEQSON Digital Studio</h1><p><a href="/en/">Continue in English</a></p></main></body></html>
+''')
+
 def main():
  write('assets/icons.svg','<svg xmlns="http://www.w3.org/2000/svg">'+''.join(f'<symbol id="{name}" viewBox="0 0 24 24">{paths}</symbol>' for name,paths in PATHS.items())+'</svg>\n')
- write('index.html',SCHEMA_RE.sub('', homepage('ka','',fallback=True)).replace('<head>', '<head>'+'<script>location.replace("/ka/" + location.search + location.hash);</script><meta http-equiv="refresh" content="0;url=/ka/">', 1))
+ write('index.html',root_redirect())
  for lang in LANGS:
   write(f'{lang}/index.html',homepage(lang,'../'))
   for n in INDUSTRIES:write(f'{lang}/{n["slug"]}/index.html',industry_page(lang,n))
@@ -243,7 +256,7 @@ def main():
  apply_overrides(ROOT)
  write('audit/index.html',update_schema((ROOT/'audit/index.html').read_text(), 'audit'))
  build_sitemap(ROOT)
- write('site.webmanifest',json.dumps({'name':'BEQSON Digital Studio','short_name':'BEQSON','lang':'ka','start_url':'./','scope':'./','display':'browser','background_color':'#081529','theme_color':'#081529','icons':[{'src':'assets/app-icon-192-v3.png','sizes':'192x192','type':'image/png'},{'src':'assets/app-icon-512-v3.png','sizes':'512x512','type':'image/png'}]},indent=2)+'\n')
+ write('site.webmanifest',json.dumps({'name':'BEQSON Digital Studio','short_name':'BEQSON','lang':'en','start_url':'./','scope':'./','display':'browser','background_color':'#081529','theme_color':'#081529','icons':[{'src':'assets/app-icon-192-v3.png','sizes':'192x192','type':'image/png'},{'src':'assets/app-icon-512-v3.png','sizes':'512x512','type':'image/png'}]},indent=2)+'\n')
  write('.nojekyll','')
  print('Generated 28 content pages, 404, sitemap, robots and manifest.')
 if __name__=='__main__':main()
