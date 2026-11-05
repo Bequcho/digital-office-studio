@@ -1,36 +1,47 @@
-/* One introductory signature per tab/session. Static markup is the fallback. */
+/* One reference-derived light pass; the original artwork is always static. */
 (() => {
   'use strict';
-  const brand = document.querySelector('.site-header .brand');
-  const mark = brand && brand.querySelector('img');
-  const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  if (!mark || motion.matches) return;
-  const key = 'beqson-signature-seen-v1';
-  // If storage is unavailable, prefer a static logo to repeated introductions.
-  try { if (sessionStorage.getItem(key)) return; } catch (_) { return; }
-  const finish = () => brand.classList.remove('bq-signature', 'bq-signature-pending');
+  const brand = document.querySelector('.bq-brand');
+  if (!brand) return;
+  const media = matchMedia('(prefers-reduced-motion: reduce)');
+  const key = 'beqson-contour-seen-v1';
+  try { if (media.matches || localStorage.getItem(key)) return; } catch (_) { return; }
+  const paths = [...brand.querySelectorAll('[data-light]')];
+  const svg = brand.querySelector('.bq-contour');
+  let frame = 0, stopped = false;
+  const finish = () => {
+    stopped = true; cancelAnimationFrame(frame);
+    paths.forEach(path => path.removeAttribute('d'));
+    svg.style.opacity = ''; brand.dataset.motion = 'static';
+  };
   const start = async () => {
     if (document.hidden) return;
     document.removeEventListener('visibilitychange', start);
-    // Reserve the unchanged geometry while decoding, avoiding a visible logo
-    // followed by a second reveal. Slow/failed assets fall back to static.
-    brand.classList.add('bq-signature-pending');
-    let expired = false;
-    const pending = setTimeout(() => { expired = true; finish(); }, 1200);
-    try { await Promise.all([mark.decode(), document.fonts.ready]); }
-    catch (_) { clearTimeout(pending); finish(); return; }
-    clearTimeout(pending);
-    if (expired || motion.matches || document.hidden || !brand.isConnected) { finish(); return; }
-    try { sessionStorage.setItem(key, '1'); } catch (_) { finish(); return; }
-    brand.classList.replace('bq-signature-pending', 'bq-signature');
-    brand.addEventListener('animationend', event => {
-      if (event.animationName === 'bq-signature-finish') finish();
-    });
-    motion.addEventListener('change', finish, {once:true});
-    window.addEventListener('pagehide', finish, {once:true});
-    // Also recover if a browser cancels the final pseudo-element animation.
-    setTimeout(finish, 2800);
+    try {
+      const response = await fetch('/assets/brand/beqson-contours.json?v=1');
+      if (!response.ok) return;
+      const data = await response.json();
+      if (stopped || media.matches || document.hidden || data.frames.length !== 146 || data.fps !== 30) return;
+      try { localStorage.setItem(key, '1'); } catch (_) { return; }
+      const begin = performance.now(); brand.dataset.motion = 'running';
+      let previous = -1;
+      const paint = now => {
+        const elapsed = now - begin, duration = data.duration * 1000;
+        if (stopped || media.matches || elapsed >= duration) { finish(); return; }
+        const index = Math.min(145, Math.max(0, Math.floor(elapsed * data.fps / 1000)));
+        if (index !== previous) {
+          const sample = data.frames[index];
+          paths.forEach((path, i) => path.setAttribute('d', sample[i]));
+          previous = index;
+        }
+        svg.style.opacity = String(Math.min(1, (duration - elapsed) / 350));
+        frame = requestAnimationFrame(paint);
+      };
+      frame = requestAnimationFrame(paint);
+    } catch (_) { finish(); }
   };
+  media.addEventListener('change', finish, {once:true});
+  window.addEventListener('pagehide', finish, {once:true});
   if (document.hidden) document.addEventListener('visibilitychange', start);
   else start();
 })();

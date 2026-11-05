@@ -184,29 +184,51 @@ the navigation. `BEQSON_LANGUAGE_OUTPUT` optionally stores screenshots and the
 completed input/transition matrix outside the repository. All external traffic
 is blocked; no audit, CRM, email or WordPress Playground request is submitted.
 
-## BEQSON Signature Motion
+## Reference-derived BEQSON contour motion
 
-`assets/home-motion.css` and `assets/home-motion.js` own the homepage signature.
-The original RGBA `beqson-mark-v3.png` remains the visible image, unchanged;
-its alpha channel masks only temporary light overlays. Do not substitute the
-different geometry in `logo.svg`. The 2.6-second signature reveals the mark,
-then the existing shaped wordmark (without splitting glyphs), then a brief glow.
-The enhancement removes its class on completion and has a bounded cleanup timer.
-Decode/font preparation reserves layout and falls back to the visible static
-logo after at most 1.2 seconds; asset failure cannot leave the wordmark hidden.
-Session storage prevents replay between homepage languages within the same tab.
-Unavailable storage, JavaScript or reduced motion all retain the static logo.
-The existing compact wordmark-only layout at 320 px is preserved.
+The three public homepage headers use the original `assets/beqson-mark-v3.png`
+as the unchanged base symbol. `assets/brand/beqson-wordmark.webp` is a lossless
+RGBA derivative of the owner's photographic wordmark: no font replacement or
+redrawing. `prepare_brand_reference.transparent_wordmark` preserves opaque letter
+cores and removes the old dark matte with a background model and boundary colour
+unmixing. It does not blur/resample the letters. The original opaque crop is
+retained in `tools/fixtures/brand-wordmark-source.webp` for strict comparison.
+The transparent result uses the same dimensions, spacing and crop coordinates.
+Hidden text supplies accessible naming.
+The homepage header reserves a stacked logo layout before JavaScript runs;
+other page headers and hero artwork remain independent.
 
-The homepage generator owns cache versions for these two assets. Regenerate
-the three homepages after changing those versions. Hero animations and client
-projects are independent and must remain intact.
+`assets/brand/beqson-contours.json` contains three SVG light fields for each of
+146 decoded reference frames at 30 fps. They are registered to the original
+PNG's alpha bounds, then clipped by that PNG in the runtime SVG mask. Background
+stars/particles are excluded. Only the SVG light paths update; neither bitmap
+moves, fades or glows. Symbol and wordmark use independent compositing layers to
+prevent browser filter rounding affecting the wordmark's rendered pixels.
+The 4.8667-second pass fades its light at the end, clears all light paths, and
+remains static. The light filters apply a 1.2 alpha gain to the moving fields
+only; path data, blur radii, duration and the original PNG remain unchanged.
+`localStorage` prevents replay on language transitions and later
+visits. Reduced motion, unavailable storage, JavaScript or light data retain
+fully visible static artwork. No video, GIF or animation library ships at runtime.
 
-Run `tools/test_signature_motion.py` with the existing Playwright environment.
-It checks all three languages at seven widths, static fallbacks, stable header
-geometry and session navigation. Set `BEQSON_SIGNATURE_OUTPUT` to a directory
-outside the repository to record real-time desktop/mobile WebM videos and
-deterministic keyframes. Video capture uses Playwright's official FFmpeg helper.
+`tools/prepare_brand_reference.py` prepares the lossless assets offline. Supply
+`--photo`, `--video` and `--frames` (all 146 `frame-*.png` files decoded by full
+FFmpeg without frame dropping). It verifies owner-reference SHA-256 checksums.
+The regular build consumes prepared assets and does not require the external
+owner files or FFmpeg. `build.py` owns markup and cache versions. Never modify
+`logo.svg` to approximate the approved symbol.
+
+Run `tools/test_signature_motion.py` in the existing Playwright environment.
+The current contract requires both bitmaps visible at nine widths (320 through
+1920 px), exact pixel equality of the wordmark through the cycle, stable bounds, persistent
+first-visit state, no-JS/reduced-motion/failed-storage/failed-data fallbacks,
+transparent background and exact preservation of opaque photographic letter cores.
+The pixel baseline is captured after fonts/images and two paint frames are ready,
+before releasing the light-data request; initial browser image rasterization is
+kept separate from the animation. Original symbol and contour-data hashes are locked.
+Set `BEQSON_SIGNATURE_OUTPUT` outside the repository
+to record real-time mobile/desktop videos. The former wordmark-reveal and
+320-px hidden-symbol expectations were replaced by the owner's new requirements.
 
 ## Projects portfolio workflow
 
@@ -236,3 +258,12 @@ CreativeWork or intentionally absent JSON-LD belongs to another generator. The
 core upgrade workflow must preserve them; `test_seo_schema.py` continues to
 validate all 72 routes. `test_projects_build.py` also checks two schema CLI passes
 and its check mode preserve the complete tree.
+
+### Recording and first paint
+
+A clean/returning/no-JS/slow-stylesheet CDP screencast check showed dark first
+painted page surfaces. Initial white frames were the recorder's about:blank /
+pre-paint canvas, not a white application screen. Review MP4 exports remove
+that leading blank prefix, retaining the complete light pass and static ending.
+The desktop review also trims excess static recording time around the cycle.
+No critical-background or loading overlay was added to the site.

@@ -95,9 +95,12 @@ def header(lang,base,slug=None,force_home=False,home_sections=False):
   else:
    nav+=f'<a href="{home if (slug or force_home) else ""}#{anchor}">{label}</a>'
  socials=''.join(f'<a class="social {kind}" href="{esc(url)}" aria-label="{name}" title="{name}"{link_attrs(url)}>{icon(kind)}</a>' for kind,name,text,url in contacts(lang))
+ brand_markup = f'<a class="brand" href="{home}"><img src="{base}assets/beqson-mark-v3.png" width="42" height="42" alt=""><span><b>BEQSON</b><small>DIGITAL STUDIO</small></span></a>'
+ if home_sections:
+  brand_markup = f'''<a class="brand bq-brand" href="{home}" aria-label="BEQSON Digital Studio"><span class="bq-symbol"><img class="bq-mark" src="{base}assets/beqson-mark-v3.png" width="128" height="128" alt=""><svg class="bq-contour" viewBox="0 0 128 128" aria-hidden="true"><defs><mask id="bq-alpha" style="mask-type:alpha"><image href="{base}assets/beqson-mark-v3.png" width="128" height="128"/></mask><filter id="bq-halo" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3.5"/><feComponentTransfer><feFuncA type="linear" slope="1.2"/></feComponentTransfer></filter><filter id="bq-soft"><feGaussianBlur stdDeviation=".55"/><feComponentTransfer><feFuncA type="linear" slope="1.2"/></feComponentTransfer></filter></defs><g filter="url(#bq-halo)"><path data-light="0" fill="#19caff" mask="url(#bq-alpha)" opacity=".85"/></g><g mask="url(#bq-alpha)"><path data-light="1" fill="#52e5ff" filter="url(#bq-soft)"/><path data-light="2" fill="#e3fcff" filter="url(#bq-soft)"/></g></svg></span><img class="bq-wordmark" src="{base}assets/brand/beqson-wordmark.webp?v=2" width="849" height="205" alt=""><span class="bq-brand-copy"><b>BEQSON</b><small>DIGITAL STUDIO</small></span></a>'''
  return f'''<a class="skip" href="#main">{c['skip']}</a>
-<header class="site-header"><div class="shell header-inner">
-<a class="brand" href="{home}"><img src="{base}assets/beqson-mark-v3.png" width="42" height="42" alt=""><span><b>BEQSON</b><small>DIGITAL STUDIO</small></span></a>
+<header class="site-header{' bq-brand-header' if home_sections else ''}"><div class="shell header-inner">
+{brand_markup}
 <nav class="main-nav" id="main-nav" aria-label="{c['menu']}">{nav}<div class="mobile-contacts">{socials}</div></nav>
 <div class="header-tools"><div class="languages" aria-label="Language">{flags}</div><div class="consult-group"><a class="consult-label" href="#contact">{c['consult']}</a><div class="socials">{socials}</div></div><button class="menu-toggle" type="button" aria-label="{c['menu']}" data-open-label="{c['menu']}" data-close-label="{c['close']}" aria-controls="main-nav" aria-expanded="false">{icon('menu')}</button></div>
 </div></header>'''
@@ -130,7 +133,7 @@ def head(lang,base,title,description,slug=None,noindex=False,fallback=False):
   script_version = '19-static-schema' if fallback else '20-static-social'
  else:
   script_version = '17-visible-h1'
- motion_assets = '<link rel="stylesheet" href="/assets/home-motion.css?v=5"><script src="/assets/home-motion.js?v=2" defer></script>' if not (slug or noindex or fallback) else ''
+ motion_assets = '<link rel="stylesheet" href="/assets/home-motion.css?v=6"><script src="/assets/home-motion.js?v=3" defer></script>' if not (slug or noindex or fallback) else ''
  style_version = '12-clutch-trust' if not (slug or noindex or fallback) else '11-contact-solid'
  if fallback:
   schema_markup = ''
@@ -193,6 +196,7 @@ def homepage(lang,base,fallback=False):
  faqs=''.join(f'<details><summary>{esc(q)}{icon("plus")}</summary><p>{esc(a)}</p></details>' for q,a in c['faqs'])
  extra_head = f'<link rel="stylesheet" href="{base}assets/banners/banner.css?v={2 if fallback else 4}"><link rel="stylesheet" href="{base}assets/banners/{lang}-hero.css?v={(3 if lang=="ka" else 2 if lang=="ru" else 1) if fallback else HOME[lang]["heroStyleVersion"]}">'+LEAD_STYLE
  if not fallback:
+  extra_head += '<link rel="preload" as="image" href="/assets/brand/beqson-wordmark.webp?v=2">'
   extra_head += (ROOT/'tools/templates/home-audit-style.html').read_text()+'<link rel="stylesheet" href="/assets/projects.css?v=8-ai-project-cta">'
  legacy_case = f'''<section class="section case-section" id="case"><div class="shell case-grid"><div><p class="eyebrow">{c['caseKicker']}</p><h2>{c['caseTitle']}</h2><p class="lead">{c['caseText']}</p><ul class="tags">{''.join('<li>'+x+'</li>' for x in c['caseTags'])}</ul><a class="button dark" href="https://levanilaw.ge/" target="_blank" rel="noopener noreferrer">{c['caseButton']}{icon('arrow-up')}</a></div><a class="case-visual" href="https://levanilaw.ge/" target="_blank" rel="noopener noreferrer"><span class="case-top">LEVANI KHELKHELAURI<span>LAWYER / TBILISI</span></span><div class="case-monogram" aria-hidden="true">LK</div><p>{lines(c['caseQuote'])}</p><span class="case-bottom">LEVANILAW.GE {icon('arrow-up')}</span></a></div></section>''' if fallback else ''
  return head(lang,base,c['title'],c['description'],fallback=fallback).replace('</head>',extra_head+'</head>')+f'''<body id="top">{header(lang,base,home_sections=not fallback)}<main id="main">

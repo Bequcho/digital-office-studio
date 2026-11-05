@@ -1,55 +1,17 @@
-/* BEQSON Homepage Motion — progressive enhancement for RU / EN / KA. */
+/* Original symbol + photographic wordmark; only SVG light contours move. */
+.site-header .brand.bq-brand{display:flex;flex-direction:column;gap:3px;width:118px;flex:none;position:relative;isolation:isolate}
+.bq-brand-header .header-inner{min-height:124px}
+.bq-brand .bq-symbol{display:block;position:relative;width:72px;height:72px;flex:none}
+.site-header .brand.bq-brand .bq-mark{display:block;width:100%;height:100%;animation:none;transform:none;opacity:1}
+.bq-brand .bq-contour{isolation:isolate;will-change:opacity;position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:hidden}
+.site-header .brand.bq-brand .bq-wordmark{isolation:isolate;will-change:transform;display:block;width:118px;height:auto;filter:none;opacity:1;transform:none;animation:none}
+.bq-brand .bq-brand-copy{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:760px){.bq-brand-header .header-inner{min-height:104px}.site-header .brand.bq-brand{width:96px}.bq-brand .bq-symbol{width:56px;height:56px}.site-header .brand.bq-brand .bq-wordmark{width:96px}}
+@media(max-width:359px){.bq-brand-header .header-inner{min-height:92px}.site-header .brand.bq-brand{width:82px}.bq-brand .bq-symbol{width:48px;height:48px}.site-header .brand.bq-brand .bq-wordmark{width:82px}}
+@media(prefers-reduced-motion:reduce){.bq-brand .bq-contour{display:none}}
 
-/* Signature Motion: the original bitmap remains the authoritative artwork. */
+/* Existing homepage motion remains independent of the logo. */
 @media (prefers-reduced-motion: no-preference) {
-  .site-header .brand { --bq-logo-size:41px; position:relative; isolation:isolate; }
-  .site-header .brand.bq-signature-pending img,
-  .site-header .brand.bq-signature-pending b { opacity:0; }
-  .site-header .brand.bq-signature img { animation:bq-signature-mark 900ms cubic-bezier(.16,1,.3,1) both; }
-  .site-header .brand.bq-signature b { animation:bq-signature-word 1100ms cubic-bezier(.22,.7,.3,1) 700ms both, bq-signature-word-finish 2600ms ease-in-out; }
-  .site-header .brand.bq-signature::before,
-  .site-header .brand.bq-signature::after {
-    content:""; position:absolute; pointer-events:none; z-index:1;
-    top:50%; left:0; width:var(--bq-logo-size); height:var(--bq-logo-size);
-    transform:translateY(-50%);
-    -webkit-mask:url('/assets/beqson-mark-v3.png') center / contain no-repeat;
-    mask:url('/assets/beqson-mark-v3.png') center / contain no-repeat;
-  }
-  .site-header .brand.bq-signature::before {
-    background:linear-gradient(115deg,transparent 36%,rgba(115,222,255,.55) 49%,transparent 62%);
-    background-size:300% 100%;
-    animation:bq-signature-trace 900ms ease-out both;
-  }
-  .site-header .brand.bq-signature::after {
-    background:radial-gradient(ellipse,rgba(107,220,255,.32),transparent 72%);
-    animation:bq-signature-finish 2600ms ease-in-out both;
-  }
-  @keyframes bq-signature-mark {
-    from { opacity:0; clip-path:inset(0 0 100% 0); }
-    to { opacity:1; clip-path:inset(0); }
-  }
-  /* Reveal the existing shaped text; do not split glyphs or change kerning. */
-  @keyframes bq-signature-word {
-    from { opacity:0; clip-path:inset(0 100% 0 0); }
-    to { opacity:1; clip-path:inset(0); }
-  }
-  @keyframes bq-signature-word-finish {
-    83% { text-shadow:0 0 8px rgba(93,202,255,.32); }
-  }
-  @keyframes bq-signature-trace {
-    0% { opacity:0; background-position:100% 0; }
-    25% { opacity:.7; }
-    100% { opacity:0; background-position:0 0; }
-  }
-  @keyframes bq-signature-finish {
-    0%,69% { opacity:0; }
-    83% { opacity:1; }
-    100% { opacity:0; }
-  }
-  @media (hover:hover) and (pointer:fine) {
-    .site-header .brand:not(.bq-signature):hover b { text-shadow:0 0 8px rgba(93,202,255,.24); }
-  }
-
   html.bq-motion-ready .bq-reveal {
     opacity: 0;
     translate: 0 22px;
