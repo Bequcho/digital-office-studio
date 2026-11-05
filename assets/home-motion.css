@@ -1,11 +1,18 @@
 /* BEQSON Homepage Motion — progressive enhancement for RU / EN / KA. */
-@media (prefers-reduced-motion: no-preference) {
-  /* The actual transparent brand mark stays sharp; only light and depth move. */
-  .site-header .brand { position: relative; isolation: isolate; }
 
-  .site-header .brand img {
-    transform-origin: center;
-    animation: bq-mark-breathe 7s ease-in-out infinite;
+/* Rotating light, not a rotating logo: browsers interpolate this angle smoothly. */
+@property --bq-logo-light-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Keep the original PNG perfectly still; orbit only its light effects. */
+  .site-header .brand {
+    --bq-logo-size: 41px;
+    position: relative;
+    isolation: isolate;
   }
 
   .site-header .brand::before {
@@ -14,27 +21,52 @@
     z-index: 1;
     top: 50%;
     left: 0;
-    width: 41px;
-    height: 41px;
+    width: var(--bq-logo-size);
+    height: var(--bq-logo-size);
     transform: translateY(-50%);
-    background: linear-gradient(110deg, transparent 21%, rgba(255,255,255,.05) 40%, rgba(237,251,255,.94) 50%, rgba(87,214,255,.2) 60%, transparent 77%);
-    background-size: 275% 100%;
+    background: conic-gradient(from var(--bq-logo-light-angle),
+      transparent 0deg 283deg,
+      rgba(67,198,255,.08) 301deg,
+      rgba(232,251,255,.9) 330deg,
+      rgba(78,216,255,.3) 344deg,
+      transparent 360deg);
     -webkit-mask: url('/assets/beqson-mark-v3.png') center / contain no-repeat;
     mask: url('/assets/beqson-mark-v3.png') center / contain no-repeat;
-    animation: bq-mark-sheen 7s ease-in-out infinite;
+    animation: bq-mark-light-orbit 2s linear infinite;
     pointer-events: none;
   }
 
-  @keyframes bq-mark-breathe {
-    0%, 100% { transform: translateY(0) rotate(0deg); filter: drop-shadow(0 4px 5px #0006); }
-    50% { transform: translateY(-2px) rotate(-2deg); filter: drop-shadow(0 4px 9px rgba(38,184,255,.46)); }
+  /* A narrow illuminated arc makes the circular path visible even on a tiny logo. */
+  .site-header .brand::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: -3px;
+    width: calc(var(--bq-logo-size) + 6px);
+    height: calc(var(--bq-logo-size) + 6px);
+    border-radius: 50%;
+    background: conic-gradient(from -65deg,
+      transparent 0deg 286deg,
+      rgba(46,183,255,.08) 309deg,
+      rgba(217,247,255,.8) 335deg,
+      rgba(41,190,255,.2) 355deg,
+      transparent 360deg);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+    filter: drop-shadow(0 0 3px rgba(66,199,255,.35));
+    transform: translateY(-50%) rotate(0deg);
+    transform-origin: 50% 50%;
+    animation: bq-mark-ring-orbit 2s linear infinite;
+    pointer-events: none;
   }
 
-  @keyframes bq-mark-sheen {
-    0%, 12%, 45%, 100% { background-position: 115% 0; opacity: 0; }
-    16% { opacity: .8; }
-    33% { background-position: -110% 0; opacity: .8; }
-    38% { opacity: 0; }
+  @keyframes bq-mark-light-orbit {
+    to { --bq-logo-light-angle: 360deg; }
+  }
+
+  @keyframes bq-mark-ring-orbit {
+    to { transform: translateY(-50%) rotate(360deg); }
   }
 
   html.bq-motion-ready .bq-reveal {
@@ -192,7 +224,6 @@
   }
 
   @media (max-width: 430px) {
-    .site-header .brand::before { width: 34px; height: 34px; }
     .classic-hero::after { animation: bq-hero-small-phone-pan 12s ease-in-out infinite alternate; }
     @keyframes bq-hero-small-phone-pan {
       from { background-size: 170% auto; background-position: 112% 50%; }
@@ -200,12 +231,16 @@
     }
   }
 
-  @media (min-width: 431px) and (max-width: 760px) {
-    .site-header .brand::before { width: 37px; height: 37px; }
+  @media (max-width: 760px) {
+    .site-header .brand { --bq-logo-size: 37px; }
+  }
+
+  @media (max-width: 480px) {
+    .site-header .brand { --bq-logo-size: 34px; }
   }
 
   @media (max-width: 359px) {
-    .site-header .brand::before { display: none; }
+    .site-header .brand::before, .site-header .brand::after { display: none; }
   }
 }
 
