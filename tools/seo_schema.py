@@ -10,6 +10,10 @@ from copy import deepcopy
 import argparse
 import json
 import re
+try:
+    from .site_contract import DEDICATED
+except ImportError:
+    from site_contract import DEDICATED
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://beqson.com/'
@@ -166,6 +170,10 @@ def main():
             if 'noindex' in PageMetadata(source).robots:
                 continue
             slug = path.parent.relative_to(ROOT / language).as_posix()
+            # These pages have their own schema generators (or intentionally
+            # no JSON-LD). The full SEO test still validates all public routes.
+            if slug in DEDICATED:
+                continue
             result = update_schema(source, '' if slug == '.' else slug)
             if args.check:
                 if result != source: raise SystemExit(f'Stale schema: {path.relative_to(ROOT)}')
@@ -185,7 +193,7 @@ def main():
         if source != result: raise SystemExit('Root redirect must not carry independent JSON-LD')
     elif source != result:
         path.write_text(result)
-    print(f'Schema {"verified" if args.check else "updated"}: {count} indexable pages and root fallback')
+    print(f'Schema {"verified" if args.check else "updated"}: {count} centrally managed pages and root fallback')
 
 
 if __name__ == '__main__':

@@ -207,3 +207,32 @@ It checks all three languages at seven widths, static fallbacks, stable header
 geometry and session navigation. Set `BEQSON_SIGNATURE_OUTPUT` to a directory
 outside the repository to record real-time desktop/mobile WebM videos and
 deterministic keyframes. Video capture uses Playwright's official FFmpeg helper.
+
+## Projects portfolio workflow
+
+`.github/workflows/build-projects-portfolio.yml` owns the three localized
+`projects/index.html` pages and the technical `/projects/` redirect. Its original
+eleven cards remain in the localized generator data. The five newer approved
+cards belong to `templates/projects-cards-ru.html`, `projects-cards-ka.html` and
+`projects-cards-en.html`; the generator reads these components directly, keeps
+their established order and includes the localized GEO service link. Builds
+never extract content from output pages. Generated pages retain the current
+`projects.css?v=7-neon-portfolio` reference and centralized SEO generation.
+
+`assets/projects.css` and `assets/projects.js` are directly maintained runtime
+sources. The workflow requires them and must not overwrite the filter script's
+AI launcher integration with an older embedded copy. Homepage portfolio sections
+remain owned by the main build's `home-work-*.html` components.
+
+Run `tools/test_workflows.py` with `tools/requirements-workflows.txt` and Bash
+available on PATH. It checks all workflows in an isolated copy, never publishing.
+`tools/test_projects_build.py` additionally deletes all four generated portfolio
+HTML files before rebuilding and comparing the entire tree byte-for-byte, then
+repeats generation and verifies missing source/runtime files cause failures.
+
+The schema CLI in `seo_schema.py` updates centrally owned pages only. The shared
+`site_contract.DEDICATED` ownership inventory identifies pages whose Service,
+CreativeWork or intentionally absent JSON-LD belongs to another generator. The
+core upgrade workflow must preserve them; `test_seo_schema.py` continues to
+validate all 72 routes. `test_projects_build.py` also checks two schema CLI passes
+and its check mode preserve the complete tree.
