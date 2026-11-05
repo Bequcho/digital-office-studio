@@ -82,6 +82,34 @@
     translate: 0 0;
   }
 
+  /* Actual artwork moves gently; text and rasterized interface labels stay crisp. */
+  .bq-hero-art {
+    animation: bq-hero-art-drift 9s ease-in-out infinite alternate;
+  }
+
+  @keyframes bq-hero-art-drift {
+    from { transform: translate3d(0, 0, 0) scale(1.008); }
+    to { transform: translate3d(-.35%, -.45%, 0) scale(1.049); }
+  }
+
+  .bq-hero-ambient {
+    animation: bq-hero-ambient-wave 4.8s ease-in-out infinite alternate;
+  }
+
+  @keyframes bq-hero-ambient-wave {
+    from { opacity: .4; transform:translate3d(-1%,1%,0) scale(.98); }
+    to { opacity: 1; transform:translate3d(1%,-1%,0) scale(1.04); }
+  }
+
+  /* A travelling illuminated dash follows the existing futuristic neon orbit. */
+  .bq-hero-orbit-pulse {
+    animation: bq-hero-orbit-trace 6.5s linear infinite;
+  }
+
+  @keyframes bq-hero-orbit-trace {
+    to { stroke-dashoffset: -1000; }
+  }
+
   /* Gentle atmospheric light behind the existing hero photograph. */
   .classic-hero::before {
     content: "";
@@ -212,23 +240,13 @@
     .classic-hero-grid::before,
     .classic-hero-grid::after { display: none; }
     html.bq-motion-ready .bq-reveal { translate: 0 14px; transition-duration: 540ms; }
+    .bq-hero-art { animation: bq-hero-mobile-float 10s ease-in-out infinite alternate; }
+    .bq-hero-ambient { animation-duration: 8s; }
   }
 
-  /* The hero artwork is below the headline on phones: a tiny cinematic zoom. */
-  @media (min-width: 431px) and (max-width: 768px) {
-    .classic-hero::after { animation: bq-hero-phone-pan 12s ease-in-out infinite alternate; }
-    @keyframes bq-hero-phone-pan {
-      from { background-size: 150% auto; background-position: 123% 50%; }
-      to { background-size: 156% auto; background-position: 123% 47%; }
-    }
-  }
-
-  @media (max-width: 430px) {
-    .classic-hero::after { animation: bq-hero-small-phone-pan 12s ease-in-out infinite alternate; }
-    @keyframes bq-hero-small-phone-pan {
-      from { background-size: 170% auto; background-position: 112% 50%; }
-      to { background-size: 176% auto; background-position: 112% 47%; }
-    }
+  @keyframes bq-hero-mobile-float {
+    from { transform:translate3d(0,0,0) scale(1); }
+    to { transform:translate3d(0,-3px,0) scale(1.023); }
   }
 
   @media (max-width: 760px) {
@@ -247,4 +265,5 @@
 @media (prefers-reduced-motion: reduce) {
   html.bq-motion-ready .bq-reveal { opacity: 1; translate: none; transition: none; }
   .classic-hero::before, .classic-btn.primary::after { animation: none; }
+  .bq-hero-art, .bq-hero-ambient, .bq-hero-orbit-pulse { animation: none; }
 }
