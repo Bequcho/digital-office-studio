@@ -1,49 +1,78 @@
-/* One reference-derived light pass; the original artwork is always static. */
+/* Reference-derived light passes with an idle gap; original artwork stays static. */
 (() => {
   'use strict';
   const brand = document.querySelector('.bq-brand');
   if (!brand) return;
   const media = matchMedia('(prefers-reduced-motion: reduce)');
-  const key = 'beqson-contour-seen-v1';
-  try { if (media.matches || localStorage.getItem(key)) return; } catch (_) { return; }
   const paths = [...brand.querySelectorAll('[data-light]')];
   const svg = brand.querySelector('.bq-contour');
-  let frame = 0, stopped = false;
-  const finish = () => {
-    stopped = true; cancelAnimationFrame(frame);
+  const pause = 7000;
+  let data, loading = false, failed = false, active = false, parked = false;
+  let frame = 0, timer = 0, phase = 'running', elapsed = 0, started = 0, previous = -1;
+  const clearLight = () => {
     paths.forEach(path => path.removeAttribute('d'));
-    svg.style.opacity = ''; brand.dataset.motion = 'static';
+    svg.style.opacity = '';
   };
-  const start = async () => {
-    if (document.hidden) return;
-    document.removeEventListener('visibilitychange', start);
-    try {
-      const response = await fetch('/assets/brand/beqson-contours.json?v=1');
-      if (!response.ok) return;
-      const data = await response.json();
-      if (stopped || media.matches || document.hidden || data.frames.length !== 146 || data.fps !== 30) return;
-      try { localStorage.setItem(key, '1'); } catch (_) { return; }
-      const begin = performance.now(); brand.dataset.motion = 'running';
-      let previous = -1;
-      const paint = now => {
-        const elapsed = now - begin, duration = data.duration * 1000;
-        if (stopped || media.matches || elapsed >= duration) { finish(); return; }
-        const index = Math.min(145, Math.max(0, Math.floor(elapsed * data.fps / 1000)));
-        if (index !== previous) {
-          const sample = data.frames[index];
-          paths.forEach((path, i) => path.setAttribute('d', sample[i]));
-          previous = index;
-        }
-        svg.style.opacity = String(Math.min(1, (duration - elapsed) / 350));
-        frame = requestAnimationFrame(paint);
-      };
-      frame = requestAnimationFrame(paint);
-    } catch (_) { finish(); }
+  const suspend = () => {
+    if (active) elapsed += performance.now() - started;
+    active = false;
+    cancelAnimationFrame(frame); clearTimeout(timer); frame = timer = 0;
+    brand.dataset.motion = media.matches || failed ? 'static' : 'paused';
   };
-  media.addEventListener('change', finish, {once:true});
-  window.addEventListener('pagehide', finish, {once:true});
-  if (document.hidden) document.addEventListener('visibilitychange', start);
-  else start();
+  const beginPass = () => {
+    timer = 0;
+    if (!active || document.hidden || media.matches) { suspend(); return; }
+    phase = 'running'; elapsed = 0; previous = -1; started = performance.now();
+    brand.dataset.motion = 'running'; frame = requestAnimationFrame(paint);
+  };
+  const paint = now => {
+    frame = 0;
+    if (!active) return;
+    if (document.hidden || media.matches) { suspend(); return; }
+    const time = elapsed + now - started, duration = data.duration * 1000;
+    if (time >= duration) {
+      clearLight(); phase = 'pause'; elapsed = 0; started = now;
+      brand.dataset.motion = 'static'; timer = setTimeout(beginPass, pause);
+      return;
+    }
+    const index = Math.min(145, Math.max(0, Math.floor(time * data.fps / 1000)));
+    if (index !== previous) {
+      paths.forEach((path, i) => path.setAttribute('d', data.frames[index][i]));
+      previous = index;
+    }
+    const opacity = String(Math.min(1, (duration - time) / 350));
+    if (svg.style.opacity !== opacity) svg.style.opacity = opacity;
+    frame = requestAnimationFrame(paint);
+  };
+  const resume = async () => {
+    if (parked || document.hidden || media.matches || active || failed || loading) return;
+    if (!data) {
+      loading = true;
+      try {
+        const response = await fetch('/assets/brand/beqson-contours.json?v=1');
+        if (!response.ok) throw new Error('Light data unavailable');
+        data = await response.json();
+        if (data.frames?.length !== 146 || data.fps !== 30 || !Number.isFinite(data.duration) || data.duration <= 0) throw new Error('Invalid light data');
+      } catch (_) {
+        failed = true; clearLight(); brand.dataset.motion = 'static'; return;
+      } finally { loading = false; }
+    }
+    if (parked || document.hidden || media.matches || active) return;
+    active = true; started = performance.now();
+    brand.dataset.motion = phase === 'running' ? 'running' : 'static';
+    if (phase === 'running') frame = requestAnimationFrame(paint);
+    else timer = setTimeout(beginPass, Math.max(0, pause - elapsed));
+  };
+  document.addEventListener('visibilitychange', () => document.hidden ? suspend() : resume());
+  window.addEventListener('pagehide', () => { parked = true; suspend(); });
+  window.addEventListener('pageshow', () => { parked = false; resume(); });
+  media.addEventListener('change', () => {
+    if (media.matches) {
+      suspend(); clearLight(); phase = 'running'; elapsed = 0; previous = -1;
+      brand.dataset.motion = 'static';
+    } else resume();
+  });
+  resume();
 })();
 
 /* BEQSON Homepage Motion — tiny dependency-free enhancement. */

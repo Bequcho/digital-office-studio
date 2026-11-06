@@ -14,6 +14,35 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = fixture.BASE
 WIDTHS = (320, 375, 390, 430, 768, 1024, 1280, 1440, 1920)
 
+# Deterministic browser clock for the isolated, unmodified logo IIFE. It lets
+# lifecycle tests inspect pending work without waiting minutes or exporting hooks
+# from production. The full-page matrix below still uses real browser time.
+CLOCK = r'''() => {
+  let now=0, id=0, hidden=window.__hidden, fetches=0, calls=0, deliver;
+  const jobs=new Map(), nativeRAF=requestAnimationFrame.bind(window);
+  Object.defineProperty(performance,'now',{value:()=>now});
+  Object.defineProperty(document,'hidden',{get:()=>hidden});
+  window.requestAnimationFrame=cb=>{jobs.set(++id,{at:now+1000/60,cb,raf:true});return id};
+  window.setTimeout=(cb,ms)=>{jobs.set(++id,{at:now+ms,cb,raf:false});return id};
+  window.cancelAnimationFrame=window.clearTimeout=key=>jobs.delete(key);
+  window.fetch=()=>{fetches++;const reply={ok:true,json:async()=>window.__light};
+    return window.__defer?new Promise(r=>deliver=()=>r(reply)):Promise.resolve(reply)};
+  const state=()=>({now,fetches,calls,motion:document.querySelector('.bq-brand').dataset.motion,
+    paths:[...document.querySelectorAll('[data-light]')].map(p=>p.getAttribute('d')),
+    opacity:document.querySelector('.bq-contour').style.opacity,
+    raf:[...jobs.values()].filter(j=>j.raf).length,
+    timers:[...jobs.values()].filter(j=>!j.raf).length,
+    next:jobs.size?Math.min(...[...jobs.values()].map(j=>j.at))-now:null});
+  window.__clock={state,deliver:()=>deliver(),
+    hidden:value=>{hidden=value;document.dispatchEvent(new Event('visibilitychange'))},
+    flush:()=>new Promise(r=>nativeRAF(()=>nativeRAF(r))),
+    advance:ms=>{const end=now+ms;let steps=0;for(;;){
+      const next=[...jobs].sort((a,b)=>a[1].at-b[1].at)[0];if(!next||next[1].at>end)break;
+      if(++steps>10000)throw Error('Unbounded scheduler');
+      const [key,job]=next;jobs.delete(key);now=job.at;calls++;job.cb(now);
+    }now=end;return state()}};
+}'''
+
 
 class SignatureTests(unittest.TestCase):
     @classmethod
@@ -63,6 +92,26 @@ class SignatureTests(unittest.TestCase):
         self.assertTrue(brand.evaluate('e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight}'))
         self.assertEqual(self.errors,[])
 
+    def painted_wordmark(self,p):
+        # Require a stable pre-animation raster, not just decoded source bytes.
+        word=p.locator('.bq-wordmark');previous=word.screenshot()
+        for _ in range(5):
+            p.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
+            current=word.screenshot()
+            if current==previous:return current
+            previous=current
+        self.fail('Wordmark raster did not settle before releasing light data')
+
+    def assert_wordmark_pixels(self,p,expected,label):
+        actual=p.locator('.bq-wordmark').screenshot()
+        output=os.environ.get('BEQSON_SIGNATURE_DIAGNOSTICS')
+        if actual!=expected and output:
+            out=Path(output);out.mkdir(parents=True,exist_ok=True)
+            (out/(label+'-expected.png')).write_bytes(expected)
+            (out/(label+'-actual.png')).write_bytes(actual)
+            (out/(label+'-bounds.json')).write_text(json.dumps(p.locator('.bq-wordmark').bounding_box()))
+        self.assertEqual(actual,expected,'Wordmark pixels changed during animation')
+
     def test_matrix_and_static_wordmark(self):
         for lang in ('ru','ka','en'):
             for width in WIDTHS:
@@ -79,31 +128,32 @@ class SignatureTests(unittest.TestCase):
                     p.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
                     self.check(p,width)
                     brand=p.locator('.bq-brand');bounds=brand.bounding_box()
-                    word=p.locator('.bq-wordmark');pixels=word.screenshot()
+                    word=p.locator('.bq-wordmark');pixels=self.painted_wordmark(p)
                     self.assertEqual(len(held),1)
                     held[0].fulfill(body=(ROOT/'assets/brand/beqson-contours.json').read_bytes(),content_type='application/json')
                     p.wait_for_function("document.querySelector('.bq-brand').dataset.motion==='running'")
-                    for _ in range(4):
+                    for sample in range(4):
                         p.wait_for_timeout(750)
-                        self.assertEqual(word.screenshot(),pixels,'Wordmark pixels changed during animation')
+                        self.assert_wordmark_pixels(p,pixels,f'{lang}-{width}-{sample}')
                         self.assertEqual(p.locator('.bq-mark').evaluate('e=>getComputedStyle(e).transform'),'none')
                         self.assertEqual(brand.bounding_box(),bounds)
                     p.wait_for_function("document.querySelector('.bq-brand').dataset.motion==='static'",timeout=7000)
                     self.assertEqual(brand.locator('[data-light][d]').count(),0)
-                    self.assertEqual(word.screenshot(),pixels)
+                    self.assert_wordmark_pixels(p,pixels,f'{lang}-{width}-end')
+                    c.unroute('**/beqson-contours.json*')
                     p.goto(BASE+'/en/' if lang!='en' else BASE+'/ru/')
-                    self.assertNotEqual(brand.get_attribute('data-motion'),'running')
-                    self.assertEqual(brand.locator('[data-light][d]').count(),0)
+                    p.wait_for_function("document.querySelector('.bq-brand').dataset.motion==='running'")
+                    p.wait_for_function("document.querySelector('[data-light][d]')!==null")
                     self.check(p,width)
                     state=c.storage_state();c.close()
                     # A separate browser context represents a later visit with saved storage.
                     c2,p2=self.page(width,state=state)
                     p2.goto(BASE+f'/{lang}/');self.check(p2,width)
-                    self.assertNotEqual(p2.locator('.bq-brand').get_attribute('data-motion'),'running')
-                    self.assertEqual(p2.locator('[data-light][d]').count(),0);c2.close()
+                    p2.wait_for_function("document.querySelector('.bq-brand').dataset.motion==='running'")
+                    p2.wait_for_function("document.querySelector('[data-light][d]')!==null");c2.close()
             print('Contour/static-wordmark matrix:',lang,flush=True)
 
-    def test_static_modes(self):
+    def test_motion_preferences_and_fallbacks(self):
         for lang in ('ru','ka','en'):
             for width in (320,390,768,1440):
                 for mode in ('reduced','no-js','no-storage','failed-light-data'):
@@ -112,7 +162,10 @@ class SignatureTests(unittest.TestCase):
                         if mode=='no-storage':c.add_init_script("Object.defineProperty(window,'localStorage',{get(){throw Error('Storage unavailable')}})")
                         if mode=='failed-light-data':c.route('**/beqson-contours.json*',lambda r:r.fulfill(status=503,body='unavailable'))
                         p.goto(BASE+f'/{lang}/');self.check(p,width)
-                        self.assertEqual(p.locator('[data-light][d]').count(),0)
+                        if mode=='no-storage':
+                            p.wait_for_function("document.querySelector('.bq-brand').dataset.motion==='running'")
+                            p.wait_for_function("document.querySelector('[data-light][d]')!==null")
+                        else:self.assertEqual(p.locator('[data-light][d]').count(),0)
                         c.close()
 
     def test_reference_assets(self):
@@ -148,8 +201,88 @@ class SignatureTests(unittest.TestCase):
         c,p=self.page(390)
         c.add_init_script("localStorage.setItem('beqson-contour-seen-v1','1')")
         p.goto(BASE+'/ru/');self.check(p,390)
-        self.assertEqual(p.locator('[data-light][d]').count(),0)
-        self.assertNotEqual(p.locator('.bq-brand').get_attribute('data-motion'),'running');c.close()
+        p.wait_for_function("document.querySelector('.bq-brand').dataset.motion==='running'")
+        p.wait_for_function("document.querySelector('[data-light][d]')!==null");c.close()
+
+    def test_wordmark_pixel_negative_control(self):
+        c,p=self.page(1920,reduced=True);p.goto(BASE+'/en/');p.evaluate('document.fonts.ready');p.locator('.bq-wordmark').evaluate('e=>e.decode()')
+        pixels=self.painted_wordmark(p)
+        p.locator('.bq-wordmark').evaluate("e=>e.style.opacity='0.9'")
+        with self.assertRaises(AssertionError):self.assert_wordmark_pixels(p,pixels,'negative-opacity')
+        c.close()
+
+    def clock_page(self, engine=None, *, hidden=False, defer=False):
+        c,p=self.page(390)
+        p.set_content('<a class="bq-brand"><svg class="bq-contour">'+
+                      ''.join(f'<path data-light="{i}"></path>' for i in range(3))+'</svg></a>')
+        p.evaluate('(v)=>Object.assign(window,v)',{'__light':json.loads((ROOT/'assets/brand/beqson-contours.json').read_text()),'__hidden':hidden,'__defer':defer})
+        p.evaluate(CLOCK)
+        if engine is None:engine=(ROOT/'assets/home-motion.js').read_text().split('/* BEQSON Homepage Motion')[0]
+        p.evaluate(engine);p.evaluate('async()=>{await Promise.resolve();await Promise.resolve()}')
+        return c,p
+
+    def assert_loop_schedule(self,p):
+        first=p.evaluate('__clock.advance(20)')
+        self.assertEqual((first['motion'],first['raf'],first['timers'],first['fetches']),('running',1,0,1))
+        self.assertEqual(first['paths'],json.loads((ROOT/'assets/brand/beqson-contours.json').read_text())['frames'][0])
+        fade=p.evaluate('__clock.advance(4780)');self.assertGreater(float(fade['opacity']),0);self.assertLess(float(fade['opacity']),1)
+        idle=p.evaluate('__clock.advance(100)')
+        self.assertEqual((idle['motion'],idle['raf'],idle['timers'],idle['paths']),('static',0,1,[None]*3))
+        self.assertAlmostEqual(idle['now']+idle['next'],4866.6666667+7000,delta=20)
+        still=p.evaluate('__clock.advance(__clock.state().next-1)')
+        self.assertEqual((still['motion'],still['calls']),('static',idle['calls']))
+        p.evaluate('__clock.advance(1)');again=p.evaluate('__clock.advance(20)')
+        self.assertEqual((again['motion'],again['paths'],again['raf'],again['fetches']),('running',first['paths'],1,1))
+        p.evaluate('__clock.advance(1000)');p.evaluate('__clock.hidden(true)')
+        paused=p.evaluate('__clock.state()');self.assertEqual((paused['raf'],paused['timers']),(0,0))
+        frozen=p.evaluate('__clock.advance(60000)')
+        self.assertEqual((frozen['paths'],frozen['opacity'],frozen['calls']),(paused['paths'],paused['opacity'],paused['calls']))
+        p.evaluate('__clock.hidden(false)');resumed=p.evaluate('__clock.advance(1)')
+        self.assertEqual((resumed['motion'],resumed['paths'],resumed['raf']),('running',paused['paths'],1))
+        p.evaluate('__clock.advance(5000)');p.evaluate('__clock.hidden(true)')
+        wait=p.evaluate('__clock.state()');self.assertEqual((wait['raf'],wait['timers']),(0,0))
+        p.evaluate('__clock.advance(60000)');p.evaluate('__clock.hidden(false)')
+        wait=p.evaluate('__clock.state()');self.assertEqual((wait['motion'],wait['raf'],wait['timers']),('static',0,1))
+        self.assertGreater(wait['next'],4000);self.assertLess(wait['next'],7000)
+        p.evaluate('__clock.advance(__clock.state().next-1)');self.assertEqual(p.evaluate('__clock.state().motion'),'static')
+        p.evaluate('__clock.advance(2)');self.assertEqual(p.evaluate('__clock.state().motion'),'running')
+        p.evaluate('__clock.advance(50000)');self.assertEqual(p.evaluate('__clock.state().fetches'),1)
+        self.assertEqual(self.errors,[])
+
+    def test_loop_timing_and_suspension(self):
+        c,p=self.clock_page();self.assert_loop_schedule(p)
+        p.emulate_media(reduced_motion='reduce');p.evaluate('__clock.flush()')
+        s=p.evaluate('__clock.advance(60000)');self.assertEqual((s['motion'],s['raf'],s['timers'],s['paths']),('static',0,0,[None]*3))
+        p.emulate_media(reduced_motion='no-preference');p.evaluate('__clock.flush()')
+        self.assertEqual(p.evaluate('__clock.advance(20).motion'),'running')
+        p.evaluate("dispatchEvent(new Event('pagehide'))")
+        self.assertEqual(p.evaluate('[__clock.state().raf,__clock.state().timers]'),[0,0])
+        p.evaluate("dispatchEvent(new Event('pageshow'));dispatchEvent(new Event('pageshow'))")
+        self.assertEqual(p.evaluate('[__clock.state().raf,__clock.state().timers,__clock.state().fetches]'),[1,0,1]);c.close()
+
+    def test_hidden_and_loading_lifecycle(self):
+        c,p=self.clock_page(hidden=True)
+        self.assertEqual(p.evaluate('[__clock.state().fetches,__clock.state().raf,__clock.state().timers]'),[0,0,0])
+        p.evaluate('__clock.hidden(false)');p.evaluate('async()=>{await Promise.resolve();await Promise.resolve()}')
+        self.assertEqual(p.evaluate('__clock.advance(20).motion'),'running');c.close()
+        for event in ('hidden','pagehide'):
+            with self.subTest(event=event):
+                c,p=self.clock_page(defer=True)
+                p.evaluate("__clock.hidden(true)" if event=='hidden' else "dispatchEvent(new Event('pagehide'))")
+                p.evaluate('__clock.deliver()');p.evaluate('async()=>{await Promise.resolve();await Promise.resolve()}')
+                self.assertEqual(p.evaluate('[__clock.state().raf,__clock.state().timers]'),[0,0])
+                p.evaluate('__clock.hidden(false)' if event=='hidden' else "dispatchEvent(new Event('pageshow'))")
+                self.assertEqual(p.evaluate('[__clock.advance(20).motion,__clock.state().fetches]'),['running',1]);c.close()
+
+    def test_loop_negative_controls(self):
+        engine=(ROOT/'assets/home-motion.js').read_text().split('/* BEQSON Homepage Motion')[0]
+        for old,new in [('timer = setTimeout(beginPass, pause)','timer = 0'),
+                        ('cancelAnimationFrame(frame); clearTimeout(timer);','clearTimeout(timer);'),
+                        ('clearTimeout(timer); frame = timer = 0;','frame = timer = 0;')]:
+            with self.subTest(mutation=old):
+                self.assertIn(old,engine);c,p=self.clock_page(engine.replace(old,new))
+                with self.assertRaises(AssertionError):self.assert_loop_schedule(p)
+                c.close()
 
     def test_video(self):
         output=os.environ.get('BEQSON_SIGNATURE_OUTPUT')
