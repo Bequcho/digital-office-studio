@@ -130,10 +130,10 @@ def head(lang,base,title,description,slug=None,noindex=False,fallback=False):
  if slug or noindex:
   script_version = '11-ka-default'
  elif lang=='ka':
-  script_version = '19-static-schema' if fallback else '20-static-social'
+  script_version = '19-static-schema' if fallback else '21-horizontal-header'
  else:
-  script_version = '17-visible-h1'
- motion_assets = '<link rel="stylesheet" href="/assets/home-motion.css?v=6"><script src="/assets/home-motion.js?v=3" defer></script>' if not (slug or noindex or fallback) else ''
+  script_version = '18-horizontal-header'
+ motion_assets = '<link rel="stylesheet" href="/assets/home-motion.css?v=7"><script src="/assets/home-motion.js?v=3" defer></script>' if not (slug or noindex or fallback) else ''
  style_version = '12-clutch-trust' if not (slug or noindex or fallback) else '11-contact-solid'
  if fallback:
   schema_markup = ''

@@ -25,7 +25,28 @@ if (menuButton && navigation) {
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && navigation.classList.contains('is-open')) closeMenu(true);
   });
-  window.matchMedia('(min-width: 1181px)').addEventListener('change', event => {
+  const desktopMenu = document.querySelector('.bq-brand-header')
+    ? '(min-width: 1280px)' : '(min-width: 1181px)';
+  const desktopViewport = window.matchMedia(desktopMenu);
+  if (document.querySelector('.bq-brand-header')) {
+    // CSS can hide a focused control before the media change callback runs.
+    const restoreHiddenMenuFocus = event => {
+      if (event.relatedTarget) return;
+      const fromNavigation = navigation.contains(event.target);
+      const fromToggle = event.target === menuButton;
+      requestAnimationFrame(() => {
+        if (document.activeElement !== document.body) return;
+        if (fromNavigation && !desktopViewport.matches && !navigation.getClientRects().length) {
+          menuButton.focus();
+        } else if (fromToggle && desktopViewport.matches && !menuButton.getClientRects().length) {
+          navigation.querySelector('a')?.focus();
+        }
+      });
+    };
+    navigation.addEventListener('focusout', restoreHiddenMenuFocus);
+    menuButton.addEventListener('focusout', restoreHiddenMenuFocus);
+  }
+  desktopViewport.addEventListener('change', event => {
     const focusedLink = navigation.contains(document.activeElement);
     const focusedToggle = document.activeElement === menuButton;
     closeMenu(!event.matches && focusedLink);

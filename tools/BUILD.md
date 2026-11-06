@@ -200,8 +200,18 @@ unmixing. It does not blur/resample the letters. The original opaque crop is
 retained in `tools/fixtures/brand-wordmark-source.webp` for strict comparison.
 The transparent result uses the same dimensions, spacing and crop coordinates.
 Hidden text supplies accessible naming.
-The homepage header reserves a stacked logo layout before JavaScript runs;
-other page headers and hero artwork remain independent.
+The homepage header reserves a horizontal logo layout before JavaScript runs:
+the symbol is left of the unchanged photographic wordmark. Its text width is
+132 px on desktop, 108 px on mobile and 94 px below 360 px (about 12–15% larger).
+Header content heights are 82/72 px, plus the existing 1 px border. Narrow mobile
+flag targets keep their 44 px height and use 40/36/32 px widths to fit the logo.
+The existing disclosure menu is used below 1280 px only in these homepage
+headers; `script.js` uses the matching media query for focus/resize handling.
+Other headers keep their existing 1180 px breakpoint. At 1181–1399 px (and all
+Georgian desktop widths with the full menu) the existing compact
+consultation-label treatment and tighter navigation gaps keep labels within
+the header; contact icons and the lead form remain available. All rules are
+scoped to the homepage brand header; other headers and hero artwork are independent.
 
 `assets/brand/beqson-contours.json` contains three SVG light fields for each of
 146 decoded reference frames at 30 fps. They are registered to the original
