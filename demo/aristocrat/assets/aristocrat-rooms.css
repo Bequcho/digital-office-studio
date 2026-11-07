@@ -93,6 +93,20 @@
 .rooms-page .service-mark{font-size:14px;letter-spacing:.05em;color:#c6af86;border-bottom:1px solid #b99a6255;padding-bottom:6px;line-height:1.8}
 .rooms-page .service-grid h4{font-family:var(--serif);font-weight:400;font-size:23px;line-height:1.5;margin:0 0 10px}
 .rooms-page .service-grid p{font-size:15px;color:#bdc3b4;line-height:1.85;max-width:420px}
+/* Georgian hotel facilities: compact editorial columns with clear charge notes. */
+.rooms-page .facilities-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:45px;padding-top:37px}
+.rooms-page .facility-column{min-width:0}
+.rooms-page .facility-column:not(:first-child){border-left:1px solid #b99a6233;padding-left:37px}
+.rooms-page .facility-group+.facility-group{margin-top:34px}
+.rooms-page .facility-group h3{display:flex;align-items:baseline;gap:11px;font-family:var(--serif);font-weight:400;font-size:21px;line-height:1.4;letter-spacing:-.012em;color:#eee5d4}
+.rooms-page .facility-group h3 span{flex:none;font-family:var(--sans);font-size:10px;letter-spacing:.12em;color:#c5a878}
+.rooms-page .facility-group ul{list-style:none;margin:16px 0 0;padding:0}
+.rooms-page .facility-group li{position:relative;padding-left:21px;margin-top:9px;font-size:14px;line-height:1.7;color:#d3d9cd;overflow-wrap:anywhere}
+.rooms-page .facility-group li::before{content:"";position:absolute;top:9px;left:2px;width:9px;height:5px;border-left:1.5px solid #c8ac7e;border-bottom:1.5px solid #c8ac7e;transform:rotate(-45deg)}
+.rooms-page .facility-badge{display:inline-block;vertical-align:baseline;margin:3px 0 1px 0;padding:2px 7px;border:1px solid #b99a6266;border-radius:2px;font-size:11px;line-height:1.55;color:#e4cd9f;white-space:normal}
+.rooms-page .facility-note{display:block;margin-top:4px;font-size:12px;line-height:1.6;color:#a9b3a6}
+@media(max-width:1050px){.rooms-page .facilities-columns{grid-template-columns:repeat(2,minmax(0,1fr));gap:38px}.rooms-page .facility-column:last-child{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-column:1/-1;column-gap:40px;row-gap:27px;border-left:0;border-top:1px solid #b99a6233;padding:34px 0 0}.rooms-page .facility-column:last-child .facility-group+.facility-group{margin-top:0}}
+@media(max-width:700px){.rooms-page .facilities-columns{grid-template-columns:minmax(0,1fr);gap:30px;padding-top:30px}.rooms-page .facility-column:not(:first-child){border-left:0;border-top:1px solid #b99a6233;padding:30px 0 0}.rooms-page .facility-column:last-child{display:block;grid-column:auto}.rooms-page .facility-group+.facility-group,.rooms-page .facility-column:last-child .facility-group+.facility-group{margin-top:30px}.rooms-page .facility-group h3{font-size:21px}.rooms-page .facility-group li{font-size:14px;line-height:1.7}}
 .rooms-page .rooms-dialog{max-width:1100px}
 .rooms-page .rooms-dialog .gallery-image{height:min(56dvh,630px);transition:opacity .18s ease;touch-action:pan-y}
 .rooms-page .rooms-dialog.is-changing .gallery-image{opacity:.55}
