@@ -203,7 +203,10 @@ Hidden text supplies accessible naming.
 The homepage header reserves a horizontal logo layout before JavaScript runs:
 the symbol is left of the unchanged photographic wordmark. Its text width is
 132 px on desktop, 108 px on mobile and 94 px below 360 px (about 12–15% larger).
-Header content heights are 82/72 px, plus the existing 1 px border. Narrow mobile
+The symbol is 44.8 px on desktop, 32 px on mobile and 28.8 px below 375 px
+(20% smaller); photographic text widths and logo gaps are unchanged.
+Header content heights are 71/63 px, plus the existing 1 px border (72/64 px total).
+Disclosure-menu height limits account for the shorter header. Narrow mobile
 flag targets keep their 44 px height and use 40/36/32 px widths to fit the logo.
 The existing disclosure menu is used below 1280 px only in these homepage
 headers; `script.js` uses the matching media query for focus/resize handling.
