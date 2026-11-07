@@ -107,6 +107,27 @@ figcaption [lang=en]{font-size:10px;letter-spacing:.16em}
 .closing .booking-cta{animation:none;font-size:16px;background:var(--charcoal);color:var(--cream);border-color:var(--charcoal);box-shadow:0 6px 16px #342a1b10}
 .closing .booking-cta:hover{background:#30382e}
 .closing-email{font-size:15px;color:#626756;overflow-wrap:anywhere}
+/* Homepage only: a continuous, restrained charcoal-and-champagne palette. */
+.homepage{background:var(--charcoal);color:var(--cream);color-scheme:dark}
+.homepage .welcome{background:linear-gradient(140deg,#292b23,var(--charcoal) 65%)}
+.homepage .welcome-heading{border-bottom-color:#b99a6238}
+.homepage .welcome h2,.homepage .welcome h3,.homepage .closing h2{color:#f0ece2}
+.homepage .welcome em,.homepage .closing em{color:#c7bda8}
+.homepage .welcome .eyebrow,.homepage .closing .eyebrow{color:#c5b28d}
+.homepage .section-intro{color:#c5cbc0}
+.homepage .welcome-copy>p:not(.eyebrow){color:#b6bcb2}
+.homepage .architecture-image-wrap{background:#232820;border-color:#b99a6244;box-shadow:0 16px 48px #070b0855}
+.homepage .architecture-figure figcaption{color:#aeb5a8}
+.homepage .architecture-figure figcaption [lang=en]{color:#c5b28d}
+.homepage .welcome .text-link{color:#e1d5be;border-bottom-color:#b99a6277}
+.homepage .welcome .text-link:hover{color:#fff}
+.homepage .address-note{border-top-color:#b99a6238}
+.homepage .address-note p{color:#c5cbc0}
+.homepage .address-note p>span{color:#9da69a}
+.homepage .closing{background:var(--charcoal);border-top:1px solid #b99a6238;border-bottom-color:#b99a6238}
+.homepage .closing-address,.homepage .closing-email{color:#b8bfb2}
+.homepage .closing .booking-cta{background:#d5c3a0;color:var(--charcoal);border-color:#d5c3a0;box-shadow:none}
+.homepage .closing .booking-cta:hover{background:var(--cream);border-color:var(--cream)}
 .site-footer{background:var(--charcoal);color:#e9e5db}
 .footer-main{padding-block:39px 32px;display:flex;align-items:center;gap:65px}
 .footer-brand{width:220px;flex:0 0 auto}
