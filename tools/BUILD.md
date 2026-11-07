@@ -1,5 +1,28 @@
 # Static build sources and regression checks
 
+## Local Aristocrat demo
+
+`python tools/build_aristocrat.py` owns `demo/aristocrat/index.html` and
+`demo/aristocrat/rooms/index.html` and `demo/aristocrat/contact/index.html`.
+Edit `templates/aristocrat/homepage.html`, `rooms.html`, `contact.html`,
+`header.html` and `footer.html`, then
+run that focused builder. Its isolated CSS/JS and supplied images are maintained
+directly under `demo/aristocrat/assets/`. The Georgian demo is noindex and
+excluded from the sitemap. The owner confirmed hotel permission to publish the
+demonstration and its room photographs, edited versions and AI-assisted concept
+imagery on 2026-11-07. It remains an unofficial presentation, not an official
+hotel booking website. Historical private-demo notes in the supplied asset
+packages record their original delivery context; keep those sources intact.
+The shared BEQSON build and public pages are not part of this demo build.
+`aristocrat_rooms.json` records gallery captions, source-category associations
+and the unconfirmed Comfort Triple category. Rooms-only CSS/JS extend the
+approved homepage components without changing its visual styling.
+Contact-only CSS lives in `assets/aristocrat-contact.css`; the contact page uses
+the verified telephone and an address-based Google Maps embed and directions.
+Original conflicting email addresses and subjects remain in explicitly unconfirmed
+data attributes on the first two pages. All inquiry CTAs use the verified
+telephone; no unconfirmed email address receives new booking inquiries.
+
 `python tools/build.py` owns the root fallback, three homepages, 24 profession
 pages, 404, SVG sprite and manifest. It discovers sitemap entries from all
 indexable HTML, preserving the other generators' pages, robots rules and CRM.

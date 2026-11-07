@@ -1,0 +1,85 @@
+/* Rooms-only editorial layout. The approved homepage stylesheet is unchanged. */
+.rooms-page .navigation a[aria-current=page]{color:#d5c29d}
+.rooms-page .rooms-breadcrumb{display:flex;gap:15px;align-items:center;padding-top:25px;color:var(--muted);font-size:12px}
+.rooms-page .rooms-breadcrumb a{border-bottom:1px solid var(--line)}
+.rooms-page .rooms-intro{display:grid;grid-template-columns:.78fr 1.22fr;gap:65px;align-items:center;padding-block:35px 44px}
+.rooms-page .rooms-intro-copy .eyebrow{margin-bottom:24px}
+.rooms-page .rooms-intro h1{font-size:62px;line-height:1.2;letter-spacing:-.035em}
+.rooms-page .rooms-intro-subtitle{font-family:var(--serif);font-size:23px;color:#6a604e;margin-top:24px}
+.rooms-page .rooms-intro-copy>p:last-of-type{margin-top:17px;color:var(--muted);font-size:16px;line-height:1.85;max-width:420px}
+.rooms-page .rooms-intro-copy .text-link{margin-top:19px}
+.rooms-page .rooms-intro-photo .room-photo{aspect-ratio:1.36;border:1px solid #b9ac943d;box-shadow:0 15px 36px #33271712}
+.rooms-page .rooms-intro-photo img{object-position:59% 62%}
+.rooms-page .rooms-intro-photo figcaption{font-size:11px;flex-wrap:wrap}
+.rooms-page .room-photo{display:block;position:relative;width:100%;padding:0;border:0;background:var(--stone);overflow:hidden;min-width:0}
+.rooms-page .room-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.rooms-page .room-photo:hover img{transform:scale(1.02)}
+.rooms-page .room-index{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-block:1px solid var(--line)}
+.rooms-page .room-index a{display:flex;align-items:center;gap:16px;padding:19px 16px;font-size:15px;border-right:1px solid var(--line);justify-content:center;min-height:65px}
+.rooms-page .room-index a:first-child{padding-left:0;justify-content:flex-start}
+.rooms-page .room-index a:last-child{border-right:0}
+.rooms-page .room-index a>span{color:#8c754b;font-size:10px;letter-spacing:.1em}
+.rooms-page .room-index a:hover{color:#8c754b}
+.rooms-page .room-editorial{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:85px;padding-block:78px}
+.rooms-page .room-copy>.eyebrow{font-size:10px;margin-bottom:20px}
+.rooms-page .room-copy h2{font-size:43px;line-height:1.3;letter-spacing:-.025em}
+.rooms-page .room-description{font-size:16px;line-height:1.85;color:var(--muted);margin-top:23px}
+.rooms-page .room-photo-pair{display:grid;grid-template-columns:.9fr 1.1fr;gap:17px 22px;align-items:center}
+.rooms-page .pair-main{grid-column:1/-1;aspect-ratio:1.5}
+.rooms-page .pair-main img{object-position:50% 60%}
+.rooms-page .pair-detail{aspect-ratio:1.5}
+.rooms-page .pair-caption .eyebrow{font-size:9px;letter-spacing:.12em}
+.rooms-page .pair-caption>p{font-size:13px;color:var(--muted);line-height:1.7;margin-top:8px}
+.rooms-page .pair-caption .text-link{font-size:13px;min-height:44px;padding-block:6px}
+.rooms-page .room-facts{margin:24px 0 20px;border-top:1px solid var(--line);font-size:15px}
+.rooms-page .room-facts>div{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:baseline;padding-block:12px;border-bottom:1px solid var(--line)}
+.rooms-page .room-facts dt{color:var(--muted);font-size:13px}
+.rooms-page .room-facts dd{margin:0;line-height:1.7}
+.rooms-page .room-equipment{font-size:13px;color:#68634f;line-height:1.9}
+.rooms-page .room-inquiry{margin-top:24px;font-size:15px;text-align:center;animation:none;min-height:52px;line-height:1.7}
+.rooms-page .comfort-section{background:linear-gradient(120deg,#292b23,var(--charcoal));color:var(--cream);padding-block:61px}
+.rooms-page .comfort-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:85px;align-items:center}
+.rooms-page .comfort-section .eyebrow{color:#c5b28d;margin-bottom:18px}
+.rooms-page .comfort-section h2{font-size:43px;line-height:1.3;letter-spacing:-.02em}
+.rooms-page .comfort-section h2 em{color:#c7bda8}
+.rooms-page .comfort-capacity{color:#c9cbbf;font-size:14px;margin-top:22px}
+.rooms-page .comfort-copy>p{font-size:16px;line-height:1.85;color:#e0e3d8}
+.rooms-page .comfort-copy .confirmation-note{font-size:14px;color:#bdc3b4;border-left:1px solid #b99a6277;padding-left:22px;margin-top:22px}
+.rooms-page .comfort-inquiry{border:1px solid #b99a6280;color:#e2d5bc;background:transparent;box-shadow:none}
+.rooms-page .comfort-inquiry:hover{background:#b99a6217}
+.rooms-page .family-editorial{grid-template-columns:1fr 1.12fr}
+.rooms-page .room-detail-note{font-size:14px;line-height:1.85;color:var(--muted)}
+.rooms-page .family-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.rooms-page .family-gallery .room-photo{aspect-ratio:1.5}
+.rooms-page .family-gallery .family-main{grid-column:1/-1;aspect-ratio:1.48}
+.rooms-page .family-gallery .family-main img{object-position:52% 62%}
+.rooms-page .family-gallery-footer{display:flex;align-items:baseline;justify-content:space-between;gap:15px;margin-top:8px}
+.rooms-page .family-gallery-footer p{font-size:12px;color:var(--muted)}
+.rooms-page .family-gallery-footer .text-link{font-size:13px;min-height:44px;padding-block:6px}
+.rooms-page .amenities-section{background:var(--charcoal);color:var(--cream);padding-block:66px 70px}
+.rooms-page .amenities-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:50px;padding-bottom:38px;border-bottom:1px solid #b99a6233}
+.rooms-page .amenities-heading .eyebrow{color:#c5b28d;margin-bottom:17px}
+.rooms-page .amenities-heading h2{font-size:43px;line-height:1.3}
+.rooms-page .amenities-heading h2 em{color:#c7bda8}
+.rooms-page .amenities-heading>p{font-size:15px;line-height:1.85;color:#bdc3b4;max-width:430px}
+.rooms-page .amenities-room{padding-block:30px 34px}
+.rooms-page .amenities-room h3,.rooms-page .hotel-services h3{font-size:24px;color:#e4ded0}
+.rooms-page .amenity-list{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));list-style:none;padding:0;margin:27px 0 0;gap:24px}
+.rooms-page .amenity-list li{display:flex;flex-direction:column;gap:17px;font-size:14px;color:#d2d7cb;line-height:1.7}
+.rooms-page .amenity-list svg,.rooms-page .service-icon{display:block;width:34px;height:34px;color:#c6af86;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.rooms-page .hotel-services{padding-top:30px;border-top:1px solid #b99a6233}
+.rooms-page .service-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:29px}
+.rooms-page .service-grid article{position:relative;padding-left:60px}
+.rooms-page .service-mark,.rooms-page .service-icon{position:absolute;left:0;top:0}
+.rooms-page .service-mark{font-size:14px;letter-spacing:.05em;color:#c6af86;border-bottom:1px solid #b99a6255;padding-bottom:6px;line-height:1.8}
+.rooms-page .service-grid h4{font-family:var(--serif);font-weight:400;font-size:23px;line-height:1.5;margin:0 0 10px}
+.rooms-page .service-grid p{font-size:15px;color:#bdc3b4;line-height:1.85;max-width:420px}
+.rooms-page .rooms-dialog{max-width:1100px}
+.rooms-page .rooms-dialog .gallery-image{height:min(56dvh,630px);transition:opacity .18s ease;touch-action:pan-y}
+.rooms-page .rooms-dialog.is-changing .gallery-image{opacity:.55}
+.rooms-page .room-gallery-caption{font-size:14px;line-height:1.7;color:#d3d8ca;margin-top:13px;min-height:24px}
+.rooms-page .rooms-dialog .gallery-count{min-width:60px;text-align:center}
+@media(max-width:1100px){.rooms-page .rooms-intro{gap:35px}.rooms-page .rooms-intro h1{font-size:49px}.rooms-page .room-editorial{gap:45px}.rooms-page .room-copy h2,.rooms-page .comfort-section h2,.rooms-page .amenities-heading h2{font-size:37px}.rooms-page .comfort-inner{gap:45px}.rooms-page .room-facts>div{grid-template-columns:95px 1fr;gap:15px}.rooms-page .room-index a{padding-inline:10px;gap:10px;font-size:14px}.rooms-page .amenity-list{gap:18px}.rooms-page .amenity-list li{font-size:13px}.rooms-page .service-grid{gap:40px}.rooms-page .pair-caption .eyebrow{font-size:8px}}
+@media(max-width:700px){.rooms-page .rooms-breadcrumb{padding-top:18px;font-size:11px}.rooms-page .rooms-intro{grid-template-columns:minmax(0,1fr);gap:28px;padding-block:28px 31px}.rooms-page .rooms-intro-copy .eyebrow{font-size:9px;margin-bottom:19px}.rooms-page .rooms-intro h1{font-size:45px}.rooms-page .rooms-intro-subtitle{font-size:22px;margin-top:17px}.rooms-page .rooms-intro-copy>p:last-of-type{font-size:15px;margin-top:13px}.rooms-page .rooms-intro-copy .text-link{font-size:15px;margin-top:10px}.rooms-page .rooms-intro-photo .room-photo{aspect-ratio:1.5}.rooms-page .rooms-intro-photo figcaption{font-size:10px;gap:8px}.rooms-page .room-index{grid-template-columns:repeat(2,minmax(0,1fr))}.rooms-page .room-index a{font-size:13px;justify-content:flex-start;padding:14px 10px;min-height:54px}.rooms-page .room-index a:first-child{padding-left:10px}.rooms-page .room-index a:nth-child(2){border-right:0}.rooms-page .room-index a:nth-child(-n+2){border-bottom:1px solid var(--line)}.rooms-page .room-editorial,.rooms-page .family-editorial{grid-template-columns:minmax(0,1fr);gap:30px;padding-block:47px}.rooms-page .room-copy{order:0}.rooms-page .room-media{order:1}.rooms-page .room-copy>.eyebrow{font-size:9px;margin-bottom:17px}.rooms-page .room-copy h2,.rooms-page .comfort-section h2,.rooms-page .amenities-heading h2{font-size:35px;line-height:1.3}.rooms-page .room-description{font-size:15px;margin-top:19px}.rooms-page .room-facts{font-size:14px;margin-block:22px 17px}.rooms-page .room-facts>div{grid-template-columns:95px 1fr;gap:15px}.rooms-page .room-facts dt{font-size:12px}.rooms-page .room-equipment{font-size:13px}.rooms-page .room-inquiry{font-size:15px;width:100%;margin-top:21px;padding-inline:15px}.rooms-page .room-photo-pair{gap:13px 17px}.rooms-page .pair-caption .eyebrow{font-size:8px;letter-spacing:.08em}.rooms-page .pair-caption>p{font-size:12px;margin-top:7px}.rooms-page .pair-caption .text-link{font-size:12px;line-height:1.7}.rooms-page .comfort-section{padding-block:42px}.rooms-page .comfort-inner{grid-template-columns:minmax(0,1fr);gap:24px}.rooms-page .comfort-section .eyebrow{font-size:9px}.rooms-page .comfort-capacity{font-size:14px;margin-top:17px}.rooms-page .comfort-copy>p{font-size:15px}.rooms-page .comfort-copy .confirmation-note{font-size:14px;padding-left:17px;margin-top:20px}.rooms-page .room-detail-note{font-size:14px}.rooms-page .family-gallery-footer p{font-size:11px}.rooms-page .family-gallery-footer .text-link{font-size:12px}.rooms-page .amenities-section{padding-block:44px 47px}.rooms-page .amenities-heading{display:block;padding-bottom:27px}.rooms-page .amenities-heading .eyebrow{font-size:9px}.rooms-page .amenities-heading>p{font-size:15px;margin-top:20px}.rooms-page .amenities-room{padding-block:25px 30px}.rooms-page .amenities-room h3,.rooms-page .hotel-services h3{font-size:23px}.rooms-page .amenity-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 20px;margin-top:24px}.rooms-page .amenity-list li{font-size:14px;gap:12px}.rooms-page .hotel-services{padding-top:26px}.rooms-page .service-grid{grid-template-columns:minmax(0,1fr);gap:30px;margin-top:25px}.rooms-page .service-grid article{padding-left:55px}.rooms-page .service-grid h4{font-size:22px;margin-bottom:8px}.rooms-page .service-grid p{font-size:15px}.rooms-page .room-gallery-caption{font-size:13px;min-height:44px}.rooms-page .rooms-dialog .gallery-image{height:45dvh}.rooms-page .rooms-dialog .gallery-top h2{font-size:16px;line-height:1.5}}
+@media(max-width:359px){.rooms-page .rooms-intro h1{font-size:39px}.rooms-page .room-copy h2,.rooms-page .comfort-section h2,.rooms-page .amenities-heading h2{font-size:31px}.rooms-page .pair-caption .eyebrow{font-size:7px}.rooms-page .room-index a{font-size:12px;gap:8px}.rooms-page .room-facts>div{grid-template-columns:85px 1fr;gap:12px}}
+@media(prefers-reduced-motion:reduce){.rooms-page .room-photo img,.rooms-page .rooms-dialog .gallery-image{transition:none}.rooms-page .room-photo:hover img{transform:none}}

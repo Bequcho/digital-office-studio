@@ -15,7 +15,9 @@ ROUTES = {lang + '/' + (slug + '/' if slug else '') for lang in LANGS for slug i
 URLS = {BASE + route for route in ROUTES}
 TECHNICAL = {'index.html', '404.html', 'audit/index.html', 'calculator/index.html',
  'projects/index.html', 'tools/index.html', 'tools/search-preview/index.html',
- 'tools/utm-builder/index.html', 'crm/index.html', 'crm/proposals/index.html'}
+ 'tools/utm-builder/index.html', 'crm/index.html', 'crm/proposals/index.html',
+ 'demo/aristocrat/index.html', 'demo/aristocrat/rooms/index.html',
+ 'demo/aristocrat/contact/index.html'}
 # Dedicated pages retain their own valid schema and social representations.
 DEDICATED = {'ai-consultant', 'forme-home', 'geo', 'kakheti-wine-house',
  'meta-static-ads', 'shopify'}

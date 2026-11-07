@@ -1,0 +1,29 @@
+{
+  "source": "https://kompastour.com/kz/rus/country/georgia/batumi/aristocrat/",
+  "photo_associations": {
+    "standard": ["aristocrat_standard.jpg", "aristocrat_standard_1.jpg"],
+    "family": ["room_9975bec12d.jpg", "room_a79920e163.jpg", "room_89655fd7dd.jpg", "room_73c84391c4.jpg", "room_69caf906d6.jpg", "room_11e12a23e2.jpg"],
+    "comfort": []
+  },
+  "confirmation_required": ["Comfort Triple name, bed configuration and matching photographs", "Current hotel confirmation of source-listed Family Studio kitchenette and balcony/terrace", "Conflicting original addresses aristokratbatumi@gmail.com and aristocratbatumi@gmail.com require hotel confirmation; preserved as unconfirmed source data, with all inquiry CTAs routed to the verified telephone"],
+  "galleries": {
+    "standard": {
+      "title": "სტანდარტული ორადგილიანი ნომერი",
+      "photos": [
+        {"src": "room-twin-cozy.webp", "caption": "სტანდარტული ნომერი ორი ერთადგილიანი საწოლით.", "alt": "სტანდარტული ნომერი ორი ერთადგილიანი საწოლითა და ხის ავეჯით"},
+        {"src": "standard-front.webp", "caption": "სტანდარტული ნომრის მეორე ხედი.", "alt": "ორი ერთადგილიანი საწოლი ხის საზურგით სტანდარტულ ნომერში"}
+      ]
+    },
+    "family": {
+      "title": "საოჯახო სტუდიო",
+      "photos": [
+        {"src": "family-wide.webp", "caption": "საოჯახო სტუდიოს საძილე სივრცე და სამზარეულოს კუთხე.", "alt": "საოჯახო სტუდიო ორადგილიანი საწოლით, დამატებითი საწოლითა და სამზარეულოს კუთხით"},
+        {"src": "room-double.webp", "caption": "ორადგილიანი საწოლი საოჯახო სტუდიოში.", "alt": "საოჯახო სტუდიოს ორადგილიანი საწოლი და ხის ავეჯი"},
+        {"src": "room-spacious-double.webp", "caption": "ორადგილიანი საწოლი და დამატებითი საძილე ადგილი საოჯახო სტუდიოში.", "alt": "საოჯახო სტუდიო ორადგილიანი და ერთადგილიანი საწოლებით"},
+        {"src": "family-angle.webp", "caption": "საოჯახო სტუდიოს კიდევ ერთი ხედი.", "alt": "საოჯახო სტუდიოს საწოლი, ხის კარადა და დამატებითი საძილე ადგილი"},
+        {"src": "family-bed.webp", "caption": "საოჯახო სტუდიოს საწოლი და ხის ავეჯი.", "alt": "საოჯახო სტუდიოს ორადგილიანი საწოლი და მუქი ფარდები"},
+        {"src": "family-bathroom.webp", "caption": "საოჯახო სტუდიოს საკუთარი სააბაზანო.", "alt": "საოჯახო სტუდიოს სააბაზანო საშხაპით, ნიჟარითა და სარკით"}
+      ]
+    }
+  }
+}

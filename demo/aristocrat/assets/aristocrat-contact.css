@@ -1,0 +1,56 @@
+/* Contact-only styles; shared homepage and rooms styling stays unchanged. */
+.contact-page .navigation a[aria-current=page]{color:#d5c29d}
+.contact-page .contact-breadcrumb{display:flex;align-items:center;gap:15px;padding-top:25px;color:var(--muted);font-size:12px}
+.contact-page .contact-breadcrumb a{border-bottom:1px solid var(--line)}
+.contact-page .contact-intro{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:90px;align-items:center;padding-block:36px 54px}
+.contact-page .contact-intro-copy .eyebrow{margin-bottom:24px}
+.contact-page .contact-intro h1{font-size:68px;line-height:1.2;letter-spacing:-.035em}
+.contact-page .contact-subtitle{font-family:var(--serif);font-size:24px;color:#6a604e;margin-top:23px}
+.contact-page .contact-description{font-size:16px;line-height:1.85;color:var(--muted);margin-top:19px;max-width:455px}
+.contact-page .contact-intro-actions{display:flex;align-items:center;flex-wrap:wrap;gap:28px;margin-top:26px}
+.contact-page .contact-intro-actions .button{min-width:176px}
+.contact-page .contact-intro-actions .text-link{font-size:14px;min-height:48px}
+.contact-page .contact-illustration-link{display:block}
+.contact-page .contact-entrance img{width:100%;height:auto;object-fit:contain;border:1px solid #b9ac943d;box-shadow:0 15px 36px #33271712}
+.contact-page .contact-entrance figcaption{font-size:11px;flex-wrap:wrap;gap:9px}
+.contact-page .contact-entrance figcaption [lang=en]{font-size:9px;letter-spacing:.13em}
+.contact-page .contact-details{background:var(--stone);border-block:1px solid #d9d0bf;padding-block:37px}
+.contact-page .contact-details-grid{display:grid;grid-template-columns:.95fr 1.15fr 1fr;gap:40px;align-items:start}
+.contact-page .contact-identity .eyebrow{font-size:11px;letter-spacing:.05em;margin-bottom:14px}
+.contact-page .contact-identity h2{font-size:28px;line-height:1.4}
+.contact-page .contact-detail{border-left:1px solid #b99a624f;padding-left:38px}
+.contact-page .contact-detail h3{font-family:var(--sans);font-size:12px;line-height:1.8;font-weight:400;color:#756243;margin-bottom:13px}
+.contact-page .contact-detail address{font-style:normal;font-size:16px;line-height:1.85}
+.contact-page .contact-detail .text-link{font-size:13px;margin-top:6px;min-height:44px;padding-block:7px}
+.contact-page .contact-number{display:inline-flex;align-items:center;min-height:44px;font-family:var(--serif);font-size:25px;line-height:1.5;white-space:nowrap;letter-spacing:.015em}
+.contact-page .contact-number:hover{color:#8c754b}
+.contact-page .contact-telephone>p{font-size:14px;line-height:1.85;color:var(--muted);margin-top:5px}
+.contact-page .contact-location{background:linear-gradient(135deg,#282b23,var(--charcoal) 65%);color:var(--cream);padding-block:62px 38px}
+.contact-page .contact-location-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:50px;margin-bottom:32px}
+.contact-page .contact-location-heading .eyebrow{color:#c5b28d;margin-bottom:18px}
+.contact-page .contact-location-heading h2{font-size:44px;line-height:1.3;letter-spacing:-.02em}
+.contact-page .contact-location-heading h2 em{color:#c7bda8}
+.contact-page .location-heading-copy{display:flex;align-items:center;gap:36px}
+.contact-page .location-heading-copy>p{color:#c7cdc0;font-size:15px;line-height:1.85}
+.contact-page .location-directions{background:transparent;border:1px solid #b99a6280;color:#e2d5bc;font-size:15px;animation:none;min-height:52px}
+.contact-page .location-directions:hover{background:#b99a6217}
+.contact-page .contact-map-wrap{padding:7px;background:#f5f1e912;border:1px solid #ffffff26;box-shadow:0 16px 35px #0000001a}
+.contact-page .contact-map{display:block;width:100%;height:480px;border:0;background:var(--stone)}
+.contact-page .contact-map:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.contact-page .contact-map-help{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:14px;color:#c7cdc0;font-size:13px}
+.contact-page .contact-map-help .text-link{color:#e1d5be;border-color:#b99a6277;font-size:13px;min-height:44px;padding-block:8px}
+.contact-page .contact-map-help .text-link:hover{color:#fff}
+.contact-page .contact-invitation{display:grid;grid-template-columns:1.1fr 1fr;gap:100px;align-items:center;padding-block:72px}
+.contact-page .contact-invitation-copy .eyebrow{margin-bottom:21px}
+.contact-page .contact-invitation h2{font-size:43px;line-height:1.35;letter-spacing:-.025em}
+.contact-page .contact-invitation-copy>p:not(.eyebrow){font-size:16px;line-height:1.85;color:var(--muted);max-width:450px;margin-top:22px}
+.contact-page .contact-invitation-copy .text-link{font-size:15px;min-height:48px;margin-top:12px}
+.contact-page .contact-call-card{padding:32px 38px;background:linear-gradient(125deg,#ede7da,#f5f1e9);border:1px solid #d5c9b4;box-shadow:0 14px 30px #3d2d1b09}
+.contact-page .contact-call-card>.eyebrow{font-size:11px;letter-spacing:.04em;margin-bottom:10px}
+.contact-page .contact-call-card .contact-number{font-size:32px}
+.contact-page .contact-call-card>p:not(.eyebrow){font-size:15px;color:var(--muted);line-height:1.85;max-width:350px;margin-top:15px}
+.contact-page .contact-call-card .button{margin-top:22px;width:100%;font-size:16px;animation:none}
+@media(max-width:1100px){.contact-page .contact-intro{gap:45px}.contact-page .contact-intro h1{font-size:58px}.contact-page .contact-details-grid{gap:28px;grid-template-columns:.9fr 1.15fr 1fr}.contact-page .contact-detail{padding-left:22px}.contact-page .contact-number{font-size:22px}.contact-page .contact-identity h2{font-size:25px}.contact-page .location-heading-copy{gap:25px}.contact-page .contact-invitation{gap:55px}.contact-page .contact-call-card{padding:28px}.contact-page .contact-call-card .contact-number{font-size:28px}}
+@media(max-width:900px){.contact-page .contact-intro{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}.contact-page .contact-intro h1{font-size:51px}.contact-page .contact-subtitle{font-size:22px}.contact-page .contact-description{font-size:15px}.contact-page .contact-intro-actions{gap:10px 20px}.contact-page .contact-details-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:27px}.contact-page .contact-identity{grid-column:1/-1;display:flex;align-items:baseline;gap:25px}.contact-page .contact-identity h2{font-size:26px}.contact-page .contact-identity h2 br{display:none}.contact-page .contact-detail{padding-left:0;border-left:0}.contact-page .contact-telephone{padding-left:24px;border-left:1px solid #b99a624f}.contact-page .contact-number{font-size:25px}.contact-page .contact-location-heading h2{font-size:38px}.contact-page .location-heading-copy{display:block}.contact-page .location-heading-copy>p{font-size:14px}.contact-page .location-directions{margin-top:17px;font-size:14px}.contact-page .contact-map{height:430px}.contact-page .contact-invitation{gap:35px}.contact-page .contact-invitation h2{font-size:35px}.contact-page .contact-call-card{padding:26px 24px}.contact-page .contact-call-card .contact-number{font-size:26px}}
+@media(max-width:700px){.contact-page .contact-breadcrumb{padding-top:18px;font-size:11px}.contact-page .contact-intro{grid-template-columns:minmax(0,1fr);gap:28px;padding-block:27px 36px}.contact-page .contact-intro-copy .eyebrow{font-size:10px;margin-bottom:19px}.contact-page .contact-intro h1{font-size:49px}.contact-page .contact-subtitle{font-size:22px;margin-top:17px}.contact-page .contact-description{font-size:15px;line-height:1.85;margin-top:15px;max-width:none}.contact-page .contact-intro-actions{gap:19px;margin-top:22px}.contact-page .contact-intro-actions .button{min-width:150px;font-size:15px;min-height:51px}.contact-page .contact-intro-actions .text-link{font-size:13px;min-height:48px}.contact-page .contact-entrance figcaption{font-size:10px}.contact-page .contact-entrance figcaption [lang=en]{font-size:8px}.contact-page .contact-details{padding-block:29px}.contact-page .contact-details-grid{grid-template-columns:minmax(0,1fr);gap:24px}.contact-page .contact-identity{display:block;grid-column:auto}.contact-page .contact-identity .eyebrow{margin-bottom:11px}.contact-page .contact-identity h2{font-size:26px}.contact-page .contact-detail{padding-top:22px;border-top:1px solid #b99a624f}.contact-page .contact-telephone{padding-left:0;border-left:0}.contact-page .contact-detail h3{font-size:12px;margin-bottom:9px}.contact-page .contact-detail address{font-size:15px}.contact-page .contact-detail .text-link{font-size:14px;margin-top:9px}.contact-page .contact-number{font-size:28px;min-height:48px}.contact-page .contact-telephone>p{font-size:15px}.contact-page .contact-location{padding-block:43px 27px}.contact-page .contact-location-heading{display:block;margin-bottom:25px}.contact-page .contact-location-heading .eyebrow{font-size:10px;margin-bottom:16px}.contact-page .contact-location-heading h2{font-size:36px}.contact-page .location-heading-copy{margin-top:21px}.contact-page .location-heading-copy>p{font-size:15px}.contact-page .location-directions{margin-top:16px;font-size:15px;min-height:51px}.contact-page .contact-map-wrap{padding:5px}.contact-page .contact-map{height:370px}.contact-page .contact-map-help{align-items:flex-start;flex-direction:column;gap:3px;padding-top:15px;font-size:13px}.contact-page .contact-map-help .text-link{font-size:14px}.contact-page .contact-invitation{grid-template-columns:minmax(0,1fr);gap:29px;padding-block:44px}.contact-page .contact-invitation-copy .eyebrow{font-size:10px;margin-bottom:17px}.contact-page .contact-invitation h2{font-size:35px}.contact-page .contact-invitation-copy>p:not(.eyebrow){font-size:15px;margin-top:19px}.contact-page .contact-invitation-copy .text-link{font-size:15px;margin-top:10px}.contact-page .contact-call-card{padding:26px 23px}.contact-page .contact-call-card .contact-number{font-size:29px}.contact-page .contact-call-card>p:not(.eyebrow){font-size:15px}.contact-page .contact-call-card .button{font-size:15px;min-height:51px}}
+@media(max-width:359px){.contact-page .contact-intro h1{font-size:44px}.contact-page .contact-intro-actions{gap:12px}.contact-page .contact-intro-actions .button{min-width:130px;padding-inline:16px}.contact-page .contact-intro-actions .text-link{font-size:12px}.contact-page .contact-number{font-size:25px}.contact-page .contact-call-card .contact-number{font-size:25px}.contact-page .contact-invitation h2{font-size:31px}}
