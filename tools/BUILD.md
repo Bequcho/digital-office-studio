@@ -220,11 +220,11 @@ stars/particles are excluded. Only the SVG light paths update; neither bitmap
 moves, fades or glows. Symbol and wordmark use independent compositing layers to
 prevent browser filter rounding affecting the wordmark's rendered pixels.
 Each 4.8667-second pass fades its light at the end, clears all light paths, and
-repeats after a 7-second static pause. The light filters apply a 1.2 alpha gain to the moving fields
+repeats after a 3-second static pause. The light filters apply a 1.2 alpha gain to the moving fields
 only; path data, blur radii, duration and the original PNG remain unchanged.
 No storage flag suppresses animation on later visits or language transitions.
 The light data is fetched once per document. There are no animation frames in
-the 7-second pause; hidden tabs and pagehide cancel both frame and timeout jobs,
+the 3-second pause; hidden tabs and pagehide cancel both frame and timeout jobs,
 preserving the remaining pass/pause time for resume. Reduced motion clears the
 light and all jobs immediately; disabling it starts a new pass. Missing JavaScript
 or light data retain fully visible static artwork. Unavailable storage does not

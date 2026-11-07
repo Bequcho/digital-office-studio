@@ -133,7 +133,7 @@ def head(lang,base,title,description,slug=None,noindex=False,fallback=False):
   script_version = '19-static-schema' if fallback else '21-horizontal-header'
  else:
   script_version = '18-horizontal-header'
- motion_assets = '<link rel="stylesheet" href="/assets/home-motion.css?v=7"><script src="/assets/home-motion.js?v=4" defer></script>' if not (slug or noindex or fallback) else ''
+ motion_assets = '<link rel="stylesheet" href="/assets/home-motion.css?v=7"><script src="/assets/home-motion.js?v=5" defer></script>' if not (slug or noindex or fallback) else ''
  style_version = '12-clutch-trust' if not (slug or noindex or fallback) else '11-contact-solid'
  if fallback:
   schema_markup = ''

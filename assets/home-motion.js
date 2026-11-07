@@ -6,7 +6,7 @@
   const media = matchMedia('(prefers-reduced-motion: reduce)');
   const paths = [...brand.querySelectorAll('[data-light]')];
   const svg = brand.querySelector('.bq-contour');
-  const pause = 7000;
+  const pause = 3000;
   let data, loading = false, failed = false, active = false, parked = false;
   let frame = 0, timer = 0, phase = 'running', elapsed = 0, started = 0, previous = -1;
   const clearLight = () => {
