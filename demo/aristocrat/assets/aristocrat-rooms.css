@@ -11,6 +11,25 @@
 .rooms-page .rooms-intro-photo .room-photo{aspect-ratio:1.36;border:1px solid #b9ac943d;box-shadow:0 15px 36px #33271712}
 .rooms-page .rooms-intro-photo img{object-position:59% 62%}
 .rooms-page .rooms-intro-photo figcaption{font-size:11px;flex-wrap:wrap}
+.rooms-page .rooms-intro{grid-template-columns:minmax(0,1fr) minmax(0,1.13fr);gap:55px;align-items:center}
+.rooms-page .rooms-intro h1{font-size:clamp(39px,3.6vw,53px);line-height:1.23}
+.rooms-page .popular-amenities-heading{font-family:var(--sans);font-size:15px;font-weight:500;line-height:1.6;letter-spacing:.02em;color:#69583a;margin-top:30px;padding-bottom:15px;border-bottom:1px solid var(--line)}
+.rooms-page .popular-amenities{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:21px;row-gap:13px;list-style:none;padding:0;margin:20px 0 0}
+.rooms-page .popular-amenities li{display:flex;gap:10px;align-items:flex-start;min-width:0;font-size:13px;line-height:1.55;color:var(--ink);overflow-wrap:anywhere}
+.rooms-page .popular-amenities li svg{width:22px;height:22px;flex:none;stroke:#9d7f4f;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.rooms-page .rooms-intro-collage{min-width:0;margin:0}
+.rooms-page .hotel-spaces-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:9px;aspect-ratio:1.05}
+.rooms-page .hotel-spaces-grid img{width:100%;height:100%;min-height:0;object-fit:cover;border:1px solid #b99a6240}
+.rooms-page .hotel-spaces-grid img:first-child{object-position:50% 48%}
+.rooms-page .hotel-spaces-grid img:nth-child(2){object-position:49% 43%}
+.rooms-page .hotel-spaces-grid img:nth-child(3){object-position:50% 56%}
+.rooms-page .hotel-spaces-grid img:nth-child(4){object-position:49% 49%}
+.rooms-page .rooms-intro-collage figcaption{flex-wrap:wrap;font-size:11px}
+@media(max-width:1100px){.rooms-page .rooms-intro{gap:28px}.rooms-page .rooms-intro h1{font-size:40px}.rooms-page .popular-amenities{column-gap:12px}.rooms-page .popular-amenities li{font-size:12px}}
+@media(max-width:900px){.rooms-page .rooms-intro{grid-template-columns:minmax(0,1fr);gap:32px}.rooms-page .rooms-intro h1{font-size:51px}.rooms-page .popular-amenities{column-gap:28px;row-gap:16px}.rooms-page .popular-amenities li{font-size:15px}.rooms-page .hotel-spaces-grid{aspect-ratio:1.35}}
+@media(max-width:700px){.rooms-page .rooms-intro h1{font-size:clamp(35px,8vw,46px)}.rooms-page .popular-amenities-heading{font-size:14px;margin-top:24px}.rooms-page .popular-amenities{gap:15px 13px;margin-top:18px}.rooms-page .popular-amenities li{font-size:12px;gap:7px}.rooms-page .popular-amenities li svg{width:20px;height:20px}.rooms-page .hotel-spaces-grid{gap:7px;aspect-ratio:1.12}.rooms-page .rooms-intro-collage figcaption{font-size:10px}}
+@media(max-width:540px){.rooms-page .popular-amenities{grid-template-columns:minmax(0,1fr);row-gap:12px}.rooms-page .popular-amenities li{font-size:14px;align-items:center;gap:12px}}
+@media(max-width:380px){.rooms-page .popular-amenities{grid-template-columns:minmax(0,1fr)}.rooms-page .popular-amenities li{font-size:14px}.rooms-page .hotel-spaces-grid{aspect-ratio:.96}}
 .rooms-page .room-photo{display:block;position:relative;width:100%;padding:0;border:0;background:var(--stone);overflow:hidden;min-width:0}
 .rooms-page .room-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
 .rooms-page .room-photo:hover img{transform:scale(1.02)}
