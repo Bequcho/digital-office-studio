@@ -1,6 +1,8 @@
 """Offline signature motion regression; optional real-time WebM capture."""
 import json
 import hashlib
+import io
+import math
 from PIL import Image, ImageFilter
 from prepare_brand_reference import transparent_wordmark
 import mimetypes
@@ -28,6 +30,7 @@ CLOCK = r'''() => {
   window.fetch=()=>{fetches++;const reply={ok:true,json:async()=>window.__light};
     return window.__defer?new Promise(r=>deliver=()=>r(reply)):Promise.resolve(reply)};
   const state=()=>({now,fetches,calls,motion:document.querySelector('.bq-brand').dataset.motion,
+    underline:{opacity:document.querySelector('.bq-underline')?.style.opacity,x:document.querySelector('.bq-underline')?.style.getPropertyValue('--bq-streak-x')},
     paths:[...document.querySelectorAll('[data-light]')].map(p=>p.getAttribute('d')),
     opacity:document.querySelector('.bq-contour').style.opacity,
     raf:[...jobs.values()].filter(j=>j.raf).length,
@@ -98,19 +101,31 @@ class SignatureTests(unittest.TestCase):
         for _ in range(5):
             p.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
             current=word.screenshot()
-            if current==previous:return current
+            if current==previous:
+                self.wordmark_bounds=word.bounding_box();return current
             previous=current
         self.fail('Wordmark raster did not settle before releasing light data')
 
     def assert_wordmark_pixels(self,p,expected,label):
         actual=p.locator('.bq-wordmark').screenshot()
+        same=actual==expected
+        if not same:
+            before=Image.open(io.BytesIO(expected)).convert('RGB');after=Image.open(io.BytesIO(actual)).convert('RGB')
+            self.assertEqual(after.size,before.size)
+            # Only the original transparent interline gap may change. Both text
+            # lines and every surrounding pixel remain exact, without tolerance.
+            top=math.floor(124*before.height/205);bottom=math.ceil(165*before.height/205)
+            same=all(before.crop(box).tobytes()==after.crop(box).tobytes() for box in
+                     [(0,0,before.width,top),(0,bottom,before.width,before.height)])
         output=os.environ.get('BEQSON_SIGNATURE_DIAGNOSTICS')
-        if actual!=expected and output:
+        if not same and output:
             out=Path(output);out.mkdir(parents=True,exist_ok=True)
             (out/(label+'-expected.png')).write_bytes(expected)
             (out/(label+'-actual.png')).write_bytes(actual)
             (out/(label+'-bounds.json')).write_text(json.dumps(p.locator('.bq-wordmark').bounding_box()))
-        self.assertEqual(actual,expected,'Wordmark pixels changed during animation')
+        self.assertTrue(same,'Wordmark text pixels changed during animation')
+        self.assertEqual(p.locator('.bq-wordmark').bounding_box(),self.wordmark_bounds)
+        self.assertEqual(p.locator('.bq-wordmark').evaluate("e=>[getComputedStyle(e).opacity,getComputedStyle(e).transform,getComputedStyle(e).filter,e.getAnimations().length]"),['1','none','none',0])
 
     def test_matrix_and_static_wordmark(self):
         for lang in ('ru','ka','en'):
@@ -214,7 +229,7 @@ class SignatureTests(unittest.TestCase):
     def clock_page(self, engine=None, *, hidden=False, defer=False):
         c,p=self.page(390)
         p.set_content('<a class="bq-brand"><svg class="bq-contour">'+
-                      ''.join(f'<path data-light="{i}"></path>' for i in range(3))+'</svg></a>')
+                      ''.join(f'<path data-light="{i}"></path>' for i in range(3))+'</svg><span class="bq-underline"></span></a>')
         p.evaluate('(v)=>Object.assign(window,v)',{'__light':json.loads((ROOT/'assets/brand/beqson-contours.json').read_text()),'__hidden':hidden,'__defer':defer})
         p.evaluate(CLOCK)
         if engine is None:engine=(ROOT/'assets/home-motion.js').read_text().split('/* BEQSON Homepage Motion')[0]
@@ -224,19 +239,24 @@ class SignatureTests(unittest.TestCase):
     def assert_loop_schedule(self,p):
         first=p.evaluate('__clock.advance(20)')
         self.assertEqual((first['motion'],first['raf'],first['timers'],first['fetches']),('running',1,0,1))
+        self.assertTrue(first['underline']['x']);self.assertGreater(float(first['underline']['opacity']),0)
+        self.assertAlmostEqual(float(first['underline']['x'].rstrip('%')),-100+350*(1000/60)/4866.6666667,delta=.001)
         self.assertEqual(first['paths'],json.loads((ROOT/'assets/brand/beqson-contours.json').read_text())['frames'][0])
         fade=p.evaluate('__clock.advance(4780)');self.assertGreater(float(fade['opacity']),0);self.assertLess(float(fade['opacity']),1)
         idle=p.evaluate('__clock.advance(100)')
         self.assertEqual((idle['motion'],idle['raf'],idle['timers'],idle['paths']),('static',0,1,[None]*3))
+        self.assertEqual(idle['underline'],{'opacity':'0','x':''})
         self.assertAlmostEqual(idle['now']+idle['next'],4866.6666667+3000,delta=20)
         still=p.evaluate('__clock.advance(__clock.state().next-1)')
         self.assertEqual((still['motion'],still['calls']),('static',idle['calls']))
         p.evaluate('__clock.advance(1)');again=p.evaluate('__clock.advance(20)')
         self.assertEqual((again['motion'],again['paths'],again['raf'],again['fetches']),('running',first['paths'],1,1))
+        self.assertAlmostEqual(float(again['underline']['x'].rstrip('%')),float(first['underline']['x'].rstrip('%')),delta=.001)
         p.evaluate('__clock.advance(1000)');p.evaluate('__clock.hidden(true)')
         paused=p.evaluate('__clock.state()');self.assertEqual((paused['raf'],paused['timers']),(0,0))
         frozen=p.evaluate('__clock.advance(60000)')
         self.assertEqual((frozen['paths'],frozen['opacity'],frozen['calls']),(paused['paths'],paused['opacity'],paused['calls']))
+        self.assertEqual(frozen['underline'],paused['underline'])
         p.evaluate('__clock.hidden(false)');resumed=p.evaluate('__clock.advance(1)')
         self.assertEqual((resumed['motion'],resumed['paths'],resumed['raf']),('running',paused['paths'],1))
         p.evaluate('__clock.advance(5000)');p.evaluate('__clock.hidden(true)')
@@ -253,6 +273,7 @@ class SignatureTests(unittest.TestCase):
         c,p=self.clock_page();self.assert_loop_schedule(p)
         p.emulate_media(reduced_motion='reduce');p.evaluate('__clock.flush()')
         s=p.evaluate('__clock.advance(60000)');self.assertEqual((s['motion'],s['raf'],s['timers'],s['paths']),('static',0,0,[None]*3))
+        self.assertEqual(s['underline'],{'opacity':'0','x':''})
         p.emulate_media(reduced_motion='no-preference');p.evaluate('__clock.flush()')
         self.assertEqual(p.evaluate('__clock.advance(20).motion'),'running')
         p.evaluate("dispatchEvent(new Event('pagehide'))")
@@ -278,11 +299,39 @@ class SignatureTests(unittest.TestCase):
         engine=(ROOT/'assets/home-motion.js').read_text().split('/* BEQSON Homepage Motion')[0]
         for old,new in [('timer = setTimeout(beginPass, pause)','timer = 0'),
                         ('cancelAnimationFrame(frame); clearTimeout(timer);','clearTimeout(timer);'),
-                        ('clearTimeout(timer); frame = timer = 0;','frame = timer = 0;')]:
+                        ('clearTimeout(timer); frame = timer = 0;','frame = timer = 0;'),
+                        ("underline.style.setProperty('--bq-streak-x', `${-100 + 350 * time / duration}%`);",'')]:
             with self.subTest(mutation=old):
                 self.assertIn(old,engine);c,p=self.clock_page(engine.replace(old,new))
                 with self.assertRaises(AssertionError):self.assert_loop_schedule(p)
                 c.close()
+
+    def test_underline_layout_and_text(self):
+        alpha=Image.open(ROOT/'assets/brand/beqson-wordmark.webp').getchannel('A')
+        self.assertEqual(alpha.crop((0,128,849,160)).getextrema(),(0,0))
+        for lang in ('en','ru','ka'):
+            for width in (1440,390,320):
+                with self.subTest(lang=lang,width=width):
+                    c,p=self.page(width);held=[]
+                    c.route('**/beqson-contours.json*',lambda r:held.append(r))
+                    p.goto(BASE+f'/{lang}/',wait_until='load');p.evaluate('document.fonts.ready');p.locator('.bq-wordmark').evaluate('e=>e.decode()')
+                    pixels=self.painted_wordmark(p);self.check(p,width)
+                    word=p.locator('.bq-wordmark').bounding_box();wrap=p.locator('.bq-wordmark-wrap').bounding_box();line=p.locator('.bq-underline');box=line.bounding_box()
+                    self.assertEqual(wrap,word)
+                    self.assertAlmostEqual((box['y']-word['y'])/word['height']*205,128,delta=.3)
+                    self.assertAlmostEqual((box['y']+box['height']-word['y'])/word['height']*205,160,delta=.3)
+                    self.assertEqual((box['x'],box['width']),(word['x'],word['width']))
+                    self.assertEqual(line.get_attribute('aria-hidden'),'true')
+                    self.assertEqual(line.evaluate("e=>[getComputedStyle(e).overflow,getComputedStyle(e).pointerEvents,getComputedStyle(e).opacity]"),['hidden','none','0'])
+                    self.assertEqual(p.locator('.site-header').bounding_box()['height'],72 if width==1440 else 64)
+                    self.assertEqual(word['width'],132 if width==1440 else 108 if width==390 else 94)
+                    self.assertEqual(len(held),1);held[0].fulfill(body=(ROOT/'assets/brand/beqson-contours.json').read_bytes(),content_type='application/json')
+                    p.wait_for_function("document.querySelector('.bq-brand').dataset.motion==='running'");last=-100
+                    for sample in range(2):
+                        p.wait_for_timeout(400);self.assert_wordmark_pixels(p,pixels,f'underline-{lang}-{width}-{sample}')
+                        x=line.evaluate("e=>parseFloat(e.style.getPropertyValue('--bq-streak-x'))")
+                        self.assertGreater(x,last);last=x;self.assertGreater(float(line.evaluate('e=>e.style.opacity')),0)
+                    self.check(p,width);c.close()
 
     def test_video(self):
         output=os.environ.get('BEQSON_SIGNATURE_OUTPUT')

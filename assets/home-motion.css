@@ -1,10 +1,14 @@
-/* Original symbol + photographic wordmark; only SVG light contours move. */
+/* Original symbol + photographic wordmark; only decorative light overlays move. */
 .site-header .brand.bq-brand{display:flex;flex-direction:row;align-items:center;gap:10px;width:186.8px;flex:none;position:relative;isolation:isolate}
 .bq-brand-header .header-inner{min-height:71px;gap:18px}
 .bq-brand .bq-symbol{display:block;position:relative;width:44.8px;height:44.8px;flex:none}
 .site-header .brand.bq-brand .bq-mark{display:block;width:100%;height:100%;animation:none;transform:none;opacity:1}
 .bq-brand .bq-contour{isolation:isolate;will-change:opacity;position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:hidden}
 .site-header .brand.bq-brand .bq-wordmark{isolation:isolate;will-change:transform;display:block;width:132px;height:auto;filter:none;opacity:1;transform:none;animation:none}
+.bq-brand .bq-wordmark-wrap{display:block;position:relative;flex:none}
+/* Rows 128–160 of the 849 x 205 artwork are empty: keep glow off both text lines. */
+.bq-brand .bq-underline{position:absolute;left:0;top:62.439024%;width:100%;height:15.609756%;overflow:hidden;pointer-events:none;opacity:0;isolation:isolate}
+.bq-brand .bq-underline::before{content:"";position:absolute;left:0;top:50%;margin-top:-.325px;width:40%;height:.65px;border-radius:999px;background:linear-gradient(90deg,transparent,#0b94ff 45%,#38d6ff 80%,#a4f7ff 93%,transparent);filter:drop-shadow(0 0 .55px #16caff);transform:translateX(var(--bq-streak-x,-100%));will-change:transform}
 .bq-brand .bq-brand-copy{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:1279px){.js .bq-brand-header .main-nav{max-height:calc(100dvh - 72px)}}
 @media(max-width:760px){.bq-brand-header .header-inner{min-height:63px;gap:7px}.js .bq-brand-header .main-nav{max-height:calc(100dvh - 64px)}.site-header .brand.bq-brand{width:146px;gap:6px}.bq-brand .bq-symbol{width:32px;height:32px}.site-header .brand.bq-brand .bq-wordmark{width:108px}}
@@ -26,7 +30,7 @@
  html:not(.js) .site-header.bq-brand-header .main-nav{position:static;order:3;flex-basis:100%;box-shadow:none;max-height:none}
  html:not(.js) .site-header.bq-brand-header .menu-toggle{display:none}
 }
-@media(prefers-reduced-motion:reduce){.bq-brand .bq-contour{display:none}}
+@media(prefers-reduced-motion:reduce){.bq-brand .bq-contour,.bq-brand .bq-underline{display:none}}
 
 /* Existing homepage motion remains independent of the logo. */
 @media (prefers-reduced-motion: no-preference) {

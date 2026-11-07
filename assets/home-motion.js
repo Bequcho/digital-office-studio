@@ -6,12 +6,16 @@
   const media = matchMedia('(prefers-reduced-motion: reduce)');
   const paths = [...brand.querySelectorAll('[data-light]')];
   const svg = brand.querySelector('.bq-contour');
+  const underline = brand.querySelector('.bq-underline');
   const pause = 3000;
   let data, loading = false, failed = false, active = false, parked = false;
   let frame = 0, timer = 0, phase = 'running', elapsed = 0, started = 0, previous = -1;
   const clearLight = () => {
     paths.forEach(path => path.removeAttribute('d'));
     svg.style.opacity = '';
+    if (underline) {
+      underline.style.opacity = '0'; underline.style.removeProperty('--bq-streak-x');
+    }
   };
   const suspend = () => {
     if (active) elapsed += performance.now() - started;
@@ -42,6 +46,10 @@
     }
     const opacity = String(Math.min(1, (duration - time) / 350));
     if (svg.style.opacity !== opacity) svg.style.opacity = opacity;
+    if (underline) {
+      underline.style.setProperty('--bq-streak-x', `${-100 + 350 * time / duration}%`);
+      underline.style.opacity = String(Math.max(0, Math.min(1, time / 250, (duration - time) / 350)));
+    }
     frame = requestAnimationFrame(paint);
   };
   const resume = async () => {

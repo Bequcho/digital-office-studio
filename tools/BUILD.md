@@ -226,6 +226,13 @@ Each 4.8667-second pass fades its light at the end, clears all light paths, and
 repeats after a 3-second static pause. The light filters apply a 1.2 alpha gain to the moving fields
 only; path data, blur radii, duration and the original PNG remain unchanged.
 No storage flag suppresses animation on later visits or language transitions.
+The decorative `.bq-underline` uses the same frame clock and elapsed time as the
+symbol: a thin blue CSS-gradient streak sweeps left to right during each pass,
+then stays invisible through the 3-second pause. It adds no timer or library.
+The original wordmark is wrapped without resizing; the streak is clipped to
+source rows 128–160, inside its fully transparent interline gap (124–164).
+Neither text line is animated. Reduced motion, no JavaScript and failed light
+data leave the underline invisible; hiding the tab freezes both effects together.
 The light data is fetched once per document. There are no animation frames in
 the 3-second pause; hidden tabs and pagehide cancel both frame and timeout jobs,
 preserving the remaining pass/pause time for resume. Reduced motion clears the
@@ -242,12 +249,15 @@ owner files or FFmpeg. `build.py` owns markup and cache versions. Never modify
 
 Run `tools/test_signature_motion.py` in the existing Playwright environment.
 The current contract requires both bitmaps visible at nine widths (320 through
-1920 px), exact pixel equality of the wordmark through the cycle, stable bounds,
+1920 px), exact pixel equality of both wordmark text lines through the cycle, stable bounds,
 replay on later visits, no-JS/reduced-motion/failed-data fallbacks, storage independence,
 transparent background and exact preservation of opaque photographic letter cores.
 The pixel baseline is captured after fonts/images and two paint frames are ready,
 before releasing the light-data request; initial browser image rasterization is
 kept separate from the animation. Original symbol and contour-data hashes are locked.
+Only the verified empty interline strip may change in wordmark screenshots;
+all pixels outside it remain exact. Underline bounds, clipping, shared timing,
+pause/visibility/reduced-motion states and missing-sweep negative controls are checked.
 Set `BEQSON_SIGNATURE_OUTPUT` outside the repository
 to record real-time mobile/desktop videos. The former wordmark-reveal and
 320-px hidden-symbol expectations were replaced by the owner's new requirements.
