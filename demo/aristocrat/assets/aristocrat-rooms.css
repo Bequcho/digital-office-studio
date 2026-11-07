@@ -58,6 +58,11 @@
 .rooms-page .room-inquiry{margin-top:24px;font-size:15px;text-align:center;animation:none;min-height:52px;line-height:1.7}
 .rooms-page .comfort-section{background:linear-gradient(120deg,#292b23,var(--charcoal));color:var(--cream);padding-block:61px}
 .rooms-page .comfort-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:85px;align-items:center}
+.rooms-page .comfort-details{min-width:0;max-width:500px}
+.rooms-page .comfort-copy{margin-top:30px}
+.rooms-page .comfort-photo{min-width:0;margin:0}
+.rooms-page .comfort-photo img{display:block;width:100%;aspect-ratio:1.07;object-fit:cover;object-position:center 60%;border:1px solid #b99a6255;box-shadow:0 16px 34px #00000020}
+.rooms-page .comfort-photo figcaption{color:#c6cabf;flex-wrap:wrap;font-size:11px}
 .rooms-page .comfort-section .eyebrow{color:#c5b28d;margin-bottom:18px}
 .rooms-page .comfort-section h2{font-size:43px;line-height:1.3;letter-spacing:-.02em}
 .rooms-page .comfort-section h2 em{color:#c7bda8}
