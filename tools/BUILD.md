@@ -299,3 +299,12 @@ pre-paint canvas, not a white application screen. Review MP4 exports remove
 that leading blank prefix, retaining the complete light pass and static ending.
 The desktop review also trims excess static recording time around the cycle.
 No critical-background or loading overlay was added to the site.
+
+## Decorative link arrows
+
+CTA labels, service/project cards and contact links intentionally omit redundant
+arrow glyphs/SVGs and arrow-only badges. Keep their source fragments, localized
+JSON labels, runtime labels and dedicated generators aligned with this policy.
+Functional carousel, dropdown and icon-only navigation controls retain their
+indicators. `python tools/test_decorative_links.py` covers all 72 public routes
+and includes negative fixtures for reintroduced text/SVG/badge arrows.

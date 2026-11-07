@@ -9,12 +9,12 @@ const translations = {
   ru: {
     title: "BEQSON Motion Lab — интерактивный веб-дизайн и анимация",
     description: "Интерактивный концепт BEQSON: от каркаса сайта до визуального дизайна, интернет-магазина и AI-консультанта. Анимация и веб-интерфейсы на CSS и JavaScript.",
-    back: "← Все проекты", home: "Главная", skip: "Перейти к содержанию",
+    back: "Все проекты", home: "Главная", skip: "Перейти к содержанию",
     eyebrow: "BEQSON / INTERACTIVE EXPERIENCE",
     heading: "От идеи до сайта,",
     accent: "который оживает.",
     lead: "Пройдите четыре этапа и посмотрите, как простой набросок превращается в современный сайт, интернет-магазин и интерфейс AI-консультанта.",
-    try: "Смотреть анимацию ↓", portfolio: "Все проекты ↗",
+    try: "Смотреть анимацию", portfolio: "Все проекты",
     conceptNote: "Самостоятельный интерактивный концепт студии BEQSON. Интерфейсы магазина и чата на этой странице демонстрационные.",
     floatA: "Motion UI", floatB: "Made to interact",
     storyEyebrow: "01 / КАК ЭТО УСТРОЕНО",
@@ -49,18 +49,18 @@ const translations = {
     ],
     finalEyebrow:"03 / ВАШ СЛЕДУЮЩИЙ ПРОЕКТ", finalTitle:"Сделаем что-то запоминающееся для вашего бизнеса?",
     finalLead:"Этот Motion Lab — собственный демонстрационный проект BEQSON. Можем обсудить похожий подход для сайта, магазина или AI-консультанта.",
-    finalContact:"Обсудить проект ↗", finalShop:"Создание интернет-магазина ↗", finalAI:"AI-консультант ↗",
+    finalContact:"Обсудить проект", finalShop:"Создание интернет-магазина", finalAI:"AI-консультант",
     footer:"BEQSON Motion Lab · Независимый демонстрационный проект",
   },
   en: {
     title:"BEQSON Motion Lab — Interactive Web Design & Animation",
     description:"An interactive BEQSON concept: a website transforms from wireframe to visual design, online store and AI consultant interface. Motion UI with CSS and JavaScript.",
-    back:"← All Projects", home:"Home", skip:"Skip to content",
+    back:"All Projects", home:"Home", skip:"Skip to content",
     eyebrow:"BEQSON / INTERACTIVE EXPERIENCE",
     heading:"From an idea to",
     accent:"a website in motion.",
     lead:"Explore four stages as a simple wireframe evolves into a polished website, an online store and an AI consultant interface.",
-    try:"Explore the animation ↓", portfolio:"All projects ↗",
+    try:"Explore the animation", portfolio:"All projects",
     conceptNote:"An independent interactive concept by BEQSON. The store and chat interfaces on this page are illustrations, not live commercial systems.",
     floatA:"Motion UI",floatB:"Made to interact",
     storyEyebrow:"01 / THE JOURNEY", storyTitle:"One idea. Four transformations.",
@@ -93,18 +93,18 @@ const translations = {
     ],
     finalEyebrow:"03 / YOUR NEXT PROJECT",finalTitle:"Let's make something memorable for your business.",
     finalLead:"Motion Lab is a self-initiated BEQSON concept. Let's explore a similar approach for your website, online store or AI consultant.",
-    finalContact:"Discuss a project ↗",finalShop:"Build an online store ↗",finalAI:"AI consultant ↗",
+    finalContact:"Discuss a project",finalShop:"Build an online store",finalAI:"AI consultant",
     footer:"BEQSON Motion Lab · Independent demonstration concept",
   },
   ka: {
     title:"BEQSON Motion Lab — ინტერაქტიული ვებდიზაინი და ანიმაცია",
     description:"BEQSON-ის ინტერაქტიული კონცეფცია: ვებსაიტის მონახაზიდან ვიზუალურ დიზაინამდე, ონლაინმაღაზიამდე და AI კონსულტანტის ინტერფეისამდე. CSS და JavaScript ანიმაცია.",
-    back:"← ყველა პროექტი",home:"მთავარი",skip:"შინაარსზე გადასვლა",
+    back:"ყველა პროექტი",home:"მთავარი",skip:"შინაარსზე გადასვლა",
     eyebrow:"BEQSON / INTERACTIVE EXPERIENCE",
     heading:"იდეიდან ვებსაიტამდე,",
     accent:"რომელიც ცოცხლდება.",
     lead:"გაიარეთ ოთხი ეტაპი და ნახეთ, როგორ იქცევა მარტივი მონახაზი დახვეწილ ვებსაიტად, ონლაინმაღაზიად და AI კონსულტანტის ინტერფეისად.",
-    try:"ანიმაციის ნახვა ↓",portfolio:"ყველა პროექტი ↗",
+    try:"ანიმაციის ნახვა",portfolio:"ყველა პროექტი",
     conceptNote:"BEQSON-ის დამოუკიდებელი ინტერაქტიული კონცეფცია. ამ გვერდზე მაღაზიისა და ჩატის ინტერფეისები სადემონსტრაციოა.",
     floatA:"Motion UI",floatB:"Made to interact",
     storyEyebrow:"01 / როგორ მუშაობს",storyTitle:"ერთი იდეა. ოთხი გარდაქმნა.",
@@ -137,7 +137,7 @@ const translations = {
     ],
     finalEyebrow:"03 / თქვენი მომავალი პროექტი",finalTitle:"შევქმნათ დასამახსოვრებელი გამოცდილება თქვენი ბიზნესისთვის.",
     finalLead:"Motion Lab არის BEQSON-ის დამოუკიდებელი კონცეფცია. განვიხილოთ მსგავსი მიდგომა თქვენი ვებსაიტის, მაღაზიის ან AI კონსულტანტისთვის.",
-    finalContact:"პროექტის განხილვა ↗",finalShop:"ონლაინმაღაზიის შექმნა ↗",finalAI:"AI კონსულტანტი ↗",
+    finalContact:"პროექტის განხილვა",finalShop:"ონლაინმაღაზიის შექმნა",finalAI:"AI კონსულტანტი",
     footer:"BEQSON Motion Lab · დამოუკიდებელი სადემონსტრაციო კონცეფცია",
   }
 };
@@ -215,7 +215,7 @@ function render(lang, t) {
                   </div>
                   <div class="ml-scene ml-scene--design" data-ml-scene="design" aria-hidden="true">
                     <div class="ml-design-nav">BEQSON / ${esc(t.designNav)} <span>${esc(t.designNavRight)}</span></div>
-                    <div class="ml-design-hero"><div><h3>${esc(t.designHeading)}</h3><p>${esc(t.designText)}</p><span class="ml-design-cta">${esc(t.designAction)} ↗</span></div><div class="ml-design-illustration" aria-hidden="true"></div></div>
+                    <div class="ml-design-hero"><div><h3>${esc(t.designHeading)}</h3><p>${esc(t.designText)}</p><span class="ml-design-cta">${esc(t.designAction)}</span></div><div class="ml-design-illustration" aria-hidden="true"></div></div>
                     <div class="ml-design-bottom" aria-hidden="true"><i></i><i></i><i></i></div>
                   </div>
                   <div class="ml-scene ml-scene--store" data-ml-scene="store" aria-hidden="true">
@@ -242,7 +242,7 @@ function render(lang, t) {
     <section class="ml-capabilities"><div class="ml-shell"><div class="ml-eyebrow">${esc(t.capabilityEyebrow)}</div><h2 data-reveal>${esc(t.capabilityTitle)}</h2><div class="ml-capabilities-grid">${caps}</div></div></section>
     <section class="ml-final"><div class="ml-shell" data-reveal><div class="ml-eyebrow" style="justify-content:center">${esc(t.finalEyebrow)}</div><h2>${esc(t.finalTitle)}</h2><p>${esc(t.finalLead)}</p><div class="ml-hero-actions"><a class="ml-button ml-button--primary" href="mailto:digitalstudiobeqson@gmail.com?subject=BEQSON%20Motion%20Lab">${esc(t.finalContact)}</a><a class="ml-button ml-button--secondary" href="/${lang}/shopify/">${esc(t.finalShop)}</a><a class="ml-button ml-button--secondary" href="/${lang}/ai-consultant/">${esc(t.finalAI)}</a></div></div></section>
   </main>
-  <footer class="ml-footer"><div class="ml-shell"><span>© 2026 BEQSON · ${esc(t.footer)}</span><a href="/${lang}/">${esc(t.home)} ↗</a></div></footer>
+  <footer class="ml-footer"><div class="ml-shell"><span>© 2026 BEQSON · ${esc(t.footer)}</span><a href="/${lang}/">${esc(t.home)}</a></div></footer>
 </body>
 </html>`;
 }

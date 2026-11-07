@@ -221,7 +221,7 @@ def page(lang):
     hreflang+=f'<link rel="alternate" hreflang="x-default" href="{BASE}/en/{SLUG}/">'
     process=''.join(f'<div><b>{e(n)}</b><h3>{e(title)}</h3><p>{e(detail)}</p></div>' for n,title,detail in c['process'])
     tags=''.join(f'<li>{e(x)}</li>' for x in c['tools'])
-    related=''.join(f'<a href="/{lang}/{slug}/">{e(name)} ↗</a>' for name,slug in c['related_links'])
+    related=''.join(f'<a href="/{lang}/{slug}/">{e(name)}</a>' for name,slug in c['related_links'])
     h=f'''<!doctype html><html lang="{lang}"><head>
       <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
       <title>{e(c['title'])}</title><meta name="description" content="{e(c['description'])}"><meta name="robots" content="index,follow,max-image-preview:large">
@@ -229,7 +229,7 @@ def page(lang):
       <meta property="og:type" content="article"><meta property="og:site_name" content="BEQSON Digital Studio"><meta property="og:title" content="{e(c['title'])}">
       <meta property="og:description" content="{e(c['description'])}"><meta property="og:url" content="{canonical}"><meta property="og:image" content="{og}">
       <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
-      <link rel="icon" href="/assets/favicon-v3.png?v=3" type="image/png"><link rel="stylesheet" href="/styles.css?v=12-clutch-trust"><link rel="stylesheet" href="/assets/meta-portfolio.css?v=1">
+      <link rel="icon" href="/assets/favicon-v3.png?v=3" type="image/png"><link rel="stylesheet" href="/styles.css?v=13-clean-links"><link rel="stylesheet" href="/assets/meta-portfolio.css?v=1">
       <script type="application/ld+json">{json.dumps(structured,ensure_ascii=False,separators=(',',':'))}</script></head>
       <body class="meta-case-page" id="top">{header(lang,c)}<main id="main">
       <section class="meta-hero"><div class="meta-shell"><span class="meta-status">{e(c['disclosure'])}</span>
@@ -246,8 +246,8 @@ def page(lang):
       <section class="meta-section" id="skills"><div class="meta-shell">{sec_header(c,'tools_tag','tools_heading')}<p class="meta-text">{e(c['tools_intro'])}</p><ul class="meta-tags">{tags}</ul><p class="meta-note" style="margin-top:30px">{e(c['note'])}</p></div></section>
       <section class="meta-section" id="final-gallery"><div class="meta-shell">{sec_header(c,'final_tag','final_heading')}<p class="meta-text">{e(c['final_text'])}</p></div></section>
       <section class="meta-section" id="contact"><div class="meta-shell"><div class="meta-contact"><span class="meta-kicker">{e(c['cta_tag'])}</span><h2>{e(c['cta_heading'])}</h2><p>{e(c['cta_text'])}</p><div class="meta-actions">
-      <a class="meta-action primary" href="mailto:digitalstudiobeqson@gmail.com?subject=Meta%20Static%20Ad%20Creative%20Design">{e(c['cta_mail'])} ↗</a>
-      <a class="meta-action" href="/{lang}/projects/">{e(c['cta_back'])} ↗</a></div>
+      <a class="meta-action primary" href="mailto:digitalstudiobeqson@gmail.com?subject=Meta%20Static%20Ad%20Creative%20Design">{e(c['cta_mail'])}</a>
+      <a class="meta-action" href="/{lang}/projects/">{e(c['cta_back'])}</a></div>
       <div class="meta-kicker" style="margin-top:48px">{e(c['related'])}</div><div class="meta-related">{related}</div>
       </div></div></section></main><footer class="meta-footer"><div class="meta-shell"><span>{e(c['footer'])}</span><a href="https://beqson.com/">beqson.com</a><a href="mailto:digitalstudiobeqson@gmail.com">digitalstudiobeqson@gmail.com</a></div></footer>
       </body></html>'''

@@ -106,11 +106,11 @@ def header(lang,base,slug=None,force_home=False,home_sections=False):
 </div></header>'''
 def footer(lang,base):
  c=CONTENT[lang]
- return f'''<footer class="site-footer"><div class="shell footer-inner"><a class="footer-brand" href="{base}{lang}/">BEQSON<span>© 2026 Digital Studio</span></a><p>{c['footer']}</p><a class="text-link" href="#top">{c['backTop']} {icon('arrow-up')}</a></div></footer>'''
+ return f'''<footer class="site-footer"><div class="shell footer-inner"><a class="footer-brand" href="{base}{lang}/">BEQSON<span>© 2026 Digital Studio</span></a><p>{c['footer']}</p><a class="text-link" href="#top">{c['backTop']}</a></div></footer>'''
 def contact_section(lang,industry=None):
  c=CONTENT[lang];links=''
  for kind,name,value,url in contacts(lang,industry):
-  links+=f'<a class="contact-link" href="{esc(url)}"{link_attrs(url)}>{tile(kind,small=True)}<span><b>{name}</b><small>{value}</small></span>{icon("arrow-up")}</a>'
+  links+=f'<a class="contact-link" href="{esc(url)}"{link_attrs(url)}>{tile(kind,small=True)}<span><b>{name}</b><small>{value}</small></span></a>'
  return f'''<section class="contact-section section" id="contact"><div class="shell contact-grid"><div><p class="eyebrow">{c['contactKicker']}</p><h2>{lines(c['contactTitle'])}</h2><p class="lead">{c['contactText']}</p></div><div class="contact-options"><p>{c['contactPrompt']}</p>{links}</div></div></section>'''
 def head(lang,base,title,description,slug=None,noindex=False,fallback=False):
  c=CONTENT[lang];canonical=BASE_URL+('404.html' if noindex else lang+'/'+(slug+'/' if slug else ''));image=BASE_URL+'assets/'+(f'concepts/{lang}/{slug}-og.jpg' if slug else 'og-cover.png')
@@ -127,14 +127,9 @@ def head(lang,base,title,description,slug=None,noindex=False,fallback=False):
  seo_description = seo.get('description', description)
  schema_markup = ('<script type="application/ld+json">'+json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False)+'</script>') if noindex else render_schema(lang, slug, canonical, seo_title, seo_description)
  font='noto-sans-georgian' if lang=='ka' else 'manrope'
- if slug or noindex:
-  script_version = '11-ka-default'
- elif lang=='ka':
-  script_version = '19-static-schema' if fallback else '21-horizontal-header'
- else:
-  script_version = '18-horizontal-header'
+ script_version = '23-clean-links'
  motion_assets = '<link rel="stylesheet" href="/assets/home-motion.css?v=9"><script src="/assets/home-motion.js?v=6" defer></script>' if not (slug or noindex or fallback) else ''
- style_version = '12-clutch-trust' if not (slug or noindex or fallback) else '11-contact-solid'
+ style_version = '13-clean-links'
  if fallback:
   schema_markup = ''
  if noindex:
@@ -161,12 +156,12 @@ def concept_picture(lang,base,slug,alt,sizes,eager=False):
 
 def window_image(lang,base,slug,alt,small=False,eager=False,cls='',sizes=None):
  sizes=sizes or (MINI_SIZES if small else HERO_SIZES)
- return f'<div class="browser-window {cls}"><div class="browser-bar" aria-hidden="true"><span><i></i><i></i><i></i></span><b>BEQSON</b><em>{icon("arrow-up")}</em></div>{concept_picture(lang,base,slug,alt,sizes,eager)}</div>'
+ return f'<div class="browser-window {cls}"><div class="browser-bar" aria-hidden="true"><span><i></i><i></i><i></i></span><b>BEQSON</b><em></em></div>{concept_picture(lang,base,slug,alt,sizes,eager)}</div>'
 def industry_cards(lang,base,items=None):
  c=CONTENT[lang];cards=''
  for n in (items or INDUSTRIES):
   d=n[lang];slug=n['slug']
-  cards+=f'''<a class="industry-card" href="{base}{lang}/{slug}/" style="--industry:{n['accent']}"><div class="card-image">{concept_picture(lang,base,slug,c['imageAlt']+d['name'],CARD_SIZES)}<span class="card-arrow">{icon('arrow-up')}</span></div><div class="card-body"><div class="card-heading">{tile(n['icon'],small=True)}<h3>{d['name']}</h3></div><p>{d['short']}</p><span class="card-link">{c['openConcept']} {icon('arrow')}</span></div></a>'''
+  cards+=f'''<a class="industry-card" href="{base}{lang}/{slug}/" style="--industry:{n['accent']}"><div class="card-image">{concept_picture(lang,base,slug,c['imageAlt']+d['name'],CARD_SIZES)}</div><div class="card-body"><div class="card-heading">{tile(n['icon'],small=True)}<h3>{d['name']}</h3></div><p>{d['short']}</p><span class="card-link">{c['openConcept']}</span></div></a>'''
  return cards
 
 def pricing(lang, fallback=False):
@@ -176,7 +171,7 @@ def pricing(lang, fallback=False):
   subtitle,features=c['plans'][i]
   msg=c['waText']+' '+c['planMessage']+' '+name+'.'
   url='https://wa.me/'+PHONE+'?text='+quote(msg)
-  cards+=f'''<article class="price-card {"featured" if i==1 else ""}"><div class="plan-top"><span class="plan-tag">{c['recommended'] if i==1 else ('01 / START' if i==0 else '03 / PRO')}</span>{tile(ico,'gold' if i==2 else '')}</div><h3>{name}</h3><p class="plan-subtitle">{subtitle}</p><p class="price-amount"><span>{prices["currency"]}</span>{price}<small>{c['oneTime']}</small></p><ul class="check-list">{''.join('<li>'+icon('check')+'<span>'+x+'</span></li>' for x in features)}</ul><a class="button {"primary" if i==1 else "outline"}" href="{esc(url)}" target="_blank" rel="noopener noreferrer">{c['choose']}{icon('arrow')}</a></article>'''
+  cards+=f'''<article class="price-card {"featured" if i==1 else ""}"><div class="plan-top"><span class="plan-tag">{c['recommended'] if i==1 else ('01 / START' if i==0 else '03 / PRO')}</span>{tile(ico,'gold' if i==2 else '')}</div><h3>{name}</h3><p class="plan-subtitle">{subtitle}</p><p class="price-amount"><span>{prices["currency"]}</span>{price}<small>{c['oneTime']}</small></p><ul class="check-list">{''.join('<li>'+icon('check')+'<span>'+x+'</span></li>' for x in features)}</ul><a class="button {"primary" if i==1 else "outline"}" href="{esc(url)}" target="_blank" rel="noopener noreferrer">{c['choose']}</a></article>'''
  return f'''<section class="pricing-section section" id="pricing"><div class="shell"><div class="section-heading centered"><p class="eyebrow">{c['pricingKicker']}</p><h2>{c['pricingTitle']}</h2><p>{c['pricingText']}</p></div><div class="pricing-grid">{cards}</div><div class="pricing-bottom"><p class="fine-print">{prices['note']}</p><p class="maintenance">{c['maintenance']}<b>{prices['perMonth']}</b></p></div></div></section>'''
 def home_banner(lang, base, fallback=False):
     # Render the visible heading in HTML, without waiting for JavaScript.
@@ -197,8 +192,8 @@ def homepage(lang,base,fallback=False):
  extra_head = f'<link rel="stylesheet" href="{base}assets/banners/banner.css?v={2 if fallback else 4}"><link rel="stylesheet" href="{base}assets/banners/{lang}-hero.css?v={(3 if lang=="ka" else 2 if lang=="ru" else 1) if fallback else HOME[lang]["heroStyleVersion"]}">'+LEAD_STYLE
  if not fallback:
   extra_head += '<link rel="preload" as="image" href="/assets/brand/beqson-wordmark.webp?v=2">'
-  extra_head += (ROOT/'tools/templates/home-audit-style.html').read_text()+'<link rel="stylesheet" href="/assets/projects.css?v=8-ai-project-cta">'
- legacy_case = f'''<section class="section case-section" id="case"><div class="shell case-grid"><div><p class="eyebrow">{c['caseKicker']}</p><h2>{c['caseTitle']}</h2><p class="lead">{c['caseText']}</p><ul class="tags">{''.join('<li>'+x+'</li>' for x in c['caseTags'])}</ul><a class="button dark" href="https://levanilaw.ge/" target="_blank" rel="noopener noreferrer">{c['caseButton']}{icon('arrow-up')}</a></div><a class="case-visual" href="https://levanilaw.ge/" target="_blank" rel="noopener noreferrer"><span class="case-top">LEVANI KHELKHELAURI<span>LAWYER / TBILISI</span></span><div class="case-monogram" aria-hidden="true">LK</div><p>{lines(c['caseQuote'])}</p><span class="case-bottom">LEVANILAW.GE {icon('arrow-up')}</span></a></div></section>''' if fallback else ''
+  extra_head += (ROOT/'tools/templates/home-audit-style.html').read_text()+'<link rel="stylesheet" href="/assets/projects.css?v=9-clean-links">'
+ legacy_case = f'''<section class="section case-section" id="case"><div class="shell case-grid"><div><p class="eyebrow">{c['caseKicker']}</p><h2>{c['caseTitle']}</h2><p class="lead">{c['caseText']}</p><ul class="tags">{''.join('<li>'+x+'</li>' for x in c['caseTags'])}</ul><a class="button dark" href="https://levanilaw.ge/" target="_blank" rel="noopener noreferrer">{c['caseButton']}</a></div><a class="case-visual" href="https://levanilaw.ge/" target="_blank" rel="noopener noreferrer"><span class="case-top">LEVANI KHELKHELAURI<span>LAWYER / TBILISI</span></span><div class="case-monogram" aria-hidden="true">LK</div><p>{lines(c['caseQuote'])}</p><span class="case-bottom">LEVANILAW.GE</span></a></div></section>''' if fallback else ''
  return head(lang,base,c['title'],c['description'],fallback=fallback).replace('</head>',extra_head+'</head>')+f'''<body id="top">{header(lang,base,home_sections=not fallback)}<main id="main">
 {home_banner(lang,base,fallback)}
 <section class="value-section"><div class="shell value-grid">{values}</div></section>
@@ -214,17 +209,17 @@ def industry_page(lang,n):
  pricing_label={'ru':'Цены','ka':'ფასები','en':'Pricing'}[lang]
  title={'ru':'Сайт для бизнеса: ','en':'Website design for ','ka':'ვებსაიტი ბიზნესისთვის: '}[lang]+d['name']+' — BEQSON'
  features=''.join(f'<article class="feature-card"><span class="feature-number">0{i+1}</span>{tile(ico,small=True)}<h3>{t}</h3><p>{text}</p></article>' for i,(ico,(t,text)) in enumerate(zip(('layers','sparkle','message','check'),d['features'])))
- channels=''.join(f'<li><span>0{i+1}</span><p>{esc(text)}</p>{icon("arrow-up")}</li>' for i,text in enumerate(d['channels']))
+ channels=''.join(f'<li><span>0{i+1}</span><p>{esc(text)}</p></li>' for i,text in enumerate(d['channels']))
  idx=INDUSTRIES.index(n);related=[INDUSTRIES[(idx+i)%8] for i in range(1,5)]
  image=f'{base}assets/concepts/{lang}/{slug}.webp'
  generic_sections = f'''<section class="section industry-features"><div class="shell"><div class="section-heading split"><div><p class="eyebrow">BEQSON / DETAIL</p><h2>{lines(c['nicheFeaturesTitle'])}</h2></div><p>{c['nicheFeaturesText']}</p></div><div class="features-grid">{features}</div></div></section>
-<section class="section industry-path"><div class="shell path-grid"><div><p class="eyebrow">SEO · LOCAL · ENQUIRIES</p><h2>{c['nichePathTitle']}</h2><p class="lead">{c['nichePathText']}</p><a class="text-link" href="../#pricing">{pricing_label}{icon('arrow')}</a></div><ol class="channel-list">{channels}</ol></div></section>
+<section class="section industry-path"><div class="shell path-grid"><div><p class="eyebrow">SEO · LOCAL · ENQUIRIES</p><h2>{c['nichePathTitle']}</h2><p class="lead">{c['nichePathText']}</p><a class="text-link" href="../#pricing">{pricing_label}</a></div><ol class="channel-list">{channels}</ol></div></section>
 ''' if has_generic_sections(slug) else ''
  return head(lang,base,title,d['intro'],slug)+f'''<body id="top" class="industry-page" style="--industry:{n['accent']}">{header(lang,base,slug)}<main id="main">
-<section class="industry-hero"><div class="shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">{c['home']}</a><span>/</span><span>{d['name']}</span></nav><div class="industry-hero-grid"><div><p class="eyebrow">{c['nichePageKicker']}</p><div class="industry-label">{tile(n['icon'],small=True)}<span>{d['name']}</span></div><h1>{lines(d['headline'])}</h1><p class="lead">{d['intro']}</p><div class="actions"><a class="button primary" href="#contact">{c['nicheCta']}{icon('arrow-up')}</a><a class="text-link" href="#concept">{c['openConcept']}{icon('arrow')}</a></div></div><div class="industry-hero-visual"><a href="#concept">{window_image(lang,base,slug,c['imageAlt']+d['name'],eager=True,sizes=INDUSTRY_HERO_SIZES)}</a><div class="style-caption"><span>{n['brand']} / CONCEPT</span><b>{n['theme']}</b></div></div></div></div></section>
+<section class="industry-hero"><div class="shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">{c['home']}</a><span>/</span><span>{d['name']}</span></nav><div class="industry-hero-grid"><div><p class="eyebrow">{c['nichePageKicker']}</p><div class="industry-label">{tile(n['icon'],small=True)}<span>{d['name']}</span></div><h1>{lines(d['headline'])}</h1><p class="lead">{d['intro']}</p><div class="actions"><a class="button primary" href="#contact">{c['nicheCta']}</a><a class="text-link" href="#concept">{c['openConcept']}</a></div></div><div class="industry-hero-visual"><a href="#concept">{window_image(lang,base,slug,c['imageAlt']+d['name'],eager=True,sizes=INDUSTRY_HERO_SIZES)}</a><div class="style-caption"><span>{n['brand']} / CONCEPT</span><b>{n['theme']}</b></div></div></div></div></section>
 {industry_details(lang,slug,'after-hero')}<section class="section concept-section" id="concept"><div class="shell"><div class="section-heading split"><div><p class="eyebrow">{c['nichePreviewKicker']}</p><h2>{lines(c['nichePreviewTitle'])}</h2></div><p>{c['nichePreviewText']}</p></div><div class="concept-toolbar"><span>{icon('sparkle')}{c['demo']}</span><a class="text-link" href="{image}" target="_blank" rel="noopener" data-lightbox data-lightbox-title="{esc(d['name'])}">{c['zoom']}{icon('zoom')}</a></div><a class="full-concept" href="{image}" target="_blank" rel="noopener" data-lightbox data-lightbox-title="{esc(d['name'])}" aria-label="{esc(c['zoom'])}">{concept_picture(lang,base,slug,c['imageAlt']+d['name'],FULL_SIZES)}<span class="zoom-badge">{icon('zoom')}</span></a><div class="concept-meta"><ul class="style-list">{''.join('<li>'+x+'</li>' for x in d['style'])}</ul><p>{c['langNote']}</p></div><p class="concept-note">{icon('sparkle')}{c['conceptNote']}</p></div></section>
 {generic_sections}{industry_details(lang,slug,'before-contact')}{contact_section(lang,n)}
-<section class="section related-section"><div class="shell"><div class="related-heading"><h2>{c['otherNiches']}</h2><a class="text-link" href="../#services">{c['allNiches']}{icon('arrow')}</a></div><div class="industry-grid">{industry_cards(lang,base,related)}</div></div></section>
+<section class="section related-section"><div class="shell"><div class="related-heading"><h2>{c['otherNiches']}</h2><a class="text-link" href="../#services">{c['allNiches']}</a></div><div class="industry-grid">{industry_cards(lang,base,related)}</div></div></section>
 </main>{footer(lang,base)}<dialog class="lightbox" aria-label="{esc(c['zoom'])}"><div class="lightbox-top"><span data-modal-title>{d['name']}</span><button class="lightbox-close" type="button" aria-label="{c['close']}">{icon('close')}</button></div><div class="lightbox-scroll"><img width="1536" height="1024" alt="{esc(c['imageAlt']+d['name'])}"></div></dialog>{LEAD_SCRIPT}</body></html>'''
 
 def write(path,content):
@@ -249,7 +244,7 @@ def main():
   write(f'{lang}/index.html',homepage(lang,'../'))
   for n in INDUSTRIES:write(f'{lang}/{n["slug"]}/index.html',industry_page(lang,n))
  c=CONTENT['ru'];base=urlsplit(BASE_URL).path
- write('404.html',head('ru',base,'404 — BEQSON',c['notFoundText'],noindex=True)+f'<body id="top">{header("ru",base,force_home=True)}<main id="main"><div class="not-found"><p class="eyebrow">404 / BEQSON</p><h1>{c["notFound"]}</h1><p>{c["notFoundText"]}</p><a class="button primary" href="{BASE_URL}ru/">{c["returnHome"]}{icon("arrow")}</a></div>{contact_section("ru")}</main>{footer("ru",base)}</body></html>')
+ write('404.html',head('ru',base,'404 — BEQSON',c['notFoundText'],noindex=True)+f'<body id="top">{header("ru",base,force_home=True)}<main id="main"><div class="not-found"><p class="eyebrow">404 / BEQSON</p><h1>{c["notFound"]}</h1><p>{c["notFoundText"]}</p><a class="button primary" href="{BASE_URL}ru/">{c["returnHome"]}</a></div>{contact_section("ru")}</main>{footer("ru",base)}</body></html>')
  # Preserve existing crawl rules, especially the private CRM exclusion.
  if not (ROOT/'robots.txt').exists():
   write('robots.txt','User-agent: *\nAllow: /\nDisallow: /crm/\nSitemap: '+BASE_URL+'sitemap.xml\n')

@@ -9,8 +9,8 @@ from pathlib import Path
 TOOLS = Path(__file__).resolve().parent
 HOME = json.loads((TOOLS / 'home_sections.json').read_text(encoding='utf-8'))
 INDUSTRY = json.loads((TOOLS / 'industry_sections.json').read_text(encoding='utf-8'))
-LEAD_STYLE = '<link rel="stylesheet" href="/assets/lead-system.css?v=1">'
-LEAD_SCRIPT = '<script src="/assets/lead-system.js?v=2" defer></script>'
+LEAD_STYLE = '<link rel="stylesheet" href="/assets/lead-system.css?v=2-clean-links">'
+LEAD_SCRIPT = '<script src="/assets/lead-system.js?v=3-clean-links" defer></script>'
 
 
 def home_promos(lang):
@@ -37,7 +37,7 @@ def home_projects(lang):
 
 def home_trust(lang):
     d = HOME[lang]['clutch']
-    return f'<section class="clutch-trust-strip" aria-label="{d["label"]}"><div class="shell"><a class="clutch-trust-card" href="https://clutch.co/profile/beqson-digital-studio" target="_blank" rel="noopener noreferrer" aria-label="{d["linkLabel"]}"><div class="clutch-trust-copy"><span class="clutch-trust-kicker">{d["kicker"]}</span><strong>{d["heading"]}</strong><span>{d["text"]}</span></div><span class="clutch-wordmark" aria-hidden="true">Clutch<span class="clutch-dot">•</span></span><span class="clutch-arrow" aria-hidden="true">{d["cta"]}</span></a></div></section>'
+    return f'<section class="clutch-trust-strip" aria-label="{d["label"]}"><div class="shell"><a class="clutch-trust-card" href="https://clutch.co/profile/beqson-digital-studio" target="_blank" rel="noopener noreferrer" aria-label="{d["linkLabel"]}"><div class="clutch-trust-copy"><span class="clutch-trust-kicker">{d["kicker"]}</span><strong>{d["heading"]}</strong><span>{d["text"]}</span></div><span class="clutch-wordmark" aria-hidden="true">Clutch<span class="clutch-dot">•</span></span></a></div></section>'
 
 
 def feature_section(d):
@@ -62,8 +62,7 @@ def path_section(d):
         a = d['link']
         attrs = ' target="_blank" rel="noopener"' if a['external'] else ''
         link = f'<a class="{a.get("class", "text-link")}" href="{a["href"]}"{attrs}>{a["label"]}</a>'
-    arrow = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/assets/icons.svg#arrow-up"></use></svg>' if d.get('channelArrows') else ''
-    channels = ''.join(f'<li><span>{i:02}</span><p>{text}</p>{arrow}</li>' for i, text in enumerate(d['channels'], 1))
+    channels = ''.join(f'<li><span>{i:02}</span><p>{text}</p></li>' for i, text in enumerate(d['channels'], 1))
     return f'<section class="section industry-path"><div class="shell path-grid"><div><p class="eyebrow">{d["kicker"]}</p><h2>{d["heading"]}</h2><p class="lead">{d["intro"]}</p>{link}</div><ol class="channel-list">{channels}</ol></div></section>'
 
 

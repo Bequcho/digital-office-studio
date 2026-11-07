@@ -41,7 +41,7 @@
         ],
         "link": {
           "href": "https://levanilaw.ge",
-          "label": "Открыть сайт <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "label": "Открыть сайт",
           "external": true
         }
       },
@@ -56,7 +56,7 @@
             "text": "SEO Score, технические проверки и приоритетный план действий.",
             "link": {
               "href": "/ru/audit/",
-              "label": "Проверить сайт →"
+              "label": "Проверить сайт"
             }
           },
           {
@@ -64,7 +64,7 @@
             "text": "Ответьте на пять вопросов и сразу получите ориентировочный диапазон цены.",
             "link": {
               "href": "/ru/calculator/",
-              "label": "Рассчитать стоимость →"
+              "label": "Рассчитать стоимость"
             }
           },
           {
@@ -72,7 +72,7 @@
             "text": "Стартовая цена на компактный сайт в период запуска BEQSON.",
             "link": {
               "href": "#contact",
-              "label": "Обсудить проект →"
+              "label": "Обсудить проект"
             }
           },
           {
@@ -80,7 +80,7 @@
             "text": "Добавим SEO-страницы, CRM, аналитику и дополнительные языки по мере роста.",
             "link": {
               "href": "/ru/tools/",
-              "label": "Все бесплатные инструменты →"
+              "label": "Все бесплатные инструменты"
             }
           }
         ]
@@ -151,7 +151,7 @@
         ],
         "link": {
           "href": "https://levanilaw.ge",
-          "label": "საიტის ნახვა <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "label": "საიტის ნახვა",
           "external": true
         }
       },
@@ -166,7 +166,7 @@
             "text": "SEO Score, ტექნიკური შემოწმება და პრიორიტეტული სამოქმედო გეგმა.",
             "link": {
               "href": "/ka/audit/",
-              "label": "საიტის შემოწმება →"
+              "label": "საიტის შემოწმება"
             }
           },
           {
@@ -174,7 +174,7 @@
             "text": "უპასუხეთ ხუთ კითხვას და მიიღეთ სავარაუდო ფასის დიაპაზონი.",
             "link": {
               "href": "/ka/calculator/",
-              "label": "ფასის გამოთვლა →"
+              "label": "ფასის გამოთვლა"
             }
           },
           {
@@ -182,7 +182,7 @@
             "text": "საწყისი ფასი კომპაქტური საიტისთვის BEQSON-ის გაშვების პერიოდში.",
             "link": {
               "href": "#contact",
-              "label": "პროექტის განხილვა →"
+              "label": "პროექტის განხილვა"
             }
           },
           {
@@ -190,7 +190,7 @@
             "text": "შემდგომში დავამატებთ SEO გვერდებს, CRM-ს, ანალიტიკას და დამატებით ენებს.",
             "link": {
               "href": "/ka/tools/",
-              "label": "უფასო ინსტრუმენტები →"
+              "label": "უფასო ინსტრუმენტები"
             }
           }
         ]
@@ -261,7 +261,7 @@
         ],
         "link": {
           "href": "https://levanilaw.ge",
-          "label": "View live project <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "label": "View live project",
           "external": true
         }
       },
@@ -276,7 +276,7 @@
             "text": "Get an SEO Score, technical checks and a priority action plan.",
             "link": {
               "href": "/en/audit/",
-              "label": "Run audit →"
+              "label": "Run audit"
             }
           },
           {
@@ -284,7 +284,7 @@
             "text": "Answer five questions and get an estimated price range instantly.",
             "link": {
               "href": "/en/calculator/",
-              "label": "Calculate cost →"
+              "label": "Calculate cost"
             }
           },
           {
@@ -292,7 +292,7 @@
             "text": "Focused starter websites for early clients during our launch period.",
             "link": {
               "href": "#contact",
-              "label": "Discuss project →"
+              "label": "Discuss project"
             }
           },
           {
@@ -300,7 +300,7 @@
             "text": "Add SEO pages, CRM, analytics and extra languages as the project grows.",
             "link": {
               "href": "/en/tools/",
-              "label": "Explore free tools →"
+              "label": "Explore free tools"
             }
           }
         ]
@@ -376,7 +376,7 @@
         ],
         "link": {
           "href": "/ru/audit/",
-          "label": "Проверить текущий сайт <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "label": "Проверить текущий сайт",
           "external": false
         }
       },
@@ -391,7 +391,7 @@
             "text": "SEO Score, технические проверки и приоритетный план действий.",
             "link": {
               "href": "/ru/audit/",
-              "label": "Проверить сайт →"
+              "label": "Проверить сайт"
             }
           },
           {
@@ -399,7 +399,7 @@
             "text": "Ответьте на пять вопросов и получите ориентировочный диапазон цены.",
             "link": {
               "href": "/ru/calculator/",
-              "label": "Рассчитать стоимость →"
+              "label": "Рассчитать стоимость"
             }
           },
           {
@@ -407,7 +407,7 @@
             "text": "Стартовая цена на компактный сайт в период запуска BEQSON.",
             "link": {
               "href": "#contact",
-              "label": "Обсудить проект →"
+              "label": "Обсудить проект"
             }
           },
           {
@@ -415,7 +415,7 @@
             "text": "Добавим услуги, языки, аналитику, CRM и интеграцию записи по мере роста.",
             "link": {
               "href": "/ru/tools/",
-              "label": "Все бесплатные инструменты →"
+              "label": "Все бесплатные инструменты"
             }
           }
         ]
@@ -486,7 +486,7 @@
         ],
         "link": {
           "href": "/ka/audit/",
-          "label": "არსებული საიტის შემოწმება <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "label": "არსებული საიტის შემოწმება",
           "external": false
         }
       },
@@ -501,7 +501,7 @@
             "text": "SEO Score, ტექნიკური შემოწმებები და პრიორიტეტული სამოქმედო გეგმა.",
             "link": {
               "href": "/ka/audit/",
-              "label": "საიტის შემოწმება →"
+              "label": "საიტის შემოწმება"
             }
           },
           {
@@ -509,7 +509,7 @@
             "text": "უპასუხეთ ხუთ კითხვას და მიიღეთ სავარაუდო ფასის დიაპაზონი.",
             "link": {
               "href": "/ka/calculator/",
-              "label": "ღირებულების გამოთვლა →"
+              "label": "ღირებულების გამოთვლა"
             }
           },
           {
@@ -517,7 +517,7 @@
             "text": "საწყისი ფასი კომპაქტური საიტისთვის BEQSON-ის გაშვების პერიოდში.",
             "link": {
               "href": "#contact",
-              "label": "პროექტის განხილვა →"
+              "label": "პროექტის განხილვა"
             }
           },
           {
@@ -525,7 +525,7 @@
             "text": "შემდგომ დავამატებთ სერვისებს, ენებს, ანალიტიკას, CRM-ს და ჩაწერის ინტეგრაციას.",
             "link": {
               "href": "/ka/tools/",
-              "label": "უფასო ინსტრუმენტები →"
+              "label": "უფასო ინსტრუმენტები"
             }
           }
         ]
@@ -596,7 +596,7 @@
         ],
         "link": {
           "href": "/en/audit/",
-          "label": "Audit an existing website <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "label": "Audit an existing website",
           "external": false
         }
       },
@@ -611,7 +611,7 @@
             "text": "SEO Score, technical checks and a priority action plan.",
             "link": {
               "href": "/en/audit/",
-              "label": "Run audit →"
+              "label": "Run audit"
             }
           },
           {
@@ -619,7 +619,7 @@
             "text": "Answer five questions and get an instant estimated range.",
             "link": {
               "href": "/en/calculator/",
-              "label": "Calculate cost →"
+              "label": "Calculate cost"
             }
           },
           {
@@ -627,7 +627,7 @@
             "text": "Focused starter websites during the BEQSON launch period.",
             "link": {
               "href": "#contact",
-              "label": "Discuss project →"
+              "label": "Discuss project"
             }
           },
           {
@@ -635,7 +635,7 @@
             "text": "Add treatment pages, languages, analytics, CRM and booking integrations later.",
             "link": {
               "href": "/en/tools/",
-              "label": "Explore free tools →"
+              "label": "Explore free tools"
             }
           }
         ]
@@ -711,7 +711,7 @@
         ],
         "link": {
           "href": "/ru/audit/",
-          "label": "Проверить текущий сайт клиники <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "label": "Проверить текущий сайт клиники",
           "external": false
         }
       },
@@ -726,7 +726,7 @@
             "text": "Проверим техническую основу, метаданные, индексируемость и приоритетные проблемы текущего сайта.",
             "link": {
               "href": "/ru/audit/",
-              "label": "Проверить сайт →"
+              "label": "Проверить сайт"
             }
           },
           {
@@ -734,7 +734,7 @@
             "text": "Рассчитайте ориентировочную стоимость нового сайта врача или клиники за несколько минут.",
             "link": {
               "href": "/ru/calculator/",
-              "label": "Рассчитать стоимость →"
+              "label": "Рассчитать стоимость"
             }
           },
           {
@@ -742,7 +742,7 @@
             "text": "Стартовая цена на компактные проекты для первых клиентов BEQSON.",
             "link": {
               "href": "#contact",
-              "label": "Обсудить проект →"
+              "label": "Обсудить проект"
             }
           },
           {
@@ -750,7 +750,7 @@
             "text": "Сведения об услугах, квалификации и медицинские утверждения должны быть подтверждены врачом или клиникой. Мы не придумываем результаты лечения и гарантии.",
             "link": {
               "href": "/ru/tools/",
-              "label": "Бесплатные инструменты →"
+              "label": "Бесплатные инструменты"
             }
           }
         ]
@@ -821,7 +821,7 @@
         ],
         "link": {
           "href": "/ka/audit/",
-          "label": "შეამოწმეთ არსებული საიტი <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "label": "შეამოწმეთ არსებული საიტი",
           "external": false
         }
       },
@@ -836,7 +836,7 @@
             "text": "შეამოწმეთ ტექნიკური საფუძველი, მეტამონაცემები, ინდექსაცია და არსებული საიტის პრიორიტეტული პრობლემები.",
             "link": {
               "href": "/ka/audit/",
-              "label": "საიტის შემოწმება →"
+              "label": "საიტის შემოწმება"
             }
           },
           {
@@ -844,7 +844,7 @@
             "text": "რამდენიმე წუთში მიიღეთ ექიმის ან კლინიკის ახალი საიტის სავარაუდო ღირებულება.",
             "link": {
               "href": "/ka/calculator/",
-              "label": "ღირებულების გამოთვლა →"
+              "label": "ღირებულების გამოთვლა"
             }
           },
           {
@@ -852,7 +852,7 @@
             "text": "BEQSON-ის პირველი კლიენტებისთვის მოქმედი საწყისი ფასი კომპაქტურ პროექტებზე.",
             "link": {
               "href": "#contact",
-              "label": "პროექტის განხილვა →"
+              "label": "პროექტის განხილვა"
             }
           },
           {
@@ -860,7 +860,7 @@
             "text": "სერვისები, კვალიფიკაცია და სამედიცინო ინფორმაცია უნდა იყოს ექიმის ან კლინიკის მიერ დადასტურებული. ჩვენ არ ვიგონებთ შედეგებსა და გარანტიებს.",
             "link": {
               "href": "/ka/tools/",
-              "label": "უფასო ინსტრუმენტები →"
+              "label": "უფასო ინსტრუმენტები"
             }
           }
         ]
@@ -931,7 +931,7 @@
         ],
         "link": {
           "href": "/en/audit/",
-          "label": "Audit an existing clinic website <svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow-up\"></use></svg>",
+          "label": "Audit an existing clinic website",
           "external": false
         }
       },
@@ -946,7 +946,7 @@
             "text": "Check technical basics, metadata, indexability and priority issues on an existing website.",
             "link": {
               "href": "/en/audit/",
-              "label": "Run audit →"
+              "label": "Run audit"
             }
           },
           {
@@ -954,7 +954,7 @@
             "text": "Estimate the cost of a new doctor or clinic website in a few minutes.",
             "link": {
               "href": "/en/calculator/",
-              "label": "Calculate cost →"
+              "label": "Calculate cost"
             }
           },
           {
@@ -962,7 +962,7 @@
             "text": "Launch pricing for focused starter websites during BEQSON's early-client period.",
             "link": {
               "href": "#contact",
-              "label": "Discuss project →"
+              "label": "Discuss project"
             }
           },
           {
@@ -970,7 +970,7 @@
             "text": "Medical claims, credentials and service information should be factual and approved by the clinic or doctor. We do not invent outcomes or guarantees.",
             "link": {
               "href": "/en/tools/",
-              "label": "Explore free tools →"
+              "label": "Explore free tools"
             }
           }
         ]
@@ -1056,7 +1056,7 @@
             "text": "Проверим техническое SEO, метаданные и основные проблемы текущего сайта.",
             "link": {
               "href": "/ru/audit/",
-              "label": "Проверить сайт →"
+              "label": "Проверить сайт"
             }
           },
           {
@@ -1064,7 +1064,7 @@
             "text": "Оцените сайт с учётом страниц, SEO, CRM, языков и дополнительных функций.",
             "link": {
               "href": "/ru/calculator/",
-              "label": "Рассчитать стоимость →"
+              "label": "Рассчитать стоимость"
             }
           },
           {
@@ -1072,7 +1072,7 @@
             "text": "Можно начать с компактного сайта специалиста или агентства и расширять его по мере роста.",
             "link": {
               "href": "#contact",
-              "label": "Обсудить проект →"
+              "label": "Обсудить проект"
             }
           },
           {
@@ -1080,7 +1080,7 @@
             "text": "Добавим языки, SEO по локациям и отслеживание заявок из разных рынков.",
             "link": {
               "href": "/ru/tools/",
-              "label": "Бесплатные инструменты →"
+              "label": "Бесплатные инструменты"
             }
           }
         ]
@@ -1161,7 +1161,7 @@
             "text": "შეამოწმეთ ტექნიკური SEO, მეტამონაცემები და მთავარი პრობლემები.",
             "link": {
               "href": "/ka/audit/",
-              "label": "საიტის შემოწმება →"
+              "label": "საიტის შემოწმება"
             }
           },
           {
@@ -1169,7 +1169,7 @@
             "text": "მიიღეთ შეფასება გვერდების, SEO-ს, CRM-ის, ენებისა და სხვა ფუნქციების მიხედვით.",
             "link": {
               "href": "/ka/calculator/",
-              "label": "ღირებულების გამოთვლა →"
+              "label": "ღირებულების გამოთვლა"
             }
           },
           {
@@ -1177,7 +1177,7 @@
             "text": "დაიწყეთ კომპაქტური აგენტის ან სააგენტოს საიტით და გააფართოვეთ საჭიროების მიხედვით.",
             "link": {
               "href": "#contact",
-              "label": "პროექტის განხილვა →"
+              "label": "პროექტის განხილვა"
             }
           },
           {
@@ -1185,7 +1185,7 @@
             "text": "დავამატებთ ენებს, ლოკაციის SEO-ს და სხვადასხვა ბაზრიდან განაცხადების ანალიტიკას.",
             "link": {
               "href": "/ka/tools/",
-              "label": "უფასო ინსტრუმენტები →"
+              "label": "უფასო ინსტრუმენტები"
             }
           }
         ]
@@ -1266,7 +1266,7 @@
             "text": "Check technical SEO, metadata and priority issues on an existing real estate website.",
             "link": {
               "href": "/en/audit/",
-              "label": "Run audit →"
+              "label": "Run audit"
             }
           },
           {
@@ -1274,7 +1274,7 @@
             "text": "Estimate a new website based on pages, SEO, CRM, languages and other features.",
             "link": {
               "href": "/en/calculator/",
-              "label": "Calculate cost →"
+              "label": "Calculate cost"
             }
           },
           {
@@ -1282,7 +1282,7 @@
             "text": "Launch with a focused agent or agency website, then expand the catalogue and SEO structure.",
             "link": {
               "href": "#contact",
-              "label": "Discuss project →"
+              "label": "Discuss project"
             }
           },
           {
@@ -1290,7 +1290,7 @@
             "text": "Add languages, location pages and lead tracking for buyers from different markets.",
             "link": {
               "href": "/en/tools/",
-              "label": "Explore free tools →"
+              "label": "Explore free tools"
             }
           }
         ]
@@ -1376,7 +1376,7 @@
             "text": "Проверим техническое SEO, метаданные и основные проблемы существующего сайта.",
             "link": {
               "href": "/ru/audit/",
-              "label": "Проверить сайт →"
+              "label": "Проверить сайт"
             }
           },
           {
@@ -1384,7 +1384,7 @@
             "text": "Оцените проект с учётом услуг, языков, SEO, CRM и форм заявок.",
             "link": {
               "href": "/ru/calculator/",
-              "label": "Рассчитать стоимость →"
+              "label": "Рассчитать стоимость"
             }
           },
           {
@@ -1392,7 +1392,7 @@
             "text": "Можно начать с ключевых направлений и позже добавлять новые услуги, статьи и автоматизацию.",
             "link": {
               "href": "#contact",
-              "label": "Обсудить проект →"
+              "label": "Обсудить проект"
             }
           },
           {
@@ -1400,7 +1400,7 @@
             "text": "Структура сайта строится вокруг бизнес-задач, доверия и целевых консультаций.",
             "link": {
               "href": "/ru/tools/",
-              "label": "Бесплатные инструменты →"
+              "label": "Бесплатные инструменты"
             }
           }
         ]
@@ -1481,7 +1481,7 @@
             "text": "შევამოწმებთ ტექნიკურ SEO-ს, მეტამონაცემებსა და არსებული საიტის ძირითად პრობლემებს.",
             "link": {
               "href": "/ka/audit/",
-              "label": "საიტის შემოწმება →"
+              "label": "საიტის შემოწმება"
             }
           },
           {
@@ -1489,7 +1489,7 @@
             "text": "შეაფასეთ პროექტი სერვისების, ენების, SEO-ს, CRM-ისა და განაცხადების ფორმების მიხედვით.",
             "link": {
               "href": "/ka/calculator/",
-              "label": "ღირებულების გამოთვლა →"
+              "label": "ღირებულების გამოთვლა"
             }
           },
           {
@@ -1497,7 +1497,7 @@
             "text": "შეგიძლიათ დაიწყოთ ძირითადი მიმართულებებით და მოგვიანებით დაამატოთ ახალი სერვისები, სტატიები და ავტომატიზაცია.",
             "link": {
               "href": "#contact",
-              "label": "პროექტის განხილვა →"
+              "label": "პროექტის განხილვა"
             }
           },
           {
@@ -1505,7 +1505,7 @@
             "text": "საიტის სტრუქტურა ეწყობა ბიზნესის ამოცანებს, ნდობასა და მიზნობრივ კონსულტაციებს.",
             "link": {
               "href": "/ka/tools/",
-              "label": "უფასო ინსტრუმენტები →"
+              "label": "უფასო ინსტრუმენტები"
             }
           }
         ]
@@ -1586,7 +1586,7 @@
             "text": "Check technical SEO, metadata and priority issues on an existing accounting website.",
             "link": {
               "href": "/en/audit/",
-              "label": "Run audit →"
+              "label": "Run audit"
             }
           },
           {
@@ -1594,7 +1594,7 @@
             "text": "Estimate pages, languages, SEO, CRM and lead-generation features.",
             "link": {
               "href": "/en/calculator/",
-              "label": "Calculate cost →"
+              "label": "Calculate cost"
             }
           },
           {
@@ -1602,7 +1602,7 @@
             "text": "Launch with the essential service pages and expand content or automation later.",
             "link": {
               "href": "#contact",
-              "label": "Discuss project →"
+              "label": "Discuss project"
             }
           },
           {
@@ -1610,7 +1610,7 @@
             "text": "Structure the site around business questions, trust and qualified consultation enquiries.",
             "link": {
               "href": "/en/tools/",
-              "label": "Explore free tools →"
+              "label": "Explore free tools"
             }
           }
         ]
@@ -1696,7 +1696,7 @@
             "text": "Проверим техническое SEO, метаданные и основные проблемы существующего сайта.",
             "link": {
               "href": "/ru/audit/",
-              "label": "Проверить сайт →"
+              "label": "Проверить сайт"
             }
           },
           {
@@ -1704,7 +1704,7 @@
             "text": "Оцените страницы, портфолио, районы, SEO, формы и CRM.",
             "link": {
               "href": "/ru/calculator/",
-              "label": "Рассчитать стоимость →"
+              "label": "Рассчитать стоимость"
             }
           },
           {
@@ -1712,7 +1712,7 @@
             "text": "Можно запустить компактный сайт и постепенно добавлять проекты, услуги и географию.",
             "link": {
               "href": "#contact",
-              "label": "Обсудить проект →"
+              "label": "Обсудить проект"
             }
           },
           {
@@ -1720,7 +1720,7 @@
             "text": "Проверьте метатеги, сниппет Google, UTM-ссылки и другие элементы маркетинга.",
             "link": {
               "href": "/ru/tools/",
-              "label": "Открыть инструменты →"
+              "label": "Открыть инструменты"
             }
           }
         ]
@@ -1801,7 +1801,7 @@
             "text": "შევამოწმებთ ტექნიკურ SEO-ს, მეტამონაცემებსა და ძირითადი პრობლემებს.",
             "link": {
               "href": "/ka/audit/",
-              "label": "საიტის შემოწმება →"
+              "label": "საიტის შემოწმება"
             }
           },
           {
@@ -1809,7 +1809,7 @@
             "text": "შეაფასეთ გვერდები, პორტფოლიო, ლოკაციები, SEO, ფორმები და CRM.",
             "link": {
               "href": "/ka/calculator/",
-              "label": "ღირებულების გამოთვლა →"
+              "label": "ღირებულების გამოთვლა"
             }
           },
           {
@@ -1817,7 +1817,7 @@
             "text": "შეგიძლიათ დაიწყოთ კომპაქტური საიტით და შემდეგ დაამატოთ პროექტები, სერვისები და ლოკაციები.",
             "link": {
               "href": "#contact",
-              "label": "პროექტის განხილვა →"
+              "label": "პროექტის განხილვა"
             }
           },
           {
@@ -1825,7 +1825,7 @@
             "text": "შეამოწმეთ მეტა ტეგები, Google preview, UTM ბმულები და სხვა მარკეტინგული ელემენტები.",
             "link": {
               "href": "/ka/tools/",
-              "label": "ინსტრუმენტების ნახვა →"
+              "label": "ინსტრუმენტების ნახვა"
             }
           }
         ]
@@ -1906,7 +1906,7 @@
             "text": "Check technical SEO, metadata and priority issues on your current website.",
             "link": {
               "href": "/en/audit/",
-              "label": "Run audit →"
+              "label": "Run audit"
             }
           },
           {
@@ -1914,7 +1914,7 @@
             "text": "Estimate pages, portfolio scope, locations, SEO, forms and CRM features.",
             "link": {
               "href": "/en/calculator/",
-              "label": "Calculate cost →"
+              "label": "Calculate cost"
             }
           },
           {
@@ -1922,7 +1922,7 @@
             "text": "Launch a focused website and add projects, services and locations as the business grows.",
             "link": {
               "href": "#contact",
-              "label": "Discuss project →"
+              "label": "Discuss project"
             }
           },
           {
@@ -1930,7 +1930,7 @@
             "text": "Use BEQSON tools for metadata, UTM links, Google previews and more.",
             "link": {
               "href": "/en/tools/",
-              "label": "Explore tools →"
+              "label": "Explore tools"
             }
           }
         ]
@@ -2016,7 +2016,7 @@
             "text": "Проверим техническое SEO, метаданные и основные проблемы текущего сайта.",
             "link": {
               "href": "/ru/audit/",
-              "label": "Проверить сайт →"
+              "label": "Проверить сайт"
             }
           },
           {
@@ -2024,7 +2024,7 @@
             "text": "Оцените проект с учётом страниц, языков, SEO, CRM и функций бронирования.",
             "link": {
               "href": "/ru/calculator/",
-              "label": "Рассчитать стоимость →"
+              "label": "Рассчитать стоимость"
             }
           },
           {
@@ -2032,7 +2032,7 @@
             "text": "Можно начать с компактного сайта объекта размещения и постепенно добавлять номера, направления и интеграции.",
             "link": {
               "href": "#contact",
-              "label": "Обсудить проект →"
+              "label": "Обсудить проект"
             }
           },
           {
@@ -2040,7 +2040,7 @@
             "text": "Добавим языковые версии и страницы под разные рынки и направления.",
             "link": {
               "href": "/ru/tools/",
-              "label": "Бесплатные инструменты →"
+              "label": "Бесплатные инструменты"
             }
           }
         ]
@@ -2121,7 +2121,7 @@
             "text": "შეამოწმეთ ტექნიკური SEO, მეტამონაცემები და მიმდინარე საიტის მთავარი პრობლემები.",
             "link": {
               "href": "/ka/audit/",
-              "label": "საიტის შემოწმება →"
+              "label": "საიტის შემოწმება"
             }
           },
           {
@@ -2129,7 +2129,7 @@
             "text": "შეაფასეთ პროექტი გვერდების, ენების, SEO-ს, CRM-ისა და ჯავშნის ფუნქციების მიხედვით.",
             "link": {
               "href": "/ka/calculator/",
-              "label": "ღირებულების გამოთვლა →"
+              "label": "ღირებულების გამოთვლა"
             }
           },
           {
@@ -2137,7 +2137,7 @@
             "text": "დაიწყეთ კომპაქტური საიტით და მოგვიანებით დაამატეთ ნომრები, მიმართულებები და ინტეგრაციები.",
             "link": {
               "href": "#contact",
-              "label": "პროექტის განხილვა →"
+              "label": "პროექტის განხილვა"
             }
           },
           {
@@ -2145,7 +2145,7 @@
             "text": "დავამატებთ ენებს და საძიებო გვერდებს სხვადასხვა ბაზრისა და მიმართულებისთვის.",
             "link": {
               "href": "/ka/tools/",
-              "label": "უფასო ინსტრუმენტები →"
+              "label": "უფასო ინსტრუმენტები"
             }
           }
         ]
@@ -2226,7 +2226,7 @@
             "text": "Check technical SEO, metadata and priority issues on an existing hotel or apartment website.",
             "link": {
               "href": "/en/audit/",
-              "label": "Run audit →"
+              "label": "Run audit"
             }
           },
           {
@@ -2234,7 +2234,7 @@
             "text": "Estimate pages, languages, SEO, CRM and booking-related features.",
             "link": {
               "href": "/en/calculator/",
-              "label": "Calculate cost →"
+              "label": "Calculate cost"
             }
           },
           {
@@ -2242,7 +2242,7 @@
             "text": "Launch a focused hospitality website and expand room types, destinations and integrations later.",
             "link": {
               "href": "#contact",
-              "label": "Discuss project →"
+              "label": "Discuss project"
             }
           },
           {
@@ -2250,7 +2250,7 @@
             "text": "Add languages and local search pages for guests from different markets.",
             "link": {
               "href": "/en/tools/",
-              "label": "Explore free tools →"
+              "label": "Explore free tools"
             }
           }
         ]
@@ -2364,7 +2364,7 @@
           {
             "class": "text-link",
             "href": "/ru/calculator/",
-            "label": "Рассчитать стоимость сайта<svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow\"></use></svg>"
+            "label": "Рассчитать стоимость сайта"
           }
         ]
       },
@@ -2487,7 +2487,7 @@
           {
             "class": "text-link",
             "href": "/ka/calculator/",
-            "label": "საიტის ღირებულების გამოთვლა<svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow\"></use></svg>"
+            "label": "საიტის ღირებულების გამოთვლა"
           }
         ]
       },
@@ -2610,7 +2610,7 @@
           {
             "class": "text-link",
             "href": "/en/calculator/",
-            "label": "Estimate website cost<svg class=\"icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/icons.svg#arrow\"></use></svg>"
+            "label": "Estimate website cost"
           }
         ]
       },

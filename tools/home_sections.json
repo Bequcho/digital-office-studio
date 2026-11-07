@@ -8,7 +8,7 @@
         "heading": "Бесплатно проверьте свой сайт",
         "text": "За минуту покажем SEO Score, ключевые технические проблемы и план действий. Полный отчёт можно сохранить в PDF.",
         "href": "/ru/audit/",
-        "label": "Проверить сайт бесплатно →"
+        "label": "Проверить сайт бесплатно"
       },
       {
         "calculator": true,
@@ -16,7 +16,7 @@
         "heading": "Рассчитайте стоимость проекта",
         "text": "Сайты, SEO, GEO, AI-автоматизация и дизайн: выберите услугу и получите ориентировочную или индивидуальную оценку.",
         "href": "/ru/calculator/",
-        "label": "Выбрать услугу →"
+        "label": "Выбрать услугу"
       },
       {
         "calculator": false,
@@ -24,7 +24,7 @@
         "heading": "Станьте понятнее AI-поиску",
         "text": "GEO Audit: проверим доступность сайта для AI-поиска, содержание страниц, информацию о бренде и реальные сигналы цитируемости.",
         "href": "/ru/geo/",
-        "label": "GEO-аудит и самопроверка ↗",
+        "label": "GEO-аудит и самопроверка",
         "class": "geo-home-strip"
       }
     ],
@@ -113,7 +113,7 @@
       "kicker": "ПРОФИЛЬ НА НЕЗАВИСИМОЙ ПЛАТФОРМЕ",
       "heading": "BEQSON на Clutch",
       "text": "Посмотрите наши услуги, портфолио и профиль студии на Clutch.",
-      "cta": "↗"
+      "cta": ""
     },
     "pricing": {
       "currency": "₽",
@@ -136,7 +136,7 @@
         "heading": "შეამოწმეთ თქვენი საიტი უფასოდ",
         "text": "ერთ წუთში მიიღეთ SEO Score, ძირითადი ტექნიკური პრობლემები და სამოქმედო გეგმა. სრული ანგარიში შეგიძლიათ შეინახოთ PDF-ად.",
         "href": "/ka/audit/",
-        "label": "საიტის უფასო შემოწმება →"
+        "label": "საიტის უფასო შემოწმება"
       },
       {
         "calculator": true,
@@ -144,7 +144,7 @@
         "heading": "შეაფასეთ თქვენი ციფრული პროექტი",
         "text": "ვებსაიტები, SEO, GEO, AI ავტომატიზაცია და დიზაინი — აირჩიეთ სერვისი და მიიღეთ საორიენტაციო ან ინდივიდუალური შეფასება.",
         "href": "/ka/calculator/",
-        "label": "სერვისის არჩევა →"
+        "label": "სერვისის არჩევა"
       },
       {
         "calculator": false,
@@ -152,7 +152,7 @@
         "heading": "გახადეთ თქვენი ბიზნესი AI ძიებისთვის გასაგები",
         "text": "GEO Audit ამოწმებს საძიებო ბოტების წვდომას, ბრენდის სიცხადეს, კონტენტსა და რეალურ ციტირების სიგნალებს.",
         "href": "/ka/geo/",
-        "label": "GEO აუდიტი და თვითშემოწმება ↗",
+        "label": "GEO აუდიტი და თვითშემოწმება",
         "class": "geo-home-strip"
       }
     ],
@@ -241,7 +241,7 @@
       "kicker": "დამოუკიდებელი კომპანიის პროფილი",
       "heading": "გვიპოვეთ Clutch-ზე",
       "text": "იხილეთ ჩვენი სერვისები, პორტფოლიო და სტუდიის პროფილი Clutch-ზე.",
-      "cta": "↗"
+      "cta": ""
     },
     "pricing": {
       "currency": "₾",
@@ -264,7 +264,7 @@
         "heading": "Check your website for free",
         "text": "Get an SEO Score, key technical issues and an action plan in about a minute. The full report can be saved as a PDF.",
         "href": "/en/audit/",
-        "label": "Run free website audit →"
+        "label": "Run free website audit"
       },
       {
         "calculator": true,
@@ -272,7 +272,7 @@
         "heading": "Estimate your digital project",
         "text": "Websites, SEO, GEO, AI automation and design: choose your service and get an estimate or a tailored quote.",
         "href": "/en/calculator/",
-        "label": "Explore service pricing →"
+        "label": "Explore service pricing"
       },
       {
         "calculator": false,
@@ -280,7 +280,7 @@
         "heading": "Make your business easier to understand in AI search",
         "text": "GEO Audit checks crawler access, brand clarity, useful content and observable citation signals.",
         "href": "/en/geo/",
-        "label": "Explore GEO Audit ↗",
+        "label": "Explore GEO Audit",
         "class": "geo-home-strip"
       }
     ],
@@ -369,7 +369,7 @@
       "kicker": "INDEPENDENT COMPANY PROFILE",
       "heading": "Find us on Clutch",
       "text": "View our services, portfolio and company profile on Clutch.",
-      "cta": "↗"
+      "cta": ""
     },
     "pricing": {
       "currency": "$",

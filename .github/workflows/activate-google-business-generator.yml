@@ -24,7 +24,7 @@ jobs:
               'lead_old':'Проверьте SEO, оцените стоимость проекта, улучшите метаданные и соберите отслеживаемую UTM-ссылку для рекламы.',
               'lead_new':'Проверьте SEO, оцените стоимость проекта, улучшите метаданные, создайте UTM-ссылку и описание для Google Business Profile.',
               'old':'<article class="tool"><span class="tag soon">Скоро</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>Поможет подготовить понятное описание компании для Google Business Profile с учётом вашей сферы и услуг.</p><span class="soonbox">Готовим инструмент</span></article>',
-              'new':'<article class="tool active"><span class="tag">● LIVE TOOL</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>Создайте аккуратное описание компании по сфере, городу, услугам и сильным сторонам бизнеса.</p><a class="go" href="/ru/tools/google-business-description/">Создать описание →</a></article>',
+              'new':'<article class="tool active"><span class="tag">● LIVE TOOL</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>Создайте аккуратное описание компании по сфере, городу, услугам и сильным сторонам бизнеса.</p><a class="go" href="/ru/tools/google-business-description/">Создать описание</a></article>',
               'json_old':'{"@type":"ListItem","position":4,"url":"https://beqson.com/ru/tools/utm-builder/","name":"UTM Builder"}]',
               'json_new':'{"@type":"ListItem","position":4,"url":"https://beqson.com/ru/tools/utm-builder/","name":"UTM Builder"},{"@type":"ListItem","position":5,"url":"https://beqson.com/ru/tools/google-business-description/","name":"Google Business Description Generator"}]'
             },
@@ -34,7 +34,7 @@ jobs:
               'lead_old':'Audit your SEO, estimate a project, improve metadata and build trackable campaign URLs for marketing.',
               'lead_new':'Audit your SEO, estimate a project, improve metadata, build UTM URLs and generate a Google Business Profile description.',
               'old':'<article class="tool"><span class="tag soon">Coming soon</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>Generate a clear business description for your Google Business Profile based on your services and industry.</p><span class="soonbox">In development</span></article>',
-              'new':'<article class="tool active"><span class="tag">● LIVE TOOL</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>Create a clear business description from your industry, location, services and differentiators.</p><a class="go" href="/en/tools/google-business-description/">Generate description →</a></article>',
+              'new':'<article class="tool active"><span class="tag">● LIVE TOOL</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>Create a clear business description from your industry, location, services and differentiators.</p><a class="go" href="/en/tools/google-business-description/">Generate description</a></article>',
               'json_old':'{"@type":"ListItem","position":4,"url":"https://beqson.com/en/tools/utm-builder/","name":"UTM Builder"}]',
               'json_new':'{"@type":"ListItem","position":4,"url":"https://beqson.com/en/tools/utm-builder/","name":"UTM Builder"},{"@type":"ListItem","position":5,"url":"https://beqson.com/en/tools/google-business-description/","name":"Google Business Description Generator"}]'
             },
@@ -44,7 +44,7 @@ jobs:
               'lead_old':'შეამოწმეთ SEO, შეაფასეთ პროექტის ღირებულება, გააუმჯობესეთ მეტამონაცემები და შექმენით UTM ბმულები რეკლამისთვის.',
               'lead_new':'შეამოწმეთ SEO, შეაფასეთ პროექტი, გააუმჯობესეთ მეტამონაცემები, შექმენით UTM ბმული და Google Business Profile-ის აღწერა.',
               'old':'<article class="tool"><span class="tag soon">მალე</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>დაგეხმარებათ Google Business Profile-ისთვის მკაფიო ბიზნეს-აღწერის მომზადებაში თქვენი სფეროსა და სერვისების მიხედვით.</p><span class="soonbox">მზადდება</span></article>',
-              'new':'<article class="tool active"><span class="tag">● LIVE TOOL</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>შექმენით ბიზნესის აღწერა სფეროს, ქალაქის, სერვისებისა და მთავარი უპირატესობების მიხედვით.</p><a class="go" href="/ka/tools/google-business-description/">აღწერის შექმნა →</a></article>',
+              'new':'<article class="tool active"><span class="tag">● LIVE TOOL</span><div class="icon">G</div><h3>Google Business Description Generator</h3><p>შექმენით ბიზნესის აღწერა სფეროს, ქალაქის, სერვისებისა და მთავარი უპირატესობების მიხედვით.</p><a class="go" href="/ka/tools/google-business-description/">აღწერის შექმნა</a></article>',
               'json_old':'{"@type":"ListItem","position":4,"url":"https://beqson.com/ka/tools/utm-builder/","name":"UTM Builder"}]',
               'json_new':'{"@type":"ListItem","position":4,"url":"https://beqson.com/ka/tools/utm-builder/","name":"UTM Builder"},{"@type":"ListItem","position":5,"url":"https://beqson.com/ka/tools/google-business-description/","name":"Google Business Description Generator"}]'
             }
@@ -59,7 +59,7 @@ jobs:
 
           kp=Path('ka/tools/google-business-description/index.html')
           if kp.exists():
-              s=kp.read_text().replace('განიხილეთ продвижение BEQSON-თან →','განიხილეთ ლოკალური SEO BEQSON-თან →')
+              s=kp.read_text().replace('განიხილეთ продвижение BEQSON-თან','განიხილეთ ლოკალური SEO BEQSON-თან')
               kp.write_text(s)
 
           sitemap=Path('sitemap.xml')

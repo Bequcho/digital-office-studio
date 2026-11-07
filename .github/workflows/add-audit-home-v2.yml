@@ -18,9 +18,9 @@ jobs:
           from pathlib import Path
 
           pages = {
-              'ru/index.html': ('Бесплатный SEO-аудит','Бесплатно проверьте свой сайт','За минуту покажем SEO Score, ключевые технические проблемы и план действий. Полный отчёт можно сохранить в PDF.','Проверить сайт бесплатно →'),
-              'ka/index.html': ('უფასო SEO აუდიტი','შეამოწმეთ თქვენი საიტი უფასოდ','ერთ წუთში მიიღეთ SEO Score, ძირითადი ტექნიკური პრობლემები და სამოქმედო გეგმა. სრული ანგარიში შეგიძლიათ შეინახოთ PDF-ად.','საიტის უფასო შემოწმება →'),
-              'en/index.html': ('Free SEO audit','Check your website for free','Get an SEO Score, key technical issues and an action plan in about a minute. The full report can be saved as a PDF.','Run free website audit →'),
+              'ru/index.html': ('Бесплатный SEO-аудит','Бесплатно проверьте свой сайт','За минуту покажем SEO Score, ключевые технические проблемы и план действий. Полный отчёт можно сохранить в PDF.','Проверить сайт бесплатно'),
+              'ka/index.html': ('უფასო SEO აუდიტი','შეამოწმეთ თქვენი საიტი უფასოდ','ერთ წუთში მიიღეთ SEO Score, ძირითადი ტექნიკური პრობლემები და სამოქმედო გეგმა. სრული ანგარიში შეგიძლიათ შეინახოთ PDF-ად.','საიტის უფასო შემოწმება'),
+              'en/index.html': ('Free SEO audit','Check your website for free','Get an SEO Score, key technical issues and an action plan in about a minute. The full report can be saved as a PDF.','Run free website audit'),
           }
 
           style = '''<style id="audit-home-style">

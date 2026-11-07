@@ -62,7 +62,7 @@
     <button class="bls-launcher" type="button" aria-haspopup="dialog" aria-controls="beqson-lead-dialog" aria-expanded="false">
       <span class="bls-launcher-dot" aria-hidden="true"></span>
       <span>${escapeHtml(t.launcher)}</span>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+
     </button>
     <div class="bls-backdrop" hidden></div>
     <section class="bls-modal" id="beqson-lead-dialog" role="dialog" aria-modal="true" aria-labelledby="beqson-lead-title" aria-describedby="beqson-lead-description" tabindex="-1" hidden>
@@ -85,7 +85,7 @@
         </div>
         <input class="bls-honey" type="text" name="company_fax" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="bls-submit-row">
-          <button class="bls-submit" type="submit"><span>${escapeHtml(t.submit)}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <button class="bls-submit" type="submit"><span>${escapeHtml(t.submit)}</span></button>
           <p class="bls-consent">${escapeHtml(t.consent)}</p>
         </div>
         <div class="bls-status" role="status" aria-live="polite"></div>

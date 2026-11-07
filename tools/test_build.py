@@ -121,8 +121,8 @@ class BuildRegressionTests(unittest.TestCase):
                 with self.subTest(route=route):
                     actual = Page(self.source(route))
                     baseline = Page((ROOT / route / 'index.html').read_text())
-                    self.assertEqual(len(actual.select('script', src='/assets/lead-system.js?v=2')), 1)
-                    self.assertEqual(len(actual.select('link', href='/assets/lead-system.css?v=1')), 1)
+                    self.assertEqual(len(actual.select('script', src='/assets/lead-system.js?v=3-clean-links')), 1)
+                    self.assertEqual(len(actual.select('link', href='/assets/lead-system.css?v=2-clean-links')), 1)
                     self.assertEqual(actual.select('section'), baseline.select('section'))
                     self.assertEqual(actual.select('script'), baseline.select('script'))
                     self.assertEqual(actual.select('form'), baseline.select('form'))
